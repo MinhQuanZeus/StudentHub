@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {login} from "../../actions/LoginActions/loginActions";
 import {connect} from 'react-redux';
+
+import {login} from "../../actions/LoginActions/loginActions";
 import {LoginComponent} from "../../components/LoginComponent/LoginComponent";
 
 class LoginContainer extends Component {
@@ -12,15 +13,13 @@ class LoginContainer extends Component {
     render() {
 
         let {email, password} = this.state;
-        let {isLoginPending, isLoginSuccess, loginError} = this.props;
+        let {loginStatus} = this.props;
 
         return (
             <LoginComponent submit={this.onSubmit}
                             changeEmail={this.setEmailToStateOnChange}
                             changePassword={this.setPasswordToStateOnChange}
-                            isLoginPending={isLoginPending}
-                            isLoginSuccess={isLoginSuccess}
-                            loginError={loginError}
+                            loginStatus={loginStatus}
             />
         )
     }
@@ -42,9 +41,7 @@ class LoginContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoginPending: state.isLoginPending,
-        isLoginSuccess: state.isLoginSuccess,
-        loginError: state.loginError
+        loginStatus: state.loginStatus
     }
 };
 

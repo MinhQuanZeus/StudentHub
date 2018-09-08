@@ -1,27 +1,23 @@
-const LOGIN_PENDING = "LOGIN_PENDING";
-const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-const LOGIN_ERROR = "LOGIN_ERROR";
+import {loginStatusConstant} from "../../constants/loginStatusConstants";
 
 const loginReducer = (state = {
-    isLoginPending: false,
-    isLoginSuccess: false,
-    loginError: null
+    loginStatus: null
 }, action) => {
     switch (action.type) {
-        case LOGIN_SUCCESS:
+        case loginStatusConstant.LOGIN_SUCCESS:
             return {
                 ...state,
-                isLoginSuccess: action.isLoginSuccess
+                loginStatus: action.loginStatus
             };
-        case LOGIN_PENDING:
+        case loginStatusConstant.LOGIN_PENDING:
             return {
                 ...state,
-                isLoginPending: action.isLoginPending
+                loginStatus: action.loginStatus
             };
-        case LOGIN_ERROR:
+        case loginStatusConstant.LOGIN_ERROR:
             return {
                 ...state,
-                loginError: action.loginError
+                loginStatus: action.loginStatus
             };
 
         default:

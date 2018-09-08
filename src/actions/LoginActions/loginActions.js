@@ -1,56 +1,62 @@
 import Promise from "es6-promise";
+import axios from 'axios';
 
-const LOGIN_PENDING = "LOGIN_PENDING";
-const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-const LOGIN_ERROR = "LOGIN_ERROR";
+import {apiConstants} from "../../constants/applicationConstants";
+import {applicationStatusCode} from "../../constants/applicationConstants";
+import {loginStatusConstant} from "../../constants/loginStatusConstants";
+import {history} from "../../helpers/history";
 
 export function login(email, password) {
     return dispatch => {
-        dispatch(setLoggingPending(true));
-        dispatch(setLoggingSuccess(false));
-        dispatch(setLoggingError(null));
+        dispatch(setLoginLogging(loginStatusConstant.LOGIN_PENDING, null));
 
         sendLoginRequest(email, password)
             .then(success => {
-                dispatch(setLoggingPending(false));
-                dispatch(setLoggingSuccess(true));
+                dispatch(setLoginLogging(loginStatusConstant.LOGIN_SUCCESS, null));
+                history.push({
+                    pathname: '/home',
+                    state: success.data
+                });
             })
             .catch(err => {
-                dispatch(setLoggingPending(false));
-                dispatch(setLoggingError(err));
+                dispatch(setLoginLogging(loginStatusConstant.LOGIN_ERROR, err));
             })
     }
 }
 
 function sendLoginRequest(email, password) {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (email === "admin@admin" && password === "admin") {
-                return resolve(true);
+        axios.post(getLoginPath(), buildPayload(email, password)).then(value => {
+            if (value.data.status === applicationStatusCode.OK) {
+                resolve(value.data);
             } else {
-                return reject(new Error("Invalid email or password"));
+                reject(value.data);
             }
-        }, 2000);
-    })
+        })
+    });
 }
 
-function setLoggingPending(isLoginPending) {
-    return {
-        type: LOGIN_PENDING,
-        isLoginPending
+function setLoginLogging(type, value) {
+    if (value !== null) {
+        return {
+            type: type,
+            loginStatus: value
+        }
+    } else {
+        return {
+            type: type,
+            loginStatus: type
+        }
     }
 }
 
-function setLoggingSuccess(isLoginSuccess) {
-    return {
-        type: LOGIN_SUCCESS,
-        isLoginSuccess
-    }
+function getLoginPath() {
+    return apiConstants.BACKEND_URL + apiConstants.STUDENT_LOGIN_PATH;
 }
 
-function setLoggingError(loginError) {
+function buildPayload(email, password) {
     return {
-        type: LOGIN_ERROR,
-        loginError
+        email: email,
+        password: password
     }
 }
