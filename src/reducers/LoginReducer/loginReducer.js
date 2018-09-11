@@ -5,15 +5,7 @@ const loginReducer = (state = {
 }, action) => {
     switch (action.type) {
         case loginStatusConstant.LOGIN_SUCCESS:
-            return {
-                ...state,
-                loginStatus: action.loginStatus
-            };
         case loginStatusConstant.LOGIN_PENDING:
-            return {
-                ...state,
-                loginStatus: action.loginStatus
-            };
         case loginStatusConstant.LOGIN_ERROR:
             return {
                 ...state,

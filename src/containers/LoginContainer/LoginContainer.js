@@ -12,9 +12,7 @@ class LoginContainer extends Component {
 
     render() {
 
-        let {email, password} = this.state;
         let {loginStatus} = this.props;
-
         return (
             <LoginComponent submit={this.onSubmit}
                             changeEmail={this.setEmailToStateOnChange}
@@ -26,11 +24,11 @@ class LoginContainer extends Component {
 
     setEmailToStateOnChange = (event) => {
         this.setState({email: event.target.value});
-    }
+    };
 
     setPasswordToStateOnChange = (event) => {
         this.setState({password: event.target.value});
-    }
+    };
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -41,7 +39,7 @@ class LoginContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        loginStatus: state.loginStatus
+        loginStatus: state.login.loginStatus
     }
 };
 

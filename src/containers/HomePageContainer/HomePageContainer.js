@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-export class HomePageContainer extends Component {
+class HomePageContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -25,3 +25,5 @@ export class HomePageContainer extends Component {
         )
     }
 }
+
+export default HomePageContainer;

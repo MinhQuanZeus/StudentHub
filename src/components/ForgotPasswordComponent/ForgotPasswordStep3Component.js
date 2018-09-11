@@ -1,22 +1,21 @@
 import React from 'react';
-import {loginStatusConstant} from "../../constants/loginStatusConstants";
-import Link from "react-router-dom/es/Link";
+import {forgotPasswordConstants} from "../../constants/forgotPasswordConstants";
 
-export const LoginComponent = (props) => {
+export const ForgotPasswordStep3Component = (props) => {
 
-    let loginStatus = props.loginStatus;
+    let changePasswordStatus = props.changePasswordStatus;
 
-    let loginMessage;
-    if (loginStatus !== undefined && loginStatus !== null) {
-        switch (loginStatus) {
-            case loginStatusConstant.LOGIN_SUCCESS:
-                loginMessage = (<div>Success</div>);
+    let message;
+    if (changePasswordStatus !== undefined && changePasswordStatus !== null) {
+        switch (changePasswordStatus) {
+            case forgotPasswordConstants.CHANGE_PASSWORD_SUCCESS:
+                message = (<div>Success</div>);
                 break;
-            case loginStatusConstant.LOGIN_PENDING:
-                loginMessage = (<div>Please wait...</div>);
+            case forgotPasswordConstants.CHANGE_PASSWORD_PENDING:
+                message = (<div>Please wait...</div>);
                 break;
             default:
-                loginMessage = (<div>{loginStatus.message}</div>)
+                message = (<div>{changePasswordStatus.message}</div>)
         }
     }
 
@@ -33,53 +32,47 @@ export const LoginComponent = (props) => {
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item border-0">
                                     <h2 className="card-title m-0">
-                                        Welcome back!
+                                        Enter your New Password
                                     </h2>
+                                    <p className="card-title m-0">
+                                        Type new password for your account
+                                    </p>
                                 </li>
                                 <li className="list-group-item border-0">
                                     <div className="form-group">
-                                        <label htmlFor="login_username">Username</label>
+                                        <label htmlFor="login_username">Password</label>
                                         <div className="input-group">
                                         <span className="input-group-addon">
-                                            <i className="fa fa-user fa-2x"/>
+                                            <i className="fa fa-key fa-2x"/>
                                         </span>
-                                            <input type="email" id="login_username" name="login_username"
-                                                   className="form-control" onChange={props.changeEmail}/>
+                                            <input type="password" id="login_username" name="login_username"
+                                                   className="form-control" onChange={props.changeNewPassword}/>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="login_password">Password</label>
+                                        <label htmlFor="login_password">Confirm Password</label>
                                         <div className="input-group">
                                         <span className="input-group-addon">
                                             <i className="fa fa-key fa-2x"/>
                                         </span>
                                             <input type="password" id="login_password" name="login_password"
-                                                   className="form-control" onChange={props.changePassword}/>
+                                                   className="form-control" onChange={props.changeConPassowrd}/>
                                         </div>
                                     </div>
-                                    <label className="custom-control custom-checkbox">
-                                        <input type="checkbox" id="login_remember"
-                                               className="custom-control-input"/>
-                                        <span className="custom-control-indicator"/>
-                                        <span className="custom-control-description">Keep me logged in</span>
-                                    </label>
                                 </li>
                                 <li className="list-group-item border-0">
-                                    <button type="submit" className="btn btn-primary login-btn">Login</button>
+                                    <button type="submit" className="btn btn-primary login-btn">Next</button>
                                 </li>
                             </ul>
                         </form>
-                        <div className="forgot-password-paragraph-div">
-                            <Link to="/forgot-password?step=1"><p className="forgot-password-paragraph">Forgot Password ?</p></Link>
-                        </div>
                     </div>
                 </div>
             </div>
             <div className="login-image-container">
-                <img src="images/login-illustration.svg" className="Illustration" alt=""/>
+                <img src="images/forgot-password-illustration.svg" className="Illustration" alt=""/>
             </div>
             <div className="message">
-                {loginMessage}
+                {message}
             </div>
         </div>
     )

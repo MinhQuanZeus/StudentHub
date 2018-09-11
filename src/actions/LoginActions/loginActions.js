@@ -24,6 +24,13 @@ export function login(email, password) {
     }
 }
 
+export function goToForgotPassword() {
+    history.push({
+        pathname: 'forgot-password',
+        search: '?step=1',
+    })
+}
+
 function sendLoginRequest(email, password) {
     return new Promise((resolve, reject) => {
         axios.post(getLoginPath(), buildPayload(email, password)).then(value => {
