@@ -1,8 +1,7 @@
 import Promise from "es6-promise";
 import axios from 'axios';
 
-import {apiConstants} from "../../constants/applicationConstants";
-import {applicationStatusCode} from "../../constants/applicationConstants";
+import {apiConstants, applicationStatusCode, applicationMessages} from "../../constants/applicationConstants";
 import {forgotPasswordConstants} from "../../constants/forgotPasswordConstants";
 import {history} from "../../helpers/history";
 
@@ -32,10 +31,10 @@ export function forgotPassword(email, channel, verifyCode) {
     }
 }
 
-export function changePassword(accessToken, newPassword) {
+export function changePassword(accessToken, newPassword, conPassword) {
     return dispatch => {
         dispatch(setChangePasswordLogging(forgotPasswordConstants.CHANGE_PASSWORD_PENDING, null));
-        sendChangePasswordRequest(accessToken, newPassword)
+        sendChangePasswordRequest(accessToken, newPassword, conPassword)
             .then(success => {
                 dispatch(setChangePasswordLogging(forgotPasswordConstants.CHANGE_PASSWORD_SUCCESS, null));
                 history.push({
@@ -64,8 +63,11 @@ function sendForgotPasswordRequest(email, channel, verifyCode) {
     });
 }
 
-function sendChangePasswordRequest(accessToken, newPassword) {
+function sendChangePasswordRequest(accessToken, newPassword, conPassword) {
     return new Promise((resolve, reject) => {
+        if (newPassword !== conPassword) {
+            reject(applicationMessages.NEW_AND_CON_PASSWORD_NOT_MATCH);
+        }
         axios.post(getChangePasswordPath(), buildPayloadChangePassword(accessToken, newPassword)).then(value => {
             if (value.data.status === applicationStatusCode.OK) {
                 resolve(value.data);
@@ -122,17 +124,9 @@ function buildPayloadChangePassword(accessToken, newPassword) {
 }
 
 function buildPayloadForgotPassword(email, channel, verifyCode) {
-    if (verifyCode !== undefined && verifyCode !== null) {
-        return {
-            email: email,
-            channel: channel,
-            otp: verifyCode
-        }
-    } else {
-        return {
-            email: email,
-            channel: channel
-        }
+    return {
+        email: email,
+        channel: channel,
+        otp: (verifyCode !== undefined && verifyCode !== null) ? verifyCode : ""
     }
-
 }

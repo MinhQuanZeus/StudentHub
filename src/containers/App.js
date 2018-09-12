@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Router, Route} from 'react-router-dom';
 import LoginContainer from "./LoginContainer/LoginContainer";
 import {history} from "../helpers/history"
-import HomePageContainer from "./HomePageContainer/HomePageContainer";
+import ApplicationContainer from "./ApplicationContainer/ApplicationContainer";
 import ForgotPasswordContainer from "./ForgotPasswordContainer/ForgotPasswordContainer";
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
                     <div>
                         <Route exact path="/" component={LoginContainer}/>
                         <Route exact path="/login" component={LoginContainer}/>
-                        <Route path="/home" component={HomePageContainer}/>
+                        <Route path="/home" component={ApplicationContainer}/>
                         <Route path="/forgot-password" component={ForgotPasswordContainer}/>
                     </div>
                 </Router>

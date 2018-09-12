@@ -1,8 +1,7 @@
 import Promise from "es6-promise";
 import axios from 'axios';
 
-import {apiConstants} from "../../constants/applicationConstants";
-import {applicationStatusCode} from "../../constants/applicationConstants";
+import {apiConstants, applicationStatusCode} from "../../constants/applicationConstants";
 import {loginStatusConstant} from "../../constants/loginStatusConstants";
 import {history} from "../../helpers/history";
 
@@ -22,13 +21,6 @@ export function login(email, password) {
                 dispatch(setLoginLogging(loginStatusConstant.LOGIN_ERROR, err));
             })
     }
-}
-
-export function goToForgotPassword() {
-    history.push({
-        pathname: 'forgot-password',
-        search: '?step=1',
-    })
 }
 
 function sendLoginRequest(email, password) {

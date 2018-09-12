@@ -90,11 +90,7 @@ class ForgotPasswordContainer extends Component {
         e.preventDefault();
         let {newPassword, conPassword} = this.state;
         let accessToken = this.props.location.state.access_token;
-        if (newPassword === conPassword) {
-            this.props.changePassword(accessToken, newPassword)
-        } else {
-            this.setState({changePasswordStatus: "newPassword and conPassword must be the same"})
-        }
+        this.props.changePassword(accessToken, newPassword, conPassword)
     }
 
 }
@@ -109,7 +105,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         forgotPassword: (email, channel, verifyCode) => dispatch(forgotPassword(email, channel, verifyCode)),
-        changePassword: (accessToken, newPassword) => dispatch(changePassword(accessToken, newPassword))
+        changePassword: (accessToken, newPassword, conPassword) => dispatch(changePassword(accessToken, newPassword, conPassword))
     }
 };
 

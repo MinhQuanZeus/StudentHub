@@ -9,3 +9,10 @@ export const apiConstants = {
 export const applicationStatusCode = {
     OK: 105
 };
+
+export const applicationMessages = {
+    SUCCESS: "Success",
+    PENDING: "Please wait",
+
+    NEW_AND_CON_PASSWORD_NOT_MATCH: "New and confirmation password must be matched"
+};
