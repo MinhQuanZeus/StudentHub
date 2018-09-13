@@ -11,10 +11,9 @@ export function login(email, password) {
 
         sendLoginRequest(email, password)
             .then(success => {
-                dispatch(setLoginLogging(loginStatusConstant.LOGIN_SUCCESS, null));
+                dispatch(setLoginLogging(loginStatusConstant.LOGIN_SUCCESS, success.data));
                 history.push({
-                    pathname: '/home',
-                    state: success.data
+                    pathname: '/'
                 });
             })
             .catch(err => {
@@ -36,16 +35,11 @@ function sendLoginRequest(email, password) {
 }
 
 function setLoginLogging(type, value) {
-    if (value !== null) {
-        return {
-            type: type,
-            loginStatus: value
-        }
-    } else {
-        return {
-            type: type,
-            loginStatus: type
-        }
+    return {
+        type: type,
+        loginStatus: type,
+        loginInformation: value
+
     }
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import {loginStatusConstant} from "../../constants/loginStatusConstants";
 import Link from "react-router-dom/es/Link";
+
+import {loginStatusConstant} from "../../constants/loginStatusConstants";
 
 export const LoginComponent = (props) => {
 

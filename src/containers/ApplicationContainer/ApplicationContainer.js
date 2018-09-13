@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Route} from 'react-router-dom';
 
 import TopBarContainer from "../TopBarContainer/TopBarContainer";
 import NavBarContainer from "../NavBarContainer/NavBarContainer";
@@ -16,7 +15,6 @@ class ApplicationContainer extends Component {
             <div>
                 <TopBarContainer/>
                 <NavBarContainer/>
-                <Route path="/success-team" component={/*Success Team Container here*/}/>
             </div>
         )
     }

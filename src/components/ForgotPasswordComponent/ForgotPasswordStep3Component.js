@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {forgotPasswordConstants} from "../../constants/forgotPasswordConstants";
 import {applicationMessages} from "../../constants/applicationConstants";
 
@@ -13,7 +14,7 @@ export const ForgotPasswordStep3Component = (props) => {
                 message = (<div>{applicationMessages.SUCCESS}</div>);
                 break;
             case forgotPasswordConstants.CHANGE_PASSWORD_PENDING:
-                message = (<div>{applicationMessages.SUCCESS}</div>);
+                message = (<div>{applicationMessages.PENDING}</div>);
                 break;
             default:
                 message = (<div>{changePasswordStatus.message}</div>)

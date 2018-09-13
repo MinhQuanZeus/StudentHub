@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+
 import {TopBarComponent} from "../../components/TopBarComponent/TopBarComponent";
 
 class TopBarContainer extends Component {
@@ -10,11 +11,10 @@ class TopBarContainer extends Component {
     }
 
     render() {
-        // let {studentInformation} = this.props;
-        let studentInformation;
+        let {loginInformation} = this.props;
 
         return (
-            <TopBarComponent studentInformation={studentInformation}/>
+            <TopBarComponent loginInformation={loginInformation}/>
         )
     }
 
@@ -22,7 +22,7 @@ class TopBarContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-//bind student information to props here
+        loginInformation: state.login.loginInformation
     }
 };
 

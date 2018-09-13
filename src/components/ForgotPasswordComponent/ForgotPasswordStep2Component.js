@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from "react-router-dom/es/Link";
+
 import {forgotPasswordConstants} from "../../constants/forgotPasswordConstants";
 import {applicationMessages} from "../../constants/applicationConstants";
 
@@ -14,7 +15,7 @@ export const ForgotPasswordStep2Component = (props) => {
                 message = (<div>{applicationMessages.SUCCESS}</div>);
                 break;
             case forgotPasswordConstants.FORGOT_PASSWORD_PENDING:
-                message = (<div>{applicationMessages.SUCCESS}</div>);
+                message = (<div>{applicationMessages.PENDING}</div>);
                 break;
             default:
                 message = (<div>{forgotPasswordStatus.message}</div>)
