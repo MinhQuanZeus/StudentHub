@@ -1,11 +1,14 @@
 import React from 'react';
 import Link from "react-router-dom/es/Link";
 
+import styles from './TopBarComponent.css';
+
+
 export const TopBarComponent = (props) => {
     let {loginInformation} = props;
 
     return (
-        <nav className="navbar navbar-light bg-light">
+        <nav className={styles["some-class"]}>
             <Link className="navbar-brand" to="/"><img src="images/shape.svg" className="Shape" alt=""/></Link>
             <h5>
                 <span className="top-bar-welcome-text">Welcome</span>
