@@ -8,17 +8,19 @@ export const TopBarComponent = (props) => {
     let {loginInformation} = props;
 
     return (
-        <nav className={styles["some-class"]}>
-            <Link className="navbar-brand" to="/"><img src="images/shape.svg" className="Shape" alt=""/></Link>
-            <h5>
-                <span className="top-bar-welcome-text">Welcome</span>
+        <nav className={styles["top-bar-container"]}>
+            <Link className={styles["top-bar-icon-link"]} to="/"><img src="images/shape.svg" className={styles["top-bar-icon"]} alt=""></img></Link>
+            <h5 className={styles["top-bar-welcome-container"]}>
+                <span className={styles["top-bar-welcome-text"]}>Welcome</span>
                 &nbsp;
-                <span className="top-bar-user-full-name">{loginInformation.first_name + " " + loginInformation.last_name}</span>
+                <span className={styles["top-bar-user-full-name"]}>{loginInformation.first_name + " " + loginInformation.last_name}</span>
             </h5>
-            <i>{/*bell*/}</i>
-            <i>{/*message*/}</i>
-            <img alt="">{loginInformation.photo}</img>
-            <p className="top-bar-user-name">{loginInformation.first_name + " " + loginInformation.last_name}</p>
+            {/* THE FOLLOWING ELEMENTS MUST BE IN RIGHT TO LEFT ORDER*/}
+            <img alt="chevron"src="/images/chevron-down.svg" className={styles["top-bar-chevron-down"]}></img>
+            <p className={styles["top-bar-username"]}>{loginInformation.first_name + " " + loginInformation.last_name}</p>
+            <img alt="" className={styles["top-bar-avatar-sm"]}>{loginInformation.photo}</img>
+            <img alt="comment" src="/images/comment.svg" className={styles["top-bar-comment"]}></img>
+            <img alt="bell" src="/images/bell.svg" className={styles["top-bar-bell"]}></img>
         </nav>
     )
 }

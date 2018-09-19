@@ -689,3 +689,7 @@ a.btn {
 .top-bar-user-name {
     font-weight: bold;
 }
+
+.red-test {
+    color: red;
+}
