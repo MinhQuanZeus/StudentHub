@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './NotificationComponent.css';
 
 export const NotificationComponent = (props) => (
     <div className='right'>

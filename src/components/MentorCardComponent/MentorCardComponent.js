@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../containers/SuccessTeamContainer/MentorsContainer.scss';
+import styles from './MentorCardComponent.css';
 
 
 export const MentorCardComponent = (props) => {

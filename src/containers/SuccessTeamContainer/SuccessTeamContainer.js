@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {onFetchMentors} from "../../actions/SuccessTeamActions/SuccessTeamActions";
 import {MentorCardComponent} from "../../components/MentorCardComponent/MentorCardComponent";
-import NotificationContainer from "../NotificationContainer/NotificationContainer";
+import sharedStyles from '../../styles/styles.css';
 
 class SuccessTeamContainer extends Component {
 
@@ -12,11 +12,8 @@ class SuccessTeamContainer extends Component {
             return <MentorCardComponent key={mentor.record_id} mentor={mentor}/>
         });
         return (
-            <div id='success_team' className='row'>
-                <div className="main">
-                    {mentorItems}
-                </div>
-                <NotificationContainer/>
+            <div className={sharedStyles}>
+                {mentorItems}
             </div>
         );
     }
