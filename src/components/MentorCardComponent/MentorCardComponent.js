@@ -17,32 +17,27 @@ export const MentorCardComponent = (props) => {
         primary_email = mentor.primary_email;
     }
     return (
-        <div className="col-3 col-4-sm">
-            <div className="contact-box">
-                <div className="content">
+        
+            <div className={styles["contact-box"]}>
+                <div className={styles["content"]}>
                     <div><img
                         src={photo_url}
-                        className="avatar" alt=""/>
+                        className={styles["avatar"]} alt=""/>
                     </div>
-                    <div className="text-center">
-                        <p className="contact-name">{full_name}</p>
-                        <p className="contact-position">Freshman Mentor</p>
+                        <p className={styles["contact-name"]}>{full_name}</p>
+                        <p className={styles["contact-position"]}>Freshman Mentor</p>
                         <br/>
-                        <button className="btn btn-sm btn-outline btn-round"><i
+                        <button className={styles["chat-button"]}><i
                             className="far fa-comment"></i> &nbsp;&nbsp;Let's Chat
                         </button>
-                    </div>
                 </div>
-                <div className="footer">
-                    <div className="text-center info">
-                        <p><i className="far fa-envelope"></i> &nbsp;&nbsp;{primary_email}</p>
-                        <p><i className="fas fa-phone"
-                              style={{transform: 'rotate(90deg)'}}></i>
-                            &nbsp;&nbsp;(000){phone}</p>
-                    </div>
+                <div className={styles["footer"]}>
+                    <p className={styles["email"]}><i className="far fa-envelope"></i> &nbsp;&nbsp;{primary_email}</p>
+                    <p className={styles["phone"]}><i className="fas fa-phone"
+                    style={{transform: 'rotate(90deg)'}}></i>
+                    &nbsp;&nbsp;(000){phone}</p>
                 </div>
             </div>
-        </div>
     )
 };
 

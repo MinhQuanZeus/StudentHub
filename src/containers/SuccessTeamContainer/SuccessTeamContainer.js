@@ -12,7 +12,8 @@ class SuccessTeamContainer extends Component {
             return <MentorCardComponent key={mentor.record_id} mentor={mentor}/>
         });
         return (
-            <div className={sharedStyles}>
+            <div className={sharedStyles["content-container"]}>
+            <h2 className={sharedStyles["content-heading"]}>Success Team</h2>
                 {mentorItems}
             </div>
         );

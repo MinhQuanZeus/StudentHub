@@ -85,6 +85,25 @@ label.error:before {
     font-weight: bold;
 }
 
+.content-container {
+    position: fixed;
+    top: 61px;
+    left: 63px;
+    right: 230px;
+    background-color: #f9f9f9;
+    height: 100%;
+    padding-top: 31px;
+}
+
+.content-heading {
+    font-size: 18px;
+    font-weight: 900;
+    color: #8a85a6;
+    padding: 0 0 25px 36px;
+
+
+}
+
 
 
 
