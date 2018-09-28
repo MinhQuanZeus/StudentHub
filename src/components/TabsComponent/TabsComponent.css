@@ -1,0 +1,50 @@
+.Tabs {
+    background-color: white;
+    height: 71px;
+    border-bottom: solid 3px #f0eff6;
+}
+
+.semester {
+    display: inline;
+    font-size: 16px;
+    font-weight: 900;
+    color: #544c7f;
+}
+    
+
+.semester li {
+    list-style: none;
+    display: inline;
+    padding: 0 11px 18px 11px;
+    margin: 22px 22px 0 22px ;
+    text-align: center;
+    line-height: 71px;
+}
+
+.year-container {
+    display: inline;
+    float: right;
+    padding-right: 31px;
+    text-align: center;
+    line-height: 71px;
+    
+    
+}
+
+.year {
+    color: #8a85a6;
+    display: inline;
+    padding-right: 18px;
+}
+
+.year-selector {
+    font-size: 14px;
+    font-weight: 900;
+    color: #6647ff;
+    display: inline;
+    border: 0 solid transparent;
+}
+
+.selected-tab {
+    color: #6647ff;
+}

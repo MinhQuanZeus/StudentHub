@@ -1,0 +1,101 @@
+.Table {
+    background-color: white;
+  
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-bottom: 19px;
+    height: 51px;
+    line-height: 51px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.table-header p {
+    display: inline;
+    font-size: 14px;
+    font-weight: 900;
+    color: #413d59;
+    padding-bottom: 10px;
+    
+}
+
+.table-row-even {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background-color: #fafafa;
+    height: 51px;
+    line-height: 51px;
+    width: 100%;
+    text-align: center;
+    color: #8a85a6;
+    
+}
+
+.table-row-odd {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    height: 51px;
+    line-height: 51px;
+    width: 100%;
+    text-align: center;
+    color: #8a85a6;
+}
+
+.table-row  p {
+    display: inline;
+
+}
+
+.status-completed {
+    margin: 10px 0 10px 0;
+    height: 30px;
+    line-height: 30px;
+    width: 90px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 900;
+    background-color: #cbf6d8;
+    color: #5cb977;
+}
+
+.status-fail {
+    margin: 10px 0 10px 0;
+    height: 30px;
+    line-height: 30px;
+    width: 90px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 900;
+    background-color: #f6cbcb;
+    color: #b99e5c;;
+}
+
+.status-inProgress {
+    margin: 10px 0 10px 0;
+    height: 30px;
+    line-height: 30px;
+    width: 90px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 900;
+    background-color: #f6e7cb;
+    color: #b99e5c;
+}
+
+.status-notStarted {
+    margin: 10px 0 10px 0;
+    height: 30px;
+    line-height: 30px;
+    width: 90px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 900;
+    background-color: #dedede;
+    color: #979797;
+}

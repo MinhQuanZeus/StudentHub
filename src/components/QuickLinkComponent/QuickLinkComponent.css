@@ -1,0 +1,26 @@
+.Quick-Link-Container {
+    position: absolute;
+    top: 60px;
+    left: 15px;
+    box-shadow: 1px 0 0 0 #f0eff6;
+    height: 100%;
+}
+
+.Quick-Link-List {
+    list-style-type: none;
+    padding-top: 30px;
+}
+
+.Quick-Link-List li {
+    font-size: 12px;
+    color: #8a85a6;
+    height: 26px;
+    padding-left: 16px;
+    width: 131px;
+    text-align: center;
+    line-height: 26px;
+}
+
+.Selected-Quick-Link {
+    background-color: #f0eff6;
+}

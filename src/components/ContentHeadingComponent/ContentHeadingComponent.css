@@ -1,0 +1,11 @@
+.heading {
+    font-size: 18px;
+    font-weight: 900;
+    color: #8a85a6;
+    padding-bottom: 24px;
+}
+
+.heading span {
+    color: #352480;
+}
+

@@ -1,0 +1,13 @@
+
+.ClassTracker {
+    position: absolute;
+    top: 61px;
+    padding-top: 31px;
+    left: 186px;
+    padding-left: 34px;
+    right: 229px;
+    padding-right:37px;
+    height: 100%;
+
+    background-color:#fafafc;
+}
