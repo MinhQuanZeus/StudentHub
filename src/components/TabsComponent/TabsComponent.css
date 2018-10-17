@@ -1,4 +1,8 @@
 .Tabs {
+    position: absolute;
+    top: 140px;
+    left: 230px;
+    right: 266px;
     background-color: white;
     height: 71px;
     border-bottom: solid 3px #f0eff6;

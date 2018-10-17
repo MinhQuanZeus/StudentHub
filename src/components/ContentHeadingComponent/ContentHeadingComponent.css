@@ -1,4 +1,7 @@
 .heading {
+    position: absolute;
+    top: 91px;
+    left: 230px;
     font-size: 18px;
     font-weight: 900;
     color: #8a85a6;

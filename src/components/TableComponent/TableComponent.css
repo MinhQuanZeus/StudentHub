@@ -1,6 +1,9 @@
 .Table {
+    position: absolute;
+    top: 246px;
+    left: 230px;
+    right: 266px;
     background-color: white;
-  
 }
 
 .table-header {
@@ -49,7 +52,7 @@
 
 }
 
-.status-completed {
+.completed {
     margin: 10px 0 10px 0;
     height: 30px;
     line-height: 30px;
@@ -61,7 +64,7 @@
     color: #5cb977;
 }
 
-.status-fail {
+.fail {
     margin: 10px 0 10px 0;
     height: 30px;
     line-height: 30px;
@@ -74,7 +77,7 @@
     color: #b99e5c;;
 }
 
-.status-inProgress {
+.active {
     margin: 10px 0 10px 0;
     height: 30px;
     line-height: 30px;
@@ -87,7 +90,7 @@
     color: #b99e5c;
 }
 
-.status-notStarted {
+.incomplete {
     margin: 10px 0 10px 0;
     height: 30px;
     line-height: 30px;

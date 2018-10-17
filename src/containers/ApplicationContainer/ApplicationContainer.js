@@ -1,9 +1,8 @@
 import React, {Component} from "react";
-
-import SuccessTeamContainer from "../SuccessTeamContainer/SuccessTeamContainer";
 import TopBarContainer from "../TopBarContainer/TopBarContainer";
 import NavBarContainer from "../NavBarContainer/NavBarContainer";
 import NotificationContainer from "../NotificationContainer/NotificationContainer";
+import ClassTrackerContainer from "../ClassTrackerContainer/ClassTrackerContainer";
 
 class ApplicationContainer extends Component {
 
@@ -17,7 +16,7 @@ class ApplicationContainer extends Component {
             <div>
                 <TopBarContainer/>
                 <NavBarContainer/>
-                <SuccessTeamContainer/>
+                <ClassTrackerContainer/>
                 <NotificationContainer/>
             </div>
         )
