@@ -17,7 +17,12 @@ export const LoginComponent = (props) => {
                 loginMessage = (<div>Please wait...</div>);
                 break;
             default:
-                loginMessage = (<div>{loginStatus.message}</div>)
+                if (loginStatus.message !== undefined && loginStatus.message !== null && loginStatus.message !== "") {
+                    loginMessage = (<div>{loginStatus.message}</div>)
+                } else {
+                    loginMessage = (<div>Login failed!</div>)
+                }
+
         }
     }
 
@@ -71,7 +76,8 @@ export const LoginComponent = (props) => {
                             </ul>
                         </form>
                         <div className="forgot-password-paragraph-div">
-                            <Link to="/forgot-password?step=1"><p className="forgot-password-paragraph">Forgot Password ?</p></Link>
+                            <Link to="/forgot-password?step=1"><p className="forgot-password-paragraph">Forgot Password
+                                ?</p></Link>
                         </div>
                     </div>
                 </div>

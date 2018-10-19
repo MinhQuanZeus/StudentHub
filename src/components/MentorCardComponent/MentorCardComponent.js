@@ -3,7 +3,6 @@ import styles from './MentorCardComponent.css';
 
 
 export const MentorCardComponent = (props) => {
-    console.log('Props |==============>>', props.mentor);
     const {mentor} = props;
     let photo_url;
     let full_name;

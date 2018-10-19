@@ -30,7 +30,11 @@ function sendLoginRequest(email, password) {
             } else {
                 reject(value.data);
             }
-        })
+        }).catch(
+            reason => {
+                reject(reason);
+            }
+        )
     });
 }
 
@@ -39,7 +43,6 @@ function setLoginLogging(type, value) {
         type: type,
         loginStatus: type,
         loginInformation: value
-
     }
 }
 

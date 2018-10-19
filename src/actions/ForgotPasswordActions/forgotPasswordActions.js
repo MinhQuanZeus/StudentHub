@@ -54,7 +54,6 @@ function sendForgotPasswordRequest(email, channel, verifyCode) {
     return new Promise((resolve, reject) => {
         axios.post(getForgotPasswordPath(), buildPayloadForgotPassword(email, channel, verifyCode)).then(value => {
             if (value.data.status === applicationStatusCode.OK) {
-                console.log(JSON.stringify(value.data, null, 4));
                 resolve(value.data);
             } else {
                 reject(value.data);

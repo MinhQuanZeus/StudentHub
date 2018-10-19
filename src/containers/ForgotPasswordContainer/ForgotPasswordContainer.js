@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import queryString from 'query-string';
+import qs from 'qs';
 
 import {forgotPassword, changePassword} from "../../actions/ForgotPasswordActions/forgotPasswordActions";
 import {ForgotPasswordStep1Component} from "../../components/ForgotPasswordComponent/ForgotPasswordStep1Component";
@@ -51,7 +51,7 @@ class ForgotPasswordContainer extends Component {
     }
 
     getCurrentStep = () => {
-        const values = queryString.parse(this.props.history.location.search);
+        const values = qs.parse(this.props.history.location.search.slice(1));
         if (values.step === undefined || values.step === null) {
             return 1;
         } else {

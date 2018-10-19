@@ -13,7 +13,7 @@ class SuccessTeamContainer extends Component {
         });
         return (
             <div className={sharedStyles["content-container"]}>
-            <h2 className={sharedStyles["content-heading"]}>Success Team</h2>
+                <h2 className={sharedStyles["content-heading"]}>Success Team</h2>
                 {mentorItems}
             </div>
         );

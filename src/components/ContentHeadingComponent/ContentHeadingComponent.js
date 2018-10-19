@@ -7,12 +7,5 @@ export const ContentHeadingComponent = (props) => {
         <div className={styles["Content-Heading"]}>
         <h2 className={styles["heading"]}><span>Academic</span> > Class Tracker</h2>
         </div>
-
-
-
-
-
-
-
     )
 };
