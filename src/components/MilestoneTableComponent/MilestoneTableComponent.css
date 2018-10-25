@@ -1,0 +1,75 @@
+.table {
+    position: absolute;
+    left: 230px;
+    right: 266px;
+    top: 539px;
+    padding: 24.5px 57px 25px 42px;
+}
+
+.table-header {
+    font-size: 14px;
+    font-weight: 900;
+    color: #413d59;
+    display: grid;
+    grid-template-columns: 1.5fr .75fr 1fr 1fr 1fr 1fr;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 1.5fr .75fr 1fr 1fr 1fr 1fr;
+}
+
+.task {
+    font-size: 14px;
+    font-weight: 900;
+    color: #676289;
+}
+
+.number {
+    font-size: 14px;
+    font-weight: 500;
+    color: #8a85a6;
+    text-align: center;
+}
+
+.type {
+    font-size: 14px;
+    font-weight: 500;
+    color: #8a85a6;
+}
+
+.target-date {
+    font-size: 14px;
+    font-weight: 500;
+    color: #8a85a6;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 124px;
+    height: 14px;
+    border-radius: 7px;
+    background-color: #15ce13;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 900;
+    color: white;
+}
+
+.status-completed {
+    width: 90px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #cdf6d8;
+    color: #5ab977;
+    font-size: 12px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 30px;
+    margin: auto
+}
+
