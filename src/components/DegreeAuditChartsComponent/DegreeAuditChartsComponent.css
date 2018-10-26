@@ -1,0 +1,410 @@
+.ChartContainer {
+    position: absolute;
+    top: 536px;
+    left: 230px;
+    right: 266px;
+    height: 510px;
+    padding: 20px 0 33px 33px;
+}
+
+.AuditContainer {
+    position: absolute;
+    height: 510px;
+    width: 328px;
+}
+
+.AuditHeader {
+    font-size: 18px;
+    font-weight: 900;
+    color: #352480;
+}
+
+.CircleGraph { 
+    position: absolute;
+    height: 240px;
+    width: 186px;
+    top: 27px;
+}
+
+.PieGraph1 {
+    width: 186px; 
+    height: 186px; 
+    position: relative; 
+    border-radius: 186px; 
+    background-color: rgb(181, 224, 136);
+}
+
+.PieGraph2 {
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    width: 186px; 
+    height: 186px; 
+    border-radius: 186px; 
+    clip: rect(0px, 186px, 186px, 43px); 
+    transform: rotate(0deg);
+}
+
+.PieGraph3 {
+    background-color: rgb(181, 224, 136); 
+    position: absolute; 
+    top: 0px; left: 0px; 
+    width: 186px; 
+    height: 186px; 
+    border-radius: 186px; 
+    clip: rect(0px, 93px, 186px, 0px); 
+    transform: rotate(180deg);
+}
+
+.PieGraph4 {
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    width: 186px; 
+    height: 186px; 
+    border-radius: 186px; 
+    clip: rect(0px, 186px, 186px, 93px); 
+    transform: rotate(180deg);
+
+}
+
+.PieGraph5 {
+    background-color: rgb(181, 224, 136); 
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    width: 186px; 
+    height: 186px; 
+    border-radius: 186px; 
+    clip: rect(0px, 93px, 186px, 0px); 
+    transform: rotate(61.643deg);
+}
+
+.PieGraph6 {
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    width: 186px; 
+    height: 186px; 
+    border-radius: 186px; 
+    clip: rect(0px, 186px, 186px, 93px); 
+    transform: rotate(241.643deg);
+}
+
+.PieGraph7 {
+    background-color: rgb(21, 206, 19); 
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    width: 186px; 
+    height: 186px; 
+    border-radius: 186px; 
+    clip: rect(0px, 93px, 186px, 0px); 
+    transform: rotate(60.757deg);
+}
+
+.PieGraph8 {
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    width: 186px; 
+    height: 186px; 
+    border-radius: 186px; 
+    clip: rect(0px, 186px, 186px, 93px); 
+    transform: rotate(302.4deg);
+}
+
+.PieGraph9 {
+    background-color: rgb(65, 61, 89); 
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    width: 186px; 
+    height: 186px; 
+    border-radius: 186px; 
+    clip: rect(0px, 93px, 186px, 0px); 
+    transform: rotate(57.6deg);
+}
+
+.CircleGraphCenter {
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    position: absolute;
+    top: 27px;
+    left: 27px;
+    background-color: white;
+}
+
+.CircleGraphValue {
+    position: absolute;
+    font-size: 44px;
+    font-weight: 900;
+    color: #413d59;
+    width: 100%;
+    text-align: center;
+    top: 13px;
+
+}
+
+.CircleGraphValueLabel {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 900;
+    color: #413d59;
+    width: 100%;
+    text-align: center;
+    top: 65px;
+
+}
+
+.CircleGraphLabel {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 900;
+    color: #8a85a6;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.GPAGraph {
+    position: absolute;
+    right: 44px;
+    height: 218px;
+    width: 70px;
+}
+.VerticalBarContainer {
+    position: absolute;
+    height: 180px;
+    width: 70px;
+}
+
+.GrayBar {
+    position: absolute;
+    left: 14px;
+    height: 180px;
+    width: 18px;
+    background-color: #f0eff6;
+    border-radius: 2px;
+}
+
+.BlueBar {
+    position: absolute;
+    height: 75%;
+    width: 18px;
+    background-color: #6be6ff;
+    bottom: 0;
+    border-radius: 2px;
+}
+
+.Gridline0 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 47px;
+    height: 1px;
+    background-color: #f0eff6;
+}
+
+.Gridline1 {
+    position: absolute;
+    left: 0;
+    bottom: 25%;
+    width: 47px;
+    height: 1px;
+    background-color: #f0eff6;
+}
+
+.GridlineLabel {
+    position: absolute;
+    font-size: 12px;
+    font-weight: 500;
+    color: #c2c2c2;
+    right: -20px;
+    top: -8px;
+}
+
+.Gridline2 {
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+    width: 47px;
+    height: 1px;
+    background-color: #f0eff6;
+}
+
+.Gridline3 {
+    position: absolute;
+    left: 0;
+    bottom: 75%;
+    width: 47px;
+    height: 1px;
+    background-color: #f0eff6;
+}
+
+.Gridline4 {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    width: 47px;
+    height: 1px;
+    background-color: #f0eff6;
+}
+
+.GPALabel {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 900;
+    color: #8a85a6;
+    position: absolute;
+    bottom: 10px;
+    left: 9px;
+}
+
+.CourseCompleted {
+    position: absolute;
+    top: 330px;
+    height: 35px;
+    width: 328px;
+
+}
+
+.CourseCompletedLabel {
+    font-size: 18px;
+    font-weight: 900;
+    color: #352480;
+    position: absolute;
+    bottom: 30px;
+}
+
+.CourseBarContainer {
+    position: absolute;
+    bottom: 0;
+    border-radius: 15.5px;
+    background-color: #f0eff6;
+    width: 328px;
+    height: 20px;
+}
+
+.CourseBar {
+    position: absolute;
+    bottom: 0;
+    border-radius: 15.5px;
+    background-color: #ffb41f;
+    width: 80%;
+    height: 20px;
+}
+
+.CourseValue {
+    position: absolute;
+    font-size: 14px;
+    font-weight: 900;
+    color: #352480;
+    right: 13px;
+}
+
+
+
+
+.CategoriesContainer {
+    position: absolute;
+    height: 510px;
+    right: 0;
+}
+
+.CategoryHeader {
+    padding-bottom: 30px;
+}
+
+.LeftHeader {
+    display: inline;
+    font-size: 18px;
+    font-weight: 900;
+    color: #352480;
+}
+
+
+.RightHeader {
+    display: inline;
+    float: right;
+    font-size: 14px;
+    font-weight: 900;
+    color: #413d59;
+    height: 19px;
+}
+
+.StatusLabel {
+    padding-right: 21px;
+    display: inline;
+}
+
+.Purpledot {
+    position: absolute;
+    top: 0;
+    width: 11px;
+    height: 11px;
+    background-color: #9483eb;
+    border: 1px solid red;
+}
+
+.RequirementsLabel {
+    padding-right: 21px;
+    display: inline;
+}
+
+
+.BlueDot {
+    position: relative;
+    width: 11px;
+    height: 11px;
+    background-color: #413d59;
+}
+
+.CategoryRow {
+    display: grid;
+    grid-template-columns: 1fr 2fr .2fr;
+    padding-top: 7px;
+}
+
+.Category {
+    font-size: 12px;
+    font-weight: 900;
+    color: #413d59;
+    text-align: right;
+    padding-right: 15px;
+}
+
+
+.StatusBar {
+    position: relative;
+    top: 8px;
+    width: 80%;
+    height: 10px;
+    border-radius: 2px;
+    background-color: #9483eb;
+}
+
+.BarValue {
+    float: right;
+    font-size: 14px;
+    font-weight: 900;
+    color: #8a85a6;
+}
+
+.Requirment {
+    position: relative;
+    top: -4px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #8a85a6;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.RequirmentBar {
+    width: 75%;
+    height: 2px;
+    border-radius: 1px;
+    background-color: #413d59;
+}
