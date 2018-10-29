@@ -5,11 +5,12 @@ import {ProgramInfoComponent} from "../../components/ProgramInfoComponent/Progra
 import {MilestoneTableComponent} from "../../components/MilestoneTableComponent/MilestoneTableComponent";
 import {MilestoneTabsComponent} from "../../components/MilestoneTabsComponent/MilestoneTabsComponent";
 import {MilestoneHeaderComponent} from "../../components/MilestoneHeaderComponent/MilestoneHeaderComponent";
+import sharedStyles from '../../styles/styles.css';
 
 class MilestoneContainer extends Component {
     render() {
         return (
-            <div>
+            <div className={sharedStyles["container-background"]}>
             <MilestoneHeaderComponent />
                 <MilestoneAvatarComponent />
                 <ProgramInfoComponent />

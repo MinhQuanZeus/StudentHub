@@ -4,6 +4,7 @@
     right: 266px;
     top: 539px;
     padding: 24.5px 57px 25px 42px;
+    background-color: #ffffff;
 }
 
 .table-header {
@@ -58,6 +59,7 @@
     font-size: 12px;
     font-weight: 900;
     color: white;
+    margin-top: 5px;
 }
 
 .status-completed {
@@ -70,6 +72,8 @@
     font-weight: 900;
     text-align: center;
     line-height: 30px;
-    margin: auto
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -2px;
 }
 
