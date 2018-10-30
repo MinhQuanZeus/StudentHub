@@ -4,6 +4,7 @@
     left: 64px;
     box-shadow: 1px 0 0 0 #f0eff6;
     height: 100%;
+    z-index: 2;
 }
 
 .Quick-Link-List {
