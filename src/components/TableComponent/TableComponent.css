@@ -1,8 +1,8 @@
 .Table {
     position: absolute;
-    top: 246px;
-    left: 230px;
-    right: 266px;
+    top: 210px;
+    left: 166px;
+    right: 37px;
     background-color: white;
 }
 
@@ -28,7 +28,7 @@
 .table-row-even {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    background-color: #fafafa;
+    background-color: #ffffff;
     height: 51px;
     line-height: 51px;
     width: 100%;

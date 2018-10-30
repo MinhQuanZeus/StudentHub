@@ -4,14 +4,14 @@ import {onFetchClassTracker} from '../../actions/ClassTrackerActions/ClassTracke
 import {ContentHeadingComponent} from '../../components/ContentHeadingComponent/ContentHeadingComponent'
 import {TabsComponent} from '../../components/TabsComponent/TabsComponent'
 import {TableComponent} from '../../components/TableComponent/TableComponent'
-import { QuickLinkComponent } from '../../components/QuickLinkComponent/QuickLinkComponent';
+import { QuickLinkComponentClassTracker } from '../../components/QuickLinkComponentClassTracker/QuickLinkComponentClassTracker';
 import sharedStyles from '../../styles/styles.css';
 
 class ClassTrackerContainer extends Component {
     render() {
         return (
             <div className={sharedStyles["content-container"]}>
-                <QuickLinkComponent />
+                <QuickLinkComponentClassTracker />
                 <ContentHeadingComponent />
                 <TabsComponent />
                 <TableComponent data={this.props.classTracker} />

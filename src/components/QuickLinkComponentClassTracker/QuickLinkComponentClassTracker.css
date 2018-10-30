@@ -1,7 +1,7 @@
 .Quick-Link-Container {
     position: absolute;
-    top: 61px;
-    left: 64px;
+    top: 0px;
+    left: 0;
     box-shadow: 1px 0 0 0 #f0eff6;
     height: 100%;
     z-index: 2;
