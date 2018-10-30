@@ -5,11 +5,12 @@ import {ContentHeadingComponent} from '../../components/ContentHeadingComponent/
 import {TabsComponent} from '../../components/TabsComponent/TabsComponent'
 import {TableComponent} from '../../components/TableComponent/TableComponent'
 import { QuickLinkComponent } from '../../components/QuickLinkComponent/QuickLinkComponent';
+import sharedStyles from '../../styles/styles.css';
 
 class ClassTrackerContainer extends Component {
     render() {
         return (
-            <div>
+            <div className={sharedStyles["content-container"]}>
                 <QuickLinkComponent />
                 <ContentHeadingComponent />
                 <TabsComponent />
