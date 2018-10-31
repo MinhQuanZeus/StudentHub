@@ -31,11 +31,11 @@ class SuccessTeamContainer extends Component {
         script.type = 'text/javascript';
         script.text = `
         var loaderOpts = {
-            baseUrl: "https://new-ui-codebuilddeploy-6zwr1kwlmvva-webappbucket-bza8dhl8x5lp.s3.amazonaws.com/"
+            baseUrl: "https://student-platform-codebuilddeploy-tme-webappbucket-7luwxhqo583s.s3.amazonaws.com/"
           };
     var chatbotUiconfig = {
       "cognito": {
-        "poolId": "us-east-1:e0d6571e-2021-4a04-99b6-010247973f51"
+        "poolId": "us-east-1:6901dcca-0062-43f0-a9db-396204e16cdc"
       },
       "lex": {
         "sessionAttributes":{
@@ -47,7 +47,7 @@ class SuccessTeamContainer extends Component {
         "initialSpeechInstruction": "Say 'Get gpa' or 'credit hours' to get started."
       },
       "ui": {
-        "parentOrigin": "http://localhost:3000",
+        "parentOrigin": "http://54.193.100.235",
         "toolbarTitle": "Cody Bot",
         "toolbarLogo": "",
         "pushInitialTextOnRestart": false,
@@ -60,7 +60,7 @@ class SuccessTeamContainer extends Component {
         "preset": "speech_recognition"
       },
       "iframe": {
-        "iframeOrigin": "https://new-ui-codebuilddeploy-6zwr1kwlmvva-webappbucket-bza8dhl8x5lp.s3.amazonaws.com",
+        "iframeOrigin": "https://student-platform-codebuilddeploy-tme-webappbucket-7luwxhqo583s.s3.amazonaws.com",
         "iframeSrcPath": "/index.html#/?lexWebUiEmbed=true",
         "shouldLoadIframeMinimized": true
       }
