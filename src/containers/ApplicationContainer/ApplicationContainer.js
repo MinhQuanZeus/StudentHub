@@ -6,6 +6,9 @@ import TopBarContainer from "../TopBarContainer/TopBarContainer";
 import NavBarContainer from "../NavBarContainer/NavBarContainer";
 import NotificationContainer from "../NotificationContainer/NotificationContainer";
 import ClassTrackerContainer from "../ClassTrackerContainer/ClassTrackerContainer";
+import MyProfileContainer from "../MyProfileContainer/MyProfileContainer";
+import MilestoneContainer from "../MilestoneContainer/MilestoneContainer";
+import DegreeAuditContainer from "../DegreeAuditContainer/DegreeAuditContainer";
 
 class ApplicationContainer extends Component {
 
@@ -17,7 +20,7 @@ class ApplicationContainer extends Component {
     render() {
         if (this.props.location.pathname === "/") {
             return (
-                <Redirect to={{pathname: '/success-team'}}/>
+                <Redirect to={{pathname: '/my-profile'}}/>
             )
         }
         return (
@@ -25,8 +28,10 @@ class ApplicationContainer extends Component {
                 <TopBarContainer/>
                 <NavBarContainer/>
                 <Route path="/success-team" component={SuccessTeamContainer}/>
+                <Route path="/milestone" component={MilestoneContainer}/>
+                <Route path="/degree-audit" component={DegreeAuditContainer}/>
                 <Route path="/class-tracker" component={ClassTrackerContainer}/>
-                {/*<Route path="/my-profile" component={MyProfileContainer}/>*/}
+                <Route path="/my-profile" component={MyProfileContainer}/>
                 <NotificationContainer/>
             </div>
         )

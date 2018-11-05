@@ -5,8 +5,8 @@ export const MilestoneHeaderComponent = (props) => {
 
     return(
         <div className={styles["headerContainter"]}>
-            <div className={styles["navText"]}>Academic <span> > MHCI</span></div>
-            <button>Hide Info</button>
+            <div className={styles["navText"]}>Academic <span> > EE</span></div>
+            {/*<button>Hide Info</button>*/}
         </div>
     )
 }
