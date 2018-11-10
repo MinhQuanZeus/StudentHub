@@ -1,5 +1,5 @@
 .Quick-Link-Container {
-    position: absolute;
+    position: fixed;
     top: 61px;
     left: 64px;
     box-shadow: 1px 0 0 0 #f0eff6;
@@ -15,15 +15,26 @@
 }
 
 .Quick-Link-List li {
-    font-size: 12px;
-    color: #8a85a6;
     height: 26px;
     width: 131px;
     text-align: left;
     line-height: 26px;
-    padding-left: 16px;
 }
 
 .Selected-Quick-Link {
+    background-color: #f0eff6;
+}
+
+.unselected a {
+    font-size: 12px;
+    color: #8a85a6;
+}
+
+.selected a {
+    position: absolute;
+    font-size: 12px;
+    color: #413d59;
+    height: 26px;
+    width: 131px;
     background-color: #f0eff6;
 }

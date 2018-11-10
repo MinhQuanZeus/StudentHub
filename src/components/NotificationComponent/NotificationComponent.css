@@ -4,17 +4,26 @@
     top: 60px;
     width: 229px;
     height: 100%;
+    background-color: #ffffff;
+}
+
+.coming-up p{
+    display: inline;
+    color: #7b7b7b;
+    padding-left: 11px;
 }
 
 .section-header {
     width: 229px;
     height: 30px;
+    line-height: 30px;
     margin-top: 31px;
     background-color: #f3f3f3;
     font-size: 12px;
     font-weight: 900;
     color: #8a85a6;
     vertical-align: middle;
+    padding-left: 18px;
 }
 
 .checkbox-list {
@@ -55,6 +64,11 @@
     border-radius: 4px;
     color: #ce3434;
     background-color: #efadad;
+}
+
+.notification-danger h4 {
+    color: #ce3434;
+    padding: 0 0 0 0;
 }
 
 .notification-warning {

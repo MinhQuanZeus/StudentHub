@@ -3,7 +3,8 @@
     top: 210px;
     left: 166px;
     right: 37px;
-    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
 }
 
 .table-header {

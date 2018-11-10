@@ -7,22 +7,21 @@ export const NotificationComponent = (props) => (
             <div className={styles["coming-up"]}>
                 <div className={styles["section-header"]}>
                 <i className="far fa-circle"></i>
-                 &nbsp; Coming Up
+                <p>Coming Up</p>
                  </div>
                 <div className={styles["checkbox-list"]}>
                     <label className={styles["customcheck"]}>
                         <input type="checkbox"/>
-                        <span className={styles["checkmark"]}></span>
                         &nbsp; Exam Sains Technology A
                     </label>
                     <label className={styles["customcheck"]}>
                         <input type="checkbox"/>
-                        <span className={styles["checkmark"]}></span>
+                       
                         &nbsp; Project #2
                     </label>
                     <label className={styles["customcheck"]}>
                         <input type="checkbox"/>
-                        <span className={styles["checkmark"]}></span>
+                       
                         &nbsp; Exam Math
                     </label>
                 </div>

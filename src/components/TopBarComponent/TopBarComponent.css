@@ -5,6 +5,7 @@ height: 60px;
 width: 100%;
 box-shadow: 0 1px 0 0 #ebebeb;
 z-index: 2;
+background-color: #ffffff;
 }
 
 .top-bar-icon-link {
@@ -26,7 +27,7 @@ z-index: 2;
     font-size: 18px;
     position: fixed;
     left: 93px;
-    top: 18px;
+    line-height: 60px;
 }
 
 .top-bar-welcome-text {

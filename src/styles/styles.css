@@ -86,12 +86,12 @@ label.error:before {
 }
 
 .content-container {
-    position: fixed;
+    position: absolute;
     top: 61px;
     left: 63px;
     right: 230px;
-    background-color: #f9f9f9;
     height: 100%;
+    background-color: #f9f9f9;
     padding-top: 31px;
 }
 
