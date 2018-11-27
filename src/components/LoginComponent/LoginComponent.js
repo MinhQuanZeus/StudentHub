@@ -71,11 +71,14 @@ export const LoginComponent = (props) => {
                                     </label>
                                 </li>
                                 <li className="list-group-item border-0">
+                                  {loginMessage}
+                                </li>
+                                <li className="list-group-item border-0">
                                     <button type="submit" className="btn btn-primary login-btn">Login</button>
                                 </li>
                             </ul>
                         </form>
-                        <div className="forgot-password-paragraph-div">
+                        <div>
                             <Link to="/forgot-password?step=1"><p className="forgot-password-paragraph">Forgot Password
                                 ?</p></Link>
                         </div>
@@ -84,9 +87,6 @@ export const LoginComponent = (props) => {
             </div>
             <div className="login-image-container">
                 <img src="images/login-illustration.svg" className="Illustration" alt=""/>
-            </div>
-            <div className="message">
-                {loginMessage}
             </div>
         </div>
     )

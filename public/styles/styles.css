@@ -80,13 +80,11 @@ label.error:before {
     margin-left: 148px;
 }
 
-.remember-password-paragraph-div {
-    margin-left: 108px;
-}
 
 .forgot-password-paragraph {
     color: gray;
     font-weight: bold;
+    text-align: center;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);

@@ -54,21 +54,21 @@ export const ForgotPasswordStep1Component = (props) => {
                                     </div>
                                 </li>
                                 <li className="list-group-item border-0">
+                                  {message}
+                                </li>
+                                <li className="list-group-item border-0">
                                     <button type="submit" className="btn btn-primary login-btn">Next</button>
                                 </li>
                             </ul>
                         </form>
-                        <div className="remember-password-paragraph-div">
-                            <Link to="/login"><p className="forgot-password-paragraph">Remember your password ?</p></Link>
+                        <div>
+                            <Link to="/login"><p className="forgot-password-paragraph">Remember your password? Login here</p></Link>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="login-image-container">
                 <img src="images/forgot-password-illustration.svg" className="Illustration" alt=""/>
-            </div>
-            <div className="message">
-                {message}
             </div>
         </div>
     )
