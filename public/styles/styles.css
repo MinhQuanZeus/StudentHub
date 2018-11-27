@@ -77,7 +77,15 @@ label.error:before {
 }
 
 .forgot-password-paragraph-div {
-    margin-left: 148px;
+    text-align: center;
+}
+
+.forgot-password-paragraph-div p {
+    display: inline;
+}
+
+.forgot-password-paragraph-div span {
+    color: #5867dd;
 }
 
 

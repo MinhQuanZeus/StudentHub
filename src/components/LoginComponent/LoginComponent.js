@@ -80,7 +80,8 @@ export const LoginComponent = (props) => {
                         </form>
                         <div>
                             <Link to="/forgot-password?step=1"><p className="forgot-password-paragraph">Forgot Password
-                                ?</p></Link>
+                                ? </p></Link>
+                                <span> Login here</span>
                         </div>
                     </div>
                 </div>
