@@ -6,6 +6,7 @@ import classTrackerReducer from "./ClassTrackerReducer/classTrackerReducer";
 import degreeAuditReducer from "./DegreeAuditReducer/degreeAuditReducer";
 import milestoneReducer from "./MileStoneReducer/milestoneReducer";
 import academicProgramReducer from "./AcademicProgramReducer/AcademicProgramReducer";
+import checkListReducer from "./CheckListReducer/CheckListReducer";
 
 const reducers = {
     login: loginReducer,
@@ -14,7 +15,8 @@ const reducers = {
     classTracker: classTrackerReducer,
     degreeAudit: degreeAuditReducer,
     mileStone: milestoneReducer,
-    academicProgram: academicProgramReducer
+    academicProgram: academicProgramReducer,
+    checkList: checkListReducer
 };
 
 export default combineReducers(reducers)

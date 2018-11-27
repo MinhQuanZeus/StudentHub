@@ -1,0 +1,5 @@
+export const checkListConstants = {
+    WAITING: 'FETCH_CHECK_LIST_WAITING',
+    SUCCESS: 'FETCH_CHECK_LIST_SUCCESS',
+    ERROR: 'FETCH_CHECK_LIST_FAIL'
+};

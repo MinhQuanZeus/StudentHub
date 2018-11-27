@@ -9,12 +9,14 @@ export const apiConstants = {
     STUDENT_CLASS_TRACKER: "student/class_registration",
     STUDENT_ACADEMIC_PROGRAMS: "student/academic_programs",
     STUDENT_DEGREE_AUDIT: "student/degree_audit",
-    STUDENT_MILESTONES: "student/milestones"
+    STUDENT_MILESTONES: "student/milestones",
+    STUDENT_CHECK_LIST: "api/v1/check_list"
 
 };
 
 export const applicationStatusCode = {
-    OK: 105
+    OK: 105,
+    OK_V1: 200
 };
 
 export const applicationMessages = {
