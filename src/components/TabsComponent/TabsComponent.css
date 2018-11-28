@@ -1,54 +1,63 @@
-.Tabs {
-    position: absolute;
-    top: 140px;
-    left: 166px;
-    right: 37px;
-    background-color: white;
-    height: 71px;
-    border-bottom: solid 3px #f0eff6;
-}
 
-.semester {
-    display: inline;
-    font-size: 16px;
-    font-weight: 900;
-    color: #544c7f;
-}
-    
+  /* #spring:checked ~ li{
+      color: #6647ff;
+      border-bottom: #6647ff solid;
+  } */
 
-.semester li {
-    list-style: none;
-    display: inline;
-    padding: 0 11px 18px 11px;
-    margin: 22px 22px 0 22px ;
-    text-align: center;
-    line-height: 71px;
-}
+  #spring, #summer, #fall {
+    display: none;
+  }
 
-.year-container {
-    display: inline;
-    float: right;
-    padding-right: 31px;
-    text-align: center;
-    line-height: 71px;
-    
-    
-}
-
-.year {
-    color: #8a85a6;
-    display: inline;
-    padding-right: 18px;
-}
-
-.year-selector {
-    font-size: 14px;
-    font-weight: 900;
+  [type=radio]:checked + label {
     color: #6647ff;
-    display: inline;
-    border: 0 solid transparent;
-}
+    border-bottom: #6647ff solid;
+  }
 
-.selected-tab {
-    color: #6647ff;
-}
+  .Tabs {
+      position: absolute;
+      top: 140px;
+      left: 166px;
+      right: 37px;
+      background-color: white;
+      height: 71px;
+      border-bottom: solid 3px #f0eff6;
+  }
+
+  .semester {
+      display: inline;
+      font-size: 16px;
+      font-weight: 900;
+      color: #544c7f;
+  }
+
+  .semester label {
+      list-style: none;
+      display: inline;
+      padding: 0 11px 22px 11px;
+      margin: 22px 22px 0 22px ;
+      text-align: center;
+      line-height: 71px;
+      cursor: pointer;
+  }
+
+  .year-container {
+      display: inline;
+      float: right;
+      padding-right: 31px;
+      text-align: center;
+      line-height: 71px;
+  }
+
+  .year {
+      color: #8a85a6;
+      display: inline;
+      padding-right: 18px;
+  }
+
+  .year-selector {
+      font-size: 14px;
+      font-weight: 900;
+      color: #6647ff;
+      display: inline;
+      border: 0 solid transparent;
+  }
