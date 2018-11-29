@@ -21,7 +21,7 @@
     color: #352480;
 }
 
-.CircleGraph { 
+.CircleGraph {
     position: absolute;
     height: 240px;
     width: 186px;
@@ -29,102 +29,102 @@
 }
 
 .PieGraph1 {
-    width: 186px; 
-    height: 186px; 
-    position: relative; 
-    border-radius: 186px; 
+    width: 186px;
+    height: 186px;
+    position: relative;
+    border-radius: 186px;
     background-color: rgb(181, 224, 136);
 }
 
 .PieGraph2 {
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    width: 186px; 
-    height: 186px; 
-    border-radius: 186px; 
-    clip: rect(0px, 186px, 186px, 43px); 
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 186px;
+    height: 186px;
+    border-radius: 186px;
+    clip: rect(0px, 186px, 186px, 43px);
     transform: rotate(0deg);
 }
 
 .PieGraph3 {
-    background-color: rgb(181, 224, 136); 
-    position: absolute; 
-    top: 0px; left: 0px; 
-    width: 186px; 
-    height: 186px; 
-    border-radius: 186px; 
-    clip: rect(0px, 93px, 186px, 0px); 
+    background-color: rgb(181, 224, 136);
+    position: absolute;
+    top: 0px; left: 0px;
+    width: 186px;
+    height: 186px;
+    border-radius: 186px;
+    clip: rect(0px, 93px, 186px, 0px);
     transform: rotate(180deg);
 }
 
 .PieGraph4 {
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    width: 186px; 
-    height: 186px; 
-    border-radius: 186px; 
-    clip: rect(0px, 186px, 186px, 93px); 
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 186px;
+    height: 186px;
+    border-radius: 186px;
+    clip: rect(0px, 186px, 186px, 93px);
     transform: rotate(180deg);
 
 }
 
 .PieGraph5 {
-    background-color: rgb(181, 224, 136); 
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    width: 186px; 
-    height: 186px; 
-    border-radius: 186px; 
-    clip: rect(0px, 93px, 186px, 0px); 
+    background-color: rgb(181, 224, 136);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 186px;
+    height: 186px;
+    border-radius: 186px;
+    clip: rect(0px, 93px, 186px, 0px);
     transform: rotate(61.643deg);
 }
 
 .PieGraph6 {
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    width: 186px; 
-    height: 186px; 
-    border-radius: 186px; 
-    clip: rect(0px, 186px, 186px, 93px); 
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 186px;
+    height: 186px;
+    border-radius: 186px;
+    clip: rect(0px, 186px, 186px, 93px);
     transform: rotate(241.643deg);
 }
 
 .PieGraph7 {
-    background-color: rgb(21, 206, 19); 
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    width: 186px; 
-    height: 186px; 
-    border-radius: 186px; 
-    clip: rect(0px, 93px, 186px, 0px); 
+    background-color: rgb(21, 206, 19);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 186px;
+    height: 186px;
+    border-radius: 186px;
+    clip: rect(0px, 93px, 186px, 0px);
     transform: rotate(60.757deg);
 }
 
 .PieGraph8 {
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    width: 186px; 
-    height: 186px; 
-    border-radius: 186px; 
-    clip: rect(0px, 186px, 186px, 93px); 
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 186px;
+    height: 186px;
+    border-radius: 186px;
+    clip: rect(0px, 186px, 186px, 93px);
     transform: rotate(302.4deg);
 }
 
 .PieGraph9 {
-    background-color: rgb(65, 61, 89); 
-    position: absolute; 
-    top: 0px; 
-    left: 0px; 
-    width: 186px; 
-    height: 186px; 
-    border-radius: 186px; 
-    clip: rect(0px, 93px, 186px, 0px); 
+    background-color: rgb(65, 61, 89);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 186px;
+    height: 186px;
+    border-radius: 186px;
+    clip: rect(0px, 93px, 186px, 0px);
     transform: rotate(57.6deg);
 }
 
@@ -338,29 +338,29 @@
 
 .StatusLabel {
     padding-right: 21px;
-    display: inline;
 }
 
-.Purpledot {
-    position: absolute;
-    top: 0;
+.PurpleDot {
     width: 11px;
     height: 11px;
     background-color: #9483eb;
-    border: 1px solid red;
+    border-radius: 50%;
+    margin-right: 3px;
+    display: inline-block;
 }
 
 .RequirementsLabel {
-    padding-right: 21px;
-    display: inline;
+  padding-right: 21px;
 }
 
 
 .BlueDot {
-    position: relative;
     width: 11px;
     height: 11px;
     background-color: #413d59;
+    border-radius: 50%;
+    margin-right: 3px;
+    display: inline-block;
 }
 
 .CategoryRow {

@@ -25,7 +25,7 @@ class MilestoneContainer extends Component {
                 <MilestoneHeaderComponent/>
                 <MilestoneAvatarComponent loginInformation={this.props.loginInformation}/>
                 <ProgramInfoComponent academic_program={this.props.academic_program}/>
-                <MilestoneTabsComponent/>
+                <MilestoneTabsComponent currentPath={this.props.location.pathname}/>
                 <MilestoneTableComponent milestone={this.props.milestone}/>
             </div>
         )

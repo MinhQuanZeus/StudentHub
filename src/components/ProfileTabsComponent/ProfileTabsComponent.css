@@ -1,18 +1,14 @@
 .ProfileTabsContainer {
-    position: absolute;
-    top: 420px;
-    left: 36px;
     width: 284px;
     height: 213px;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
     font-size: 15px;
     background-color: #ffffff;
+    padding: 31px 0;
 }
 
 .AboutTab {
-    position: absolute;
-    left: 0;
-    padding-left: 28px;
+    padding-left: 22px;
     height: 40px;
     line-height: 40px;
     top: 39px;
@@ -22,8 +18,6 @@
 }
 
 .ContactInfoTab {
-    position: absolute;
-    left: 0;
     padding-left: 28px;
     height: 40px;
     line-height: 40px;
@@ -34,8 +28,6 @@
 }
 
 .AddressTab {
-    position: absolute;
-    left: 0;
     padding-left: 28px;
     height: 40px;
     line-height: 40px;

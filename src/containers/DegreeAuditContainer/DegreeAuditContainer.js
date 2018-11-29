@@ -25,7 +25,7 @@ class DegreeAuditContainer extends Component {
                 <MilestoneHeaderComponent/>
                 <MilestoneAvatarComponent loginInformation={this.props.loginInformation}/>
                 <ProgramInfoComponent academic_program={this.props.academic_program}/>
-                <MilestoneTabsComponent/>
+                <MilestoneTabsComponent currentPath={this.props.location.pathname}/>
                 <DegreeAuditChartsComponent degreeAudit={this.props.degreeAudit}/>
             </div>
         )
@@ -48,4 +48,3 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(DegreeAuditContainer);
-

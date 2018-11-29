@@ -57,8 +57,12 @@ export const DegreeAuditChartsComponent = (props) => {
                 <div className={styles["CategoriesContainer"]}>
                     <div className={styles["CategoryHeader"]}>
                         <p className={styles["LeftHeader"]}>Categories</p>
-                        <p className={styles["RightHeader"]}><span className={styles["PurpleDot"]}></span> Status<span
-                            className={styles["BlueDot"]}></span> Requritments</p>
+                        <p className={styles["RightHeader"]}>
+                          <span className={styles["PurpleDot"]}></span>
+                          <span className={styles["StatusLabel"]}>Status</span>
+                          <span className={styles["BlueDot"]}></span>
+                          <span className={styles["RequirementsLabel"]}> Requirements</span>
+                        </p>
                     </div>
                     <div className={styles["CategoryRow"]}>
                         <div className={styles["Category"]}>Hours Completed</div>
