@@ -31,6 +31,14 @@
     padding: 30px 23px 18px 23px;
 }
 
+.milestone-link:hover{
+  text-decoration: none;
+}
+
+.degreeAudit-link:hover{
+  text-decoration: none;
+}
+
 .spacer {
     display: inline;
 }

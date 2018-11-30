@@ -1,11 +1,11 @@
 .top-bar-container {
-position: fixed;
-top: 0;
-height: 60px;
-width: 100%;
-box-shadow: 0 1px 0 0 #ebebeb;
-z-index: 2;
-background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    box-shadow: 0 1px 0 0 #ebebeb;
+    z-index: 2;
+    background-color: #ffffff;
 }
 
 .top-bar-icon-link {
@@ -44,7 +44,7 @@ background-color: #ffffff;
     height: 18px;
     float: right;
     margin: 21px 30.9px 21px 17px;
-    
+
 }
 
 .top-bar-bell {
@@ -56,9 +56,10 @@ background-color: #ffffff;
 
 .top-bar-avatar-sm {
     border-radius: 50%;
-    height: 36;
-    width: 36;
+    height: 36px;
+    width: 36px;
     float: right;
+    margin: 12px 0;
 }
 
 .top-bar-username {
@@ -73,4 +74,3 @@ background-color: #ffffff;
     float: right;
     margin: 30px 27px 0 0;
 }
-

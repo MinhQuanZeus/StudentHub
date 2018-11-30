@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './TableComponent.css';
+import classnames from 'classnames';
 
 export const TableComponent = (props) => {
+    const getStatusStyles = (status) => {
+      return status === 'not active' ? styles["inactive"] : styles[status];
+    }
 
     console.log(JSON.stringify(props, null, 4));
     const classTracker = props.data.classTracker;
@@ -17,7 +21,7 @@ export const TableComponent = (props) => {
                         <p>{rowData.instructor_name}</p>
                         <p>{rowData.unit_hours}</p>
                         <p>{rowData.grade}</p>
-                        <p className={styles[rowData.class_status]}>{rowData.class_status}</p>
+                        <p className={classnames(getStatusStyles(rowData.class_status))}>{rowData.class_status}</p>
                     </div>
                 })}
             </div>

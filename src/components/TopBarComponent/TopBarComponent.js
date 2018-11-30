@@ -2,10 +2,16 @@ import React from 'react';
 import Link from "react-router-dom/es/Link";
 
 import styles from './TopBarComponent.css';
-
+import defaultAvatar from '../../images/img_avatar.png'
 
 export const TopBarComponent = (props) => {
     let {loginInformation} = props;
+
+    const getAvatarSrc = () => {
+      if (loginInformation.photo !== null && loginInformation.photo !== 'null' && loginInformation.photo !== undefined)
+        return loginInformation.photo;
+      else return defaultAvatar;
+    }
 
     return (
         <nav className={styles["top-bar-container"]}>
@@ -18,7 +24,7 @@ export const TopBarComponent = (props) => {
             {/* THE FOLLOWING ELEMENTS MUST BE IN RIGHT TO LEFT ORDER*/}
             <img alt="chevron"src="/images/chevron-down.svg" className={styles["top-bar-chevron-down"]}></img>
             <p className={styles["top-bar-username"]}>{loginInformation.first_name + " " + loginInformation.last_name}</p>
-            <img alt="" className={styles["top-bar-avatar-sm"]}>{loginInformation.photo}</img>
+            <img alt="" className={styles["top-bar-avatar-sm"]} src={getAvatarSrc()}></img>
             <img alt="comment" src="/images/comment.svg" className={styles["top-bar-comment"]}></img>
             <img alt="bell" src="/images/bell.svg" className={styles["top-bar-bell"]}></img>
         </nav>

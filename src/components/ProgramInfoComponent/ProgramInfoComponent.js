@@ -3,7 +3,7 @@ import styles from './ProgramInfoComponent.css'
 
 export const ProgramInfoComponent = (props) => {
 
-    if (props.academic_program !== undefined&&props.academic_program !== null) {
+    if (props.academic_program !== undefined && props.academic_program !== null && props.academic_program.length !== 0) {
         let {program_length, program_name, program_overview, program_type} = props.academic_program[0];
         return (
             <div className={styles["programInfoContainer"]}>
