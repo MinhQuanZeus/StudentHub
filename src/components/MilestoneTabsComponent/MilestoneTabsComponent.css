@@ -17,7 +17,6 @@
     display: inline;
     font-size: 16px;
     font-weight: 900;
-    color: #6647ff;
     padding: 30px 23px 18px 23px;
     border-bottom: 3px solid #6647ff;
 }
@@ -27,15 +26,14 @@
     display: inline;
     font-size: 16px;
     font-weight: 900;
-    color: #533c7f;
     padding: 30px 23px 18px 23px;
 }
 
-.milestone-link:hover{
-  text-decoration: none;
+.milestone-tab a, .degreeAudit-tab a {
+  color: #544c7f;
 }
 
-.degreeAudit-link:hover{
+a:hover {
   text-decoration: none;
 }
 

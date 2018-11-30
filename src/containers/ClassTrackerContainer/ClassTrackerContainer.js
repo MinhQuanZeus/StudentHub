@@ -7,23 +7,60 @@ import {TabsComponent} from '../../components/TabsComponent/TabsComponent'
 import {TableComponent} from '../../components/TableComponent/TableComponent'
 import { QuickLinkComponentClassTracker } from '../../components/QuickLinkComponentClassTracker/QuickLinkComponentClassTracker';
 import sharedStyles from '../../styles/styles.css';
+import { getUniqueYears } from '../../helpers/Utils';
 
 class ClassTrackerContainer extends Component {
+    state = {
+      selectedYear: 2018,
+      selectedTerm: 'spring',
+    }
+
+    updateYear = (e) => {
+      const year = parseInt(e.target.value, 10);
+
+      this.setState((prevState) => {
+        if (prevState.selectedYear !== year) {
+          return { selectedYear: year };
+        }
+      })
+    }
+
+    updateTerm = (term) => {
+      this.setState((prevState) => {
+        if (prevState.selectedTerm !== term) {
+          return { selectedTerm: term };
+        }
+      })
+    }
+
     render() {
+        const { classTracker } = this.props;
+
+        if (classTracker.loading) { return null };
+
         return (
             <div className={sharedStyles["content-container"]}>
                 <QuickLinkComponentClassTracker/>
                 <ContentHeadingComponent />
-                <TabsComponent />
-                <TableComponent data={this.props.classTracker} />
+                <TabsComponent
+                    years={getUniqueYears(classTracker.classTracker)}
+                    selectedYear={this.state.selectedYear}
+                    updateYear={this.updateYear}
+                    updateTerm={this.updateTerm}
+                />
+                <TableComponent
+                    data={classTracker.classTracker}
+                    year={this.state.selectedYear}
+                    term={this.state.selectedTerm}
+                />
             </div>
         )
     }
     componentWillMount() {
         this.props.onFetchClassTracker(this.props.loginInformation.x_access_token);
         this.props.onFetchAcademicProgram(this.props.loginInformation.x_access_token);
-    }  
-} 
+    }
+}
 
 
 
@@ -31,7 +68,7 @@ const mapStateToProps = (state) => {
     return {
         classTracker: state.classTracker,
         loginInformation: state.login.loginInformation,
-        academic_program: state.academicProgram.academic_program
+        academic_program: state.academicProgram.academic_program,
     }
 };
 
@@ -43,4 +80,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClassTrackerContainer);
-

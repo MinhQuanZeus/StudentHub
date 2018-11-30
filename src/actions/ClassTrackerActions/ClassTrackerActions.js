@@ -29,8 +29,8 @@ function loadingClassTracker(access_token) {
                 }
             })
             .catch(error => {
-                 reject(error); 
-            }) 
+                 reject(error);
+            })
     });
 }
 
