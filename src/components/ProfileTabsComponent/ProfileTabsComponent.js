@@ -3,14 +3,11 @@ import styles from './ProfileTabsComponent.css'
 
 
 export const ProfileTabsComponent = (props) => {
-
     return (
         <div className={styles["ProfileTabsContainer"]}>
-            <div className={styles["AboutTab"]}><p>&nbsp;About</p></div>
-            <div className={styles["ContactInfoTab"]}><p>Contact</p></div>
-            <div className={styles["AddressTab"]}><p>Address</p></div>
-    
+            <div className={styles["AboutTab"]} onClick={() => props.scrollToRef("about")}><p>&nbsp;About</p></div>
+            <div className={styles["ContactInfoTab"]} onClick={() => props.scrollToRef("contact")}><p>Contact</p></div>
+            <div className={styles["AddressTab"]} onClick={() => props.scrollToRef("address")}><p>Address</p></div>
         </div>
-
     )
 };

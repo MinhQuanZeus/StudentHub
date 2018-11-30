@@ -18,7 +18,7 @@ export const AboutUserComponent = (props) => {
 
                 </div>
             </div>
-            <h4>BASIC INFORMATION</h4>
+            <h4 ref={props.aboutRef}>BASIC INFORMATION</h4>
             <div className={styles["BasicInformationContainer"]}>
                 <div className={styles["row"]}><p className={styles["label"]}>Photo Icon</p><p
                     className={styles["value"]}>None</p></div>
@@ -37,7 +37,7 @@ export const AboutUserComponent = (props) => {
                 <div className={styles["row"]}><p className={styles["label"]}>International Student ?</p><p
                     className={styles["value"]}>Yes</p></div>
             </div>
-            <h4>BASIC CONTACT</h4>
+            <h4 ref={props.contactRef}>BASIC CONTACT</h4>
             <div className={styles["BasicContactContainer"]}>
                 <div className={styles["row"]}><p className={styles["label"]}>Phone Number</p><p
                     className={styles["value"]}>{mobile_phone}</p></div>
@@ -64,7 +64,7 @@ export const AboutUserComponent = (props) => {
                     <p className={styles["subname"]}>Father</p><p className={styles["phonenumber"]}>+123 456 789</p>
                 </div>
             </div>
-            <h4>ADDRESS</h4>
+            <h4 ref={props.addressRef}>ADDRESS</h4>
             <div className={styles["AddressContainer"]}>
                 <div className={styles["row"]}>
                     <p className={styles["label"]}>Current Address</p>
