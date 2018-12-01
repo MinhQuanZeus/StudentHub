@@ -1,34 +1,48 @@
 import React from 'react';
 import styles from './MilestoneTableComponent.css';
+import classnames from 'classnames';
 
 export const MilestoneTableComponent = (props) => {
 
     if (props.milestone !== undefined && props.milestone !== null) {
         console.log(JSON.stringify(props.milestone, null, 4));
-        let {milestone_name, milestone_type, target_date, credits, status} = props.milestone;
+
+        const getStatusStyles = (status) => {
+          if (status === 'not started') return styles["not_started"];
+          else if (status === 'in progress') return styles["in_progress"];
+          else return styles[status];
+        }
+
+        const getMilestones = () => {
+          return props.milestone.map((element, key) => {
+            let status = element.status.toLowerCase();
+            return (
+              <div key={key} className={styles["table-row"]}>
+                  <p className={styles["task"]}>{element.milestone_name}</p>
+                  <p className={styles["number"]}>{element.credits}</p>
+                  <p className={styles["type"]}>{element.milestone_type}</p>
+                  <p className={styles["target-date"]}>{element.target_date}</p>
+                  <div className={styles["progress-bar"]}>100%</div>
+                  <p className={classnames(getStatusStyles(status))}>{status}</p>
+              </div>
+            );
+          })
+        }
+
         return (
             <div className={styles["table"]}>
                 <div className={styles["table-header"]}>
-                    <p>Task</p> <p className={styles["center-align"]}>Number</p> <p>Type</p> <p
-                    className={styles["center-align"]}>Target Date</p> <p
-                    className={styles["center-align"]}>Progress</p> <p className={styles["center-align"]}>Status</p>
+                    <p>Task</p>
+                    <p>Number</p>
+                    <p>Type</p>
+                    <p>Target Date</p>
+                    <p>Progress</p>
+                    <p>Status</p>
                 </div>
-
-                <div className={styles["table-row"]}>
-                    <p className={styles["task"]}>{milestone_name}</p>
-                    <p className={styles["number"]}>{credits}</p>
-                    <p className={styles["type"]}>{milestone_type}</p>
-                    <p className={styles["target-date"]}>{target_date}</p>
-                    <div className={styles["progress-bar"]}>100%</div>
-                    <p className={styles["status-completed"]}>{status}</p>
-                </div>
-
+                {getMilestones()}
             </div>
-
         )
     } else {
         return (<div></div>)
     }
-
-
 };
