@@ -84,8 +84,9 @@ label.error:before {
     display: inline;
 }
 
-.forgot-password-paragraph-div span {
+.forgot-password-paragraph span {
     color: #5867dd;
+    font-size: 14px;
 }
 
 

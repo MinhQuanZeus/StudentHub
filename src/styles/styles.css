@@ -82,6 +82,18 @@ label.error:before {
     text-align: center;
 }
 
+.forgot-password-paragraph-div {
+    text-align: center;
+}
+
+.forgot-password-paragraph-div p {
+    display: inline;
+}
+
+.forgot-password-paragraph span {
+    color: #5867dd;
+}
+
 .content-container {
     position: absolute;
     top: 61px;

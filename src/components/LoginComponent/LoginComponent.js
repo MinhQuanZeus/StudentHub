@@ -80,6 +80,28 @@ export class LoginComponent extends Component {
                                                 </span>
                                             </div>
                                         </div>
+<<<<<<< HEAD
+                                    </div>
+                                    <label className="custom-control custom-checkbox">
+                                        <input type="checkbox" id="login_remember"
+                                               className="custom-control-input"/>
+                                        <span className="custom-control-indicator"/>
+                                        <span className="custom-control-description">Keep me logged in</span>
+                                    </label>
+                                </li>
+                                <li className="list-group-item border-0">
+                                  {loginMessage}
+                                </li>
+                                <li className="list-group-item border-0">
+                                    <button type="submit" className="btn btn-primary login-btn">Login</button>
+                                </li>
+                            </ul>
+                        </form>
+                        <div>
+                            <Link to="/forgot-password?step=1"><p className="forgot-password-paragraph">Forgot Password
+                                ? <span> Login here</span></p></Link>
+                                
+=======
                                         <label className="custom-control custom-checkbox">
                                             <input type="checkbox" id="login_remember"
                                                    className="custom-control-input"/>
@@ -99,6 +121,7 @@ export class LoginComponent extends Component {
                                 <Link to="/forgot-password?step=1"><p className="forgot-password-paragraph">Forgot Password
                                     ?</p></Link>
                             </div>
+>>>>>>> d3d236e84dfff3a3997d8d2021384f127b9a0ca4
                         </div>
                     </div>
                 </div>

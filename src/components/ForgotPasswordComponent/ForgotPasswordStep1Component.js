@@ -62,7 +62,8 @@ export const ForgotPasswordStep1Component = (props) => {
                             </ul>
                         </form>
                         <div>
-                            <Link to="/login"><p className="forgot-password-paragraph">Remember your password? Login here</p></Link>
+                            <Link to="/login"><p className="forgot-password-paragraph">Forgot Password
+                                ? <span> Login here</span></p></Link>
                         </div>
                     </div>
                 </div>

@@ -16,14 +16,16 @@
     border: none;
     width: 309px;
     height: 32px;
+    border-radius: 3px;
+    padding-left: 20px;
 }
 
 
 .Checklist-Heading {
     display: grid;
-    grid-template-columns: 54px 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 54px 300px 1fr 1fr 1fr 1fr;
     text-align: center;
-    margin: 41px 35px 0 34px;
+    margin: 41px 35px 17px 34px;
 }
 
 .Checklist-Heading p {
@@ -34,9 +36,13 @@
     color: #8a85a6;
 }
 
+.Left-Align {
+    text-align: left;
+}
+
 .Checklist-Item {
     display: grid;
-    grid-template-columns: 54px 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 54px 300px 1fr 1fr 1fr 1fr;
     text-align: center;
     right: 0;
     height: 64px;
@@ -57,12 +63,26 @@
     font-size: 14px;
     font-weight: 900;
     color: #8a85a6;
-    margin: auto;
+    
+}
+
+.Item-Title {
+    text-align: left;
+    line-height: 64px;
+}
+
+.Item-Category {
+    line-height: 64px;
+}
+
+.Item-Due-Date {
+    line-height: 64px;
 }
 
 
 .DueDateCountdown {
     color: #ff4747;
+    line-height: 64px;
 }
 
 .Priority-Low {
@@ -103,6 +123,7 @@
     background-color: #f6cbcb;
     border-radius: 4px;
     line-height: 30px;
+    margin: auto;
 }
 
 .CompleteRate-Done {

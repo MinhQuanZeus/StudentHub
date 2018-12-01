@@ -10,14 +10,14 @@ export const ChecklistComponent = (props) => {
                                                      placeholder="Search"/>
             </div>
             <div className={styles["Checklist-Heading"]}>
-                <p></p><p>CHECKLIST</p><p>CATEGORY</p><p>DUE DATE</p><p>PRIORITY</p><p>COMPLETE RATE</p>
+                <p></p><p className={styles["Left-Align"]}>CHECKLIST</p><p>CATEGORY</p><p>DUE DATE</p><p>PRIORITY</p><p>COMPLETE RATE</p>
             </div>
             {checkList.map((rowData, index) => {
                 return <div className={styles["Checklist-Item"]} key={index}>
                     <input type="checkbox" className={styles["Checklist-Checkbox"]}/>
                     <p className={styles["Item-Title"]}>{rowData.check_list_name}</p>
-                    <p>{rowData.category}</p>
-                    <p>{rowData.due_date} <span className={styles["DueDateCountdown"]}>(3d)</span></p>
+                    <p className={styles["Item-Category"]}>{rowData.category}</p>
+                    <p className={styles["Item-Due-Date"]}>{rowData.due_date} <span className={styles["DueDateCountdown"]}>(3d)</span></p>
                     <p className={styles["Priority-Low"]}>Low</p>
                     <p className={styles["CompleteRate-Due"]}>Due</p>
                 </div>
