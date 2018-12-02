@@ -10,6 +10,7 @@ import MyProfileContainer from "../MyProfileContainer/MyProfileContainer";
 import MilestoneContainer from "../MilestoneContainer/MilestoneContainer";
 import DegreeAuditContainer from "../DegreeAuditContainer/DegreeAuditContainer";
 import ChecklistContainer from "../ChecklistContainer/ChecklistContainer";
+import FlagsListContainer from '../FlagsListContainer/FlagsListContainer';
 
 class ApplicationContainer extends Component {
 
@@ -35,6 +36,7 @@ class ApplicationContainer extends Component {
                 <Route path="/class-tracker" component={ClassTrackerContainer}/>
                 <Route path="/my-profile" component={MyProfileContainer}/>
                 <Route path="/check-list" component={ChecklistContainer}/>
+                <Route path='/flags-list' component={FlagsListContainer} />
                 <NotificationContainer/>
             </div>
         )

@@ -1,8 +1,8 @@
 .AboutUserContainer {
-    position: absolute;
+    /* position: absolute;
     left: 359px;
     right: 276px;
-    top: 82px;
+    top: 82px; */
 }
 
 p {
@@ -13,13 +13,13 @@ p {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-bottom: solid 1px #f0eff6; 
+    border-bottom: solid 1px #f0eff6;
 }
 
 .label {
    font-size: 12px;
    font-weight: 900;
-   color: #413d59; 
+   color: #413d59;
    line-height: 45px;
 }
 
@@ -137,7 +137,6 @@ p {
 }
 
 .address {
-    position: absolute;
     font-size: 12px;
     font-weight: 500;
     color: #8a85a6;

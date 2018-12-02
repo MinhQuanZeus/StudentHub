@@ -5,6 +5,7 @@ import {ProfileTabsComponent} from "../../components/ProfileTabsComponent/Profil
 import {AboutUserComponent} from "../../components/AboutUserComponent/AboutUserComponent";
 import {connect} from 'react-redux';
 import sharedStyles from '../../styles/styles.css';
+import styles from './MyProfileContainer.css';
 
 
 class MyProfileContainer extends Component {
@@ -24,14 +25,23 @@ class MyProfileContainer extends Component {
     render() {
         return (
             <div className={sharedStyles["content-container"]}>
-                <UserCardComponent loginInformation={this.props.loginInformation}/>
-                <ProfileTabsComponent scrollToRef={this.scrollToRef} />
-                <AboutUserComponent
-                  loginInformation={this.props.loginInformation}
-                  aboutRef={this.aboutRef}
-                  contactRef={this.contactRef}
-                  addressRef={this.addressRef}
-                  />
+                <div className={sharedStyles['content-header']}>
+                  <h3 className={sharedStyles['content-label']}>My Profile</h3>
+                </div>
+                <div className={styles['profile-wrapper']}>
+                  <div className={styles['profile-left-container']}>
+                    <UserCardComponent loginInformation={this.props.loginInformation}/>
+                    <ProfileTabsComponent scrollToRef={this.scrollToRef} />
+                  </div>
+                  <div className={styles['profile-right-container']}>
+                    <AboutUserComponent
+                      loginInformation={this.props.loginInformation}
+                      aboutRef={this.aboutRef}
+                      contactRef={this.contactRef}
+                      addressRef={this.addressRef}
+                    />
+                  </div>
+                </div>
             </div>
         )
     }

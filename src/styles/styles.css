@@ -99,10 +99,20 @@ label.error:before {
     top: 61px;
     left: 63px;
     right: 230px;
-    height: 100%;
     background-color: #f9f9f9;
     padding-top: 31px;
-    padding-left: 36px
+    padding-left: 36px;
+    padding-right: 36px;
+}
+
+.content-header {
+  margin-bottom: 26px;
+}
+
+.content-label {
+  font-size: 18px;
+  font-weight: 900;
+  color: #8a85a6;
 }
 
 .content-container-NoNotification {

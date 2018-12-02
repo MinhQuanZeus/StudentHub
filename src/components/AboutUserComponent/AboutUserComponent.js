@@ -11,11 +11,12 @@ export const AboutUserComponent = (props) => {
             <div className={styles["AboutContainer"]}>
                 <div>
                     <h3>About</h3>
-                    <p className={styles["AboutParagraph"]}>Nam dapibus nisl vitae elit fringilla rutrum. Aenean
+                    <p className={styles["AboutParagraph"]}>
+                        Nam dapibus nisl vitae elit fringilla rutrum. Aenean
                         sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa.
                         Vestibulum sed metus in lorem tristique ullamcorper id vitae erat. Nulla mollis sapien
-                        sollicitudin lacinia lacinia. Vivamus facilisis dolor.</p>
-
+                        sollicitudin lacinia lacinia. Vivamus facilisis dolor.
+                    </p>
                 </div>
             </div>
             <h4 ref={props.aboutRef}>BASIC INFORMATION</h4>
@@ -66,7 +67,7 @@ export const AboutUserComponent = (props) => {
             </div>
             <h4 ref={props.addressRef}>ADDRESS</h4>
             <div className={styles["AddressContainer"]}>
-                <div className={styles["row"]}>
+                <div>
                     <p className={styles["label"]}>Current Address</p>
                     {/*<a className={styles["ChangeAddressBtn"]}>Change Address</a>*/}
                     <p className={styles["address"]}>Mustika Ratu Street No 34, Lampung <br></br>Indonesia, 34381</p>
