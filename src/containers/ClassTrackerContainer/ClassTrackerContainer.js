@@ -5,7 +5,7 @@ import {onFetchAcademicProgram} from '../../actions/AcademicProgramActions/Acade
 import {ContentHeadingComponent} from '../../components/ContentHeadingComponent/ContentHeadingComponent'
 import {TabsComponent} from '../../components/TabsComponent/TabsComponent'
 import {TableComponent} from '../../components/TableComponent/TableComponent'
-import { QuickLinkComponentClassTracker } from '../../components/QuickLinkComponentClassTracker/QuickLinkComponentClassTracker';
+import {QuickLinkComponent} from '../../components/QuickLinkComponent/QuickLinkComponent';
 import sharedStyles from '../../styles/styles.css';
 import { getUniqueYears } from '../../helpers/Utils';
 
@@ -40,7 +40,7 @@ class ClassTrackerContainer extends Component {
 
         return (
             <div className={sharedStyles["content-container"]}>
-                <QuickLinkComponentClassTracker/>
+                <QuickLinkComponent/>
                 <ContentHeadingComponent />
                 <TabsComponent
                     years={getUniqueYears(classTracker.classTracker)}
