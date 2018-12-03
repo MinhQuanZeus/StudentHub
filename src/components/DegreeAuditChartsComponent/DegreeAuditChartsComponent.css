@@ -200,6 +200,36 @@
     border-radius: 2px;
 }
 
+.CustomLabelContainer {
+    position: absolute;
+    top: -12px;
+    width: 41px;
+    height: 24px;
+    background-color: white;
+    right: -42px;
+    z-index: 2;
+}
+
+.CustomLabel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 1px;
+    box-shadow: 1px 1px 12px 0 #f0eff6;
+    background-image: url('../../../src/images/gpa-icon.svg');
+    background-size: cover;
+}
+
+.CustomNumber {
+    color: white;
+    font-size: 12px;
+    font-weight: 900px;
+    line-height: 24px;
+    width: 100%;
+    text-align: center;
+}
+
+
 .Gridline0 {
     position: absolute;
     left: 0;

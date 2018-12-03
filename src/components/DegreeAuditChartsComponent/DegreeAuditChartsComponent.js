@@ -33,7 +33,16 @@ export const DegreeAuditChartsComponent = (props) => {
                     <div className={styles["GPAGraph"]}>
                         <div className={styles["VerticalBarContainer"]}>
                             <div className={styles["GrayBar"]}>
-                                <div className={styles["BlueBar"]}></div>
+                                <div className={styles["BlueBar"]}>
+                                    <div className={styles["CustomLabelContainer"]}>
+                                        <div className={styles["CustomLabel"]}>
+                                            <div className={styles["CustomNumber"]}>
+                                            3.6
+                                            </div>
+                                        </div>    
+                                        
+                                    </div>
+                                </div>
                             </div>
                             <div className={styles["Gridline0"]}><p className={styles["GridlineLabel"]}>0</p></div>
                             <div className={styles["Gridline1"]}><p className={styles["GridlineLabel"]}>1.0</p></div>
