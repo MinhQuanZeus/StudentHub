@@ -12,6 +12,13 @@ import {onFetchMilestone} from "../../actions/MilestoneActions/MilestoneActions"
 
 class MilestoneContainer extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            commonInfoVisibility: true
+        }
+    }
+
     componentWillMount() {
         if (this.props.academic_program !== undefined && this.props.academic_program !== null && this.props.academic_program.length !== 0) {
             this.props.onFetchMilestone(this.props.loginInformation.x_access_token, this.props.academic_program[0].academic_program_id);
@@ -22,13 +29,30 @@ class MilestoneContainer extends Component {
         return (
             <div className={sharedStyles["container-background"]}>
                 <QuickLinkComponent/>
-                <MilestoneHeaderComponent/>
-                <MilestoneAvatarComponent loginInformation={this.props.loginInformation}/>
-                <ProgramInfoComponent academic_program={this.props.academic_program}/>
+                <MilestoneHeaderComponent toggleCommonInfoVisibility={this.toggleCommonInfoVisibility}
+                                          commonInfoVisibility={this.state.commonInfoVisibility}/>
+                {this.getCommonInfo()}
                 <MilestoneTabsComponent currentPath={this.props.location.pathname}/>
                 <MilestoneTableComponent milestone={this.props.milestone}/>
             </div>
         )
+    }
+
+    toggleCommonInfoVisibility = () => {
+        this.setState((prevState) => {
+            return {commonInfoVisibility: !prevState.commonInfoVisibility}
+        })
+    }
+
+    getCommonInfo = () => {
+        if (this.state.commonInfoVisibility) {
+            return (
+                <React.Fragment>
+                    <MilestoneAvatarComponent loginInformation={this.props.loginInformation}/>
+                    <ProgramInfoComponent academic_program={this.props.academic_program}/>
+                </React.Fragment>
+            )
+        }
     }
 }
 

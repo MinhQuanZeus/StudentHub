@@ -4,7 +4,6 @@ import styles from './DegreeAuditChartsComponent.css'
 export const DegreeAuditChartsComponent = (props) => {
 
     if (props.degreeAudit !== undefined && props.degreeAudit !== null) {
-        console.log(JSON.stringify(props.degreeAudit, null, 4));
 
         return (
             <div className={styles["ChartContainer"]}>

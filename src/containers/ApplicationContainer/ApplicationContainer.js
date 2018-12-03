@@ -20,7 +20,6 @@ class ApplicationContainer extends Component {
     }
 
     render() {
-        console.log('something was updated');
         if (this.props.location.pathname === "/") {
             return (
                 <Redirect to={{pathname: '/my-profile'}}/>

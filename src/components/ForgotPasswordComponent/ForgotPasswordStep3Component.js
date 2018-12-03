@@ -47,8 +47,11 @@ export const ForgotPasswordStep3Component = (props) => {
                                         <span className="input-group-addon">
                                             <i className="fa fa-key fa-2x"/>
                                         </span>
-                                            <input type="password" id="login_username" name="login_username"
+                                            <input type={props.newPasswordType} id="login_username" name="login_username"
                                                    className="form-control" onChange={props.changeNewPassword}/>
+                                            <span className='input-group-addon' onClick={props.toggleNewPasswordVisibility}>
+                                                    <i className='fa fa-eye' style={{'fontSize': '23px'}}></i>
+                                                </span>
                                         </div>
                                     </div>
                                     <div className="form-group">
@@ -57,13 +60,16 @@ export const ForgotPasswordStep3Component = (props) => {
                                         <span className="input-group-addon">
                                             <i className="fa fa-key fa-2x"/>
                                         </span>
-                                            <input type="password" id="login_password" name="login_password"
+                                            <input type={props.conPasswordType} id="login_password" name="login_password"
                                                    className="form-control" onChange={props.changeConPassowrd}/>
+                                            <span className='input-group-addon' onClick={props.toggleConPasswordVisibility}>
+                                                    <i className='fa fa-eye' style={{'fontSize': '23px'}}></i>
+                                                </span>
                                         </div>
                                     </div>
                                 </li>
                                 <li className="list-group-item border-0">
-                                  {message}
+                                    {message}
                                 </li>
                                 <li className="list-group-item border-0">
                                     <button type="submit" className="btn btn-primary login-btn">Next</button>

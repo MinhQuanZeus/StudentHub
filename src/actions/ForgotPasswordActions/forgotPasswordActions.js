@@ -1,7 +1,7 @@
 import Promise from "es6-promise";
 import axios from 'axios';
 
-import {apiConstants, applicationStatusCode, applicationMessages} from "../../constants/applicationConstants";
+import {apiConstants, applicationMessages, applicationStatusCode} from "../../constants/applicationConstants";
 import {forgotPasswordConstants} from "../../constants/forgotPasswordConstants";
 import {history} from "../../helpers/history";
 
@@ -49,8 +49,6 @@ export function changePassword(accessToken, newPassword, conPassword) {
 
 
 function sendForgotPasswordRequest(email, channel, verifyCode) {
-
-
     return new Promise((resolve, reject) => {
         axios.post(getForgotPasswordPath(), buildPayloadForgotPassword(email, channel, verifyCode)).then(value => {
             if (value.data.status === applicationStatusCode.OK) {
@@ -67,7 +65,11 @@ function sendChangePasswordRequest(accessToken, newPassword, conPassword) {
         if (newPassword !== conPassword) {
             reject(applicationMessages.NEW_AND_CON_PASSWORD_NOT_MATCH);
         }
-        axios.post(getChangePasswordPath(), buildPayloadChangePassword(accessToken, newPassword)).then(value => {
+        axios.post(getChangePasswordPath(), buildPayloadChangePassword(newPassword), {
+            headers: {
+                'X-Access-Token': accessToken
+            }
+        }).then(value => {
             if (value.data.status === applicationStatusCode.OK) {
                 resolve(value.data);
             } else {
@@ -114,9 +116,8 @@ function getChangePasswordPath() {
     return apiConstants.BACKEND_URL + apiConstants.STUDENT_CHANGE_PASSWORD_PATH;
 }
 
-function buildPayloadChangePassword(accessToken, newPassword) {
+function buildPayloadChangePassword(newPassword) {
     return {
-        access_token: accessToken,
         password: newPassword,
         conf_password: newPassword
     }

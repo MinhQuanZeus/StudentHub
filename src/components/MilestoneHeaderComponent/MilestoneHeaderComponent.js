@@ -3,10 +3,10 @@ import styles from './MilestoneHeaderComponent.css';
 
 export const MilestoneHeaderComponent = (props) => {
 
-    return(
+    return (
         <div className={styles["headerContainter"]}>
             <div className={styles["navText"]}>Academic <span> > EE</span></div>
-            {/*<button>Hide Info</button>*/}
+            <button onClick={props.toggleCommonInfoVisibility}>{props.commonInfoVisibility ? "Hide Info" : "Show Info"}</button>
         </div>
     )
 }

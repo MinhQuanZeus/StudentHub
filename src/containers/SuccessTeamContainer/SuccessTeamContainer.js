@@ -26,7 +26,6 @@ class SuccessTeamContainer extends Component {
     componentDidMount() {
         let {loginInformation} = this.props;
         this.props.onFetchMentors(loginInformation.x_access_token);
-        console.log(loginInformation.x_access_token);           
         let script = document.createElement('script');
         script.type = 'text/javascript';
         script.text = `

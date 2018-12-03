@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import qs from 'qs';
 
-import {forgotPassword, changePassword} from "../../actions/ForgotPasswordActions/forgotPasswordActions";
+import {changePassword, forgotPassword} from "../../actions/ForgotPasswordActions/forgotPasswordActions";
 import {ForgotPasswordStep1Component} from "../../components/ForgotPasswordComponent/ForgotPasswordStep1Component";
 import {ForgotPasswordStep2Component} from "../../components/ForgotPasswordComponent/ForgotPasswordStep2Component";
 import {ForgotPasswordStep3Component} from "../../components/ForgotPasswordComponent/ForgotPasswordStep3Component";
@@ -13,7 +13,10 @@ class ForgotPasswordContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            conPasswordType: "password",
+            newPasswordType: "password"
+        };
     }
 
     render() {
@@ -34,6 +37,10 @@ class ForgotPasswordContainer extends Component {
                                                   changeNewPassword={this.setNewPasswordToStateOnChange}
                                                   changeConPassowrd={this.setConfirmationPasswordToStateOnChange}
                                                   changePasswordStatus={changePasswordStatus}
+                                                  conPasswordType={this.state.conPasswordType}
+                                                  newPasswordType={this.state.newPasswordType}
+                                                  toggleConPasswordVisibility={this.toggleConPasswordVisibility}
+                                                  toggleNewPasswordVisibility={this.toggleNewPasswordVisibility}
                     />
                 );
                 break;
@@ -57,6 +64,26 @@ class ForgotPasswordContainer extends Component {
         } else {
             return values.step;
         }
+    };
+
+    toggleConPasswordVisibility = () => {
+        this.setState((prevState) => {
+            if (prevState.conPasswordType === 'password') {
+                return {conPasswordType: 'text'}
+            } else {
+                return {conPasswordType: 'password'}
+            }
+        })
+    };
+
+    toggleNewPasswordVisibility = () => {
+        this.setState((prevState) => {
+            if (prevState.newPasswordType === 'password') {
+                return {newPasswordType: 'text'}
+            } else {
+                return {newPasswordType: 'password'}
+            }
+        })
     };
 
     setEmailToStateOnChange = (event) => {
@@ -89,7 +116,7 @@ class ForgotPasswordContainer extends Component {
     onSubmitChangePassword = (e) => {
         e.preventDefault();
         let {newPassword, conPassword} = this.state;
-        let accessToken = this.props.location.state.access_token;
+        let accessToken = this.props.location.state.x_access_token;
         this.props.changePassword(accessToken, newPassword, conPassword)
     }
 

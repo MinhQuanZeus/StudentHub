@@ -5,7 +5,6 @@ import classnames from 'classnames';
 export const MilestoneTableComponent = (props) => {
 
     if (props.milestone !== undefined && props.milestone !== null) {
-        console.log(JSON.stringify(props.milestone, null, 4));
 
         const getStatusStyles = (status) => {
           if (status === 'not started') return styles["not_started"];
