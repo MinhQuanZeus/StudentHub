@@ -12,42 +12,12 @@
     width: 100%;
     height: 100%;
     left: 0;
+    padding-left: 24px;
 }
 
 .nav-bar-list li {
-    padding: 16px 24px 16px 24px;
+    padding: 16px 0 16px 0;
+    position: relative;
+    left:-250;
     
-
-}
-
-.nav-dashboard-btn {
-    left: 24px;
-    top: 96px;
-    position: fixed;
-}
-
-.nav-myProfile-btn {
-    left: 24px;
-    top: 147px;
-    position: fixed;
-
-}
-
-.nav-academic-btn {
-    left: 24px;
-    top: 199px;
-    position: fixed;
-
-}
-
-.nav-success-btn {
-    left: 24px;
-    top: 249px;
-    position: fixed;
-}
-
-.nav-check-list-btn {
-    left: 24px;
-    top: 299px;
-    position: fixed;
 }

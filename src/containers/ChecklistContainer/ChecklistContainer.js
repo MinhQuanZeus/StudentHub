@@ -12,7 +12,7 @@ class ChecklistContainer extends Component {
 
     render() {
         return (
-            <div className={sharedStyles["content-container-NoNotification"]}>
+            <div className={sharedStyles["content-container"]}>
                 <ChecklistComponent data={this.props.checkList}/>
             </div>
         )
