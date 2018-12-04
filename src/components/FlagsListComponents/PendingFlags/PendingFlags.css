@@ -1,0 +1,10 @@
+.pending-flags-container h3 {
+  font-size: 18px;
+  font-weight: 900;
+  color: #544c7f;
+  margin-bottom: 20px;
+}
+
+.pending-flags {
+  display: flex;
+}

@@ -3,6 +3,7 @@ import React, {Component} from "react";
 import {UserCardComponent} from "../../components/UserCardComponent/UserCardComponent";
 import {ProfileTabsComponent} from "../../components/ProfileTabsComponent/ProfileTabsComponent";
 import {AboutUserComponent} from "../../components/AboutUserComponent/AboutUserComponent";
+import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import {connect} from 'react-redux';
 import sharedStyles from '../../styles/styles.css';
 import styles from './MyProfileContainer.css';
@@ -25,9 +26,7 @@ class MyProfileContainer extends Component {
     render() {
         return (
             <div className={sharedStyles["content-container"]}>
-                <div className={sharedStyles['content-header']}>
-                  <h3 className={sharedStyles['content-label']}>My Profile</h3>
-                </div>
+                <HeaderComponent label='My Profile' />
                 <div className={styles['profile-wrapper']}>
                   <div className={styles['profile-left-container']}>
                     <UserCardComponent loginInformation={this.props.loginInformation}/>

@@ -7,6 +7,7 @@ import degreeAuditReducer from "./DegreeAuditReducer/degreeAuditReducer";
 import milestoneReducer from "./MileStoneReducer/milestoneReducer";
 import academicProgramReducer from "./AcademicProgramReducer/AcademicProgramReducer";
 import checkListReducer from "./CheckListReducer/CheckListReducer";
+import flagsListReducer from "./FlagsListReducer/flagsListReducer";
 
 const reducers = {
     login: loginReducer,
@@ -16,8 +17,8 @@ const reducers = {
     degreeAudit: degreeAuditReducer,
     mileStone: milestoneReducer,
     academicProgram: academicProgramReducer,
-    checkList: checkListReducer
+    checkList: checkListReducer,
+    flagsList: flagsListReducer,
 };
 
 export default combineReducers(reducers)
-

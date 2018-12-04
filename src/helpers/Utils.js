@@ -26,3 +26,14 @@ export function getUniqueYears(data) {
 
   return uniqueYears.sort((a, b) => b - a);
 }
+
+export function getDayMonthYearFormat(isoDate) {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May','June','July', 'Aug', 'Sept', 'Oct', 'Nov','Dec'];
+
+  const date = new Date(isoDate);
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  return `${day} ${month} ${year}`;
+}

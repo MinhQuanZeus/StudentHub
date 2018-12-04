@@ -1,0 +1,5 @@
+export const flagsListConstants = {
+  WAITING: 'FETCH_FLAGS_LIST_WAITING',
+  SUCCESS: 'FETCH_FLAGS_LIST_SUCCESS',
+  ERROR: 'FETCH_FLAGS_LIST_FAIL'
+};
