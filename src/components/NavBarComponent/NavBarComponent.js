@@ -12,7 +12,7 @@ export const NavBarComponent = (props) => {
                 <li><Link to="/class-tracker"><img alt="academic" src="/images/academic.svg"/></Link></li>
                 <li><Link to="/success-team"><img alt="success" src="/images/success.svg"/></Link></li>
                 <li><Link to="/check-list"><img alt="check list" src="/images/success.svg"/></Link></li>
-                <li><Link to="/flags-list"><img alt="flags list" src="/images/success.svg"/></Link></li>
+                <li><Link to="/flags"><img alt="flags list" src="/images/success.svg"/></Link></li>
                 <li><Link to="/calendar"><img alt="/calendar" src="/images/success.svg"/></Link></li>
             </ul>
         </div>

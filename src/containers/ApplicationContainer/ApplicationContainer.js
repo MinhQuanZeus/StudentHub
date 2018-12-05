@@ -11,6 +11,7 @@ import MilestoneContainer from "../MilestoneContainer/MilestoneContainer";
 import DegreeAuditContainer from "../DegreeAuditContainer/DegreeAuditContainer";
 import ChecklistContainer from "../ChecklistContainer/ChecklistContainer";
 import FlagsListContainer from '../FlagsListContainer/FlagsListContainer';
+import FlagManagerDetailsContainer from "../FlagManagerDetailsContainer/FlagManagerDetailsContainer.js";
 import CalendarContainer from "../CalendarContainer/CalendarContainer";
 
 class ApplicationContainer extends Component {
@@ -36,7 +37,8 @@ class ApplicationContainer extends Component {
                 <Route path="/class-tracker" component={ClassTrackerContainer}/>
                 <Route path="/my-profile" component={MyProfileContainer}/>
                 <Route path="/check-list" component={ChecklistContainer}/>
-                <Route path='/flags-list' component={FlagsListContainer} />
+                <Route exact path='/flags' component={FlagsListContainer} />
+                <Route path='/flags/:id' component={FlagManagerDetailsContainer} />
                 <Route path='/calendar' component={CalendarContainer} />
                 <NotificationContainer/>
             </div>

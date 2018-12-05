@@ -9,6 +9,7 @@ import FlagsTable from '../../components/FlagsListComponents/FlagsTable';
 import * as actions from '../../actions/FlagsListActions/FlagsListActions';
 
 import sharedStyles from '../../styles/styles.css';
+import styles from './FlagsListContainer.css';
 
 
 class FlagsListContainer extends Component {
@@ -37,25 +38,38 @@ class FlagsListContainer extends Component {
   getHeaderLabelsByActiveTab = () => {
     let headerLabels = ['Flag', 'From', 'Title', 'Category', 'Sub Cat', 'Date Created', 'Status', 'Severity', 'Priority'];
 
-    if (this.state.activeTab === 0) {
-      return headerLabels;
+    switch (this.state.activeTab) {
+      case 1:
+        headerLabels[1] = 'To';
+        return headerLabels;
+      case 2:
+        headerLabels.splice(1, 1);
+        return headerLabels;
+      default:
+        return headerLabels;
     }
-
-    headerLabels[1] = 'To';
-    return headerLabels;
   }
 
   getFlagsByActiveTab = () => {
-    const { flagsReceived, flagsSent } = this.props;
+    const { flagsReceived, flagsSent, publicFlags } = this.props;
     let flags;
 
-    if (this.state.activeTab === 0) {
-      flags = flagsReceived;
-    } else {
-      flags = flagsSent;
+    switch (this.state.activeTab) {
+      case 1:
+        flags = flagsSent;
+        break;
+      case 2:
+        flags = publicFlags;
+        break;
+      default:
+        flags = flagsReceived;
     }
 
     return flags;
+  }
+
+  viewFlagDetails = (flagId) => {
+    this.props.history.push(`/flags/${flagId}`);
   }
 
   componentDidMount() {
@@ -75,12 +89,16 @@ class FlagsListContainer extends Component {
 
     return (
       <section className={sharedStyles["content-container"]}>
-        <HeaderComponent label='Flags List' btnLabel={pendingBtnLabel} clickFxn={this.togglePendingVisibility} />
+        <HeaderComponent label='Flags List'>
+          <span className={styles['btn-outline']} onClick={this.togglePendingVisibility}>
+            {pendingBtnLabel}
+          </span>
+        </HeaderComponent>
         {pendingFlags}
-        <TabsComponent activeTab={activeTab} updateActiveTab={this.updateActiveTab} tabNames={['Flags', 'Sent']}>
+        <TabsComponent activeTab={activeTab} updateActiveTab={this.updateActiveTab} tabNames={['Flags', 'Sent', 'Public Flag']}>
           <section>
             {searchAndAdd}
-            <FlagsTable headerLabels={headerLabels} flags={flags} />
+            <FlagsTable headerLabels={headerLabels} flags={flags} handleClick={this.viewFlagDetails}/>
           </section>
         </TabsComponent>
       </section>
@@ -94,6 +112,7 @@ function mapStateToProps(state) {
     flagsList: state.flagsList, // all flags in user account: received and sent
     flagsReceived: state.flagsList.flagsList.filter((flag) => flag.created_by !== state.login.loginInformation.id), // flags received by user only
     flagsSent: state.flagsList.flagsList.filter((flag) => flag.created_by === state.login.loginInformation.id), // user sent flags only
+    publicFlags: state.flagsList.flagsList.filter((flag) => flag.is_public),
   }
 }
 

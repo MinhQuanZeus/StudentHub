@@ -12,7 +12,7 @@ export const apiConstants = {
     STUDENT_MILESTONES: "student/milestones",
     STUDENT_CHECK_LIST: "api/v1/check_list",
     STUDENT_FLAGS_LIST: 'student/flag',
-
+    STUDENT_FLAG_DETAILS: 'student/flag/detail/'
 };
 
 export const applicationStatusCode = {

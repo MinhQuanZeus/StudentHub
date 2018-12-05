@@ -1,10 +1,6 @@
 import React from 'react';
-import styles from '.FlagManagerDetailsComponent.css'
 
-
-className={styles[""]}
-
-export const FlagManagerDetailsContainer = (props) {
+const FlagManagerDetailsContainer = (props) => {
     return (
         <div className={styles["section-container"]}>
             <div className={styles["section-header"]}>
@@ -38,6 +34,7 @@ export const FlagManagerDetailsContainer = (props) {
                 <div className={styles["description-section"]}>
                     <p className={styles["title"]}>Description</p><p className={styles["value"]}>Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec. Donec viverra eleifend lacus, vitae ullamcorper metus. Sed sollicitudin ipsum quis nunc sollicitudin ultrices. Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. </p>
                 </div>
+              </div>
             <div className={styles["assign-to-container"]}>
                 <p className={styles["sub-heading"]}>Assign To</p>
                 <img className={styles["user-img50"]}></img> <p className={styles["user-name-18"]}>Arina Belomestnykh</p>
@@ -89,3 +86,5 @@ export const FlagManagerDetailsContainer = (props) {
         </div>
     )
 }
+
+export default FlagManagerDetailsComponent;

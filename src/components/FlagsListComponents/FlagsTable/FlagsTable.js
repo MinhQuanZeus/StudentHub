@@ -3,7 +3,7 @@ import { getDayMonthYearFormat } from '../../../helpers/Utils'
 
 import styles from './FlagsTable.css';
 
-function FlagsTable({ headerLabels, flags }) {
+function FlagsTable({ headerLabels, flags, handleClick }) {
   return (
     <section>
       <div className={styles['table-border-line']}></div>
@@ -15,7 +15,7 @@ function FlagsTable({ headerLabels, flags }) {
         </thead>
         <tbody>
           {flags.map((flag, idx) => (
-            <tr key={idx} className={styles['table-body-row']}>
+            <tr key={idx} className={styles['table-body-row']} onClick={() => handleClick(flag.id)}>
               <td>{flag.id}</td>
               <td>{flag.created_by}</td>
               <td>{flag.subject}</td>
