@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import {login} from "../../actions/LoginActions/loginActions";
 import {LoginComponent} from "../../components/LoginComponent/LoginComponent";
+import $ from 'jquery';
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -11,7 +12,6 @@ class LoginContainer extends Component {
     }
 
     render() {
-
         let {loginStatus} = this.props;
         return (
             <LoginComponent submit={this.onSubmit}
@@ -21,7 +21,11 @@ class LoginContainer extends Component {
             />
         )
     }
-
+    componentWillMount() {
+            $('.chatBotLoading').remove()
+            $('.lex-web-ui-iframe').remove()
+        }  
+     
     setEmailToStateOnChange = (event) => {
         this.setState({email: event.target.value});
     };

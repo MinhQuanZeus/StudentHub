@@ -7,7 +7,11 @@ import {TabsComponent} from '../../components/TabsComponent/TabsComponent'
 import {TableComponent} from '../../components/TableComponent/TableComponent'
 import {QuickLinkComponent} from '../../components/QuickLinkComponent/QuickLinkComponent';
 import sharedStyles from '../../styles/styles.css';
+<<<<<<< HEAD
+import $ from 'jquery';
+=======
 import { getUniqueYears } from '../../helpers/Utils';
+>>>>>>> origin/master
 
 class ClassTrackerContainer extends Component {
     state = {
@@ -58,6 +62,8 @@ class ClassTrackerContainer extends Component {
     }
     componentWillMount() {
         this.props.onFetchClassTracker(this.props.loginInformation.x_access_token);
+        $('.chatBotLoading').remove()
+        $('.lex-web-ui-iframe').remove()
         this.props.onFetchAcademicProgram(this.props.loginInformation.x_access_token);
     }
 }

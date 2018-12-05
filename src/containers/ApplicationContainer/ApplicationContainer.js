@@ -6,6 +6,7 @@ import TopBarContainer from "../TopBarContainer/TopBarContainer";
 import NavBarContainer from "../NavBarContainer/NavBarContainer";
 import NotificationContainer from "../NotificationContainer/NotificationContainer";
 import ClassTrackerContainer from "../ClassTrackerContainer/ClassTrackerContainer";
+import $ from 'jquery';
 import MyProfileContainer from "../MyProfileContainer/MyProfileContainer";
 import MilestoneContainer from "../MilestoneContainer/MilestoneContainer";
 import DegreeAuditContainer from "../DegreeAuditContainer/DegreeAuditContainer";
@@ -20,7 +21,10 @@ class ApplicationContainer extends Component {
         super(props);
         this.state = {};
     }
-
+      componentWillMount() {
+        $('.chatBotLoading').remove()
+        $('.lex-web-ui-iframe').remove()
+    }
     render() {
         if (this.props.location.pathname === "/") {
             return (

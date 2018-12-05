@@ -7,7 +7,7 @@ import {ForgotPasswordStep1Component} from "../../components/ForgotPasswordCompo
 import {ForgotPasswordStep2Component} from "../../components/ForgotPasswordComponent/ForgotPasswordStep2Component";
 import {ForgotPasswordStep3Component} from "../../components/ForgotPasswordComponent/ForgotPasswordStep3Component";
 import {forgotPasswordConstants} from "../../constants/forgotPasswordConstants";
-
+import $ from 'jquery';
 
 class ForgotPasswordContainer extends Component {
 
@@ -18,7 +18,10 @@ class ForgotPasswordContainer extends Component {
             newPasswordType: "password"
         };
     }
-
+    componentWillMount() {
+        $('.chatBotLoading').remove()
+        $('.lex-web-ui-iframe').remove()
+    }  
     render() {
         let {forgotPasswordStatus, changePasswordStatus} = this.props;
         let forgotPasswordComponent;

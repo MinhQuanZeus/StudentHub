@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {onFetchMentors} from "../../actions/SuccessTeamActions/SuccessTeamActions";
 import {MentorCardComponent} from "../../components/MentorCardComponent/MentorCardComponent";
 import sharedStyles from '../../styles/styles.css';
+import param from '../../chatBotControl/passToken.js';
 
 class SuccessTeamContainer extends Component {
 
@@ -14,18 +15,17 @@ class SuccessTeamContainer extends Component {
         return (
             <div className={sharedStyles["content-container"]}>
                 <h2 className={sharedStyles["content-heading"]}>Success Team</h2>
-                {mentorItems}
+                {mentorItems}       
             </div>
         );
     }
 
-    componentWillMount() {
-        let {loginInformation} = this.props;
-        this.props.onFetchMentors(loginInformation.x_access_token);
-    }
     componentDidMount() {
         let {loginInformation} = this.props;
         this.props.onFetchMentors(loginInformation.x_access_token);
+<<<<<<< HEAD
+        document.body.appendChild(param.passToken(loginInformation.x_access_token));
+=======
         let script = document.createElement('script');
         script.type = 'text/javascript';
         script.text = `
@@ -68,9 +68,15 @@ class SuccessTeamContainer extends Component {
           loader.load(chatbotUiconfig)
             .catch(function (error) { console.error(error); });`;
         document.body.appendChild(script);
+>>>>>>> origin/master
     }
-}
 
+//     componentDidMount() {
+//        let {loginInformation} = this.props;
+//         this.props.onFetchMentors(loginInformation.x_access_token);
+//        ReactDOM.unmountComponentAtNode(param.passToken(loginInformation.x_access_token));
+//     }
+}
 
 const mapStateToProps = (state) => {
     return {
