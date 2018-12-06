@@ -17,6 +17,7 @@ class FlagsListContainer extends Component {
     showPending: true,
     pendingBtnLabel: 'Hide Pending',
     activeTab: 0,
+    showModal: false,
   }
 
   togglePendingVisibility = () => {
@@ -51,18 +52,20 @@ class FlagsListContainer extends Component {
   }
 
   getFlagsByActiveTab = () => {
-    const { flagsReceived, flagsSent, publicFlags } = this.props;
+    // const { flagsList, sentFlags, publicFlags } = this.props;
+    const { sentFlags, publicFlags } = this.props;
     let flags;
 
     switch (this.state.activeTab) {
       case 1:
-        flags = flagsSent;
+        flags = sentFlags;
         break;
       case 2:
         flags = publicFlags;
         break;
       default:
-        flags = flagsReceived;
+        // flags = flagsList;
+        flags = { data: [] };
     }
 
     return flags;
@@ -72,20 +75,31 @@ class FlagsListContainer extends Component {
     this.props.history.push(`/flags/${flagId}`);
   }
 
+  handleOpenModal = () => {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false });
+  }
+
   componentDidMount() {
     const token = this.props.login.x_access_token;
-    this.props.getFlagsList(token);
+    // this.props.getFlagsList(token);
+    this.props.getSentFlags(token);
+    this.props.getPublicFlags(token);
   }
 
   render() {
-    const { showPending, pendingBtnLabel, activeTab } = this.state;
-    const { flagsList } = this.props;
-    const pendingFlags = showPending ? <PendingFlags flags={flagsList.flagsList} /> : null;
+    const { showPending, pendingBtnLabel, activeTab, showModal } = this.state;
+    const { sentFlags, publicFlags } = this.props;
+    const pendingFlags = showPending ? <PendingFlags flags={sentFlags.data} /> : null;
     const searchAndAdd = activeTab === 0 ? <FlagsListSearchAndAdd /> : null;
     const headerLabels = this.getHeaderLabelsByActiveTab();
     const flags = this.getFlagsByActiveTab();
 
-    if (flagsList.loading) { return null }
+    // if (flagsList.loading || sentFlags.loading || publicFlags.loading) { return null }
+    if (sentFlags.loading || publicFlags.loading) { return null }
 
     return (
       <section className={sharedStyles["content-container"]}>
@@ -98,7 +112,15 @@ class FlagsListContainer extends Component {
         <TabsComponent activeTab={activeTab} updateActiveTab={this.updateActiveTab} tabNames={['Flags', 'Sent', 'Public Flag']}>
           <section>
             {searchAndAdd}
-            <FlagsTable headerLabels={headerLabels} flags={flags} handleClick={this.viewFlagDetails}/>
+            <FlagsTable
+              headerLabels={headerLabels}
+              flags={flags.data}
+              handleClick={this.viewFlagDetails}
+              activeTab={activeTab}
+              handleOpenModal={this.handleOpenModal}
+              handleCloseModal={this.handleCloseModal}
+              showModal={showModal}
+            />
           </section>
         </TabsComponent>
       </section>
@@ -109,16 +131,17 @@ class FlagsListContainer extends Component {
 function mapStateToProps(state) {
   return {
     login: state.login.loginInformation,
-    flagsList: state.flagsList, // all flags in user account: received and sent
-    flagsReceived: state.flagsList.flagsList.filter((flag) => flag.created_by !== state.login.loginInformation.id), // flags received by user only
-    flagsSent: state.flagsList.flagsList.filter((flag) => flag.created_by === state.login.loginInformation.id), // user sent flags only
-    publicFlags: state.flagsList.flagsList.filter((flag) => flag.is_public),
+    // flagsList: state.flagsList.flagsList,
+    sentFlags: state.flagsList.sentFlags,
+    publicFlags: state.flagsList.publicFlags,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getFlagsList: (x_access_token) => dispatch(actions.getFlagsList(x_access_token)),
+    // getFlagsList: (x_access_token) => dispatch(actions.getFlagsList(x_access_token)),
+    getSentFlags: (x_access_token) => dispatch(actions.getSentFlags(x_access_token)),
+    getPublicFlags: (x_access_token) => dispatch(actions.getPublicFlags(x_access_token)),
   }
 }
 

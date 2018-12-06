@@ -3,23 +3,51 @@ import axios from "axios";
 import { apiConstants, applicationStatusCode } from "../../constants/applicationConstants";
 import { flagsListConstants } from "../../constants/flagsListConstants";
 
-export function getFlagsList(access_token) {
-    return (dispatch) => {
-        dispatch(getDataProcess(flagsListConstants.WAITING, true, null));
+// export function getFlagsList(access_token) {
+//     return (dispatch) => {
+//         dispatch(getDataProcess(flagsListConstants.FETCH_FLAGS_LIST_WAITING, true, null));
+//
+//         loadingFlagsList(access_token, apiConstants.STUDENT_FLAGS_LIST)
+//             .then(success => {
+//                 dispatch(getDataProcess(flagsListConstants.FETCH_FLAGS_LIST_SUCCESS, false, success.data));
+//             })
+//             .catch(err => {
+//                 dispatch(getDataProcess(flagsListConstants.FETCH_FLAGS_LIST_FAIL, false, []));
+//             })
+//     }
+// }
 
-        loadingFlagsList(access_token)
+export function getSentFlags(access_token) {
+    return (dispatch) => {
+        dispatch(getDataProcess(flagsListConstants.FETCH_SENT_FLAGS_WAITING, true, null));
+
+        loadingFlagsList(access_token, apiConstants.STUDENT_SENT_FLAGS)
             .then(success => {
-                dispatch(getDataProcess(flagsListConstants.SUCCESS, false, success.data));
+                dispatch(getDataProcess(flagsListConstants.FETCH_SENT_FLAGS_SUCCESS, false, success.data));
             })
             .catch(err => {
-                dispatch(getDataProcess(flagsListConstants.ERROR, false, []));
+                dispatch(getDataProcess(flagsListConstants.FETCH_SENT_FLAGS_FAIL, false, []));
             })
     }
 }
 
-function loadingFlagsList(access_token) {
+export function getPublicFlags(access_token) {
+    return (dispatch) => {
+        dispatch(getDataProcess(flagsListConstants.FETCH_PUBLIC_FLAGS_WAITING, true, null));
+
+        loadingFlagsList(access_token, apiConstants.STUDENT_PUBLIC_FLAGS)
+            .then(success => {
+                dispatch(getDataProcess(flagsListConstants.FETCH_PUBLIC_FLAGS_SUCCESS, false, success.data));
+            })
+            .catch(err => {
+                dispatch(getDataProcess(flagsListConstants.FETCH_PUBLIC_FLAGS_FAIL, false, []));
+            })
+    }
+}
+
+function loadingFlagsList(access_token, apiConstant) {
     return new Promise((resolve, reject) => {
-        axios.get(apiConstants.STUDENT_FLAGS_LIST, buildRequestConfig(access_token))
+        axios.get(apiConstant, buildRequestConfig(access_token))
             .then(response => {
                 if (response.data.code === applicationStatusCode.OK_V1) {
                     resolve(response.data);
@@ -37,7 +65,7 @@ function getDataProcess(type, loading, data) {
     return {
         type: type,
         loading: loading,
-        flagsList: data
+        data: data
     }
 }
 

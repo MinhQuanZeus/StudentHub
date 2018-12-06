@@ -5,13 +5,25 @@
   margin-bottom: 25px;
 }
 
+.flags-search-box {
+  position: relative;
+}
+
+.flags-list-actions i {
+  font-size: 12px;
+  color: #8a85a6;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
 .flags-list-actions input {
   width: 311px;
   height: 32px;
   background-color: #f0eff6;
   border: 0;
   box-sizing: border-box;
-  padding: 0 10px;
+  padding: 0 10px 0 30px;
   font-size: 12px;
   font-weight: 500;
   color: #8a85a6;

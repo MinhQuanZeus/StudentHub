@@ -8,3 +8,10 @@
 .pending-flags {
   display: flex;
 }
+
+.pending-flags p {
+  margin-bottom: 40px;
+  font-size: 12px;
+  font-weight: 900;
+  color: #544c7f;
+}
