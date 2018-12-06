@@ -96,8 +96,7 @@ export class LoginComponent extends Component {
                                 </ul>
                             </form>
                             <div>
-                            <Link to="/forgot-password?step=1"><p className="forgot-password-paragraph">Forgot Password
-                                ? <span> Login here</span></p></Link>
+                            <Link to="/forgot-password?step=1"><p className="forgot-password-paragraph">Forgot Password ?</p></Link>
                             </div>
                         </div>
                     </div>

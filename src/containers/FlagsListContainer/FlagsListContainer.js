@@ -68,10 +68,13 @@ class FlagsListContainer extends Component {
     return flags;
   }
 
+<<<<<<< HEAD
+=======
   viewFlagDetails = (flagId) => {
     this.props.history.push(`/flags/${flagId}`);
   }
 
+>>>>>>> bb1b4dbc75e4dda698191520df5399039034a2e3
   componentDidMount() {
     const token = this.props.login.x_access_token;
     this.props.getFlagsList(token);
@@ -89,6 +92,14 @@ class FlagsListContainer extends Component {
 
     return (
       <section className={sharedStyles["content-container"]}>
+<<<<<<< HEAD
+        <HeaderComponent label='Flags List' btnLabel={pendingBtnLabel} clickFxn={this.togglePendingVisibility} />
+        {pendingFlags}
+        <TabsComponent activeTab={activeTab} updateActiveTab={this.updateActiveTab} tabNames={['Flags', 'Sent']}>
+          <section>
+            {searchAndAdd}
+            <FlagsTable headerLabels={headerLabels} flags={flags} />
+=======
         <HeaderComponent label='Flags List'>
           <span className={styles['btn-outline']} onClick={this.togglePendingVisibility}>
             {pendingBtnLabel}
@@ -99,6 +110,7 @@ class FlagsListContainer extends Component {
           <section>
             {searchAndAdd}
             <FlagsTable headerLabels={headerLabels} flags={flags} handleClick={this.viewFlagDetails}/>
+>>>>>>> bb1b4dbc75e4dda698191520df5399039034a2e3
           </section>
         </TabsComponent>
       </section>
@@ -112,7 +124,10 @@ function mapStateToProps(state) {
     flagsList: state.flagsList, // all flags in user account: received and sent
     flagsReceived: state.flagsList.flagsList.filter((flag) => flag.created_by !== state.login.loginInformation.id), // flags received by user only
     flagsSent: state.flagsList.flagsList.filter((flag) => flag.created_by === state.login.loginInformation.id), // user sent flags only
+<<<<<<< HEAD
+=======
     publicFlags: state.flagsList.flagsList.filter((flag) => flag.is_public),
+>>>>>>> bb1b4dbc75e4dda698191520df5399039034a2e3
   }
 }
 

@@ -1,0 +1,13 @@
+.header-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #6647ff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6647ff;
+  cursor: pointer;
+}

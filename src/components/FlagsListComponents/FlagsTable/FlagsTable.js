@@ -15,7 +15,11 @@ function FlagsTable({ headerLabels, flags, handleClick }) {
         </thead>
         <tbody>
           {flags.map((flag, idx) => (
+<<<<<<< HEAD
+            <tr key={idx} className={styles['table-body-row']}>
+=======
             <tr key={idx} className={styles['table-body-row']} onClick={() => handleClick(flag.id)}>
+>>>>>>> bb1b4dbc75e4dda698191520df5399039034a2e3
               <td>{flag.id}</td>
               <td>{flag.created_by}</td>
               <td>{flag.subject}</td>

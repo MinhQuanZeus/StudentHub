@@ -78,8 +78,8 @@ label.error:before {
 
 .forgot-password-paragraph {
     color: gray;
-    font-weight: bold;
     text-align: center;
+    font-size: 12px;
 }
 
 .forgot-password-paragraph-div {
