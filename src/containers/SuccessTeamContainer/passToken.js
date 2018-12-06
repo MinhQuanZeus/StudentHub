@@ -4,43 +4,51 @@ var param = {
         script.type = 'text/javascript';
         script.id = 'chatBotLoading';
         script.text = `
-        var loaderOpts = {
-            baseUrl: "https://new-ui-codebuilddeploy-6zwr1kwlmvva-webappbucket-bza8dhl8x5lp.s3.amazonaws.com/"
-          };
+    var loaderOpts = {
+        baseUrl: 'https://cody-codebuilddeploy-1bhcz3251qy36-webappbucket-125z3kmshgrwk.s3.amazonaws.com/'
+    };
     var chatbotUiconfig = {
       "cognito": {
-        "poolId": "us-east-1:e0d6571e-2021-4a04-99b6-010247973f51"
-      },
+        "poolId": "us-east-1:025e574e-dff0-4f97-9960-16d916aa76ad",
+        "appUserPoolClientId": "svnvqtg5c1fa49jpcv4h5c5sc",
+        "appUserPoolName": "us-east-1_XXzMoIFsT",
+        "appDomainName": "codykidentitypoolconfigkbjcubcenifvbm699492237215.auth.us-east-1.amazoncognito.com",
+        "appUserPoolIdentityProvider": ""
+        },
       "lex": {
         "sessionAttributes":{
         "accessToken":"${x_access_token}"
         },
         "botName": "Cody",
-        "initialText": "You can ask me for help getting gpa, credit hours, adviser name etc. Just type 'get gpa' or click on the mic and say it.",
-        "initialSpeechInstruction": "Say 'Get gpa' or 'credit hours' to get started."
+        "botAlias": "$LATEST",
+        "initialText": "You can ask me for help getting gpa. Just type "gpa" or click on the mic and say it.",
+        "initialSpeechInstruction": "Say 'my gpa' to get started.",
+        "reInitSessionAttributesOnRestart": false
       },
       "ui": {
-        "parentOrigin": "http://localhost:3000",
-        "toolbarTitle": "Cody Bot",
+        "parentOrigin": "http://54.219.128.159:3000",
+        "toolbarTitle": "Cody",
         "toolbarLogo": "",
-        "pushInitialTextOnRestart": false,
-        "reInitSessionAttributesOnRestart": true,
+        "enableLogin": false,
+        "AllowSuperDangerousHTMLInMessage": true,
+        "shouldDisplayResponseCardTitle": true,
+        "pushInitialTextOnRestart": false
       },
       "polly": {
-        "voiceId": "Matthew"
+        "voiceId": "Salli"
       },
       "recorder": {
         "preset": "speech_recognition"
       },
       "iframe": {
-        "iframeOrigin": "https://new-ui-codebuilddeploy-6zwr1kwlmvva-webappbucket-bza8dhl8x5lp.s3.amazonaws.com",
-   		"iframeSrcPath": "/index.html#/?lexWebUiEmbed=true",
-   		"shouldLoadIframeMinimized": true
+        "iframeOrigin": "https://cody-codebuilddeploy-1bhcz3251qy36-webappbucket-125z3kmshgrwk.s3.amazonaws.com",
+        "shouldLoadIframeMinimized": true,
+        "iframeSrcPath": "/index.html#/?lexWebUiEmbed=true"
       }
     };
-          var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
-          loader.load(chatbotUiconfig)
-            .catch(function (error) { console.error(error); });`;
+      var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
+      loader.load(chatbotUiconfig)
+        .catch(function (error) { console.error(error); });`;
     return script;
 },
 };

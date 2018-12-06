@@ -19,63 +19,15 @@ class SuccessTeamContainer extends Component {
             </div>
         );
     }
-
-    componentDidMount() {
+      componentDidMount() {
         let {loginInformation} = this.props;
         this.props.onFetchMentors(loginInformation.x_access_token);
-<<<<<<< HEAD
-        document.body.appendChild(param.passToken(loginInformation.x_access_token));
-=======
-        let script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.text = `
-        var loaderOpts = {
-            baseUrl: "https://student-platform-codebuilddeploy-tme-webappbucket-7luwxhqo583s.s3.amazonaws.com/"
-          };
-    var chatbotUiconfig = {
-      "cognito": {
-        "poolId": "us-east-1:6901dcca-0062-43f0-a9db-396204e16cdc"
-      },
-      "lex": {
-        "sessionAttributes":{
-        "accessToken":"${loginInformation.x_access_token}"
-
-        },
-        "botName": "Cody",
-        "initialText": "You can ask me for help getting gpa, credit hours, adviser name etc. Just type 'get gpa' or click on the mic and say it.",
-        "initialSpeechInstruction": "Say 'Get gpa' or 'credit hours' to get started."
-      },
-      "ui": {
-        "parentOrigin": "http://54.193.100.235",
-        "toolbarTitle": "Cody Bot",
-        "toolbarLogo": "",
-        "pushInitialTextOnRestart": false,
-        "reInitSessionAttributesOnRestart": true,
-      },
-      "polly": {
-        "voiceId": "Matthew"
-      },
-      "recorder": {
-        "preset": "speech_recognition"
-      },
-      "iframe": {
-        "iframeOrigin": "https://student-platform-codebuilddeploy-tme-webappbucket-7luwxhqo583s.s3.amazonaws.com",
-        "iframeSrcPath": "/index.html#/?lexWebUiEmbed=true",
-        "shouldLoadIframeMinimized": true
-      }
-    };
-          var loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
-          loader.load(chatbotUiconfig)
-            .catch(function (error) { console.error(error); });`;
-        document.body.appendChild(script);
->>>>>>> origin/master
+      
+      // var chatBotscript = param.passToken(loginInformation.x_access_token)
+      // document.body.appendChild(chatBotscript);
+      let script = param.passToken(loginInformation.x_access_token);
+      document.body.appendChild(script);
     }
-
-//     componentDidMount() {
-//        let {loginInformation} = this.props;
-//         this.props.onFetchMentors(loginInformation.x_access_token);
-//        ReactDOM.unmountComponentAtNode(param.passToken(loginInformation.x_access_token));
-//     }
 }
 
 const mapStateToProps = (state) => {

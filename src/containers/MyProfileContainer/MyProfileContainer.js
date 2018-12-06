@@ -6,12 +6,8 @@ import {AboutUserComponent} from "../../components/AboutUserComponent/AboutUserC
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import {connect} from 'react-redux';
 import sharedStyles from '../../styles/styles.css';
-<<<<<<< HEAD
 import $ from 'jquery';
-=======
 import styles from './MyProfileContainer.css';
-
->>>>>>> origin/master
 
 class MyProfileContainer extends Component {
     constructor(props) {

@@ -7,11 +7,8 @@ import {TabsComponent} from '../../components/TabsComponent/TabsComponent'
 import {TableComponent} from '../../components/TableComponent/TableComponent'
 import {QuickLinkComponent} from '../../components/QuickLinkComponent/QuickLinkComponent';
 import sharedStyles from '../../styles/styles.css';
-<<<<<<< HEAD
 import $ from 'jquery';
-=======
 import { getUniqueYears } from '../../helpers/Utils';
->>>>>>> origin/master
 
 class ClassTrackerContainer extends Component {
     state = {
