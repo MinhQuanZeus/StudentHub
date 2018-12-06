@@ -59,8 +59,6 @@ export const FlagManagerDetailsComponent = (props) => {
                         <p className={styles["comment-value"]}>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer</p>
                     </div>
                 </div>
-<<<<<<< HEAD
-=======
                 <div className={styles["date-created-section"]}>
                     <p className={styles["title"]}>Date Created</p><p className={styles["value"]}>14 Nov 2018</p>
                 </div>
@@ -78,7 +76,6 @@ export const FlagManagerDetailsComponent = (props) => {
                 <img className={styles["user-img50"]}></img> <p className={styles["user-name-12"]}>Evi</p>
                 <img className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Justin</p>
                 <img className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Kery</p>
->>>>>>> bb1b4dbc75e4dda698191520df5399039034a2e3
             </div>
             <div className={styles["column-right"]}>
                 <div className={styles["assign-to-container"]}>
