@@ -5,7 +5,7 @@ import sharedStyles from '../../styles/styles.css';
 class CalendarContainer extends Component {
     render() {
         return (
-            <div className={sharedStyles["container-background"]}>
+            <div className={sharedStyles["content-container-NoNotification"]}>
              <CalendarComponent/>
             </div>
         )

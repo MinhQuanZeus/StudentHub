@@ -126,6 +126,7 @@ label.error:before {
     background-color: #f9f9f9;
     height: 100%;
     padding-top: 31px;
+    z-index: 3;
 }
 
 .content-heading {
