@@ -1,15 +1,11 @@
 import React from 'react';
+
 import styles from './FlagManagerDetailsComponent.css';
 
 
-
-
-export const FlagManagerDetailsComponent = (props) => {
+const FlagManagerDetailsComponent = (props) => {
     return (
         <div className={styles["section-container"]}>
-            <div className={styles["section-header"]}>
-                <h2 className={styles["heading-text"]}>Flag Manager <span>> Details</span></h2>
-            </div>
             <div className={styles["column-left"]}>
                 <div className={styles["details-container"]}>
                     <div className={styles["title-section"]}>
@@ -94,7 +90,6 @@ export const FlagManagerDetailsComponent = (props) => {
                     <img className={styles["attachment-img"]}></img>
                     <img className={styles["attachment-img"]}></img>
                 </div>
-                
                 <div className={styles["modify-history-container"]}>
                     <p className={styles["sub-heading"]}>Modify History</p>
                     <div className={styles["history-item"]}>

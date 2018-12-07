@@ -18,6 +18,7 @@ class FlagsListContainer extends Component {
     pendingBtnLabel: 'Hide Pending',
     activeTab: 0,
     showModal: false,
+    flagDetailsModal: {},
   }
 
   togglePendingVisibility = () => {
@@ -75,8 +76,8 @@ class FlagsListContainer extends Component {
     this.props.history.push(`/flags/${flagId}`);
   }
 
-  handleOpenModal = () => {
-    this.setState({ showModal: true });
+  handleOpenModal = (flag) => {
+    this.setState({ showModal: true, flagDetailsModal: flag });
   }
 
   handleCloseModal = () => {
@@ -91,7 +92,7 @@ class FlagsListContainer extends Component {
   }
 
   render() {
-    const { showPending, pendingBtnLabel, activeTab, showModal } = this.state;
+    const { showPending, pendingBtnLabel, activeTab, showModal, flagDetailsModal } = this.state;
     const { sentFlags, publicFlags } = this.props;
     const pendingFlags = showPending ? <PendingFlags flags={sentFlags.data} /> : null;
     const searchAndAdd = activeTab === 0 ? <FlagsListSearchAndAdd /> : null;
@@ -103,7 +104,7 @@ class FlagsListContainer extends Component {
 
     return (
       <section className={sharedStyles["content-container"]}>
-        <HeaderComponent label='Flags List'>
+        <HeaderComponent labels={['Flag Manager']}>
           <span className={styles['btn-outline']} onClick={this.togglePendingVisibility}>
             {pendingBtnLabel}
           </span>
@@ -120,6 +121,7 @@ class FlagsListContainer extends Component {
               handleOpenModal={this.handleOpenModal}
               handleCloseModal={this.handleCloseModal}
               showModal={showModal}
+              flagDetailsModal={flagDetailsModal}
             />
           </section>
         </TabsComponent>

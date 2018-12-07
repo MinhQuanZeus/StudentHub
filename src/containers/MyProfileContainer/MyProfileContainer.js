@@ -26,7 +26,7 @@ class MyProfileContainer extends Component {
     render() {
         return (
             <div className={sharedStyles["content-container"]}>
-                <HeaderComponent label='My Profile' />
+                <HeaderComponent labels={['My Profile']} />
                 <div className={styles['profile-wrapper']}>
                   <div className={styles['profile-left-container']}>
                     <UserCardComponent loginInformation={this.props.loginInformation}/>
@@ -47,7 +47,7 @@ class MyProfileContainer extends Component {
     componentWillMount() {
             $('.chatBotLoading').remove()
             $('.lex-web-ui-iframe').remove()
-        } 
+        }
 }
 
 const mapStateToProps = (state) => {

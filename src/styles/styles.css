@@ -144,3 +144,8 @@ label.error:before {
     width: 100%;
     height: 100%;
 }
+
+.header-angle-right {
+  color: #8a85a6;
+  font-size: 12px;
+}

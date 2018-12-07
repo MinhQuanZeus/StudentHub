@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
+import FlagManagerDetailsComponent from '../../components/FlagManagerDetailsComponent/FlagManagerDetailsComponent';
 
 import * as actions from '../../actions/FlagDetailsActions/FlagDetailsActions';
 
@@ -26,11 +27,12 @@ class FlagManagerDetailsContainer extends Component {
 
     return (
       <section className={sharedStyles["content-container"]}>
-        <HeaderComponent label='Flag'>
+        <HeaderComponent labels={['Flag Manager', 'Details']}>
           <span className={styles['btn-colored']} onClick={() => console.log('clicked')}>
             Edit Flag
           </span>
         </HeaderComponent>
+        <FlagManagerDetailsComponent />
       </section>
     )
   }

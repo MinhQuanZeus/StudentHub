@@ -38,8 +38,8 @@
 }
 
 header .modal-close-btn {
-  width: 30px;
-  height: 30px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -92,6 +92,10 @@ header i {
   margin-bottom: 20px;
 }
 
+.info-group p:empty:before {
+  content: '\200b';
+}
+
 .info-group-full {
   width: 100%;
   margin-top: 3px;
@@ -107,6 +111,18 @@ header i {
   font-size: 14px;
   font-weight: 500;
   color: #8a85a6;
+}
+
+.info-detail-textarea {
+  width: 100%;
+  height: 128px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding-right: 15px;
+}
+
+.info-detail-textarea::-webkit-scrollbar {
+  display: none;
 }
 
 .flag-details-right {
@@ -125,4 +141,49 @@ header i {
   height: 300px;
   box-sizing: border-box;
   padding: 21px 26px;
+}
+
+.pending {
+  width: 90px;
+  height: 30px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 900;
+  color: #b99e5c;
+  box-sizing: border-box;
+  background-color: #f6e7cb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.open {
+  width: 90px;
+  height: 30px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 900;
+  color: #5cb977;
+  box-sizing: border-box;
+  background-color: #cbf6d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.resolved {
+  width: 90px;
+  height: 30px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 900;
+  color: #979797;
+  box-sizing: border-box;
+  background-color: #dedede;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
 }

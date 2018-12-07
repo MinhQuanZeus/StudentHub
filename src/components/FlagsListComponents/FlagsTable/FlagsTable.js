@@ -15,7 +15,16 @@ function getFieldValue(flag, activeTab) {
   }
 }
 
-function FlagsTable({ headerLabels, flags, handleClick, activeTab, handleOpenModal, handleCloseModal, showModal }) {
+function FlagsTable({
+  headerLabels,
+  flags,
+  handleClick,
+  activeTab,
+  handleOpenModal,
+  handleCloseModal,
+  showModal,
+  flagDetailsModal,
+}) {
   return (
     <section>
       <div className={styles['table-border-line']}></div>
@@ -27,7 +36,7 @@ function FlagsTable({ headerLabels, flags, handleClick, activeTab, handleOpenMod
         </thead>
         <tbody>
           {flags.map((flag, idx) => (
-            <tr key={idx} className={styles['table-body-row']} onClick={handleOpenModal}>
+            <tr key={idx} className={styles['table-body-row']} onClick={() => handleOpenModal(flag)}>
               <td>{flag.id}</td>
               {getFieldValue(flag, activeTab)}
               <td>{flag.subject}</td>
@@ -45,7 +54,9 @@ function FlagsTable({ headerLabels, flags, handleClick, activeTab, handleOpenMod
           ))}
         </tbody>
       </table>
-      <FlagDetailsModal showModal={showModal} handleCloseModal={handleCloseModal} />
+      {flagDetailsModal.status
+        ? <FlagDetailsModal showModal={showModal} handleCloseModal={handleCloseModal} flag={flagDetailsModal} />
+        : null}
     </section>
   )
 }
