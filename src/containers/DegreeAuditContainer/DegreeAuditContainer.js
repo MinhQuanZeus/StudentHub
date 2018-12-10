@@ -33,8 +33,10 @@ class DegreeAuditContainer extends Component {
                 <MilestoneHeaderComponent toggleCommonInfoVisibility={this.toggleCommonInfoVisibility}
                                           commonInfoVisibility={this.state.commonInfoVisibility}/>
                 {this.getCommonInfo()}
-                <MilestoneTabsComponent currentPath={this.props.location.pathname}/>
-                <DegreeAuditChartsComponent degreeAudit={this.props.degreeAudit}/>
+                <MilestoneTabsComponent currentPath={this.props.location.pathname}
+                                        commonInfoVisibility={this.state.commonInfoVisibility}/>
+                <DegreeAuditChartsComponent degreeAudit={this.props.degreeAudit}
+                                            commonInfoVisibility={this.state.commonInfoVisibility}/>
             </div>
         )
     }

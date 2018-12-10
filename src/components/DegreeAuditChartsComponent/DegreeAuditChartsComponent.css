@@ -9,6 +9,17 @@
     background-color: #ffffff;
 }
 
+.ChartContainer-no-info {
+    position: absolute;
+    top: 216px;;
+    left: 230px;
+    right: 266px;
+    height: 510px;
+    padding: 20px 0 33px 33px;
+
+    background-color: #ffffff;
+}
+
 .AuditContainer {
     position: absolute;
     height: 510px;

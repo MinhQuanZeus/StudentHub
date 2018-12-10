@@ -7,6 +7,15 @@
     background-color: #ffffff;
 }
 
+.table-no-info {
+    position: absolute;
+    left: 230px;
+    right: 266px;
+    top: 216px;
+    padding: 24.5px 57px 25px 42px;
+    background-color: #ffffff;
+}
+
 .table-header {
     font-size: 14px;
     font-weight: 900;

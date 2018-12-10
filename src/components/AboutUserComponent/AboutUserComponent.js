@@ -42,7 +42,8 @@ export const AboutUserComponent = (props) => {
             <div className={styles["BasicContactContainer"]}>
                 <div className={styles["row"]}><p className={styles["label"]}>Phone Number</p><p
                     className={styles["value"]}>{mobile_phone}</p></div>
-                <div className={styles["row"]}><p className={styles["label"]}>Email Address <a href="">(Change)</a></p>
+                {/*<div className={styles["row"]}><p className={styles["label"]}>Email Address <a href="">(Change)</a></p>*/}
+                <div className={styles["row"]}><p className={styles["label"]}>Email Address</p>
                     <p className={styles["email"]}>{primary_email}</p></div>
             </div>
             <h4>SOCIAL MEDIA</h4>

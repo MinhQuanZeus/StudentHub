@@ -32,8 +32,10 @@ class MilestoneContainer extends Component {
                 <MilestoneHeaderComponent toggleCommonInfoVisibility={this.toggleCommonInfoVisibility}
                                           commonInfoVisibility={this.state.commonInfoVisibility}/>
                 {this.getCommonInfo()}
-                <MilestoneTabsComponent currentPath={this.props.location.pathname}/>
-                <MilestoneTableComponent milestone={this.props.milestone}/>
+                <MilestoneTabsComponent currentPath={this.props.location.pathname}
+                                        commonInfoVisibility={this.state.commonInfoVisibility}/>
+                <MilestoneTableComponent milestone={this.props.milestone}
+                                         commonInfoVisibility={this.state.commonInfoVisibility}/>
             </div>
         )
     }

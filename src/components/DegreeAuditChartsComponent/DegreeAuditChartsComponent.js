@@ -2,11 +2,12 @@ import React from 'react';
 import styles from './DegreeAuditChartsComponent.css'
 
 export const DegreeAuditChartsComponent = (props) => {
+    const {commonInfoVisibility} = props;
 
     if (props.degreeAudit !== undefined && props.degreeAudit !== null) {
 
         return (
-            <div className={styles["ChartContainer"]}>
+            <div className={commonInfoVisibility ? styles["ChartContainer"] : styles["ChartContainer-no-info"]}>
                 <div className={styles["AuditContainer"]}>
                     <div className={styles["AuditHeader"]}>Audit</div>
                     <div className={styles["CircleGraph"]}>
@@ -37,10 +38,10 @@ export const DegreeAuditChartsComponent = (props) => {
                                     <div className={styles["CustomLabelContainer"]}>
                                         <div className={styles["CustomLabel"]}>
                                             <div className={styles["CustomNumber"]}>
-                                            3.6
+                                                3.6
                                             </div>
-                                        </div>    
-                                        
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -66,10 +67,10 @@ export const DegreeAuditChartsComponent = (props) => {
                     <div className={styles["CategoryHeader"]}>
                         <p className={styles["LeftHeader"]}>Categories</p>
                         <p className={styles["RightHeader"]}>
-                          <span className={styles["PurpleDot"]}></span>
-                          <span className={styles["StatusLabel"]}>Status</span>
-                          <span className={styles["BlueDot"]}></span>
-                          <span className={styles["RequirementsLabel"]}> Requirements</span>
+                            <span className={styles["PurpleDot"]}></span>
+                            <span className={styles["StatusLabel"]}>Status</span>
+                            <span className={styles["BlueDot"]}></span>
+                            <span className={styles["RequirementsLabel"]}> Requirements</span>
                         </p>
                     </div>
                     <div className={styles["CategoryRow"]}>

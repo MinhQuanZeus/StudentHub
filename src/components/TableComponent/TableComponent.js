@@ -4,9 +4,12 @@ import classnames from 'classnames';
 import { getYear } from '../../helpers/Utils';
 
 export const TableComponent = ({ data, year, term }) => {
+    console.log(JSON.stringify(data, null, 4));
     const getStatusStyles = (status) => {
-      if (status === 'not started') return styles["not_started"];
-      else if (status === 'in progress') return styles["in_progress"];
+      if (status.toUpperCase() === 'not started'.toUpperCase() || status.toUpperCase() === 'enrolled'.toUpperCase()) return styles["not_started"];
+      else if (status.toUpperCase() === 'in progress'.toUpperCase()) return styles["in_progress"];
+      else if (status.toUpperCase() === 'completed'.toUpperCase()) return styles["completed"];
+      else if (status.toUpperCase() === 'fail'.toUpperCase()) return styles["delay"];
       else return styles[status];
     }
 
