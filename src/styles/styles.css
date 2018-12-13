@@ -119,7 +119,7 @@ label.error:before {
 }
 
 .content-container-NoNotification {
-    position: fixed;
+    position: absolute;
     top: 61px;
     left: 63px;
     right: 0;
