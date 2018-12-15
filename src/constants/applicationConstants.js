@@ -11,7 +11,7 @@ export const apiConstants = {
     STUDENT_DEGREE_AUDIT: "student/degree_audit",
     STUDENT_MILESTONES: "student/milestones",
     STUDENT_CHECK_LIST: "api/v1/check_list",
-    // STUDENT_FLAGS_LIST: '',
+    STUDENT_FLAGS_LIST: 'student/relative_flags',
     STUDENT_SENT_FLAGS: 'student/flag',
     STUDENT_PUBLIC_FLAGS: 'student/flag/public',
     STUDENT_FLAG_DETAILS: 'student/flag/detail/',

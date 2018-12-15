@@ -3,19 +3,19 @@ import axios from "axios";
 import { apiConstants, applicationStatusCode } from "../../constants/applicationConstants";
 import { flagsListConstants } from "../../constants/flagsListConstants";
 
-// export function getFlagsList(access_token) {
-//     return (dispatch) => {
-//         dispatch(getDataProcess(flagsListConstants.FETCH_FLAGS_LIST_WAITING, true, null));
-//
-//         loadingFlagsList(access_token, apiConstants.STUDENT_FLAGS_LIST)
-//             .then(success => {
-//                 dispatch(getDataProcess(flagsListConstants.FETCH_FLAGS_LIST_SUCCESS, false, success.data));
-//             })
-//             .catch(err => {
-//                 dispatch(getDataProcess(flagsListConstants.FETCH_FLAGS_LIST_FAIL, false, []));
-//             })
-//     }
-// }
+export function getFlagsList(access_token) {
+    return (dispatch) => {
+        dispatch(getDataProcess(flagsListConstants.FETCH_FLAGS_LIST_WAITING, true, null));
+
+        loadingFlagsList(access_token, apiConstants.STUDENT_FLAGS_LIST)
+            .then(success => {
+                dispatch(getDataProcess(flagsListConstants.FETCH_FLAGS_LIST_SUCCESS, false, success.data));
+            })
+            .catch(err => {
+                dispatch(getDataProcess(flagsListConstants.FETCH_FLAGS_LIST_FAIL, false, []));
+            })
+    }
+}
 
 export function getSentFlags(access_token) {
     return (dispatch) => {

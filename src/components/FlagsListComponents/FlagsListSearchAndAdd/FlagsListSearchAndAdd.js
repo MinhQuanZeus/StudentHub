@@ -2,12 +2,12 @@ import React from 'react';
 
 import styles from './FlagsListSearchAndAdd.css';
 
-function FlagsListSearchAndAdd(props) {
+function FlagsListSearchAndAdd({ updateInput, searchValue }) {
   return (
     <div className={styles['flags-list-actions']}>
       <div className={styles['flags-search-box']}>
         <i className='fa fa-search'></i>
-        <input type='text' placeholder='Search' />
+        <input type='text' placeholder='Search' onChange={updateInput} value={searchValue} name='search' />
       </div>
       <span className={styles['add-flag-btn']}>Create New Flag</span>
     </div>

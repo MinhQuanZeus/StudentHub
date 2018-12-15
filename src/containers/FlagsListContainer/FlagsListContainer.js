@@ -5,12 +5,15 @@ import PendingFlags from '../../components/FlagsListComponents/PendingFlags';
 import TabsComponent from '../../components/FlagsListComponents/TabsComponent';
 import FlagsListSearchAndAdd from '../../components/FlagsListComponents/FlagsListSearchAndAdd';
 import FlagsTable from '../../components/FlagsListComponents/FlagsTable';
+import { createFilter } from 'react-search-input';
 
 import * as actions from '../../actions/FlagsListActions/FlagsListActions';
 
 import sharedStyles from '../../styles/styles.css';
 import styles from './FlagsListContainer.css';
 
+
+const KEYS_TO_FILTERS = ['id', 'created_by', 'subject', 'category', 'sub_category', 'status', 'severity', 'created_at', 'priority'];
 
 class FlagsListContainer extends Component {
   state = {
@@ -19,6 +22,7 @@ class FlagsListContainer extends Component {
     activeTab: 0,
     showModal: false,
     flagDetailsModal: {},
+    search: '',
   }
 
   togglePendingVisibility = () => {
@@ -32,7 +36,7 @@ class FlagsListContainer extends Component {
   updateActiveTab = (idx) => {
     this.setState((prevState) => {
       if (prevState.activeTab !== idx) {
-        return { activeTab: idx }
+        return { activeTab: idx, search: '' }
       }
     })
   }
@@ -53,8 +57,7 @@ class FlagsListContainer extends Component {
   }
 
   getFlagsByActiveTab = () => {
-    // const { flagsList, sentFlags, publicFlags } = this.props;
-    const { sentFlags, publicFlags } = this.props;
+    const { flagsList, sentFlags, publicFlags } = this.props;
     let flags;
 
     switch (this.state.activeTab) {
@@ -65,11 +68,25 @@ class FlagsListContainer extends Component {
         flags = publicFlags;
         break;
       default:
-        // flags = flagsList;
-        flags = { data: [] };
+        flags = this.getFlagsList(flagsList);
     }
 
     return flags;
+  }
+
+  getFlagsList = (flags) => {
+    const { search } = this.state;
+
+    if (!search) {
+      return flags;
+    }
+
+    const searchFlags = flags.data.filter(createFilter(this.state.search, KEYS_TO_FILTERS))
+
+    return {
+      ...flags,
+      data: searchFlags,
+    }
   }
 
   viewFlagDetails = (flagId) => {
@@ -84,23 +101,26 @@ class FlagsListContainer extends Component {
     this.setState({ showModal: false });
   }
 
+  updateInput = (e) => {
+    this.setState({ [e.target.name] : e.target.value });
+  }
+
   componentDidMount() {
     const token = this.props.login.x_access_token;
-    // this.props.getFlagsList(token);
+    this.props.getFlagsList(token);
     this.props.getSentFlags(token);
     this.props.getPublicFlags(token);
   }
 
   render() {
-    const { showPending, pendingBtnLabel, activeTab, showModal, flagDetailsModal } = this.state;
-    const { sentFlags, publicFlags } = this.props;
+    const { showPending, pendingBtnLabel, activeTab, showModal, flagDetailsModal, search } = this.state;
+    const { flagsList, sentFlags, publicFlags } = this.props;
     const pendingFlags = showPending ? <PendingFlags flags={sentFlags.data} /> : null;
-    const searchAndAdd = activeTab === 0 ? <FlagsListSearchAndAdd /> : null;
+    const searchAndAdd = activeTab === 0 ? <FlagsListSearchAndAdd updateInput={this.updateInput} searchValue={search} /> : null;
     const headerLabels = this.getHeaderLabelsByActiveTab();
     const flags = this.getFlagsByActiveTab();
 
-    // if (flagsList.loading || sentFlags.loading || publicFlags.loading) { return null }
-    if (sentFlags.loading || publicFlags.loading) { return null }
+    if (flagsList.loading || sentFlags.loading || publicFlags.loading) { return null }
 
     return (
       <section className={sharedStyles["content-container"]}>
@@ -133,7 +153,7 @@ class FlagsListContainer extends Component {
 function mapStateToProps(state) {
   return {
     login: state.login.loginInformation,
-    // flagsList: state.flagsList.flagsList,
+    flagsList: state.flagsList.flagsList,
     sentFlags: state.flagsList.sentFlags,
     publicFlags: state.flagsList.publicFlags,
   }
@@ -141,7 +161,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    // getFlagsList: (x_access_token) => dispatch(actions.getFlagsList(x_access_token)),
+    getFlagsList: (x_access_token) => dispatch(actions.getFlagsList(x_access_token)),
     getSentFlags: (x_access_token) => dispatch(actions.getSentFlags(x_access_token)),
     getPublicFlags: (x_access_token) => dispatch(actions.getPublicFlags(x_access_token)),
   }
