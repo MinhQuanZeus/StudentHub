@@ -105,6 +105,14 @@ label.error:before {
     padding-right: 36px;
 }
 
+.checklist-content-container {
+  position: absolute;
+  top: 61px;
+  left: 63px;
+  right: 0;
+  background-color: #f9f9f9;
+}
+
 .content-header {
   margin-bottom: 26px;
   display: flex;

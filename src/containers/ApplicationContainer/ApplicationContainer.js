@@ -26,10 +26,18 @@ class ApplicationContainer extends Component {
         $('.lex-web-ui-iframe').remove()
     }
     render() {
-        if (this.props.location.pathname === "/") {
+        const currentPath = this.props.location.pathname;
+        const hideNotification = ['/check-list'];
+        let notification = <NotificationContainer/>;
+
+        if (currentPath === "/") {
             return (
                 <Redirect to={{pathname: '/my-profile'}}/>
             )
+        }
+
+        if (hideNotification.includes(currentPath)) {
+          notification = null;
         }
         return (
             <div>
@@ -44,7 +52,7 @@ class ApplicationContainer extends Component {
                 <Route exact path='/flags' component={FlagsListContainer} />
                 <Route path='/flags/:id' component={FlagManagerDetailsContainer} />
                 <Route path='/calendar' component={CalendarContainer} />
-                <NotificationContainer/>
+                {notification}
             </div>
         )
     }

@@ -1,35 +1,83 @@
 import React, {Component} from 'react';
-import sharedStyles from '../../styles/styles.css';
-import {ChecklistComponent} from '../../components/ChecklistComponent/ChecklistComponent'
+import ChecklistComponent from '../../components/ChecklistComponent/ChecklistComponent'
 import {onFetchCheckList} from "../../actions/CheckListActions/CheckListActions";
 import connect from "react-redux/es/connect/connect";
+import { createFilter } from 'react-search-input';
+
+import sharedStyles from '../../styles/styles.css';
+
+const KEYS_TO_FILTERS = ['check_list_name', 'category', 'due_date', 'priority', 'complete_rate'];
+
 
 class ChecklistContainer extends Component {
+  state = {
+    openSubChecklistIdx: null,
+    openSubChecklistDetails: {},
+    search: '',
+  }
 
-    componentWillMount() {
-        this.props.onFetchCheckList(this.props.loginInformation.x_access_token);
+  toggleSubChecklist = (idx, checklist) => {
+    if (this.state.openSubChecklistIdx === idx) {
+      return this.setState({ openSubChecklistIdx: null, openSubChecklistDetails: {} });
     }
 
-    render() {
-        return (
-            <div className={sharedStyles["content-container"]}>
-                <ChecklistComponent data={this.props.checkList}/>
-            </div>
-        )
+    return this.setState({ openSubChecklistIdx: idx, openSubChecklistDetails: checklist });
+  }
+
+  updateValue = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  getChecklist = (list) => {
+    const { search } = this.state;
+
+    if (!search) {
+      return list;
     }
+
+    const filteredList = list.checkList.filter(createFilter(search, KEYS_TO_FILTERS))
+
+    return {
+      ...list,
+      checkList: filteredList,
+    }
+  }
+
+  componentWillMount() {
+    this.props.onFetchCheckList(this.props.loginInformation.x_access_token);
+  }
+
+  render() {
+    const { openSubChecklistIdx, openSubChecklistDetails, search } = this.state;
+    const { checkList } = this.props;
+    const data = this.getChecklist(checkList);
+
+    return (
+      <div className={sharedStyles['checklist-content-container']}>
+        <ChecklistComponent
+          data={data}
+          openSubChecklistIdx={openSubChecklistIdx}
+          openSubChecklistDetails={openSubChecklistDetails}
+          toggleSubChecklist={this.toggleSubChecklist}
+          updateValue={this.updateValue}
+          searchValue={search}
+        />
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        checkList: state.checkList,
-        loginInformation: state.login.loginInformation
-    }
+  return {
+    checkList: state.checkList,
+    loginInformation: state.login.loginInformation
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        onFetchCheckList: (x_access_token) => dispatch(onFetchCheckList(x_access_token))
-    }
+  return {
+    onFetchCheckList: (x_access_token) => dispatch(onFetchCheckList(x_access_token))
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChecklistContainer);

@@ -1,154 +1,151 @@
+div.hide {
+  display: none;
+}
+
+.detail-close {
+  width: 100%;
+}
+
+.detail-open {
+  width: 75%;
+}
+
+/* Status Btns Start */
+.priority {
+  width: 59px;
+  height: 21px;
+  line-height: 21px;
+  font-size: 12px;
+  margin: auto;
+  border-radius: 4px;
+}
+
+.priority-low {
+  background-color: #f5f5f5;
+  color: #8f8f8f;
+}
+
+.priority-medium {
+  background-color: rgba(255, 213, 71, 0.15);
+  color: #ffaa47;
+}
+
+.priority-high {
+  background-color: #ffe3e3;
+  color: #ff4747;
+}
+
+.complete-rate {
+  width: 90px;
+  height: 30px;
+  border-radius: 4px;
+  line-height: 30px;
+  margin: auto;
+}
+
+.complete-rate-due {
+  background-color: #f6cbcb;
+  color: #b95c5c;
+}
+
+.complete-rate-done {
+  background-color: #cbf6d8;
+  color: #5cb977;
+}
+
+.complete-rate-not-started {
+  background-color: #dedede;
+  color: #979797;
+}
+/* Status Btns End */
+
 div.active {
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
   background-color: #f0eff6;
   border-left: 5px solid #6647ff;
 }
 
-.Content-Heading {
- margin-left: 34px;
- margin-right: 30px;
+.checklist-container {
+  width: 100%;
 }
 
-.Content-Heading h2 {
-    display: inline;
-    font-size: 18px;
-    font-weight: 900;
-    color: #8a85a6;
+.checklist {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 31px 36px;
 }
 
-.Search-Bar {
-    float: right;
-    background-color: #f0eff6;
-    border: none;
-    width: 309px;
-    height: 32px;
-    border-radius: 3px;
-    padding-left: 20px;
+.checklist-search-box {
+  position: relative;
 }
 
-
-.Checklist-Heading {
-    display: grid;
-    grid-template-columns: 54px 300px 1fr 1fr 1fr 1fr;
-    text-align: center;
-    margin: 41px 35px 17px 34px;
+.checklist-search-box i {
+  font-size: 12px;
+  color: #8a85a6;
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 
-.Checklist-Heading p {
-    display: inline;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: .9px;
-    color: #8a85a6;
+.checklist-search-box input {
+  width: 311px;
+  height: 32px;
+  background-color: #f0eff6;
+  border: 0;
+  box-sizing: border-box;
+  padding: 0 10px 0 30px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a85a6;
+  border-radius: 3px;
 }
 
-.Left-Align {
-    text-align: left;
+.checklist-search-box input:focus {
+  outline-width: 1px;
 }
 
-.Checklist-Item {
-    display: grid;
-    grid-template-columns: 54px 300px 1fr 1fr 1fr 1fr;
-    text-align: center;
-    right: 0;
-    background-color: #ffffff;
-    margin: 20px 35px 0 34px;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
+.checklist-search-box input::placeholder {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a85a6;
 }
 
-.Checklist-Checkbox {
-    margin: auto;
-    border: solid 1.5px #352480;
-    width: 14px;
-    height: 14px;
+.checklist-heading {
+  display: grid;
+  grid-template-columns: 54px 300px 1fr 1fr 1fr 1fr;
+  text-align: center;
+  padding-top: 18px;
 }
 
-.Checklist-Item p {
-    display: inline;
-    font-size: 14px;
-    font-weight: 900;
-    color: #8a85a6;
+.checklist-heading p {
+  display: inline;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .9px;
+  color: #8a85a6;
 }
 
-.Item-Title {
-    text-align: left;
-    line-height: 64px;
+.left-align {
+  text-align: left;
 }
 
-.Item-Category {
-    line-height: 64px;
+.checklist-item {
+  display: grid;
+  grid-template-columns: 54px 300px 1fr 1fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  margin-top: 20px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
+  height: 64px;
+  font-size: 14px;
+  font-weight: 900;
+  color: #8a85a6;
+  border-left: 5px solid #ffffff;
 }
 
-.Item-Due-Date {
-    line-height: 64px;
-}
-
-
-.DueDateCountdown {
-    color: #ff4747;
-    line-height: 64px;
-}
-
-.Priority-Low {
-    width: 59px;
-    height: 21px;
-    line-height: 21px;
-    background-color: #f5f5f5;
-    font-size: 12px;
-    color: #8f8f8f;
-    margin: auto;
-    border-radius: 4px;
-
-}
-
-.Priority-Medium {
-    width: 59px;
-    height: 21px;
-    background-color: rgba(255, 213, 71, 0.15);
-    font-size: 12px;
-    color: #ffaa47;
-    border-radius: 4px;
-
-}
-
-.Priority-High {
-    width: 59px;
-    height: 21px;
-    background-color: #ffe3e3;
-    font-size: 12px;
-    color: #ff4747;
-    border-radius: 4px;
-
-}
-
-.CompleteRate-Due {
-    width: 90px;
-    height: 30px;
-    background-color: #f6cbcb;
-    border-radius: 4px;
-    line-height: 30px;
-    margin: auto;
-}
-
-.CompleteRate-Done {
-    width: 90px;
-    height: 30px;
-    background-color: #cbf6d8;
-    border-radius: 4px;
-    line-height: 30px;
-}
-
-.CompleteRate-NotStarted {
-    width: 90px;
-    height: 30px;
-    background-color: #dedede;
-    border-radius: 4px;
-    line-height: 30px;
-}
-
-.CompleteRate-Number {
-    line-height: 30px;
-
+.checklist-checkbox {
+  margin: auto;
 }
 
 .sub-checklist-container {
@@ -158,15 +155,105 @@ div.active {
 .sub-checklist {
   display: grid;
   grid-template-columns: 54px 300px 1fr 1fr 1fr 1fr;
-  justify-content: center;
   align-items: center;
   text-align: center;
-  right: 0;
   background-color: #ffffff;
-  margin: 0 35px 0 34px;
-  padding-left: 3px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
   color: #8a85a6;
   font-weight: 900;
   font-size: 14px;
+  height: 50px;
+  padding-left: 5px;
 }
+
+/* Checklist Detail Sidebar Start */
+.detail-group {
+  width: 50%;
+  display: inline-block;
+  margin-bottom: 19px;
+}
+
+.detail-group-full {
+  width: 100%;
+  display: inline-block;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 900;
+  color: #413d59;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a85a6;
+  line-height: 1.64;
+}
+
+.description-value {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.64;
+  letter-spacing: 0.5px;
+  color: #8a85a6;
+}
+
+.detail-group p:empty:before {
+  content: '\200b';
+}
+
+.checklist-detail {
+  width: 25%;
+  height: 100vh;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  position: fixed;
+  background-color: #fff;
+}
+
+.detail-container {
+  padding: 31px 25px 22px 27px;
+}
+
+.name, .detail {
+  border-bottom: 2px solid #f0eff6;
+}
+
+.name {
+  position: relative;
+}
+
+.name h3 {
+  max-width: 70%;
+  font-size: 16px;
+  font-weight: 900;
+  color: #413d59;
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+.sub-checklist-count {
+  width: 20px;
+  height: 20px;
+  background-color: #6647ff;
+  color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  right: 30px;
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.contact h4 {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.9px;
+  color: #c0bece;
+  margin-bottom: 20px;
+  padding: 0;
+}
+/* Checklist Detail Sidebar End */
