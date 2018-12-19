@@ -1,0 +1,52 @@
+.detail-group {
+  width: 50%;
+  display: inline-block;
+  margin-bottom: 19px;
+}
+
+.detail-group-full {
+  width: 100%;
+  display: inline-block;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 900;
+  color: #413d59;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a85a6;
+  line-height: 1.64;
+}
+
+.description-value {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.64;
+  color: #8a85a6;
+}
+
+.detail-group p:empty:before {
+  content: '\200b';
+}
+
+.checklist-detail {
+  width: 25%;
+  height: 100vh;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  position: fixed;
+  background-color: #fff;
+}
+
+.detail-container {
+  padding: 27px 25px 18px 27px;
+  border-bottom: 2px solid #f0eff6;
+  max-height: 40vh;
+  overflow: auto;
+}

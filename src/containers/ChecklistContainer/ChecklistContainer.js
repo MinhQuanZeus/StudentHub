@@ -11,17 +11,49 @@ const KEYS_TO_FILTERS = ['check_list_name', 'category', 'due_date', 'priority', 
 
 class ChecklistContainer extends Component {
   state = {
+    openChecklistIdx: null,
+    openChecklistDetails: {},
     openSubChecklistIdx: null,
     openSubChecklistDetails: {},
     search: '',
   }
 
-  toggleSubChecklist = (idx, checklist) => {
-    if (this.state.openSubChecklistIdx === idx) {
-      return this.setState({ openSubChecklistIdx: null, openSubChecklistDetails: {} });
+  handleChecklistClick = (idx, checklist) => {
+    if (this.state.openChecklistIdx === idx) {
+      return this.setState({
+        openChecklistIdx: null,
+        openChecklistDetails: {},
+        openSubChecklistIdx: null,
+        openSubChecklistDetails: {},
+      });
     }
 
-    return this.setState({ openSubChecklistIdx: idx, openSubChecklistDetails: checklist });
+    checklist.sub_checklist_length = checklist.sub_checklist.length;
+    return this.setState({
+      openChecklistIdx: idx,
+      openChecklistDetails: checklist,
+      openSubChecklistIdx: null,
+      openSubChecklistDetails: {},
+    });
+  }
+
+  handleSubChecklistClick = (idx, subChecklist) => {
+    if (this.state.openSubChecklistIdx !== idx) {
+      return this.setState({ openSubChecklistIdx: idx, openSubChecklistDetails: subChecklist });
+    }
+  }
+
+  toggleChecklistDetails = (idx, list, checklistType) => {
+    switch (checklistType) {
+      case 'checklist':
+        this.handleChecklistClick(idx, list);
+        break;
+      case 'subChecklist':
+        this.handleSubChecklistClick(idx, list);
+        break;
+      default:
+        break;
+    }
   }
 
   updateValue = (e) => {
@@ -48,17 +80,21 @@ class ChecklistContainer extends Component {
   }
 
   render() {
-    const { openSubChecklistIdx, openSubChecklistDetails, search } = this.state;
+    const { openChecklistIdx, openChecklistDetails, openSubChecklistIdx, openSubChecklistDetails, search } = this.state;
     const { checkList } = this.props;
     const data = this.getChecklist(checkList);
+
+    if (checkList.loading) { return null }
 
     return (
       <div className={sharedStyles['checklist-content-container']}>
         <ChecklistComponent
           data={data}
+          openChecklistIdx={openChecklistIdx}
+          openChecklistDetails={openChecklistDetails}
           openSubChecklistIdx={openSubChecklistIdx}
           openSubChecklistDetails={openSubChecklistDetails}
-          toggleSubChecklist={this.toggleSubChecklist}
+          toggleChecklistDetails={this.toggleChecklistDetails}
           updateValue={this.updateValue}
           searchValue={search}
         />
