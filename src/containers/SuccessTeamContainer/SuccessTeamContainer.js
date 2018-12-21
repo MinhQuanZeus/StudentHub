@@ -22,10 +22,11 @@ class SuccessTeamContainer extends Component {
       componentDidMount() {
         let {loginInformation} = this.props;
         this.props.onFetchMentors(loginInformation.x_access_token);
+        this.props.onFetchMentors(loginInformation.first_name);
       
       // var chatBotscript = param.passToken(loginInformation.x_access_token)
       // document.body.appendChild(chatBotscript);
-      let script = param.passToken(loginInformation.x_access_token);
+      let script = param.passToken(loginInformation.x_access_token, loginInformation.first_name);
       document.body.appendChild(script);
     }
 }

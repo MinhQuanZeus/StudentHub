@@ -1,5 +1,5 @@
 var param = {
-	passToken: function(x_access_token) {
+	passToken: function(x_access_token, username) {
 	    let script = document.createElement('script');
       script.type = 'text/javascript';
       script.id = 'chatBotLoading';
@@ -21,7 +21,7 @@ var param = {
           },
           "botName": "Cody",
           "botAlias": "$LATEST",
-          "initialText": "You can ask me for help getting gpa. Just type 'gpa' or click on the mic and say it.",
+          "initialText": "Hello ${username}! I am your personal assistance for any academic information. You can ask me for help getting gpa. Just type 'gpa' or click on the mic and say it.",
           "initialSpeechInstruction": "Say 'my gpa' to get started.",
           "reInitSessionAttributesOnRestart": false
         },
