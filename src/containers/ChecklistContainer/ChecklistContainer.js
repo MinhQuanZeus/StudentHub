@@ -3,6 +3,7 @@ import ChecklistComponent from '../../components/ChecklistComponent/ChecklistCom
 import {onFetchCheckList} from "../../actions/CheckListActions/CheckListActions";
 import connect from "react-redux/es/connect/connect";
 import { createFilter } from 'react-search-input';
+import orderBy from 'lodash.orderby';
 
 import sharedStyles from '../../styles/styles.css';
 
@@ -16,6 +17,17 @@ class ChecklistContainer extends Component {
     openSubChecklistIdx: null,
     openSubChecklistDetails: {},
     search: '',
+    sort: {
+      columnName: 'due_date',
+      order: 'asc',
+    }
+  }
+
+  goBackToChecklist = () => {
+    this.setState({
+      openSubChecklistIdx: null,
+      openSubChecklistDetails: {},
+    })
   }
 
   handleChecklistClick = (idx, checklist) => {
@@ -61,18 +73,42 @@ class ChecklistContainer extends Component {
   }
 
   getChecklist = (list) => {
-    const { search } = this.state;
+    const { search, sort } = this.state;
 
     if (!search) {
-      return list;
+      const sortedList = orderBy(list.checkList, sort.columnName, sort.order);
+      return {
+        ...list,
+        checkList: sortedList,
+      }
     }
 
-    const filteredList = list.checkList.filter(createFilter(search, KEYS_TO_FILTERS))
+    const filteredList = list.checkList.filter(createFilter(search, KEYS_TO_FILTERS));
+    const sortedList = orderBy(filteredList, sort.columnName, sort.order);
 
     return {
       ...list,
-      checkList: filteredList,
+      checkList: sortedList,
     }
+  }
+
+  updateSorting = (property) => {
+    const { sort } = this.state;
+
+    if (['checklist', 'complete_rate'].includes(property)) { return }
+
+    if (property === sort.columnName) {
+      return this.setState({
+        sort: {
+          ...sort,
+          order: sort.order === 'asc' ? 'desc' : 'asc',
+        }
+      })
+    }
+
+    return this.setState({
+      sort: { columnName: property, order: 'asc' }
+    })
   }
 
   componentWillMount() {
@@ -80,7 +116,7 @@ class ChecklistContainer extends Component {
   }
 
   render() {
-    const { openChecklistIdx, openChecklistDetails, openSubChecklistIdx, openSubChecklistDetails, search } = this.state;
+    const { openChecklistIdx, openChecklistDetails, openSubChecklistIdx, openSubChecklistDetails, search, sort } = this.state;
     const { checkList } = this.props;
     const data = this.getChecklist(checkList);
 
@@ -97,6 +133,9 @@ class ChecklistContainer extends Component {
           toggleChecklistDetails={this.toggleChecklistDetails}
           updateValue={this.updateValue}
           searchValue={search}
+          sort={sort}
+          updateSorting={this.updateSorting}
+          goBackToChecklist={this.goBackToChecklist}
         />
       </div>
     )

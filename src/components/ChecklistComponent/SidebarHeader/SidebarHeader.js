@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './SidebarHeader.css';
 
 
-function SidebarHeader({ openChecklistDetails, openSubChecklistDetails }) {
+function SidebarHeader({ openChecklistDetails, openSubChecklistDetails, goBackToChecklist }) {
   let header;
 
   if (openChecklistDetails !== undefined && openSubChecklistDetails === undefined) {
@@ -18,7 +18,7 @@ function SidebarHeader({ openChecklistDetails, openSubChecklistDetails }) {
 
     header = (
       <div className={styles['detail-container']}>
-        <h4>{openChecklistDetails.check_list_name.toUpperCase()}</h4>
+        <h4 onClick={goBackToChecklist}><i className='fa fa-arrow-left'></i>{openChecklistDetails.check_list_name.toUpperCase()}</h4>
         <h3>{openSubChecklistDetails.sub_check_list_name}</h3>
         <span className={`${styles['priority']} ${styles[priorityStatus]} ${styles['align-right']}`}>{openSubChecklistDetails.priority}</span>
       </div>

@@ -37,3 +37,8 @@ export function getDayMonthYearFormat(isoDate) {
 
   return `${day} ${month} ${year}`;
 }
+
+export function replaceUnderscoreAndUppercase(string) {
+  const words = string.split('_');
+  return words.map((word) => word.toUpperCase()).join(' ');
+}

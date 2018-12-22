@@ -12,11 +12,13 @@
 }
 
 .detail-group {
-  width: 50%;
+  width: 46%;
   display: inline-block;
   margin-bottom: 19px;
   vertical-align: top;
   word-wrap: break-word;
+  box-sizing: border-box;
+  padding-right: 5px;
 }
 
 .label {

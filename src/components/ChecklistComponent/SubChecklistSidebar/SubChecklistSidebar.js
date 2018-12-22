@@ -6,10 +6,10 @@ import { getDayMonthYearFormat } from '../../../helpers/Utils';
 import styles from './SubChecklistSidebar.css';
 
 
-function SubChecklistSidebar({ openChecklistDetails, openSubChecklistDetails }) {
+function SubChecklistSidebar({ openChecklistDetails, openSubChecklistDetails, goBackToChecklist }) {
   return (
     <section className={styles['checklist-detail']}>
-      <SidebarHeader openChecklistDetails={openChecklistDetails} openSubChecklistDetails={openSubChecklistDetails} />
+      <SidebarHeader openChecklistDetails={openChecklistDetails} openSubChecklistDetails={openSubChecklistDetails} goBackToChecklist={goBackToChecklist} />
       <div className={styles['detail-container']}>
         <div className={styles['detail-group']}>
           <span className={styles['label']}>Status</span>

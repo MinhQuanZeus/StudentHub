@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
 import SubChecklistSidebar from './SubChecklistSidebar/SubChecklistSidebar';
-import { getDayMonthYearFormat } from '../../helpers/Utils';
+import { getDayMonthYearFormat, replaceUnderscoreAndUppercase } from '../../helpers/Utils';
 
 import styles from './ChecklistComponent.css';
 
@@ -45,6 +45,60 @@ function SubChecklist({
   )
 }
 
+function ChecklistHeading({ sort, updateSorting }) {
+  const headerNames = ['checklist', 'category', 'due_date', 'priority', 'complete_rate'];
+  const headerStyles = {
+    color: '#6647ff',
+  }
+  const caretIcon = sort.order === 'asc' ? 'fa fa-caret-up' : 'fa fa-caret-down';
+
+  return (
+    <div className={styles["checklist-heading"]}>
+      <p></p>
+      {headerNames.map((name, idx) => {
+        const newName = replaceUnderscoreAndUppercase(name);
+        if (idx === 0) { return <p className={styles["left-align"]} key={idx}>{newName}</p> }
+        if (name === 'complete_rate') { return <p key={idx}>{newName}</p>}
+
+        return (
+          <p key={idx}>
+            <span className={styles['column-name-sortable']} style={name === sort.columnName ? headerStyles : null} onClick={() => updateSorting(name)}>
+              {newName}
+              {name !== sort.columnName
+                ? <i className='fa fa-caret-down'></i>
+                : <i className={caretIcon}></i>}
+            </span>
+          </p>
+        )
+      })}
+    </div>
+  )
+}
+
+function Sidebar({
+  openChecklistIdx,
+  openChecklistDetails,
+  openSubChecklistIdx,
+  openSubChecklistDetails,
+  goBackToChecklist
+}) {
+  let sidebar = null;
+
+  if (openChecklistIdx !== null && openSubChecklistIdx === null) {
+    sidebar = <ChecklistSidebar openChecklistDetails={openChecklistDetails} />;
+  } else if (openChecklistIdx !== null && openSubChecklistIdx !== null) {
+    sidebar = (
+      <SubChecklistSidebar
+        openChecklistDetails={openChecklistDetails}
+        openSubChecklistDetails={openSubChecklistDetails}
+        goBackToChecklist={goBackToChecklist}
+      />
+    )
+  }
+
+  return sidebar;
+}
+
 function ChecklistComponent({
   data,
   openChecklistIdx,
@@ -54,6 +108,9 @@ function ChecklistComponent({
   toggleChecklistDetails,
   searchValue,
   updateValue,
+  sort,
+  updateSorting,
+  goBackToChecklist,
 }) {
   return (
     <section className={styles['checklist-container']}>
@@ -65,14 +122,7 @@ function ChecklistComponent({
           </div>
         </HeaderComponent>
 
-        <div className={styles["checklist-heading"]}>
-          <p></p>
-          <p className={styles["left-align"]}>CHECKLIST</p>
-          <p>CATEGORY</p>
-          <p>DUE DATE</p>
-          <p>PRIORITY</p>
-          <p>COMPLETE RATE</p>
-        </div>
+        <ChecklistHeading sort={sort} updateSorting={updateSorting} />
 
         <div className='checklist-items'>
           {data.checkList.map((rowData, idx) => {
@@ -113,12 +163,13 @@ function ChecklistComponent({
             ];
             rowData.priority = 'Low';
             // remove end
-            
-            const activeChecklist = openChecklistIdx === idx && openSubChecklistIdx === null ? 'active' : '';
+
+            const activeChecklist = openChecklistIdx === idx ? 'active' : '';
+            const activeSubChecklist = openChecklistIdx === idx && openSubChecklistIdx !== null ? 'active-sub-checklist' : '';
             const priorityStatus = `priority-${rowData.priority.toLowerCase()}`;
             return (
               <div key={idx} className={styles['checklist-box']}>
-                <div className={`${styles['checklist-item']} ${styles[activeChecklist]}`} onClick={() => toggleChecklistDetails(idx, rowData, 'checklist')}>
+                <div className={`${styles['checklist-item']} ${styles[activeChecklist]} ${styles[activeSubChecklist]}`} onClick={() => toggleChecklistDetails(idx, rowData, 'checklist')}>
                   <input type='checkbox' className={styles['checklist-checkbox']} />
                   <p className={`${styles['item-title']} ${styles['left-align']}`}>{rowData.check_list_name}</p>
                   <p className={styles['item-category']}>{rowData.category}</p>
@@ -139,11 +190,13 @@ function ChecklistComponent({
           })}
         </div>
       </section>
-      {openChecklistIdx !== null && openSubChecklistIdx === null
-        && <ChecklistSidebar openChecklistDetails={openChecklistDetails} />}
-
-      {openChecklistIdx !== null && openSubChecklistIdx !== null
-        && <SubChecklistSidebar openChecklistDetails={openChecklistDetails} openSubChecklistDetails={openSubChecklistDetails} />}
+      <Sidebar
+        openChecklistIdx={openChecklistIdx}
+        openChecklistDetails={openChecklistDetails}
+        openSubChecklistIdx={openSubChecklistIdx}
+        openSubChecklistDetails={openSubChecklistDetails}
+        goBackToChecklist={goBackToChecklist}
+      />
     </section>
   )
 }
