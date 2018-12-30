@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
 import SubChecklistSidebar from './SubChecklistSidebar/SubChecklistSidebar';
@@ -31,7 +31,7 @@ function SubChecklist({
             onClick={() => toggleChecklistDetails(idx, sub, 'subChecklist')}
           >
             <p></p>
-            <input type="checkbox" className={styles['checklist-checkbox']} />
+            <input type="checkbox" className={styles['checklist-checkbox']} checked={sub.is_completed} onChange={() => console.log('clicked')} />
             <p className={`${styles['item-title']} ${styles['left-align']}`}>{sub.sub_check_list_name}</p>
             <p></p>
             <p className={styles['item-due-date']}>{getDayMonthYearFormat(data.due_date)}</p>
@@ -99,106 +99,98 @@ function Sidebar({
   return sidebar;
 }
 
-function ChecklistComponent({
-  data,
-  openChecklistIdx,
-  openChecklistDetails,
-  openSubChecklistIdx,
-  openSubChecklistDetails,
-  toggleChecklistDetails,
-  searchValue,
-  updateValue,
-  sort,
-  updateSorting,
-  goBackToChecklist,
-}) {
-  return (
-    <section className={styles['checklist-container']}>
-      <section className={`${styles['checklist']} ${openChecklistIdx === null ? styles['detail-close'] : styles['detail-open']}`}>
-        <HeaderComponent labels={['Coming Up - Checklist']}>
-          <div className={styles['checklist-search-box']}>
-            <i className='fa fa-search'></i>
-            <input type='text' placeholder='Search' name='search' value={searchValue} onChange={updateValue} />
-          </div>
-        </HeaderComponent>
+class ChecklistComponent extends Component {
+  getCompleteRate = (checklist) => {
+    if (!checklist.sub_checklist_length) {
+      return checklist.is_completed
+        ? <p className={`${styles['complete-rate']} ${styles['complete-rate-done']}`}>Done</p>
+        : <p className={`${styles['complete-rate']} ${styles['complete-rate-not-started']}`}>Not Started</p>
+    }
 
-        <ChecklistHeading sort={sort} updateSorting={updateSorting} />
 
-        <div className='checklist-items'>
-          {data.checkList.map((rowData, idx) => {
+    if (checklist.complete_rate === 0) {
+      return <p className={`${styles['complete-rate']} ${styles['complete-rate-not-started']}`}>Not Started</p>
+    } else if (checklist.complete_rate === 100) {
+      return <p className={`${styles['complete-rate']} ${styles['complete-rate-done']}`}>Done</p>
+    }
 
-            // remove start: remove this block when api includes these fields
-            rowData.sub_checklist = [
-              {
-                sub_check_list_name: 'sub-checklist #1',
-                priority: 'high',
-                status: 'active',
-                due_date: '2018-12-29T03:00:00.000Z',
-                complete_rate: 'due',
-                created_at: '2018-12-29T03:00:00.000Z',
-                created_by: 1,
-                description: 'some description',
-                completion_date: '2018-12-29T03:00:00.000Z'
-              }, {
-                sub_check_list_name: 'sub-checklist #2',
-                priority: 'low',
-                status: 'pending',
-                due_date: '2018-12-29T03:00:00.000Z',
-                complete_rate: 'done',
-                created_at: '2018-12-29T03:00:00.000Z',
-                created_by: 1,
-                description: 'some description',
-                completion_date: '2018-12-29T03:00:00.000Z'
-              }, {
-                sub_check_list_name: 'sub-checklist #3',
-                priority: 'medium',
-                status: 'active',
-                due_date: '2018-12-29T03:00:00.000Z',
-                complete_rate: 'not started',
-                created_at: '2018-12-29T03:00:00.000Z',
-                created_by: 1,
-                description: 'some description',
-                completion_date: '2018-12-29T03:00:00.000Z'
-              }
-            ];
-            rowData.priority = 'Low';
-            // remove end
+    return <p style={{'color': '#585661'}}>{checklist.complete_rate}%</p>
+  }
 
-            const activeChecklist = openChecklistIdx === idx ? 'active' : '';
-            const activeSubChecklist = openChecklistIdx === idx && openSubChecklistIdx !== null ? 'active-sub-checklist' : '';
-            const priorityStatus = `priority-${rowData.priority.toLowerCase()}`;
-            return (
-              <div key={idx} className={styles['checklist-box']}>
-                <div className={`${styles['checklist-item']} ${styles[activeChecklist]} ${styles[activeSubChecklist]}`} onClick={() => toggleChecklistDetails(idx, rowData, 'checklist')}>
-                  <input type='checkbox' className={styles['checklist-checkbox']} />
-                  <p className={`${styles['item-title']} ${styles['left-align']}`}>{rowData.check_list_name}</p>
-                  <p className={styles['item-category']}>{rowData.category}</p>
-                  <p className={styles['item-due-date']}>{getDayMonthYearFormat(rowData.due_date)}</p>
-                  <p className={`${styles['priority']} ${styles[priorityStatus]}`}>{rowData.priority}</p>
-                  <p className={`${styles['complete-rate']} ${styles['complete-rate-due']}`}>DUE</p>
+  getSubChecklistLength = (checklist) => {
+    return checklist.sub_checklist_length
+      ? <span style={{'marginLeft': '5px'}}>({checklist.sub_checklist_length})</span>
+      : null
+  }
+
+  render() {
+    const {
+      data,
+      openChecklistIdx,
+      openChecklistDetails,
+      openSubChecklistIdx,
+      openSubChecklistDetails,
+      toggleChecklistDetails,
+      searchValue,
+      updateValue,
+      sort,
+      updateSorting,
+      goBackToChecklist,
+    } = this.props;
+
+    return (
+      <section className={styles['checklist-container']}>
+        <section className={`${styles['checklist']} ${openChecklistIdx === null ? styles['detail-close'] : styles['detail-open']}`}>
+          <HeaderComponent labels={['Coming Up - Checklist']}>
+            <div className={styles['checklist-search-box']}>
+              <i className='fa fa-search'></i>
+              <input type='text' placeholder='Search' name='search' value={searchValue} onChange={updateValue} />
+            </div>
+          </HeaderComponent>
+
+          <ChecklistHeading sort={sort} updateSorting={updateSorting} />
+
+          <div className='checklist-items'>
+            {data.checkList.map((rowData, idx) => {
+              const activeChecklist = openChecklistIdx === idx ? 'active' : '';
+              const activeSubChecklist = openChecklistIdx === idx && openSubChecklistIdx !== null ? 'active-sub-checklist' : '';
+              const priorityStatus = `priority-${rowData.priority.toLowerCase()}`;
+              return (
+                <div key={idx} className={styles['checklist-box']}>
+                  <div className={`${styles['checklist-item']} ${styles[activeChecklist]} ${styles[activeSubChecklist]}`} onClick={() => toggleChecklistDetails(idx, rowData, 'checklist')}>
+                    <input type="checkbox" className={styles['checklist-checkbox']} checked={rowData.is_completed} onChange={() => console.log('clicked')} />
+                    <p className={`${styles['item-title']} ${styles['left-align']}`}>
+                      {rowData.check_list_name}
+                      {this.getSubChecklistLength(rowData)}
+                    </p>
+                    <p className={styles['item-category']}>{rowData.category}</p>
+                    <p className={styles['item-due-date']}>{getDayMonthYearFormat(rowData.due_date)}</p>
+                    <p className={`${styles['priority']} ${styles[priorityStatus]}`}>{rowData.priority}</p>
+                    {this.getCompleteRate(rowData)}
+                  </div>
+                  <SubChecklist
+                    data={rowData}
+                    idx={idx}
+                    openChecklistIdx={openChecklistIdx}
+                    openSubChecklistIdx={openSubChecklistIdx}
+                    toggleChecklistDetails={toggleChecklistDetails}
+                    priorityStatus={priorityStatus}
+                  />
                 </div>
-                <SubChecklist
-                  data={rowData}
-                  idx={idx}
-                  openChecklistIdx={openChecklistIdx}
-                  openSubChecklistIdx={openSubChecklistIdx}
-                  toggleChecklistDetails={toggleChecklistDetails}
-                  priorityStatus={priorityStatus}
-                />
-              </div>
-            )
-          })}
-        </div>
+              )
+            })}
+          </div>
+        </section>
+        <Sidebar
+          openChecklistIdx={openChecklistIdx}
+          openChecklistDetails={openChecklistDetails}
+          openSubChecklistIdx={openSubChecklistIdx}
+          openSubChecklistDetails={openSubChecklistDetails}
+          goBackToChecklist={goBackToChecklist}
+        />
       </section>
-      <Sidebar
-        openChecklistIdx={openChecklistIdx}
-        openChecklistDetails={openChecklistDetails}
-        openSubChecklistIdx={openSubChecklistIdx}
-        openSubChecklistDetails={openSubChecklistDetails}
-        goBackToChecklist={goBackToChecklist}
-      />
-    </section>
-  )
+    )
+  }
 }
 
 export default ChecklistComponent;

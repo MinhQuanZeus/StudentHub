@@ -40,7 +40,6 @@ class ChecklistContainer extends Component {
       });
     }
 
-    checklist.sub_checklist_length = checklist.sub_checklist.length;
     return this.setState({
       openChecklistIdx: idx,
       openChecklistDetails: checklist,
@@ -79,7 +78,7 @@ class ChecklistContainer extends Component {
       const sortedList = orderBy(list.checkList, sort.columnName, sort.order);
       return {
         ...list,
-        checkList: sortedList,
+        checkList: this.addProperties(sortedList),
       }
     }
 
@@ -88,7 +87,7 @@ class ChecklistContainer extends Component {
 
     return {
       ...list,
-      checkList: sortedList,
+      checkList: this.addProperties(sortedList),
     }
   }
 
@@ -108,6 +107,79 @@ class ChecklistContainer extends Component {
 
     return this.setState({
       sort: { columnName: property, order: 'asc' }
+    })
+  }
+
+  addProperties = (checklist) => {
+    return checklist.map((c) => {
+      // Remove start: remove this block when api includes these fields
+      c.sub_checklist = [
+        {
+          sub_check_list_name: 'sub-checklist #1',
+          priority: 'high',
+          status: 'active',
+          due_date: '2018-12-29T03:00:00.000Z',
+          complete_rate: 'due',
+          created_at: '2018-12-29T03:00:00.000Z',
+          created_by: 1,
+          description: 'some description',
+          completion_date: '2018-12-29T03:00:00.000Z',
+          is_completed: true,
+        }, {
+          sub_check_list_name: 'sub-checklist #2',
+          priority: 'low',
+          status: 'pending',
+          due_date: '2018-12-29T03:00:00.000Z',
+          complete_rate: 'done',
+          created_at: '2018-12-29T03:00:00.000Z',
+          created_by: 1,
+          description: 'some description',
+          completion_date: '2018-12-29T03:00:00.000Z',
+          is_completed: true,
+        }, {
+          sub_check_list_name: 'sub-checklist #3',
+          priority: 'medium',
+          status: 'active',
+          due_date: '2018-12-29T03:00:00.000Z',
+          complete_rate: 'not started',
+          created_at: '2018-12-29T03:00:00.000Z',
+          created_by: 1,
+          description: 'some description',
+          completion_date: '2018-12-29T03:00:00.000Z',
+          is_completed: true,
+        }, {
+          sub_check_list_name: 'sub-checklist #4',
+          priority: 'medium',
+          status: 'active',
+          due_date: '2018-12-29T03:00:00.000Z',
+          complete_rate: 'not started',
+          created_at: '2018-12-29T03:00:00.000Z',
+          created_by: 1,
+          description: 'some description',
+          completion_date: '2018-12-29T03:00:00.000Z',
+          is_completed: true,
+        }
+      ];
+      c.priority = 'Low';
+      c.is_completed = false;
+      // Remove end
+
+      const totalSubChecklist = c.sub_checklist.length;
+      const totalCompletedSubChecklist = c.sub_checklist.reduce((total, sub) => {
+        if (sub.is_completed) {
+          return total += 1;
+        }
+
+        return total;
+      }, 0)
+
+      const completionPercentage = (totalCompletedSubChecklist / totalSubChecklist) * 100;
+      const subChecklistLength = c.sub_checklist.length;
+      return {
+        ...c,
+        complete_rate: completionPercentage,
+        sub_checklist_length: subChecklistLength,
+      }
     })
   }
 

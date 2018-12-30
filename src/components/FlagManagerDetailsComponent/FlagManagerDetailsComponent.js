@@ -38,18 +38,18 @@ const FlagManagerDetailsComponent = (props) => {
                 </div>
                 <div className={styles["comment-container"]}>
                     <div className={styles["write-comment-section"]}>
-                        <img className={styles["user-img-40"]}></img>
+                        <img alt="User Avatar" className={styles["user-img-40"]}></img>
                         <input className={styles["comment-input"]}></input>
                         <button className={styles["post-comment-btn"]}></button>
                     </div>
                     <div className={styles["comment"]}>
-                        <img className={styles["user-img-40"]}></img>
+                        <img alt="User Avatar" className={styles["user-img-40"]}></img>
                         <p className={styles["user-name-12"]}>Hu Hyon-Suk</p>
                         <p className={styles["comment-post-time"]}>12:23 AM</p>
                         <p className={styles["comment-value"]}>Keytar McSweeney's Williamsburg, readymade leggings try-hard 90's street art letterpress hoodie occupy Wes Anderson Banksy. Asymmetrical viral letterpress</p>
                     </div>
                     <div className={styles["comment"]}>
-                        <img className={styles["user-img-40"]}></img>
+                        <img alt="User Avatar" className={styles["user-img-40"]}></img>
                         <p className={styles["user-name-12"]}>Pin Jung-Eum</p>
                         <p className={styles["comment-post-time"]}>Yesterday</p>
                         <p className={styles["comment-value"]}>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer</p>
@@ -64,41 +64,41 @@ const FlagManagerDetailsComponent = (props) => {
               </div>
             <div className={styles["assign-to-container"]}>
                 <p className={styles["sub-heading"]}>Assign To</p>
-                <img className={styles["user-img50"]}></img> <p className={styles["user-name-18"]}>Arina Belomestnykh</p>
+                <img alt="User Avatar" className={styles["user-img50"]}></img> <p className={styles["user-name-18"]}>Arina Belomestnykh</p>
             </div>
             <div className={styles["tag-container"]}>
                 <p className={styles["sub-heading"]}>Tag</p>
-                <img className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Michael</p>
-                <img className={styles["user-img50"]}></img> <p className={styles["user-name-12"]}>Evi</p>
-                <img className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Justin</p>
-                <img className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Kery</p>
+                <img alt="User Avatar" className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Michael</p>
+                <img alt="User Avatar" className={styles["user-img50"]}></img> <p className={styles["user-name-12"]}>Evi</p>
+                <img alt="User Avatar" className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Justin</p>
+                <img alt="User Avatar" className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Kery</p>
             </div>
             <div className={styles["column-right"]}>
                 <div className={styles["assign-to-container"]}>
                     <p className={styles["sub-heading"]}>Assign To</p>
-                    <img className={styles["assign-user-img"]}></img> <p className={styles["user-name-18"]}>Arina Belomestnykh</p>
+                    <img alt="User Avatar" className={styles["assign-user-img"]}></img> <p className={styles["user-name-18"]}>Arina Belomestnykh</p>
                 </div>
                 <div className={styles["tag-container"]}>
                     <p className={styles["sub-heading"]}>Tag</p>
-                    <img className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Michael</p>
-                    <img className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Evi</p>
-                    <img className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Justin</p>
-                    <img className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Kery</p>
+                    <img alt="User Avatar" className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Michael</p>
+                    <img alt="User Avatar" className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Evi</p>
+                    <img alt="User Avatar" className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Justin</p>
+                    <img alt="User Avatar" className={styles["user-img-50"]}></img> <p className={styles["user-name-12"]}>Kery</p>
                 </div>
                 <div className={styles["attachment-container"]}>
                     <p className={styles["sub-heading"]}>Attachment</p>
-                    <img className={styles["attachment-img"]}></img>
-                    <img className={styles["attachment-img"]}></img>
+                    <img alt="Attachment" className={styles["attachment-img"]}></img>
+                    <img alt="Attachment" className={styles["attachment-img"]}></img>
                 </div>
                 <div className={styles["modify-history-container"]}>
                     <p className={styles["sub-heading"]}>Modify History</p>
                     <div className={styles["history-item"]}>
-                        <img className={styles["user-img-40"]}></img>
+                        <img alt="User Avatar" className={styles["user-img-40"]}></img>
                         <p className={styles["history-text"]}>Hu Hyon-Suk Reassigned this flag to “Michael Rafael”</p>
                         <p className={styles["history-time"]}>12:23 AM</p>
                     </div>
                     <div className={styles["history-item"]}>
-                        <img className={styles["user-img-40"]}></img>
+                        <img alt="User Avatar" className={styles["user-img-40"]}></img>
                         <p className={styles["history-text"]}>Jonathan Doe Changed Status to “Pending”</p>
                         <p className={styles["history-time"]}>16:23 AM</p>
                     </div>

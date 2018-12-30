@@ -32,6 +32,8 @@
 }
 
 .complete-rate {
+  font-size: 12px;
+  font-weight: 900;
   width: 90px;
   height: 30px;
   border-radius: 4px;
@@ -39,9 +41,9 @@
   margin: auto;
 }
 
-.complete-rate-due {
-  background-color: #f6cbcb;
-  color: #b95c5c;
+.complete-rate-not-started {
+  background-color: #dedede;
+  color: #979797;
 }
 
 .complete-rate-done {
@@ -49,9 +51,9 @@
   color: #5cb977;
 }
 
-.complete-rate-not-started {
-  background-color: #dedede;
-  color: #979797;
+.complete-rate-due {
+  background-color: #f6cbcb;
+  color: #b95c5c;
 }
 /* Status Btns End */
 
