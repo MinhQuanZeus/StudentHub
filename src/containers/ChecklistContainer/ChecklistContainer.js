@@ -21,6 +21,7 @@ class ChecklistContainer extends Component {
       columnName: 'due_date',
       order: 'asc',
     }
+    
   }
 
   goBackToChecklist = () => {

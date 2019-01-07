@@ -2,7 +2,7 @@
     position: absolute;
     top: 541px;
     left: 230px;
-    right: 266px;
+    width: 944px;
     height: 510px;
     padding: 20px 0 33px 33px;
 
@@ -354,6 +354,7 @@
     position: absolute;
     height: 510px;
     right: 0;
+    padding-right: 32px;
 }
 
 .CategoryHeader {

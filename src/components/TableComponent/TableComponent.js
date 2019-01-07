@@ -23,7 +23,7 @@ export const TableComponent = ({ data, year, term }) => {
                 {filteredData.map((rowData, index) => {
                   let status = rowData.class_status.toLowerCase();
                   return (
-                      <div key={index} className={styles["table-row-even"]}>
+                      <div key={index} className={styles["table-row"]}>
                           <p>{rowData.class_id}</p>
                           <p>{rowData.instructor_name}</p>
                           <p>{rowData.unit_hours}</p>
@@ -32,6 +32,7 @@ export const TableComponent = ({ data, year, term }) => {
                       </div>
                   )})}
             </div>
+            <div className={styles['spacer']}></div>
         </div>
     )
 };

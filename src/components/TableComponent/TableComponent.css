@@ -1,8 +1,5 @@
 .Table {
-    position: absolute;
-    top: 210px;
-    left: 166px;
-    right: 37px;
+    margin: 0 0 0 134px;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
 }
@@ -26,27 +23,29 @@
 
 }
 
-.table-row-even {
+.table-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    height: 51px;
+    line-height: 51px;
+    width: 100%;
+    text-align: center;
+    color: #8a85a6;
+    background-color: #fafafa;
+}
+
+.table-row:nth-child(even) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    height: 51px;
+    line-height: 51px;
+    width: 100%;
+    text-align: center;
+    color: #8a85a6;
     background-color: #ffffff;
-    height: 51px;
-    line-height: 51px;
-    width: 100%;
-    text-align: center;
-    color: #8a85a6;
-
 }
 
-.table-row-odd {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    height: 51px;
-    line-height: 51px;
-    width: 100%;
-    text-align: center;
-    color: #8a85a6;
-}
+
 
 .table-row  p {
     display: inline;
@@ -118,4 +117,8 @@
     font-weight: 900;
     background-color: #f6cbcb;
     color: #b95c5c;
+}
+
+.spacer {
+    height: 41px;
 }
