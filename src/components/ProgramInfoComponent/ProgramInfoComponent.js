@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProgramInfoComponent.css'
+import styles from './ProgramInfoComponent.module.css'
 
 export const ProgramInfoComponent = (props) => {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './DegreeAuditChartsComponent.css'
+import styles from './DegreeAuditChartsComponent.module.css'
 
 export const DegreeAuditChartsComponent = (props) => {
     const {commonInfoVisibility} = props;

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProfileTabsComponent.css'
+import styles from './ProfileTabsComponent.module.css'
 
 
 export const ProfileTabsComponent = (props) => {

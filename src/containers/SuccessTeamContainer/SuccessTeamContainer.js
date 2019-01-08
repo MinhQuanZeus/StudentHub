@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {onFetchMentors} from "../../actions/SuccessTeamActions/SuccessTeamActions";
 import {MentorCardComponent} from "../../components/MentorCardComponent/MentorCardComponent";
-import sharedStyles from '../../styles/styles.css';
+import sharedStyles from '../../styles/styles.module.css';
 import param from '../../chatBotControl/passToken.js';
 
 class SuccessTeamContainer extends Component {

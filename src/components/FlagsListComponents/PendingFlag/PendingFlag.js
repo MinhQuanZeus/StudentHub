@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './PendingFlag.css';
+import styles from './PendingFlag.module.css';
 
 
 function PendingFlag({ pending }) {

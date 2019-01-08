@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MilestoneHeaderComponent.css';
+import styles from './MilestoneHeaderComponent.module.css';
 
 export const MilestoneHeaderComponent = (props) => {
 

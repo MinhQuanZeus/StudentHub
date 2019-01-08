@@ -2,7 +2,7 @@ import React from 'react';
 import SidebarHeader from '../SidebarHeader';
 import ContactInfo from '../ContactInfo';
 
-import styles from './ChecklistSidebar.css';
+import styles from './ChecklistSidebar.module.css';
 
 
 function ChecklistSidebar({ openChecklistDetails }) {

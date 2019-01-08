@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './FlagsListSearchAndAdd.css';
+import styles from './FlagsListSearchAndAdd.module.css';
 
 function FlagsListSearchAndAdd({ updateInput, searchValue }) {
   return (

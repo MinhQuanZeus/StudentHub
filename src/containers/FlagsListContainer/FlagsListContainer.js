@@ -9,8 +9,8 @@ import { createFilter } from 'react-search-input';
 
 import * as actions from '../../actions/FlagsListActions/FlagsListActions';
 
-import sharedStyles from '../../styles/styles.css';
-import styles from './FlagsListContainer.css';
+import sharedStyles from '../../styles/styles.module.css';
+import styles from './FlagsListContainer.module.css';
 
 
 const KEYS_TO_FILTERS = ['id', 'created_by', 'subject', 'category', 'sub_category', 'status', 'severity', 'created_at', 'priority'];

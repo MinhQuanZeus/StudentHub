@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ContentHeadingComponent.css';
+import styles from './ContentHeadingComponent.module.css';
 
 export const ContentHeadingComponent = (props) => {
 

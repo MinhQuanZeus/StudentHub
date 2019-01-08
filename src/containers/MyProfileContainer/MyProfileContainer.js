@@ -5,9 +5,9 @@ import {ProfileTabsComponent} from "../../components/ProfileTabsComponent/Profil
 import {AboutUserComponent} from "../../components/AboutUserComponent/AboutUserComponent";
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import {connect} from 'react-redux';
-import sharedStyles from '../../styles/styles.css';
+import sharedStyles from '../../styles/styles.module.css';
 import $ from 'jquery';
-import styles from './MyProfileContainer.css';
+import styles from './MyProfileContainer.module.css';
 
 class MyProfileContainer extends Component {
     constructor(props) {

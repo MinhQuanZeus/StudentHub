@@ -5,7 +5,7 @@ import {ProgramInfoComponent} from "../../components/ProgramInfoComponent/Progra
 import {MilestoneTableComponent} from "../../components/MilestoneTableComponent/MilestoneTableComponent";
 import {MilestoneTabsComponent} from "../../components/MilestoneTabsComponent/MilestoneTabsComponent";
 import {MilestoneHeaderComponent} from "../../components/MilestoneHeaderComponent/MilestoneHeaderComponent";
-import sharedStyles from '../../styles/styles.css';
+import sharedStyles from '../../styles/styles.module.css';
 import {QuickLinkComponent} from "../../components/QuickLinkComponent/QuickLinkComponent";
 import connect from "react-redux/es/connect/connect";
 import {onFetchMilestone} from "../../actions/MilestoneActions/MilestoneActions";

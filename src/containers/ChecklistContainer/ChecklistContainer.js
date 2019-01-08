@@ -5,7 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import { createFilter } from 'react-search-input';
 import orderBy from 'lodash.orderby';
 
-import sharedStyles from '../../styles/styles.css';
+import sharedStyles from '../../styles/styles.module.css';
 
 const KEYS_TO_FILTERS = ['check_list_name', 'category', 'due_date', 'priority', 'complete_rate'];
 

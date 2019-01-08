@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './QuickLinkComponent.css';
+import styles from './QuickLinkComponent.module.css';
 import Link from "react-router-dom/es/Link";
 
 export const QuickLinkComponent = (props) => {

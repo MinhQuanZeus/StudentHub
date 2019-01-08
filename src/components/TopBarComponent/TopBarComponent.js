@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from "react-router-dom/es/Link";
 
-import styles from './TopBarComponent.css';
+import styles from './TopBarComponent.module.css';
 import defaultAvatar from '../../images/img_avatar.png'
 
 export const TopBarComponent = (props) => {

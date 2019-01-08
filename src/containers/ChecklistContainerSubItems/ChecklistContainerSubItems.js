@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import sharedStyles from '../../styles/styles.css';
+import sharedStyles from '../../styles/styles.module.css';
 import {ChecklistComponentSubItems} from '../../components/ChecklistComponentSubItems/ChecklistComponentSubItems'
 import {onFetchCheckList} from "../../actions/CheckListActions/CheckListActions";
 import connect from "react-redux/es/connect/connect";

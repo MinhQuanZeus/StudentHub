@@ -4,7 +4,7 @@ import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
 import SubChecklistSidebar from './SubChecklistSidebar/SubChecklistSidebar';
 import { getDayMonthYearFormat, replaceUnderscoreAndUppercase } from '../../helpers/Utils';
 
-import styles from './ChecklistComponent.css';
+import styles from './ChecklistComponent.module.css';
 
 
 function SubChecklist({

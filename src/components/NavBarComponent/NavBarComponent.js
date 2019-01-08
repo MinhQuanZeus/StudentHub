@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "react-router-dom/es/Link";
-import styles from './NavBarComponent.css';
+import styles from './NavBarComponent.module.css';
 
 export const NavBarComponent = (props) => {
 

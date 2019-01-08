@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import { getDayMonthYearFormat } from '../../../helpers/Utils';
 
-import styles from './FlagDetailsModal.css';
+import styles from './FlagDetailsModal.module.css';
 
 ReactModal.setAppElement('#root');
 

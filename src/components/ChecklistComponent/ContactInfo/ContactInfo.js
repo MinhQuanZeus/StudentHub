@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './ContactInfo.css';
+import styles from './ContactInfo.module.css';
 
 
 function ContactInfo({ openChecklistDetails }) {

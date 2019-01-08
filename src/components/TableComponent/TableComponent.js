@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './TableComponent.css';
+import styles from './TableComponent.module.css';
 import classnames from 'classnames';
 import { getYear } from '../../helpers/Utils';
 

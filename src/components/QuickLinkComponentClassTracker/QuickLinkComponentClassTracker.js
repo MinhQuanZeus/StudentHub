@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './QuickLinkComponentClassTracker.css';
+import styles from './QuickLinkComponentClassTracker.module.css';
 import Link from "react-router-dom/es/Link";
 
 export const QuickLinkComponentClassTracker = (props) => {

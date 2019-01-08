@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MentorCardComponent.css';
+import styles from './MentorCardComponent.module.css';
 
 
 export const MentorCardComponent = (props) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './SidebarHeader.css';
+import styles from './SidebarHeader.module.css';
 
 
 function SidebarHeader({ openChecklistDetails, openSubChecklistDetails, goBackToChecklist }) {

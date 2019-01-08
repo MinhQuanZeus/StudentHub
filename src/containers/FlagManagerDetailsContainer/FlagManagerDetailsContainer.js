@@ -5,8 +5,8 @@ import FlagManagerDetailsComponent from '../../components/FlagManagerDetailsComp
 
 import * as actions from '../../actions/FlagDetailsActions/FlagDetailsActions';
 
-import sharedStyles from '../../styles/styles.css';
-import styles from './FlagManagerDetailsContainer.css';
+import sharedStyles from '../../styles/styles.module.css';
+import styles from './FlagManagerDetailsContainer.module.css';
 
 
 class FlagManagerDetailsContainer extends Component {

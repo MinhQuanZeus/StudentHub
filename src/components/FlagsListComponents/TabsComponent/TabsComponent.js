@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './TabsComponent.css';
+import styles from './TabsComponent.module.css';
 
 function TabsComponent({ activeTab, updateActiveTab, tabNames, children }) {
   return (

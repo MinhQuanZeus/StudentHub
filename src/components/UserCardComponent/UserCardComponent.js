@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './UserCardComponent.css'
+import styles from './UserCardComponent.module.css'
 
 function UserDetails({ bday, phone, email, address }) {
   return (

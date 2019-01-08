@@ -1,1 +1,1 @@
-Frontend end for student platform
+# StudentHub

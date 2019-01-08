@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './FlagManagerDetailsComponent.css';
+import styles from './FlagManagerDetailsComponent.module.css';
 
 
 const FlagManagerDetailsComponent = (props) => {

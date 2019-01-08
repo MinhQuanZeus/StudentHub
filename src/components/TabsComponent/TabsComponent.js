@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './TabsComponent.css';
+import styles from './TabsComponent.module.css';
 
 export const TabsComponent = ({ years, selectedYear, updateYear, updateTerm }) => {
     return (

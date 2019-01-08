@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ChecklistComponentSubItems.css';
+import styles from './ChecklistComponentSubItems.module.css';
 
 
 

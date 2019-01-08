@@ -1,7 +1,7 @@
 import React from 'react';
 import PendingFlag from '../PendingFlag';
 
-import styles from './PendingFlags.css';
+import styles from './PendingFlags.module.css';
 
 function PendingFlags({ flags }) {
   let pendingsList = flags.filter((flag) => {

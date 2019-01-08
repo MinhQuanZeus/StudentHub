@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './NotificationComponent.css';
+import styles from './NotificationComponent.module.css';
 
 export const NotificationComponent = (props) => (
     

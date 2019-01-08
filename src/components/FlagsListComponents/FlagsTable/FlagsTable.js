@@ -2,7 +2,7 @@ import React from 'react';
 import FlagDetailsModal from '../../FlagManagerDetailsComponent/FlagDetailsModal/FlagDetailsModal';
 import { getDayMonthYearFormat } from '../../../helpers/Utils'
 
-import styles from './FlagsTable.css';
+import styles from './FlagsTable.module.css';
 
 function getFieldValue(flag, activeTab) {
   switch (activeTab) {

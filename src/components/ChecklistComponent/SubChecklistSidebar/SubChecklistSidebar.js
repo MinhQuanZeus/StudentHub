@@ -3,7 +3,7 @@ import SidebarHeader from '../SidebarHeader';
 import ContactInfo from '../ContactInfo';
 import { getDayMonthYearFormat } from '../../../helpers/Utils';
 
-import styles from './SubChecklistSidebar.css';
+import styles from './SubChecklistSidebar.module.css';
 
 
 function SubChecklistSidebar({ openChecklistDetails, openSubChecklistDetails, goBackToChecklist }) {

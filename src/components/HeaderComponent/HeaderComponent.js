@@ -1,7 +1,7 @@
 import React from 'react';
 
-import sharedStyles from '../../styles/styles.css';
-import styles from './HeaderComponent.css';
+import sharedStyles from '../../styles/styles.module.css';
+import styles from './HeaderComponent.module.css';
 
 function HeaderComponent({ labels, children }) {
   const lastLabelIdx = labels.length - 1;

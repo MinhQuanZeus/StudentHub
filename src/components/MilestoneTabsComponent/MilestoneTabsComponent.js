@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import styles from './MilestoneTabsComponent.css';
+import styles from './MilestoneTabsComponent.module.css';
 import {Link} from "react-router-dom";
 
 export class MilestoneTabsComponent extends Component {

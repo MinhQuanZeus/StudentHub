@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MilestoneAvatarComponent.css';
+import styles from './MilestoneAvatarComponent.module.css';
 import Link from "react-router-dom/es/Link";
 
 export const MilestoneAvatarComponent = (props) => {

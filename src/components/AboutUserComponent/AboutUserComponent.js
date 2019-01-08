@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AboutUserComponent.css'
+import styles from './AboutUserComponent.module.css'
 
 
 export const AboutUserComponent = (props) => {

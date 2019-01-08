@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MilestoneTableComponent.css';
+import styles from './MilestoneTableComponent.module.css';
 import classnames from 'classnames';
 
 export const MilestoneTableComponent = (props) => {
