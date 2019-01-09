@@ -1,0 +1,42 @@
+.FlagCreator {
+  border-radius: 4px;
+  background-color: #fff;
+  .Stepper {
+    position: relative;
+    height: 54px;
+    margin: 20px 45px 0 45px;
+    border-bottom: 3px solid #8a85a6;
+    .Step1 {
+      position: absolute;
+      bottom: -15px;
+      left: -15px;
+    }
+    .Step2 {
+      position: absolute;
+      bottom: -15px;
+      left: 128px;
+    }
+    .Step3 {
+      position: absolute;
+      bottom: -15px;
+      left: 263px;
+    }
+    .Step4 {
+      position: absolute;
+      bottom: -15px;
+      right: -15px;
+    }
+  }
+  .Actions {
+    text-align: right;
+    margin: 30px;
+    .Previous,
+    .Next {
+      width: 205px;
+      height: 30px;
+    }
+    .Previous {
+      margin-right: 30px;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.btn {
+  height: 30px;
+  border-radius: 4px;
+  font-family: Avenir;
+  font-size: 12px;
+  &.btn-default {
+    color: #8c8c8c;
+    background-color: f0eff6;
+  }
+  &.btn-primary {
+    color: #fff;
+    background-color: #6647ff;
+  }
+}

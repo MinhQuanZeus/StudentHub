@@ -1,0 +1,25 @@
+.Popup {
+  border-radius: 8px;
+  width: 500px;
+  height: 512px;
+  z-index: 999;
+  margin: calc(50vh - 256px) auto;
+
+  .Header {
+    border-radius: 8px;
+    background-color: #f0eff6;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+  }
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.75);
+}

@@ -1,0 +1,56 @@
+.Stepper {
+  position: relative;
+  display: flex;
+  border-bottom: 3px solid #8a85a6;
+  .Step {
+    text-align: center;
+    .Title {
+      font-family: Avenir;
+      font-weight: bold;
+      font-size: 12px;
+      color: #413d59;
+    }
+    .Index {
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      font-family: Avenir;
+      font-size: 16px;
+      margin: 0 auto;
+      background-color: #8a85a6;
+      position: relative;
+      .Text {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        top: 3px;
+        left: 3px;
+        background-color: #fff;
+        color: #8a85a6;
+        line-height: 24px;
+        text-align: center;
+      }
+      &.Current {
+        background-color: #6647ff;
+        .Text {
+          background-color: #6647ff;
+          color: #fff;
+        }
+      }
+      &.Done {
+        background-color: #6647ff;
+        .Text {
+          background-color: #6647ff;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .Progress {
+    position: absolute;
+    border-bottom: 3px solid #6647ff;
+    bottom: -3px;
+  }
+}
