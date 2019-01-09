@@ -1,33 +1,35 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { AppContext } from '../AppContext';
 
-import {TopBarComponent} from "../../components/TopBarComponent/TopBarComponent";
+import { TopBarComponent } from '../../components/TopBarComponent/TopBarComponent';
 
 class TopBarContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
+  render() {
+    let { user } = this.context;
 
-    render() {
-        let {loginInformation} = this.props;
-
-        return (
-            <TopBarComponent loginInformation={loginInformation}/>
-        )
-    }
-
+    return <TopBarComponent loginInformation={user} />;
+  }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        loginInformation: state.login.loginInformation
-    }
+TopBarContainer.contextType = AppContext;
+
+const mapStateToProps = state => {
+  return {
+    loginInformation: state.login.loginInformation
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {}
+const mapDispatchToProps = dispatch => {
+  return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopBarContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TopBarContainer);

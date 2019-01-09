@@ -12,7 +12,7 @@ import * as actions from '../../actions/FlagsListActions/FlagsListActions';
 
 import sharedStyles from '../../styles/styles.module.css';
 import styles from './FlagsListContainer.module.css';
-
+import { AppContext } from '../AppContext';
 const KEYS_TO_FILTERS = [
   'id',
   'created_by',
@@ -135,7 +135,7 @@ class FlagsListContainer extends Component {
   };
 
   componentDidMount() {
-    const token = this.props.login.x_access_token;
+    const token = this.context.user.x_access_token;
     this.props.getFlagsList(token);
     this.props.getSentFlags(token);
     this.props.getPublicFlags(token);
@@ -214,7 +214,7 @@ class FlagsListContainer extends Component {
     );
   }
 }
-
+FlagsListContainer.contextType = AppContext;
 function mapStateToProps(state) {
   return {
     login: state.login.loginInformation,

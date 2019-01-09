@@ -11,7 +11,7 @@ import $ from 'jquery';
 import { getUniqueYears } from '../../helpers/Utils';
 
 import { createShowLoadingAction } from '../../actions/LoadingActions';
-
+import { AppContext } from '../AppContext';
 class ClassTrackerContainer extends Component {
   state = {
     selectedYear: 2018,
@@ -62,14 +62,14 @@ class ClassTrackerContainer extends Component {
     );
   }
   componentWillMount() {
-    this.props.onFetchClassTracker(this.props.loginInformation.x_access_token);
+    this.props.onFetchClassTracker(this.context.user.x_access_token);
     $('.chatBotLoading').remove();
     $('.lex-web-ui-iframe').remove();
-    this.props.onFetchAcademicProgram(
-      this.props.loginInformation.x_access_token
-    );
+    this.props.onFetchAcademicProgram(this.context.user.x_access_token);
   }
 }
+
+ClassTrackerContainer.contextType = AppContext;
 
 const mapStateToProps = state => {
   return {
