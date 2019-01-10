@@ -8,5 +8,6 @@ if (accessToken && user) {
 }
 
 export const AppContext = React.createContext({
+  isLoading: false,
   user: user
 });

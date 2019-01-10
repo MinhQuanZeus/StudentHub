@@ -1,16 +1,24 @@
 .Popup {
+  position: relative;
   border-radius: 8px;
-  width: 500px;
-  height: 512px;
   z-index: 999;
-  margin: calc(50vh - 256px) auto;
 
   .Header {
+    font-family: Avenir !important;
+    font-size: 16px;
     border-radius: 8px;
     background-color: #f0eff6;
     text-align: center;
     height: 60px;
     line-height: 60px;
+    color: #413d59;
+    font-weight: bold;
+  }
+  .Times {
+    position: absolute;
+    top: 22px;
+    right: 34px;
+    color: #8a85a6;
   }
 }
 

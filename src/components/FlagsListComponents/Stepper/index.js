@@ -16,7 +16,7 @@ export const Step = props => {
       >
         <div className={css.Text}>
           {props.index < props.current ? (
-            <i class="fas fa-check" />
+            <i className="fas fa-check" />
           ) : (
             props.index
           )}

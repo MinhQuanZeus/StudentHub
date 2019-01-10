@@ -40,6 +40,7 @@ class FlagsListContainer extends Component {
       }
     };
     this.openCreator = this.openCreator.bind(this);
+    this.closeCreator = this.closeCreator.bind(this);
   }
 
   togglePendingVisibility = () => {
@@ -149,6 +150,14 @@ class FlagsListContainer extends Component {
     }));
   }
 
+  closeCreator($event) {
+    this.setState(state => ({
+      creator: {
+        isOpen: false
+      }
+    }));
+  }
+
   render() {
     const {
       showPending,
@@ -178,7 +187,10 @@ class FlagsListContainer extends Component {
 
     return (
       <section className={sharedStyles['content-container']}>
-        <FlagCreator isOpen={this.state.creator.isOpen} />
+        <FlagCreator
+          isOpen={this.state.creator.isOpen}
+          onRequestClose={this.closeCreator}
+        />
         <HeaderComponent labels={['Flag Manager']}>
           <span
             className={styles['btn-outline']}
@@ -217,7 +229,6 @@ class FlagsListContainer extends Component {
 FlagsListContainer.contextType = AppContext;
 function mapStateToProps(state) {
   return {
-    login: state.login.loginInformation,
     flagsList: state.flagsList.flagsList,
     sentFlags: state.flagsList.sentFlags,
     publicFlags: state.flagsList.publicFlags

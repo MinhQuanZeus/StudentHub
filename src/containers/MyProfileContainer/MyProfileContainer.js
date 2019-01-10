@@ -36,32 +36,33 @@ class MyProfileContainer extends Component {
       });
   };
 
-    render() {
-        return (
-            <div className={sharedStyles["content-container"]}>
-                <HeaderComponent labels={['My Profile']} />
-                <div className={styles['profile-wrapper']}>
-                  <div className={styles['profile-left-container']}>
-                    <UserCardComponent loginInformation={this.props.loginInformation}/>
-                    <ProfileTabsComponent scrollToRef={this.scrollToRef} />
-                  </div>
-                  <div className={styles['profile-right-container']}>
-                    <AboutUserComponent
-                      loginInformation={this.props.loginInformation}
-                      aboutRef={this.aboutRef}
-                      contactRef={this.contactRef}
-                      addressRef={this.addressRef}
-                    />
-                  </div>
-                </div>
-            </div>
-        )
-    }
-    componentDidMount() {
-        const {loginInformation} = this.props; 
-        const script = param.passToken(loginInformation.x_access_token, loginInformation.first_name);
-        document.body.appendChild(script);
-    }
+  render() {
+    const { user } = this.context;
+    return (
+      <div className={sharedStyles['content-container']}>
+        <HeaderComponent labels={['My Profile']} />
+        <div className={styles['profile-wrapper']}>
+          <div className={styles['profile-left-container']}>
+            <UserCardComponent loginInformation={user} />
+            <ProfileTabsComponent scrollToRef={this.scrollToRef} />
+          </div>
+          <div className={styles['profile-right-container']}>
+            <AboutUserComponent
+              loginInformation={user}
+              aboutRef={this.aboutRef}
+              contactRef={this.contactRef}
+              addressRef={this.addressRef}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+  componentDidMount() {
+    const { user } = this.context;
+    const script = param.passToken(user.x_access_token, user.first_name);
+    document.body.appendChild(script);
+  }
 }
 
 MyProfileContainer.contextType = AppContext;

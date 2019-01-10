@@ -1,76 +1,74 @@
 .top-bar-container {
-    position: fixed;
-    top: 0;
-    height: 60px;
-    width: 100%;
-    box-shadow: 0 1px 0 0 #ebebeb;
-    z-index: 100;
-    background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  box-shadow: 0 1px 0 0 #ebebeb;
+  z-index: 100;
+  background-color: #ffffff;
 }
 
 .top-bar-icon-link {
-    position: fixed;
-    height: 60px;
-    width: 64px;
-    top: 0;
-    left: 0;
+  position: fixed;
+  height: 60px;
+  width: 64px;
+  top: 0;
+  left: 0;
+  box-shadow: 1px 0 0 0 #f0eff6;
 }
 
 .top-bar-icon {
-    position: fixed;
-    height: 32px;
-    top: 14px;
-    left: 20px;
+  position: fixed;
+  height: 32px;
+  top: 14px;
+  left: 20px;
 }
 
 .top-bar-welcome-container {
-    font-size: 18px;
-    position: fixed;
-    left: 93px;
-    line-height: 60px;
+  font-size: 18px;
+  position: fixed;
+  left: 93px;
+  line-height: 60px;
 }
 
 .top-bar-welcome-text {
-    font-weight: 900;
-    color: #2c2745;
+  font-weight: 900;
+  color: #2c2745;
 }
 
 .top-bar-user-full-name {
-    font-size: 18px;
-    color: #8a85a6;
+  font-size: 18px;
+  color: #8a85a6;
 }
 
 .top-bar-comment {
-    height: 18px;
-    float: right;
-    margin: 21px 30.9px 21px 17px;
-
+  height: 18px;
+  float: right;
+  margin: 21px 30.9px 21px 17px;
 }
 
 .top-bar-bell {
-    height: 16.7px;
-    float: right;
-    margin: 21px 17px 20.7px 0;
-
+  height: 16.7px;
+  float: right;
+  margin: 21px 17px 20.7px 0;
 }
 
 .top-bar-avatar-sm {
-    border-radius: 50%;
-    height: 36px;
-    width: 36px;
-    float: right;
-    margin: 12px 0;
+  border-radius: 50%;
+  height: 36px;
+  width: 36px;
+  float: right;
+  margin: 12px 0;
 }
 
 .top-bar-username {
-    float: right;
-    margin: 21px 17px 20px 18px
+  float: right;
+  margin: 21px 17px 20px 18px;
 }
 
-
 .top-bar-chevron-down {
-    width: 8px;
-    height: 5.2px;
-    float: right;
-    margin: 30px 27px 0 0;
+  width: 8px;
+  height: 5.2px;
+  float: right;
+  margin: 30px 27px 0 0;
 }
