@@ -22,6 +22,7 @@ export const Popup = props => (
     className={classnames(css.Popup, props.className)}
     overlayClassName={css.Overlay}
     onRequestClose={props.onRequestClose}
+    style={props.style}
   >
     <Header onClick={props.onRequestClose}>{props.title}</Header>
     {props.children}

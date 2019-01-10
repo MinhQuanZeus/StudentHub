@@ -205,11 +205,13 @@ class FlagsListContainer extends Component {
           updateActiveTab={this.updateActiveTab}
           tabNames={['Flags', 'Sent', 'Public Flag']}
         >
-          <section>
+          <section style={{ display: 'flex' }}>
             {searchAndAdd}
             <PrimaryButton onClick={this.openCreator}>
               Create New Flag
             </PrimaryButton>
+          </section>
+          <section>
             <FlagsTable
               headerLabels={headerLabels}
               flags={flags.data}

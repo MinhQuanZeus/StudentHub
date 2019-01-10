@@ -38,6 +38,7 @@
     "react": "^16.4.2",
     "react-dev-utils": "^5.0.2",
     "react-dom": "^16.4.2",
+    "react-dropzone": "^8.0.3",
     "react-emit": "^2.1.0",
     "react-modal": "^3.6.1",
     "react-redux": "^5.0.7",

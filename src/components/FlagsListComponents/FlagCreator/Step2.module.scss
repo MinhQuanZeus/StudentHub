@@ -1,0 +1,41 @@
+.Step2 {
+  width: 440px;
+  &.Hidden {
+    display: none;
+    // visibility: hidden;
+  }
+  .FormGroup {
+    display: flex;
+    margin-top: 20px;
+  }
+  .FormItem {
+    > label {
+      display: block;
+      margin: 0;
+      padding: 0;
+      font-family: Avenir;
+      font-size: 12px;
+      font-weight: 900;
+      color: #413d59;
+    }
+    > textarea {
+      resize: none;
+      margin-top: 6px;
+      padding: 7px 15px;
+      width: 100%;
+      height: 128px;
+      border: 1px solid #e9e9e9;
+      background-color: #fff;
+      font-family: Avenir;
+      font-size: 12px;
+      font-weight: 500;
+      color: #8a85a6;
+    }
+  }
+
+  .Dropzone {
+    width: 440px;
+    height: 110px;
+    background-color: #fafafa;
+  }
+}
