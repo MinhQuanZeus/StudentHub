@@ -21,7 +21,7 @@ var param = {
           },
           "botName": "Cody",
           "botAlias": "$LATEST",
-          "initialText": "Hello ${username}! I am your personal assistance for any academic information. You can ask me for help getting gpa. Just type 'gpa' or click on the mic and say it.",
+          "initialText": "Hello ${username}! I am your personal assistance for any academic information. For example, just type 'GPA' or click on the microphone and say 'GPA' to get your current GPA.",
           "initialSpeechInstruction": "Say 'my gpa' to get started.",
           "reInitSessionAttributesOnRestart": false
         },

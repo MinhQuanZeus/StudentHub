@@ -16,27 +16,24 @@ import FlagManagerDetailsContainer from '../FlagManagerDetailsContainer/FlagMana
 import CalendarContainer from '../CalendarContainer/CalendarContainer';
 import { AppContext } from '../AppContext';
 import { getAccessToken, getUser } from '../../helpers';
+
 class ApplicationContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-  componentWillMount() {
-    $('.chatBotLoading').remove();
-    $('.lex-web-ui-iframe').remove();
-  }
-  render() {
-    const currentPath = this.props.location.pathname;
-    const hideNotification = ['/check-list'];
-    let notification = <NotificationContainer />;
+    render() {
+        const currentPath = this.props.location.pathname;
+        const hideNotification = ['/check-list'];
+        let notification = <NotificationContainer/>;
 
-    if (currentPath === '/') {
-      return <Redirect to={{ pathname: '/my-profile' }} />;
-    }
+        if (currentPath === '/') {
+          return <Redirect to={{ pathname: '/my-profile' }} />;
+        }
 
-    if (hideNotification.includes(currentPath)) {
-      notification = null;
-    }
+        if (hideNotification.includes(currentPath)) {
+          notification = null;
+        }
     const accessToken = getAccessToken();
     const user = getUser();
     if (accessToken && user) {

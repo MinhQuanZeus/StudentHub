@@ -23,12 +23,18 @@ class SuccessTeamContainer extends Component {
     let { user } = this.context;
     this.props.onFetchMentors(user.x_access_token);
     this.props.onFetchMentors(user.first_name);
-
-    // var chatBotscript = param.passToken(loginInformation.x_access_token)
-    // document.body.appendChild(chatBotscript);
-    let script = param.passToken(user.x_access_token, user.first_name);
-    document.body.appendChild(script);
   }
+    render() {
+        let mentorItems = this.props.mentors.map((mentor) => {
+            return <MentorCardComponent key={mentor.record_id} mentor={mentor}/>
+        });
+        return (
+            <div className={sharedStyles["content-container"]}>
+                <h2 className={sharedStyles["content-heading"]}>Success Team</h2>
+                {mentorItems}       
+            </div>
+        );
+    }
 }
 
 SuccessTeamContainer.contextType = AppContext;

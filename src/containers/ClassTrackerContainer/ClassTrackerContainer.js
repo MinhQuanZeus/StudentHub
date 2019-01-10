@@ -7,7 +7,6 @@ import { TabsComponent } from '../../components/TabsComponent/TabsComponent';
 import { TableComponent } from '../../components/TableComponent/TableComponent';
 import { QuickLinkComponent } from '../../components/QuickLinkComponent/QuickLinkComponent';
 import sharedStyles from '../../styles/styles.module.css';
-import $ from 'jquery';
 import { getUniqueYears } from '../../helpers/Utils';
 
 import { createShowLoadingAction } from '../../actions/LoadingActions';
@@ -62,13 +61,12 @@ class ClassTrackerContainer extends Component {
     );
   }
   componentWillMount() {
-    this.props.onFetchClassTracker(this.context.user.x_access_token);
-    $('.chatBotLoading').remove();
-    $('.lex-web-ui-iframe').remove();
-    this.props.onFetchAcademicProgram(this.context.user.x_access_token);
+    this.props.onFetchClassTracker(this.props.loginInformation.x_access_token);
+    this.props.onFetchAcademicProgram(
+    this.props.loginInformation.x_access_token
+    );
   }
 }
-
 ClassTrackerContainer.contextType = AppContext;
 
 const mapStateToProps = state => {

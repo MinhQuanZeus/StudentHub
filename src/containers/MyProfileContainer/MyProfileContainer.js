@@ -6,8 +6,8 @@ import { AboutUserComponent } from '../../components/AboutUserComponent/AboutUse
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import { connect } from 'react-redux';
 import sharedStyles from '../../styles/styles.module.css';
-import $ from 'jquery';
 import styles from './MyProfileContainer.module.css';
+import param from '../../chatBotControl/passToken.js';
 import { AppContext } from '../AppContext';
 
 class MyProfileContainer extends Component {
@@ -36,31 +36,32 @@ class MyProfileContainer extends Component {
       });
   };
 
-  render() {
-    return (
-      <div className={sharedStyles['content-container']}>
-        <HeaderComponent labels={['My Profile']} />
-        <div className={styles['profile-wrapper']}>
-          <div className={styles['profile-left-container']}>
-            <UserCardComponent loginInformation={this.context.user} />
-            <ProfileTabsComponent scrollToRef={this.scrollToRef} />
-          </div>
-          <div className={styles['profile-right-container']}>
-            <AboutUserComponent
-              loginInformation={this.context.user}
-              aboutRef={this.aboutRef}
-              contactRef={this.contactRef}
-              addressRef={this.addressRef}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-  componentWillMount() {
-    $('.chatBotLoading').remove();
-    $('.lex-web-ui-iframe').remove();
-  }
+    render() {
+        return (
+            <div className={sharedStyles["content-container"]}>
+                <HeaderComponent labels={['My Profile']} />
+                <div className={styles['profile-wrapper']}>
+                  <div className={styles['profile-left-container']}>
+                    <UserCardComponent loginInformation={this.props.loginInformation}/>
+                    <ProfileTabsComponent scrollToRef={this.scrollToRef} />
+                  </div>
+                  <div className={styles['profile-right-container']}>
+                    <AboutUserComponent
+                      loginInformation={this.props.loginInformation}
+                      aboutRef={this.aboutRef}
+                      contactRef={this.contactRef}
+                      addressRef={this.addressRef}
+                    />
+                  </div>
+                </div>
+            </div>
+        )
+    }
+    componentDidMount() {
+        const {loginInformation} = this.props; 
+        const script = param.passToken(loginInformation.x_access_token, loginInformation.first_name);
+        document.body.appendChild(script);
+    }
 }
 
 MyProfileContainer.contextType = AppContext;
