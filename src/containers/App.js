@@ -6,7 +6,6 @@ import LoginContainer from './LoginContainer/LoginContainer';
 import ForgotPasswordContainer from './ForgotPasswordContainer/ForgotPasswordContainer';
 import ApplicationContainer from './ApplicationContainer/ApplicationContainer';
 import Loading from '../components/LoadingComponent';
-import { getAccessToken, getUser } from '../helpers';
 import { withEmit } from 'react-emit';
 import './App.scss';
 

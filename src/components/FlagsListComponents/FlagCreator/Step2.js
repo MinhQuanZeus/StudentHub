@@ -3,40 +3,68 @@ import css from './Step2.module.scss';
 import classnames from 'classnames';
 import Dropzone from 'react-dropzone';
 import './dropzone.scss';
+
+export class ImagePreview extends Component {
+  constructor(props) {
+    super(props);
+    this.onLoad = this.onLoad.bind(this);
+    this.state = {
+      src: null
+    };
+    var reader = new FileReader();
+
+    reader.onload = this.onLoad;
+
+    reader.readAsDataURL(props.src);
+  }
+
+  onLoad($event) {
+    this.setState(state => ({ src: $event.target.result }));
+  }
+
+  render() {
+    const { state } = this;
+    return (
+      state.src && (
+        <li className={css.Image}>
+          <img src={state.src} alt="avatar" />
+          <span>
+            <i className="fas fa-times" />
+          </span>
+        </li>
+      )
+    );
+  }
+}
+
+export const Preview = props => {
+  return (
+    <ul className={css.Preview}>
+      {props.files && props.files.map(src => <ImagePreview src={src} />)}
+    </ul>
+  );
+};
+
 class Step2 extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      acceptedFiles: null,
-      rejectedFiles: null,
-      previewUrls: []
+      acceptedFiles: []
     };
 
     this.onDrop = this.onDrop.bind(this);
-    this.onLoad = this.onLoad.bind(this);
   }
-
-  onLoad($event) {
-    this.setState(state => {
-      state.previewUrls.push($event.target.result);
-      return state;
-    });
-  }
-
   onDrop = (acceptedFiles, rejectedFiles) => {
-    acceptedFiles.map(img => {
-      var reader = new FileReader();
-
-      reader.onload = this.onLoad;
-
-      reader.readAsDataURL(img);
+    const nextState = this.state;
+    acceptedFiles.forEach(img => {
+      const obj = nextState.acceptedFiles.filter(f => f.name === img.name);
+      if (obj.length === 0) {
+        nextState.acceptedFiles.push(img);
+      }
     });
 
-    this.setState(state => ({
-      acceptedFiles: acceptedFiles,
-      rejectedFiles: rejectedFiles
-    }));
+    this.setState(state => nextState);
   };
 
   render() {
@@ -79,12 +107,13 @@ class Step2 extends Component {
               );
             }}
           </Dropzone>
-          <div style={{ display: 'flex', marginTop: 20 }}>
+          {/* <div style={{ display: 'flex', marginTop: 20 }}>
             {this.state.previewUrls &&
               this.state.previewUrls.map(img => (
                 <img src={img} alt="preview" width={102} height={102} />
               ))}
-          </div>
+          </div> */}
+          <Preview files={this.state.acceptedFiles} />
         </div>
       </div>
     );

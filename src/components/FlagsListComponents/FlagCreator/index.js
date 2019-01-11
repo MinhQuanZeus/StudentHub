@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Popup } from '../Popup';
-// import ReactModal from 'react-modal';
-// import classnames from 'classnames';
-// import FlagNewTask1 from '../FlagNewTask/FlagNewTask1';
 import { Stepper, Step } from '../Stepper';
 import { DefaultButton, PrimaryButton } from '../../Button';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
+import Step4 from './Step4';
 import css from './FlagCreator.module.scss';
 
 export class FlagCreator extends Component {
@@ -77,6 +75,7 @@ export class FlagCreator extends Component {
           <Step1 current={state.currentStep} />
           <Step2 current={state.currentStep} />
           <Step3 current={state.currentStep} />
+          <Step4 current={state.currentStep} />
         </form>
 
         <div className={css.Actions}>
