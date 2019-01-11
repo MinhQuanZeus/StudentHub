@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import SuccessTeamContainer from '../SuccessTeamContainer/SuccessTeamContainer';
@@ -13,12 +13,29 @@ import ChecklistContainer from '../ChecklistContainer/ChecklistContainer';
 import FlagsListContainer from '../FlagsListContainer/FlagsListContainer';
 import FlagManagerDetailsContainer from '../FlagManagerDetailsContainer/FlagManagerDetailsContainer.js';
 import CalendarContainer from '../CalendarContainer/CalendarContainer';
-
+import { AppContext } from '../AppContext';
+import { history } from '../../helpers/history';
+import { getUser, getAccessToken } from '../../helpers';
 class ApplicationContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  componentWillMount() {
+    const accessToken = getAccessToken();
+    const user = getUser();
+
+    if (!accessToken && !user) {
+      history.push({
+        pathname: '/login'
+      });
+      return;
+    }
+    user.student.x_access_token = accessToken;
+    this.user = user.student;
+  }
+
   render() {
     const currentPath = this.props.location.pathname;
     const hideNotification = ['/check-list'];
@@ -32,7 +49,8 @@ class ApplicationContainer extends Component {
       notification = null;
     }
     return (
-      <Fragment>
+      <AppContext.Provider value={{ user: this.user }}>
+        >
         <TopBarContainer />
         <NavBarContainer />
         <Route path="/success-team" component={SuccessTeamContainer} />
@@ -45,7 +63,7 @@ class ApplicationContainer extends Component {
         <Route path="/flags/:id" component={FlagManagerDetailsContainer} />
         <Route path="/calendar" component={CalendarContainer} />
         {notification}
-      </Fragment>
+      </AppContext.Provider>
     );
   }
 }

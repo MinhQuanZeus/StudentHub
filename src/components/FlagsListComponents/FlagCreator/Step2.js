@@ -18,7 +18,6 @@ class Step2 extends Component {
   }
 
   onLoad($event) {
-    debugger;
     this.setState(state => {
       state.previewUrls.push($event.target.result);
       return state;
@@ -53,7 +52,6 @@ class Step2 extends Component {
           <textarea
             id="description"
             name="description"
-            res
             placeholder="Type the description about flag"
           />
         </div>

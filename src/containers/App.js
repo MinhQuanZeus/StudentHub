@@ -8,18 +8,11 @@ import ApplicationContainer from './ApplicationContainer/ApplicationContainer';
 import Loading from '../components/LoadingComponent';
 import { getAccessToken, getUser } from '../helpers';
 import { withEmit } from 'react-emit';
-import { AppContext } from './AppContext';
 import './App.scss';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    const accessToken = getAccessToken();
-    const user = getUser();
-    if (accessToken && user) {
-      user.student.x_access_token = accessToken;
-    }
-    this.user = user.student;
     this.state = {
       isLoading: false
     };
@@ -51,7 +44,7 @@ class App extends Component {
 
   render() {
     return (
-      <AppContext.Provider value={{ user: this.user }}>
+      <div id="app">
         <Loading isLoading={this.state.isLoading} />
         <Router history={history}>
           <Switch>
@@ -63,7 +56,7 @@ class App extends Component {
             <PrivateRoute path="/" component={ApplicationContainer} />
           </Switch>
         </Router>
-      </AppContext.Provider>
+      </div>
     );
   }
 }
