@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import loginReducer from './LoginReducer/loginReducer';
 import forgotPasswordReducer from './ForgotPasswordReducer/forgotPasswordReducer';
 import successTeamReducer from './SuccessTeamReducer/successTeamReducer';
 import classTrackerReducer from './ClassTrackerReducer/classTrackerReducer';
@@ -9,10 +8,8 @@ import academicProgramReducer from './AcademicProgramReducer/AcademicProgramRedu
 import checkListReducer from './CheckListReducer/CheckListReducer';
 import flagsListReducer from './FlagsListReducer/flagsListReducer';
 import flagDetailsReducer from './FlagDetailsReducer/flagDetailsReducer';
-import LoadingReducer from './LoadingReducer';
 
 const reducers = {
-  login: loginReducer,
   forgotPassword: forgotPasswordReducer,
   mentor: successTeamReducer,
   classTracker: classTrackerReducer,
@@ -21,8 +18,7 @@ const reducers = {
   academicProgram: academicProgramReducer,
   checkList: checkListReducer,
   flagsList: flagsListReducer,
-  flagDetails: flagDetailsReducer,
-  LoadingState: LoadingReducer
+  flagDetails: flagDetailsReducer
 };
 
 export default combineReducers(reducers);

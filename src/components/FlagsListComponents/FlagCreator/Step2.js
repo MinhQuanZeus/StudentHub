@@ -23,12 +23,12 @@ export class ImagePreview extends Component {
   }
 
   render() {
-    const { state } = this;
+    const { props, state } = this;
     return (
       state.src && (
         <li className={css.Image}>
           <img src={state.src} alt="avatar" />
-          <span>
+          <span onClick={$event => props.onRemove($event, props.src)}>
             <i className="fas fa-times" />
           </span>
         </li>
@@ -40,7 +40,10 @@ export class ImagePreview extends Component {
 export const Preview = props => {
   return (
     <ul className={css.Preview}>
-      {props.files && props.files.map(src => <ImagePreview src={src} />)}
+      {props.files &&
+        props.files.map(src => (
+          <ImagePreview key={src.name} src={src} onRemove={props.onRemove} />
+        ))}
     </ul>
   );
 };
@@ -54,6 +57,7 @@ class Step2 extends Component {
     };
 
     this.onDrop = this.onDrop.bind(this);
+    this.onRemove = this.onRemove.bind(this);
   }
   onDrop = (acceptedFiles, rejectedFiles) => {
     const nextState = this.state;
@@ -66,6 +70,12 @@ class Step2 extends Component {
 
     this.setState(state => nextState);
   };
+
+  onRemove($event, $img) {
+    this.setState(state => ({
+      acceptedFiles: state.acceptedFiles.filter(img => img.name !== $img.name)
+    }));
+  }
 
   render() {
     return (
@@ -113,7 +123,7 @@ class Step2 extends Component {
                 <img src={img} alt="preview" width={102} height={102} />
               ))}
           </div> */}
-          <Preview files={this.state.acceptedFiles} />
+          <Preview files={this.state.acceptedFiles} onRemove={this.onRemove} />
         </div>
       </div>
     );

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-
 import { UserCardComponent } from '../../components/UserCardComponent/UserCardComponent';
 import { ProfileTabsComponent } from '../../components/ProfileTabsComponent/ProfileTabsComponent';
 import { AboutUserComponent } from '../../components/AboutUserComponent/AboutUserComponent';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
-import { connect } from 'react-redux';
 import sharedStyles from '../../styles/styles.module.css';
 import styles from './MyProfileContainer.module.css';
 import param from '../../chatBotControl/passToken.js';
@@ -67,10 +65,4 @@ class MyProfileContainer extends Component {
 
 MyProfileContainer.contextType = AppContext;
 
-const mapStateToProps = state => {
-  return {
-    loginInformation: state.login.loginInformation
-  };
-};
-
-export default connect(mapStateToProps)(MyProfileContainer);
+export default MyProfileContainer;

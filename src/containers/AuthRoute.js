@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { getUser } from '../../helpers';
-// import { loginStatusConstant } from '../../constants/loginStatusConstants';
+import { getUser } from '../helpers';
 
-class PrivateRoute extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+class AuthRoute extends Component {
   render() {
     const { component, ...rest } = this.props;
     return (
@@ -38,10 +31,4 @@ class PrivateRoute extends Component {
   };
 }
 
-const mapStateToProps = state => {
-  return {
-    loginStatus: state.login.loginStatus
-  };
-};
-
-export default connect(mapStateToProps)(PrivateRoute);
+export default AuthRoute;

@@ -8,8 +8,6 @@ import { TableComponent } from '../../components/TableComponent/TableComponent';
 import { QuickLinkComponent } from '../../components/QuickLinkComponent/QuickLinkComponent';
 import sharedStyles from '../../styles/styles.module.css';
 import { getUniqueYears } from '../../helpers/Utils';
-
-import { createShowLoadingAction } from '../../actions/LoadingActions';
 import { AppContext } from '../AppContext';
 
 class ClassTrackerContainer extends Component {
@@ -79,7 +77,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchClassTracker: x_access_token => {
-      dispatch(createShowLoadingAction());
       dispatch(onFetchClassTracker(x_access_token));
     },
     onFetchAcademicProgram: x_access_token =>

@@ -38,9 +38,13 @@
         width: 102px;
         height: 102px;
         margin-top: 20px;
-        margin-right: 16px;
+        margin-right: 8px;
+        text-align: center;
+        line-height: 102px;
+        border-radius: 4px;
         > img {
-          width: 102px;
+          max-height: 102px;
+          max-width: 102px;
         }
         > span {
           position: absolute;

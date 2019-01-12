@@ -50,7 +50,6 @@ class ApplicationContainer extends Component {
     }
     return (
       <AppContext.Provider value={{ user: this.user }}>
-        >
         <TopBarContainer />
         <NavBarContainer />
         <Route path="/success-team" component={SuccessTeamContainer} />

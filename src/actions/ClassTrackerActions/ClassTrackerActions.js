@@ -5,7 +5,6 @@ import {
   applicationStatusCode
 } from '../../constants/applicationConstants';
 import { classTrackerConstants } from '../../constants/classTrackerConstants';
-import { createHideLoadingAction } from '../../actions/LoadingActions';
 
 export function onFetchClassTracker(access_token) {
   return dispatch => {
@@ -13,13 +12,11 @@ export function onFetchClassTracker(access_token) {
 
     loadingClassTracker(access_token)
       .then(success => {
-        dispatch(createHideLoadingAction(success));
         dispatch(
           getDataProcess(classTrackerConstants.SUCCESS, false, success.data)
         );
       })
       .catch(err => {
-        dispatch(createHideLoadingAction(err));
         dispatch(getDataProcess(classTrackerConstants.ERROR, false, []));
       });
   };
