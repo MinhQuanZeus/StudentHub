@@ -7,14 +7,48 @@ export const User = props => {
     <li className={css.User} onClick={props.onClick}>
       <img src="images/avatar.jpeg" alt="avatar" />
       <span className={classnames(css.Status, props.active && css.Active)} />
-      <span>{props.fullName}</span>
+      <span>{props.name}</span>
     </li>
   );
 };
 
 class UserSelector extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      users: null
+    };
+
+    this.name = React.createRef();
+
+    this.onSearch = this.onSearch.bind(this);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (!state.users || state.users.length === 0) {
+      state.users = props.users;
+    }
+    return state;
+  }
+
+  onSearch($event) {
+    $event.preventDefault();
+    const { current } = this.name;
+
+    if (current.value && current.value !== '') {
+      this.setState(state => ({
+        users: this.props.users.filter(u => u.name.indexOf(current.value) > -1)
+      }));
+    } else {
+      this.setState(state => ({
+        users: this.props.users
+      }));
+    }
+  }
+
   render() {
-    const { props } = this;
+    const { props, state } = this;
     return (
       <div
         className={classnames(
@@ -23,12 +57,17 @@ class UserSelector extends Component {
         )}
       >
         <div className={css.Search}>
-          <input type="text" />
+          <input
+            ref={this.name}
+            type="text"
+            name="name"
+            onChange={this.onSearch}
+          />
           <i className="fas fa-search" />
         </div>
         <ul className={css.List}>
-          {props.users &&
-            props.users.map($user => (
+          {state.users &&
+            state.users.map($user => (
               <User
                 key={$user.id}
                 {...$user}

@@ -1,5 +1,6 @@
-import { ACCESS_TOKEN } from '../constants';
 import jwt from 'jwt-decode';
+
+const ACCESS_TOKEN = 'ACCESS_TOKEN';
 
 export function getAccessToken() {
   return localStorage.getItem(ACCESS_TOKEN);
@@ -14,8 +15,3 @@ export function getUser() {
   }
   return json;
 }
-
-export const DEFAULT_FETCH_HEADERS = {
-  'Content-Type': 'application/json',
-  'X-Access-Token': getAccessToken() || ''
-};

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'react-router-dom/es/Link';
 import { withEmit } from 'react-emit';
 import { apiConstants } from '../../constants/applicationConstants';
-import { DEFAULT_FETCH_HEADERS } from '../../helpers';
+import { DEFAULT_FETCH_HEADERS } from '../../constants';
 import {
   ACCESS_TOKEN,
   HTTP_POST,

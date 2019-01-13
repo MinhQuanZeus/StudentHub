@@ -1,8 +1,9 @@
 .UserSelector {
   display: block;
   width: 100%;
-  height: 252px;
+  height: 280px;
   margin-top: 5px;
+  padding-top: 20px;
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.07);
   background-color: #ffffff;
   margin-bottom: 30px;
@@ -11,7 +12,7 @@
   }
   .Search {
     position: relative;
-    margin: 20px;
+    margin: 0 20px 20px 20px;
     > input {
       height: 40px;
       background-color: #f0eff6;
@@ -34,6 +35,8 @@
   .List {
     display: block;
     list-style: none;
+    max-height: 180px;
+    overflow-y: scroll;
   }
 }
 

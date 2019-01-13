@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import css from './Step4.module.scss';
 import UserSelector from './UserSelector';
 import classnames from 'classnames';
-
+import { API_END_POINT, GET_STUDENTS } from '../../../constants/ApiUrl';
+import { HTTP_GET, DEFAULT_FETCH_HEADERS } from '../../../constants';
 export const SelectedUser = props => {
   return (
     <ul className={css.SelectedUser}>
@@ -18,14 +19,24 @@ export const SelectedUser = props => {
     </ul>
   );
 };
+
 class Step4 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedUsers: []
+      selectedUsers: [],
+      students: null
     };
     this.onSelect = this.onSelect.bind(this);
     this.onRemove = this.onRemove.bind(this);
+    this.onResponse = this.onResponse.bind(this);
+
+    fetch(`${API_END_POINT}${GET_STUDENTS}`, {
+      method: HTTP_GET,
+      headers: DEFAULT_FETCH_HEADERS
+    })
+      .then(response => response.json())
+      .then(this.onResponse);
   }
 
   onSelect($event, $user) {
@@ -40,6 +51,10 @@ class Step4 extends Component {
     this.setState(state => ({
       selectedUsers: state.selectedUsers.filter(user => user.id !== $user.id)
     }));
+  }
+
+  onResponse($json) {
+    this.setState(state => (state.students = $json.data) && state);
   }
 
   render() {
@@ -65,11 +80,7 @@ class Step4 extends Component {
         <UserSelector
           isSearching={true}
           onChange={this.onSelect}
-          users={[
-            { id: 1, fullName: 'Michael Anto', active: true },
-            { id: 2, fullName: 'Milano Messi', active: false },
-            { id: 3, fullName: 'Misdi Koloni', active: false }
-          ]}
+          users={this.state.students}
         />
       </div>
     );

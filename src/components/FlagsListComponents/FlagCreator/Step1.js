@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withEmit } from 'react-emit';
-import { DEFAULT_FETCH_HEADERS } from '../../../helpers';
+import { DEFAULT_FETCH_HEADERS } from '../../../constants';
 import { apiConstants } from '../../../constants/applicationConstants';
 import css from './Step1.module.scss';
 import classnames from 'classnames';
@@ -9,6 +9,8 @@ class Step1 extends Component {
     super(props);
     this.state = {};
     this.props.emit('SHOW_LOADING');
+    this.onChangeCategory = this.onChangeCategory.bind(this);
+
     fetch(apiConstants.BACKEND_URL + 'student/flag_category', {
       method: 'GET',
       headers: DEFAULT_FETCH_HEADERS
@@ -29,8 +31,6 @@ class Step1 extends Component {
           subCategories: null
         }));
       });
-
-    this.onChangeCategory = this.onChangeCategory.bind(this);
   }
 
   onChangeCategory($event) {

@@ -2,19 +2,34 @@ import React, { Component } from 'react';
 import css from './Step3.module.scss';
 import classnames from 'classnames';
 import UserSelector from './UserSelector';
+import { API_END_POINT, GET_STAFFS } from '../../../constants/ApiUrl';
+import { HTTP_GET, DEFAULT_FETCH_HEADERS } from '../../../constants';
 
 class Step3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isSearching: false,
-      assignee: {
-        id: null,
-        fullName: ''
-      }
+      staffs: []
     };
+
+    this.sid = React.createRef();
+    this.name = React.createRef();
+
     this.onFocus = this.onFocus.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onResponse = this.onResponse.bind(this);
+
+    fetch(`${API_END_POINT}${GET_STAFFS}`, {
+      method: HTTP_GET,
+      headers: DEFAULT_FETCH_HEADERS
+    })
+      .then(response => response.json())
+      .then(this.onResponse);
+  }
+
+  onResponse($json) {
+    this.setState(state => (state.staffs = $json.data) && state);
   }
 
   onFocus($event) {
@@ -22,11 +37,13 @@ class Step3 extends Component {
   }
 
   onChange($event, $user) {
+    this.sid.current.value = $user.id;
+    this.name.current.value = $user.name;
     this.setState({
-      isSearching: false,
-      assignee: $user
+      isSearching: false
     });
   }
+
   render() {
     return (
       <div
@@ -40,11 +57,11 @@ class Step3 extends Component {
             <label htmlFor="assignee">
               I know who can take care of this flag:
             </label>
+            <input ref={this.sid} type="hidden" name="sid" />
             <input
-              id="assignee"
-              name="assignee"
+              ref={this.name}
+              name="name"
               onFocus={this.onFocus}
-              value={this.state.assignee && this.state.assignee.fullName}
               readOnly
             />
             <i className="fas fa-angle-down" />
@@ -52,11 +69,7 @@ class Step3 extends Component {
           <UserSelector
             isSearching={this.state.isSearching}
             onChange={this.onChange}
-            users={[
-              { id: 1, fullName: 'Michael Anto', active: true },
-              { id: 2, fullName: 'Milano Messi', active: false },
-              { id: 3, fullName: 'Misdi Koloni', active: false }
-            ]}
+            users={this.state.staffs}
           />
         </div>
       </div>
