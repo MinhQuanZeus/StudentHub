@@ -14,3 +14,7 @@ export const DEFAULT_FETCH_HEADERS = {
   'Content-Type': 'application/json',
   'X-Access-Token': getAccessToken() || ''
 };
+
+export const UPLOAD_FETCH_HEADERS = {
+  'X-Access-Token': getAccessToken() || ''
+};

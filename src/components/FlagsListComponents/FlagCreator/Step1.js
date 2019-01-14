@@ -22,7 +22,7 @@ class Step1 extends Component {
     );
     if (category && category.length > 0) {
       this.props.setFieldValue(
-        'subCategory',
+        'sub_category',
         category[0].subs[0].id.toString()
       );
       this.setState(state => ({ subCategories: category[0].subs }));
@@ -46,14 +46,14 @@ class Step1 extends Component {
         )}
       >
         <div className={css.FormItem}>
-          <label htmlFor="topic">Topic</label>
+          <label htmlFor="subject">Topic</label>
           <input
-            id="topic"
+            id="subject"
             type="text"
-            name="topic"
+            name="subject"
             placeholder="Meeting about Office"
             onChange={handleChange}
-            value={values.topic}
+            value={values.subject}
           />
         </div>
         <div className={css.FormGroup}>
@@ -78,14 +78,14 @@ class Step1 extends Component {
             </select>
           </div>
           <div className={css.FormItem} style={{ width: 205, marginLeft: 30 }}>
-            <label htmlFor="subCategory">Sub Category</label>
+            <label htmlFor="sub_category">Sub Category</label>
             <select
-              id="subCategory"
+              id="sub_category"
               type="text"
-              name="subCategory"
+              name="sub_category"
               placeholder="Choose Sub-Category"
               onChange={handleChange}
-              value={values.subCategory}
+              value={values.sub_category}
             >
               {this.state.subCategories &&
                 this.state.subCategories.map(sub => (
@@ -115,14 +115,14 @@ class Step1 extends Component {
           <div className={css.Radio}>
             <input
               type="radio"
-              name="dispatchType"
+              name="is_public"
               value="0"
               onChange={handleChange}
             />
             <span>Public</span>
             <input
               type="radio"
-              name="dispatchType"
+              name="is_public"
               value="1"
               style={{ marginLeft: 30 }}
               onChange={handleChange}
@@ -138,10 +138,10 @@ class Step1 extends Component {
 
 export default withFormik({
   mapPropsToValues: () => ({
-    topic: '',
+    subject: '',
     category: '',
-    subCategory: '',
+    sub_category: '',
     severity: '',
-    dispatchType: ''
+    is_public: ''
   })
 })(Step1);

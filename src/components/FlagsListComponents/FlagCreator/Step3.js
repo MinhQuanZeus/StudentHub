@@ -26,8 +26,8 @@ class Step3 extends Component {
   }
 
   onChange($event, $user) {
-    this.props.setFieldValue('assignee.sid', $user.id || '');
-    this.props.setFieldValue('assignee.name', $user.name || '');
+    this.props.setFieldValue('assign_id', $user.id || '');
+    this.props.setFieldValue('assign_name', $user.name || '');
     this.setState({
       isSearching: false
     });
@@ -35,12 +35,14 @@ class Step3 extends Component {
 
   onNext($event) {
     $event.preventDefault();
-    this.props.onNext(this.props.values);
+    this.props.onNext({ assign_id: parseInt(this.props.values.assign_id, 10) });
   }
 
   onPrevious($event) {
     $event.preventDefault();
-    this.props.onPrevious(this.props.values);
+    this.props.onPrevious({
+      assign_id: parseInt(this.props.values.assign_id, 10)
+    });
   }
 
   render() {
@@ -63,7 +65,7 @@ class Step3 extends Component {
               name="name"
               onFocus={this.onFocus}
               readOnly
-              value={values.assignee.name}
+              value={values.assign_name}
             />
             <i className="fas fa-angle-down" />
           </div>
@@ -85,9 +87,7 @@ class Step3 extends Component {
 
 export default withFormik({
   mapPropsToValues: () => ({
-    assignee: {
-      sid: '',
-      name: ''
-    }
+    assign_id: '',
+    assign_name: ''
   })
 })(Step3);

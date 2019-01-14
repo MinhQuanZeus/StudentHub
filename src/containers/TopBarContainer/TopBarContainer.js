@@ -6,7 +6,7 @@ import { TopBarComponent } from '../../components/TopBarComponent/TopBarComponen
 class TopBarContainer extends Component {
   render() {
     const { user } = this.context;
-    return <TopBarComponent loginInformation={user} />;
+    return <TopBarComponent user={user} />;
   }
 }
 

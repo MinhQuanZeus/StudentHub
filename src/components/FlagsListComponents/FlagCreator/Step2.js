@@ -4,8 +4,10 @@ import classnames from 'classnames';
 import Dropzone from 'react-dropzone';
 import Actions from './Actions';
 import { withFormik } from 'formik';
+import { API_END_POINT, UPLOAD_IMAGES } from '../../../constants/ApiUrl';
 
 import './dropzone.scss';
+import { HTTP_POST, UPLOAD_FETCH_HEADERS } from '../../../constants';
 
 export class ImagePreview extends Component {
   constructor(props) {
@@ -68,7 +70,18 @@ class Step2 extends Component {
 
   onNext($event) {
     $event.preventDefault();
-    this.props.onNext(this.props.values);
+    Promise.all(
+      this.state.acceptedFiles.map(attachment => {
+        const formData = new FormData();
+        formData.append('file', attachment);
+        return fetch(`${API_END_POINT}${UPLOAD_IMAGES}`, {
+          method: HTTP_POST,
+          headers: UPLOAD_FETCH_HEADERS,
+          body: formData
+        }).then(response => console.log(response));
+      })
+    );
+    this.props.onNext(Object.assign(this.props.values));
   }
 
   onPrevious($event) {
