@@ -7,7 +7,7 @@ import FlagsListSearchAndAdd from '../../components/FlagsListComponents/FlagsLis
 import FlagsTable from '../../components/FlagsListComponents/FlagsTable';
 import { createFilter } from 'react-search-input';
 import { PrimaryButton } from '../../components/Button';
-import { FlagCreator } from '../../components/FlagsListComponents/FlagCreator';
+import FlagCreator from '../../components/FlagsListComponents/FlagCreator';
 import * as actions from '../../actions/FlagsListActions/FlagsListActions';
 
 import sharedStyles from '../../styles/styles.module.css';

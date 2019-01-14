@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import css from './Step4.module.scss';
 import UserSelector from './UserSelector';
 import classnames from 'classnames';
-import { API_END_POINT, GET_STUDENTS } from '../../../constants/ApiUrl';
-import { HTTP_GET, DEFAULT_FETCH_HEADERS } from '../../../constants';
+import Actions from './Actions';
+
 export const SelectedUser = props => {
   return (
     <ul className={css.SelectedUser}>
@@ -24,19 +24,22 @@ class Step4 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedUsers: [],
-      students: null
+      selectedUsers: []
     };
     this.onSelect = this.onSelect.bind(this);
     this.onRemove = this.onRemove.bind(this);
-    this.onResponse = this.onResponse.bind(this);
+    this.onNext = this.onNext.bind(this);
+    this.onPrevious = this.onPrevious.bind(this);
+  }
 
-    fetch(`${API_END_POINT}${GET_STUDENTS}`, {
-      method: HTTP_GET,
-      headers: DEFAULT_FETCH_HEADERS
-    })
-      .then(response => response.json())
-      .then(this.onResponse);
+  onNext($event) {
+    $event.preventDefault();
+    this.props.onNext(this.state);
+  }
+
+  onPrevious($event) {
+    $event.preventDefault();
+    this.props.onPrevious(this.state);
   }
 
   onSelect($event, $user) {
@@ -53,11 +56,8 @@ class Step4 extends Component {
     }));
   }
 
-  onResponse($json) {
-    this.setState(state => (state.students = $json.data) && state);
-  }
-
   render() {
+    const { props } = this;
     return (
       <div
         className={classnames(
@@ -80,7 +80,12 @@ class Step4 extends Component {
         <UserSelector
           isSearching={true}
           onChange={this.onSelect}
-          users={this.state.students}
+          users={props.students}
+        />
+        <Actions
+          current={props.current}
+          onNext={this.onNext}
+          onPrevious={this.onPrevious}
         />
       </div>
     );

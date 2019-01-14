@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import css from './Step3.module.scss';
 import classnames from 'classnames';
 import UserSelector from './UserSelector';
-import { API_END_POINT, GET_STAFFS } from '../../../constants/ApiUrl';
-import { HTTP_GET, DEFAULT_FETCH_HEADERS } from '../../../constants';
+import Actions from './Actions';
+import { withFormik } from 'formik';
 
 class Step3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSearching: false,
-      staffs: []
+      isSearching: false
     };
 
     this.sid = React.createRef();
@@ -18,18 +17,8 @@ class Step3 extends Component {
 
     this.onFocus = this.onFocus.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onResponse = this.onResponse.bind(this);
-
-    fetch(`${API_END_POINT}${GET_STAFFS}`, {
-      method: HTTP_GET,
-      headers: DEFAULT_FETCH_HEADERS
-    })
-      .then(response => response.json())
-      .then(this.onResponse);
-  }
-
-  onResponse($json) {
-    this.setState(state => (state.staffs = $json.data) && state);
+    this.onNext = this.onNext.bind(this);
+    this.onPrevious = this.onPrevious.bind(this);
   }
 
   onFocus($event) {
@@ -37,16 +26,28 @@ class Step3 extends Component {
   }
 
   onChange($event, $user) {
-    this.sid.current.value = $user.id;
-    this.name.current.value = $user.name;
+    this.props.setFieldValue('assignee.sid', $user.id || '');
+    this.props.setFieldValue('assignee.name', $user.name || '');
     this.setState({
       isSearching: false
     });
   }
 
+  onNext($event) {
+    $event.preventDefault();
+    this.props.onNext(this.props.values);
+  }
+
+  onPrevious($event) {
+    $event.preventDefault();
+    this.props.onPrevious(this.props.values);
+  }
+
   render() {
+    const { props } = this;
+    const { values } = this.props;
     return (
-      <div
+      <form
         className={classnames(
           css.Step3,
           this.props.current !== 3 && css.Hidden
@@ -57,24 +58,36 @@ class Step3 extends Component {
             <label htmlFor="assignee">
               I know who can take care of this flag:
             </label>
-            <input ref={this.sid} type="hidden" name="sid" />
             <input
               ref={this.name}
               name="name"
               onFocus={this.onFocus}
               readOnly
+              value={values.assignee.name}
             />
             <i className="fas fa-angle-down" />
           </div>
           <UserSelector
             isSearching={this.state.isSearching}
             onChange={this.onChange}
-            users={this.state.staffs}
+            users={props.staffs}
           />
         </div>
-      </div>
+        <Actions
+          current={props.current}
+          onNext={this.onNext}
+          onPrevious={this.onPrevious}
+        />
+      </form>
     );
   }
 }
 
-export default Step3;
+export default withFormik({
+  mapPropsToValues: () => ({
+    assignee: {
+      sid: '',
+      name: ''
+    }
+  })
+})(Step3);

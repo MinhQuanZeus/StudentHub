@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import css from './Step2.module.scss';
 import classnames from 'classnames';
 import Dropzone from 'react-dropzone';
+import Actions from './Actions';
+import { withFormik } from 'formik';
+
 import './dropzone.scss';
 
 export class ImagePreview extends Component {
   constructor(props) {
     super(props);
     this.onLoad = this.onLoad.bind(this);
+
     this.state = {
       src: null
     };
@@ -58,7 +62,20 @@ class Step2 extends Component {
 
     this.onDrop = this.onDrop.bind(this);
     this.onRemove = this.onRemove.bind(this);
+    this.onNext = this.onNext.bind(this);
+    this.onPrevious = this.onPrevious.bind(this);
   }
+
+  onNext($event) {
+    $event.preventDefault();
+    this.props.onNext(this.props.values);
+  }
+
+  onPrevious($event) {
+    $event.preventDefault();
+    this.props.onPrevious(this.props.values);
+  }
+
   onDrop = (acceptedFiles, rejectedFiles) => {
     const nextState = this.state;
     acceptedFiles.forEach(img => {
@@ -78,8 +95,10 @@ class Step2 extends Component {
   }
 
   render() {
+    const { props, state } = this;
+    const { values, handleChange } = this.props;
     return (
-      <div
+      <form
         className={classnames(
           css.Step2,
           this.props.current !== 2 && css.Hidden
@@ -91,10 +110,12 @@ class Step2 extends Component {
             id="description"
             name="description"
             placeholder="Type the description about flag"
+            onChange={handleChange}
+            value={values.description}
           />
         </div>
         <div className={css.FormItem} style={{ marginBottom: 30 }}>
-          <label htmlFor="description">Attachment</label>
+          <label htmlFor="attachment">Attachment</label>
           <Dropzone onDrop={this.onDrop}>
             {({ getRootProps, getInputProps, isDragActive }) => {
               return (
@@ -117,17 +138,20 @@ class Step2 extends Component {
               );
             }}
           </Dropzone>
-          {/* <div style={{ display: 'flex', marginTop: 20 }}>
-            {this.state.previewUrls &&
-              this.state.previewUrls.map(img => (
-                <img src={img} alt="preview" width={102} height={102} />
-              ))}
-          </div> */}
-          <Preview files={this.state.acceptedFiles} onRemove={this.onRemove} />
+          <Preview files={state.acceptedFiles} onRemove={this.onRemove} />
         </div>
-      </div>
+        <Actions
+          current={props.current}
+          onPrevious={this.onPrevious}
+          onNext={this.onNext}
+        />
+      </form>
     );
   }
 }
 
-export default Step2;
+export default withFormik({
+  mapPropsToValues: () => ({
+    description: ''
+  })
+})(Step2);

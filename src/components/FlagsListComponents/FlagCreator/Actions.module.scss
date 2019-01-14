@@ -1,0 +1,13 @@
+.Actions {
+  text-align: right;
+  padding-bottom: 30px;
+
+  .Previous,
+  .Next {
+    width: 205px;
+    height: 30px;
+  }
+  .Previous {
+    margin-right: 30px;
+  }
+}

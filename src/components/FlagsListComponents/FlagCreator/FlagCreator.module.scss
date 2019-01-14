@@ -30,20 +30,8 @@
       right: -15px;
     }
   }
-  .Actions {
-    text-align: right;
-    padding: 0 30px 30px 30px;
 
-    .Previous,
-    .Next {
-      width: 205px;
-      height: 30px;
-    }
-    .Previous {
-      margin-right: 30px;
-    }
-  }
-  form {
+  .Body {
     padding-left: 30px;
     padding-right: 30px;
     display: flex;
