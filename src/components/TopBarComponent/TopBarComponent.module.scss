@@ -72,3 +72,31 @@
   float: right;
   margin: 30px 27px 0 0;
 }
+
+.UserInfo {
+  position: relative;
+  .Menu {
+    list-style: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #f0eff6;
+    display: block;
+
+    &.Hidden {
+      display: none;
+    }
+
+    li {
+      a {
+        display: block;
+        color: #8a85a6;
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+  }
+}

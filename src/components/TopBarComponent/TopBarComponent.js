@@ -1,59 +1,102 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/href-no-hash */
+import React, { Component } from 'react';
 import Link from 'react-router-dom/es/Link';
 
-import styles from './TopBarComponent.module.css';
+import css from './TopBarComponent.module.scss';
 import defaultAvatar from '../../images/img_avatar.png';
+import classnames from 'classnames';
+import { ACCESS_TOKEN } from '../../constants';
+import { history } from '../../helpers/history';
 
-export const TopBarComponent = props => {
-  let { user } = props;
+class UserInfo extends Component {
+  constructor(props) {
+    super(props);
+    this.onLogout = this.onLogout.bind(this);
+  }
 
-  const getAvatarSrc = () => {
-    if (
-      user.photo !== null &&
-      user.photo !== 'null' &&
-      user.photo !== undefined
-    ) {
-      return user.photo;
-    } else {
-      return defaultAvatar;
-    }
-  };
+  onLogout() {
+    localStorage.removeItem(ACCESS_TOKEN);
+    history.push({
+      pathname: '/login'
+    });
+  }
 
-  return (
-    <nav className={styles['top-bar-container']}>
-      <Link className={styles['top-bar-icon-link']} to="/">
-        <img src="images/shape.svg" className={styles['top-bar-icon']} alt="" />
-      </Link>
-      <h5 className={styles['top-bar-welcome-container']}>
-        <span className={styles['top-bar-welcome-text']}>Welcome</span>
-        &nbsp;
-        <span className={styles['top-bar-user-full-name']}>
-          {user.first_name + ' ' + user.last_name}
-        </span>
-      </h5>
-      <img
-        alt="chevron"
-        src="/images/chevron-down.svg"
-        className={styles['top-bar-chevron-down']}
-      />
-      <p className={styles['top-bar-username']}>
-        {user.first_name + ' ' + user.last_name}
-      </p>
-      <img
-        alt=""
-        className={styles['top-bar-avatar-sm']}
-        src={getAvatarSrc()}
-      />
-      <img
-        alt="comment"
-        src="/images/comment.svg"
-        className={styles['top-bar-comment']}
-      />
-      <img
-        alt="bell"
-        src="/images/bell.svg"
-        className={styles['top-bar-bell']}
-      />
-    </nav>
-  );
-};
+  render() {
+    const { props } = this;
+    return (
+      <div className={css.UserInfo} onClick={props.onShowMenu}>
+        <img
+          alt="chevron"
+          src="/images/chevron-down.svg"
+          className={css['top-bar-chevron-down']}
+        />
+        <p className={css['top-bar-username']}>
+          {props.user.first_name + ' ' + props.user.last_name}
+        </p>
+        <img
+          alt=""
+          className={css['top-bar-avatar-sm']}
+          src={props.user.photo || defaultAvatar}
+        />
+        {props.isOpenMenu ? (
+          <ul className={classnames(css.Menu)}>
+            <li onClick={this.onLogout}>
+              <a>Logout</a>
+            </li>
+          </ul>
+        ) : null}
+      </div>
+    );
+  }
+}
+
+export class TopBarComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpenMenu: false
+    };
+
+    this.onShowMenu = this.onShowMenu.bind(this);
+  }
+
+  onShowMenu() {
+    this.setState(state => ({
+      isOpenMenu: !state.isOpenMenu
+    }));
+  }
+
+  render() {
+    const { user } = this.props;
+    return (
+      <nav className={css['top-bar-container']}>
+        <Link className={css['top-bar-icon-link']} to="/">
+          <img src="images/shape.svg" className={css['top-bar-icon']} alt="" />
+        </Link>
+        <h5 className={css['top-bar-welcome-container']}>
+          <span className={css['top-bar-welcome-text']}>Welcome</span>
+          &nbsp;
+          <span className={css['top-bar-user-full-name']}>
+            {user.first_name + ' ' + user.last_name}
+          </span>
+        </h5>
+        <UserInfo
+          user={user}
+          isOpenMenu={this.state.isOpenMenu}
+          onShowMenu={this.onShowMenu}
+          onLogout={this.onLogout}
+        />
+        <img
+          alt="comment"
+          src="/images/comment.svg"
+          className={css['top-bar-comment']}
+        />
+        <img
+          alt="bell"
+          src="/images/bell.svg"
+          className={css['top-bar-bell']}
+        />
+      </nav>
+    );
+  }
+}
