@@ -45,7 +45,6 @@ FlagManagerDetailsContainer.contextType = AppContext;
 
 function mapStateToProps(state) {
   return {
-    login: state.login.loginInformation,
     flagsList: state.flagsList,
     flagDetails: state.flagDetails
   };

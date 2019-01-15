@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'react-router-dom/es/Link';
+import { Link } from '@reach/router';
 import styles from './NavBarComponent.module.scss';
 
 export const NavBarComponent = props => {

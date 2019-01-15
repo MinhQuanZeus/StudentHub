@@ -77,7 +77,6 @@ DegreeAuditContainer.contextType = AppContext;
 
 const mapStateToProps = state => {
   return {
-    loginInformation: state.login.loginInformation,
     academic_program: state.academicProgram.academic_program,
     degreeAudit: state.degreeAudit.degreeAudit
   };

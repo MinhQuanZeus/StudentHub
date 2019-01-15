@@ -31,8 +31,7 @@ SuccessTeamContainer.contextType = AppContext;
 const mapStateToProps = state => {
   return {
     loading: state.mentor.loading,
-    mentors: state.mentor.mentors,
-    loginInformation: state.login.loginInformation
+    mentors: state.mentor.mentors
   };
 };
 

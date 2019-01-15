@@ -1,24 +1,14 @@
-import React, { Component } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import { Redirect } from '@reach/router';
 import { getUser } from '../helpers';
 
 class AuthRoute extends Component {
   render() {
-    const { component, ...rest } = this.props;
-    return (
-      <Route
-        {...rest}
-        render={props =>
-          this.isAuthenticated() ? (
-            React.createElement(component, props)
-          ) : (
-            <Redirect
-              to={{ pathname: '/login', state: { from: props.location } }}
-            />
-          )
-        }
-      />
-    );
+    const { location } = this.props;
+    if (!this.isAuthenticated()) {
+      return <Redirect from={location.pathname} to="/login" noThrow />;
+    }
+    return <Fragment>{this.props.children}</Fragment>;
   }
 
   isAuthenticated = () => {

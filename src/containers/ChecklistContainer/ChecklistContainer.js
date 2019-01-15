@@ -247,8 +247,7 @@ ChecklistContainer.contextType = AppContext;
 
 const mapStateToProps = state => {
   return {
-    checkList: state.checkList,
-    loginInformation: state.login.loginInformation
+    checkList: state.checkList
   };
 };
 

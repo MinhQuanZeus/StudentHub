@@ -82,7 +82,8 @@ class Step2 extends Component {
         body: formData
       })
         .then($response => $response.json())
-        .then($json => this.onResponse($json.data));
+        .then($json => this.onResponse($json.data))
+        .catch($e => this.onResponse());
     } else {
       this.props.onNext(this.props.values);
     }

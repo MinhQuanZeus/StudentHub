@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/href-no-hash */
 import React, { Component } from 'react';
-import Link from 'react-router-dom/es/Link';
+import { Link } from '@reach/router';
 
 import css from './TopBarComponent.module.scss';
 import defaultAvatar from '../../images/img_avatar.png';
 import classnames from 'classnames';
 import { ACCESS_TOKEN } from '../../constants';
-import { history } from '../../helpers/history';
+import { navigate } from '@reach/router';
 
 class UserInfo extends Component {
   constructor(props) {
@@ -16,9 +16,7 @@ class UserInfo extends Component {
 
   onLogout() {
     localStorage.removeItem(ACCESS_TOKEN);
-    history.push({
-      pathname: '/login'
-    });
+    navigate('/login');
   }
 
   render() {

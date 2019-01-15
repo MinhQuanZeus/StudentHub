@@ -39,7 +39,7 @@ class FlagCreator extends Component {
     this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
     props.emit(SHOW_LOADING);
-    this.promise = Promise.all([
+    Promise.all([
       fetch(`${API_END_POINT}${GET_FLAG_CATEGORIES}`, {
         method: HTTP_GET,
         headers: DEFAULT_FETCH_HEADERS
@@ -69,14 +69,16 @@ class FlagCreator extends Component {
       return;
     }
     this.setState(state => ({
-      categories: $jsons[0].data.map(obj => {
-        const subs = obj.subs.map(sub => ({
-          id: sub.id,
-          name: sub.category_name,
-          parrentId: sub.parrent
-        }));
-        return { id: obj.id, name: obj.category_name, subs: subs };
-      }),
+      categories:
+        $jsons[0].data &&
+        $jsons[0].data.map(obj => {
+          const subs = obj.subs.map(sub => ({
+            id: sub.id,
+            name: sub.category_name,
+            parrentId: sub.parrent
+          }));
+          return { id: obj.id, name: obj.category_name, subs: subs };
+        }),
       staffs: $jsons[1].data,
       students: $jsons[2].data
     }));

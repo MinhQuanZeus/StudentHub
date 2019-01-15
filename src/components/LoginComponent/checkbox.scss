@@ -1,0 +1,57 @@
+.checkbox {
+  position: absolute; // take it out of document flow
+  opacity: 0; // hide it
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  & + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border: 2px solid #6647ff;
+    border-radius: 4px;
+  }
+
+  &:hover + label:before {
+    background: #fff;
+  }
+
+  &:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+
+  &:checked + label:before {
+    background: #fff;
+  }
+
+  &:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+
+  &:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+
+  &:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 5px;
+    background: white;
+    width: 8px;
+    height: 14px;
+    border-bottom: 2px solid #6647ff;
+    border-right: 2px solid #6647ff;
+    transform: rotate(45deg);
+  }
+}

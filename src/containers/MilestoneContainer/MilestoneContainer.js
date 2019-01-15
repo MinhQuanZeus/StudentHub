@@ -20,13 +20,14 @@ class MilestoneContainer extends Component {
   }
 
   componentWillMount() {
+    const { user } = this.context;
     if (
       this.props.academic_program !== undefined &&
       this.props.academic_program !== null &&
       this.props.academic_program.length !== 0
     ) {
       this.props.onFetchMilestone(
-        this.props.loginInformation.x_access_token,
+        user.x_access_token,
         this.props.academic_program[0].academic_program_id
       );
     }
@@ -76,7 +77,6 @@ MilestoneContainer.contextType = AppContext;
 
 const mapStateToProps = state => {
   return {
-    loginInformation: state.login.loginInformation,
     academic_program: state.academicProgram.academic_program,
     milestone: state.mileStone.milestone
   };

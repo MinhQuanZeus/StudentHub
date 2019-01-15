@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Link from 'react-router-dom/es/Link';
+import { Link } from '@reach/router';
 import { withEmit } from 'react-emit';
 import { apiConstants } from '../../constants/applicationConstants';
 import { DEFAULT_FETCH_HEADERS } from '../../constants';
@@ -10,38 +10,32 @@ import {
   HIDE_LOADING
 } from '../../constants';
 import { getUser } from '../../helpers';
-import { history } from '../../helpers/history';
+import { navigate } from '@reach/router';
+import css from './Login.module.scss';
+import './checkbox.scss';
+import { withFormik } from 'formik';
 
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uid: '',
-      pwd: '',
       passwordType: 'password'
     };
-    this.uid = React.createRef();
-    this.pwd = React.createRef();
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillMount() {
     if (getUser()) {
-      history.push({ pathname: '/my-profile' });
+      navigate('/my-profile');
     }
   }
 
   onSubmit($event) {
     $event.preventDefault();
     this.props.emit(SHOW_LOADING);
-    const uid = this.uid && this.uid.current && this.uid.current.value;
-    const pwd = this.pwd && this.pwd.current && this.pwd.current.value;
     fetch(apiConstants.BACKEND_URL + apiConstants.STUDENT_LOGIN_PATH, {
       method: HTTP_POST,
-      body: JSON.stringify({
-        email: uid,
-        password: pwd
-      }),
+      body: JSON.stringify(this.props.values),
       headers: DEFAULT_FETCH_HEADERS
     })
       .then(response => response.json())
@@ -51,9 +45,7 @@ class LoginComponent extends Component {
           json.data && json.data.x_access_token
         );
         this.props.emit(HIDE_LOADING);
-        history.push({
-          pathname: '/my-profile'
-        });
+        navigate('/my-profile');
       });
   }
 
@@ -68,103 +60,73 @@ class LoginComponent extends Component {
   };
 
   render() {
+    const { handleChange } = this.props;
+
     return (
-      <div className="container" onSubmit={this.props.submit}>
-        <div className="login-form-container">
-          <div className="inner-form-container">
-            <div className="success-hub-title">
-              <img src="images/shape.svg" className="Shape" alt="" />
-              <span className="success-brand">Success</span>
-              <span className="hub-brand">Hub</span>
-            </div>
-            <div className="login-form">
-              <form id="form_login" noValidate="novalidate">
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item border-0">
-                    <h2 className="card-title m-0">Welcome back!</h2>
-                  </li>
-                  <li className="list-group-item border-0">
-                    <div className="form-group">
-                      <label htmlFor="login_username">Username</label>
-                      <div className="input-group">
-                        <span className="input-group-addon">
-                          <i className="fa fa-user fa-2x" />
-                        </span>
-                        <input
-                          ref={this.uid}
-                          type="email"
-                          id="login_username"
-                          name="uid"
-                          className="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="login_password">Password</label>
-                      <div className="input-group">
-                        <span className="input-group-addon">
-                          <i className="fa fa-key fa-2x" />
-                        </span>
-                        <input
-                          ref={this.pwd}
-                          type={this.state.passwordType}
-                          id="login_password"
-                          name="pwd"
-                          className="form-control"
-                        />
-                        <span
-                          className="input-group-addon"
-                          onClick={this.togglePasswordVisibility}
-                        >
-                          <i
-                            className="fa fa-eye"
-                            style={{ fontSize: '23px' }}
-                          />
-                        </span>
-                      </div>
-                    </div>
-                    <label className="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        id="login_remember"
-                        className="custom-control-input"
-                      />
-                      <span className="custom-control-indicator" />
-                      <span className="custom-control-description">
-                        Keep me logged in
-                      </span>
-                    </label>
-                  </li>
-                  {/* <li className="list-group-item border-0">{loginMessage}</li> */}
-                  <li className="list-group-item border-0">
-                    <button
-                      type="submit"
-                      className="btn btn-primary login-btn"
-                      onClick={this.onSubmit}
-                    >
-                      Login
-                    </button>
-                  </li>
-                </ul>
-              </form>
-              <div>
-                <Link to="/forgot-password?step=1">
-                  <p className="forgot-password-paragraph">Forgot Password ?</p>
-                </Link>
-              </div>
-            </div>
+      <div className={css.Login} onSubmit={this.props.submit}>
+        <img
+          className={css.SuccessHub}
+          src="/images/success-hub-logo.svg"
+          alt="SuccessHub"
+        />
+        <img
+          src="images/illustration.svg"
+          className={css.Illustration}
+          alt="Illustration"
+        />
+        <h2 className={css.WelcomeBack}>Welcome Back!</h2>
+        <form noValidate="novalidate">
+          <label htmlFor="email" style={{ marginTop: 38 }}>
+            username
+          </label>
+          <div className={css.Email}>
+            <img src="/images/username.svg" alt="mask" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className="form-control"
+              onChange={handleChange}
+            />
           </div>
-        </div>
-        <div className="login-image-container">
-          <img
-            src="images/login-illustration.svg"
-            className="Illustration"
-            alt=""
-          />
+          <label htmlFor="password" style={{ marginTop: 24 }}>
+            password
+          </label>
+          <div className={css.Password}>
+            <img src="/images/password.svg" alt="password" />
+            <input
+              type={this.state.passwordType}
+              id="password"
+              name="password"
+              className="form-control"
+              onChange={handleChange}
+            />
+            <img
+              src="/images/visibility.svg"
+              alt="visibility"
+              onClick={this.togglePasswordVisibility}
+            />
+          </div>
+          <div className={css.Remember}>
+            <input className="checkbox" id="remember" type="checkbox" />
+            <label htmlFor="remember">Keep me logged in</label>
+          </div>
+          <button type="submit" onClick={this.onSubmit}>
+            Login
+          </button>
+        </form>
+
+        <div className={css.ForgotPassword}>
+          <Link to="/forgot-password?step=1">Forgot Password?</Link>
         </div>
       </div>
     );
   }
 }
 
-export default withEmit(LoginComponent);
+export default withFormik({
+  mapPropsToValues: () => ({
+    email: '',
+    password: ''
+  })
+})(withEmit(LoginComponent));
