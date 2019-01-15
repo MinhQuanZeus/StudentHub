@@ -66,22 +66,30 @@ class Step2 extends Component {
     this.onRemove = this.onRemove.bind(this);
     this.onNext = this.onNext.bind(this);
     this.onPrevious = this.onPrevious.bind(this);
+    this.onResponse = this.onResponse.bind(this);
   }
 
   onNext($event) {
     $event.preventDefault();
-    Promise.all(
-      this.state.acceptedFiles.map(attachment => {
-        const formData = new FormData();
-        formData.append('file', attachment);
-        return fetch(`${API_END_POINT}${UPLOAD_IMAGES}`, {
-          method: HTTP_POST,
-          headers: UPLOAD_FETCH_HEADERS,
-          body: formData
-        }).then(response => console.log(response));
+    const formData = new FormData();
+    if (this.state.acceptedFiles) {
+      this.state.acceptedFiles.forEach(attachment => {
+        formData.append('images', attachment);
+      });
+      fetch(`${API_END_POINT}${UPLOAD_IMAGES}`, {
+        method: HTTP_POST,
+        headers: UPLOAD_FETCH_HEADERS,
+        body: formData
       })
-    );
-    this.props.onNext(Object.assign(this.props.values));
+        .then($response => $response.json())
+        .then($json => this.onResponse($json.data));
+    } else {
+      this.props.onNext(this.props.values);
+    }
+  }
+
+  onResponse($images) {
+    this.props.onNext(Object.assign(this.props.values, { docs: $images }));
   }
 
   onPrevious($event) {
