@@ -7,7 +7,8 @@ import { withFormik } from 'formik';
 import { API_END_POINT, UPLOAD_IMAGES } from '../../../constants/ApiUrl';
 
 import './dropzone.scss';
-import { HTTP_POST, UPLOAD_FETCH_HEADERS } from '../../../constants';
+import { HTTP_POST } from '../../../constants';
+import { AppContext } from '../../../containers/AppContext';
 
 export class ImagePreview extends Component {
   constructor(props) {
@@ -78,7 +79,9 @@ class Step2 extends Component {
       });
       fetch(`${API_END_POINT}${UPLOAD_IMAGES}`, {
         method: HTTP_POST,
-        headers: UPLOAD_FETCH_HEADERS,
+        headers: {
+          'X-Access-Token': this.context.accessToken
+        },
         body: formData
       })
         .then($response => $response.json())
@@ -171,6 +174,8 @@ class Step2 extends Component {
     );
   }
 }
+
+Step2.contextType = AppContext;
 
 export default withFormik({
   mapPropsToValues: () => ({

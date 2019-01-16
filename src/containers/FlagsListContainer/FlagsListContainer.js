@@ -13,6 +13,7 @@ import * as actions from '../../actions/FlagsListActions/FlagsListActions';
 import sharedStyles from '../../styles/styles.module.css';
 import styles from './FlagsListContainer.module.css';
 import { AppContext } from '../AppContext';
+
 const KEYS_TO_FILTERS = [
   'id',
   'created_by',
@@ -120,7 +121,7 @@ class FlagsListContainer extends Component {
   };
 
   viewFlagDetails = flagId => {
-    this.props.history.push(`/flags/${flagId}`);
+    this.props.navigate(`/flags/${flagId}`);
   };
 
   handleOpenModal = flag => {
@@ -184,12 +185,12 @@ class FlagsListContainer extends Component {
     if (flagsList.loading || sentFlags.loading || publicFlags.loading) {
       return null;
     }
-
     return (
       <section className={sharedStyles['content-container']}>
         <FlagCreator
           isOpen={this.state.creator.isOpen}
           onRequestClose={this.closeCreator}
+          context={this.context}
         />
         <HeaderComponent labels={['Flag Manager']}>
           <span
@@ -229,6 +230,7 @@ class FlagsListContainer extends Component {
   }
 }
 FlagsListContainer.contextType = AppContext;
+
 function mapStateToProps(state) {
   return {
     flagsList: state.flagsList.flagsList,

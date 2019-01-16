@@ -141,7 +141,7 @@ export default withFormik({
     subject: '',
     category: '',
     sub_category: '',
-    severity: '',
+    severity: 'LOW',
     is_public: ''
   })
 })(Step1);

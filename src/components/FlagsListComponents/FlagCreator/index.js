@@ -15,12 +15,13 @@ import {
 } from '../../../constants/ApiUrl';
 import {
   HTTP_GET,
-  DEFAULT_FETCH_HEADERS,
   SHOW_LOADING,
   HIDE_LOADING,
-  HTTP_POST
+  HTTP_POST,
+  JSON_CONTENT_TYPE
 } from '../../../constants';
 import { withEmit } from 'react-emit';
+import { AppContext } from '../../../containers/AppContext';
 
 class FlagCreator extends Component {
   constructor(props) {
@@ -39,18 +40,29 @@ class FlagCreator extends Component {
     this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
     props.emit(SHOW_LOADING);
+    console.log(this.context);
+    console.log(this.props.context);
     Promise.all([
       fetch(`${API_END_POINT}${GET_FLAG_CATEGORIES}`, {
         method: HTTP_GET,
-        headers: DEFAULT_FETCH_HEADERS
+        headers: {
+          'Content-Type': JSON_CONTENT_TYPE,
+          'X-Access-Token': this.props.context.accessToken
+        }
       }).then(response => response.json()),
       fetch(`${API_END_POINT}${GET_STAFFS}`, {
         method: HTTP_GET,
-        headers: DEFAULT_FETCH_HEADERS
+        headers: {
+          'Content-Type': JSON_CONTENT_TYPE,
+          'X-Access-Token': this.props.context.accessToken
+        }
       }).then(response => response.json()),
       fetch(`${API_END_POINT}${GET_STUDENTS}`, {
         method: HTTP_GET,
-        headers: DEFAULT_FETCH_HEADERS
+        headers: {
+          'Content-Type': JSON_CONTENT_TYPE,
+          'X-Access-Token': this.props.context.accessToken
+        }
       }).then(response => response.json())
     ]).then(this.onReponse);
   }
@@ -98,7 +110,10 @@ class FlagCreator extends Component {
       fetch(`${API_END_POINT}${CREATE_NEW_FLAG}`, {
         method: HTTP_POST,
         body: JSON.stringify(this.data),
-        headers: DEFAULT_FETCH_HEADERS
+        headers: {
+          'Content-Type': JSON_CONTENT_TYPE,
+          'X-Access-Token': this.context.accessToken
+        }
       })
         .then(response => response.json())
         .then(this.onSuccess)
@@ -181,5 +196,7 @@ class FlagCreator extends Component {
     );
   }
 }
+
+FlagCreator.contextType = AppContext;
 
 export default withEmit(FlagCreator);

@@ -13,11 +13,7 @@ class AuthRoute extends Component {
 
   isAuthenticated = () => {
     const user = getUser();
-    if (!user) {
-      return false;
-    }
-    const unixTime = Math.floor(new Date().getTime() / 1000);
-    return user.exp > unixTime;
+    return !!user;
   };
 }
 

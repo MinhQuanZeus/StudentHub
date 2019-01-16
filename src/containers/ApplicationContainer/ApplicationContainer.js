@@ -3,7 +3,6 @@ import TopBarContainer from '../TopBarContainer/TopBarContainer';
 import NavBarContainer from '../NavBarContainer/NavBarContainer';
 import NotificationContainer from '../NotificationContainer/NotificationContainer';
 import { AppContext } from '../AppContext';
-// import { history } from '../../helpers/history';
 import { getUser, getAccessToken } from '../../helpers';
 import { Redirect, navigate } from '@reach/router';
 
@@ -18,6 +17,7 @@ class ApplicationContainer extends Component {
     }
     user.student.x_access_token = accessToken;
     this.user = user.student;
+    this.accessToken = accessToken;
   }
 
   render() {
@@ -39,7 +39,9 @@ class ApplicationContainer extends Component {
       notification = null;
     }
     return (
-      <AppContext.Provider value={{ user: this.user }}>
+      <AppContext.Provider
+        value={{ user: this.user, accessToken: this.accessToken }}
+      >
         <TopBarContainer />
         <NavBarContainer />
         {this.props.children}

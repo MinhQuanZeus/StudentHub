@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import { withEmit } from 'react-emit';
 import { apiConstants } from '../../constants/applicationConstants';
-import { DEFAULT_FETCH_HEADERS } from '../../constants';
+import { JSON_CONTENT_TYPE } from '../../constants';
 import {
   ACCESS_TOKEN,
   HTTP_POST,
@@ -26,7 +26,7 @@ class LoginComponent extends Component {
 
   componentWillMount() {
     if (getUser()) {
-      navigate('/my-profile');
+      navigate('/my-profile', { replace: true });
     }
   }
 
@@ -36,7 +36,9 @@ class LoginComponent extends Component {
     fetch(apiConstants.BACKEND_URL + apiConstants.STUDENT_LOGIN_PATH, {
       method: HTTP_POST,
       body: JSON.stringify(this.props.values),
-      headers: DEFAULT_FETCH_HEADERS
+      headers: {
+        'Content-Type': JSON_CONTENT_TYPE
+      }
     })
       .then(response => response.json())
       .then(json => {
@@ -45,7 +47,7 @@ class LoginComponent extends Component {
           json.data && json.data.x_access_token
         );
         this.props.emit(HIDE_LOADING);
-        navigate('/my-profile');
+        navigate('/my-profile', { replace: true });
       });
   }
 

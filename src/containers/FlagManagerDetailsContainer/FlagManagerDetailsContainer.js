@@ -14,8 +14,8 @@ class FlagManagerDetailsContainer extends Component {
 
   componentDidMount() {
     const token = this.context.user.x_access_token;
-    const flagId = this.props.match.params.id;
-    this.props.getFlagDetails(token, flagId);
+    const { id } = this.props;
+    this.props.getFlagDetails(token, id);
   }
 
   render() {
