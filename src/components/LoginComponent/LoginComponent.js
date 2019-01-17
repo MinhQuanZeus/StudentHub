@@ -22,6 +22,11 @@ class LoginComponent extends Component {
       passwordType: 'password'
     };
     this.onSubmit = this.onSubmit.bind(this);
+    if (window.screen.width >= 1200) {
+      this.illustration = '/images/illustration.svg';
+    } else {
+      this.illustration = '/images/illustration_tablet.svg';
+    }
   }
 
   componentWillMount() {
@@ -72,7 +77,7 @@ class LoginComponent extends Component {
           alt="SuccessHub"
         />
         <img
-          src="images/illustration.svg"
+          src={this.illustration}
           className={css.Illustration}
           alt="Illustration"
         />

@@ -1,0 +1,57 @@
+.H1 {
+  font-size: 32px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.H2 {
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #717171;
+}
+
+@media only screen and (min-width: 1200px) {
+  .SuccessHub {
+    display: block;
+    margin-left: 95px;
+  }
+  .H1 {
+    margin: 108px 0 0 0;
+  }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1199px) {
+  .SuccessHub {
+    display: block;
+    margin: 0 auto;
+  }
+  .H1 {
+    font-size: 24px;
+    margin: 108px 0 0 0;
+  }
+  .H2 {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .SuccessHub {
+    display: block;
+    margin: 0 auto;
+  }
+  .H1 {
+    margin: 377px 0 0 0;
+    font-size: 24px;
+    text-align: center;
+  }
+  .H2 {
+    font-size: 14px;
+    text-align: center;
+  }
+}

@@ -3,6 +3,8 @@ import { Link } from '@reach/router';
 
 import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
 import { applicationMessages } from '../../constants/applicationConstants';
+import { SuccessHub, H1, H2 } from './';
+import css from './Step1.module.scss';
 
 export const ForgotPasswordStep1Component = props => {
   let forgotPasswordStatus = props.forgotPasswordStatus;
@@ -22,65 +24,39 @@ export const ForgotPasswordStep1Component = props => {
   }
 
   return (
-    <div className="container" onSubmit={props.submit}>
-      <div className="login-form-container">
-        <div className="inner-form-container">
-          <div className="success-hub-title">
-            <img src="images/shape.svg" className="Shape" alt="" />
-            <span className="success-brand">Success</span>
-            <span className="hub-brand">Hub</span>
-          </div>
-          <div className="login-form">
-            <form id="form_login" noValidate="novalidate">
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item border-0">
-                  <h2 className="card-title m-0">Forgot your password?</h2>
-                  <p className="card-title m-0">
-                    Don't worry! We will help you reset your password
-                  </p>
-                </li>
-                <li className="list-group-item border-0">
-                  <div className="form-group">
-                    <label htmlFor="login_username">Username</label>
-                    <div className="input-group">
-                      <span className="input-group-addon">
-                        <i className="fa fa-user fa-2x" />
-                      </span>
-                      <input
-                        type="email"
-                        id="login_username"
-                        name="login_username"
-                        className="form-control"
-                        onChange={props.changeEmail}
-                      />
-                    </div>
-                  </div>
-                </li>
-                <li className="list-group-item border-0">{message}</li>
-                <li className="list-group-item border-0">
-                  <button type="submit" className="btn btn-primary login-btn">
-                    Next
-                  </button>
-                </li>
-              </ul>
-            </form>
-            <div>
-              <Link to="/login">
-                <p className="forgot-password-paragraph">
-                  Remember your password ? <span> Login here</span>
-                </p>
-              </Link>
-            </div>
-          </div>
+    <div className={css.Step1}>
+      <SuccessHub />
+      <img
+        src="images/forgot-password-illustration.svg"
+        className={css.Illustration}
+        alt="Illustration"
+      />
+      <H1>Forgot your password?</H1>
+      <H2>Don't worry! We will help you reset your password</H2>
+
+      <form noValidate="novalidate">
+        <label htmlFor="email" style={{ marginTop: 38 }}>
+          username
+        </label>
+        <div className={css.Email}>
+          <img src="/images/username.svg" alt="mask" />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className="form-control"
+            onChange={props.changeEmail}
+          />
         </div>
-      </div>
-      <div className="login-image-container">
-        <img
-          src="images/forgot-password-illustration.svg"
-          className="Illustration"
-          alt=""
-        />
-      </div>
+        <button type="submit" onClick={props.submit}>
+          Next
+        </button>
+        <div className={css.Login}>
+          <p>
+            Remember your password? <Link to="/login">Login here</Link>
+          </p>
+        </div>
+      </form>
     </div>
   );
 };
