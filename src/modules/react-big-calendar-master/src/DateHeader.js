@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import './testCSS.css'
+import './customStyles.css'
 
 const DateHeader = ({ label, drilldownView, onDrillDown }) => {
   if (!drilldownView) {
@@ -8,9 +8,9 @@ const DateHeader = ({ label, drilldownView, onDrillDown }) => {
   }
 
   return (
-    <a href="#" onClick={onDrillDown} className='cell-number'>
+    <p className='cell-number'>
       {label}
-    </a>
+    </p>
   )
 }
 

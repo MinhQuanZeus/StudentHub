@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import cn from 'classnames'
 import dates from './utils/dates'
-import './testCSS.css'
+import './customStyles.css'
 
 let propTypes = {
   event: PropTypes.object.isRequired,

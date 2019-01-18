@@ -75,7 +75,7 @@
     font-size: 90%;
     min-height: 0;
     border-bottom: 1px solid #DDD;
-
+    background: white;
   }
   .rbc-header + .rbc-header {
     border-left: 1px solid #DDD;
@@ -105,9 +105,7 @@
     -webkit-user-select: none;
     z-index: 4;
   }
-  .rbc-today {
-    
-  }
+
   .rbc-toolbar {
     margin: 0 0 24px 0;
     width: 1108px;
@@ -137,25 +135,19 @@
     font-weight: 900px;
     padding: 19px 0 0 15px;
     position: absolute;
+    margin-top: -20px;
 }
   
   
   .rbc-event {
-    border-left: 4px solid #6b6396;
     border-top: none;
     border-right: none;
     border-bottom: none;
     box-shadow: none;
-    margin: 0;
-    padding: 2px 5px;
-    background-color: #8a85a6;
-    margin-left: 19px;
-    margin-right: 19px;
-    margin-top: 5px;
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
-    width: 131px;
+    width: 100%;
     text-align: left;
   }
   .rbc-slot-selecting .rbc-event {
@@ -197,10 +189,11 @@
     -webkit-flex-direction: row;
         -ms-flex-direction: row;
             flex-direction: row;
+            margin-top: 20px;
   }
   .rbc-row-segment {
     padding: 0 1px 1px 1px;
-    margin-top: 47px;
+    
   }
   .rbc-selected-cell {
     background-color: rgba(0, 0, 0, 0.1);
@@ -291,9 +284,11 @@
     -webkit-flex: 1 0 0%;
         -ms-flex: 1 0 0%;
             flex: 1 0 0%;
+            background: white;
   }
   .rbc-day-bg + .rbc-day-bg {
     border-left: 1px solid #DDD;
+    
   }
   .rbc-rtl .rbc-day-bg + .rbc-day-bg {
     border-left-width: 0;
@@ -644,4 +639,33 @@
     pointer-events: none;
   }
   
+
+  .category-meeting {
+    border-left: 4px solid #e04b4b;
+    background-color: #ff6e6e;
+  }
+
+  .category-classes {
+    border-left: 4px solid #6b6396;
+    background-color: #8a85a6;
+  }
+
+  .category-program-event {
+    border-left: 4px solid #d48f19;
+    background-color: #eaa328;
+  }
+
+  .category-school-event {
+    border-left: 4px solid #3b290a;
+    background-color: #7c5615;
+  }
+
+  .category-checklist {
+    border-left: 4px solid #23c17f;
+    background-color: #2ed891;
+  }
   
+  .rbc-today {
+    background-color: #c1b5ff;
+    border-radius: 20px;
+  }

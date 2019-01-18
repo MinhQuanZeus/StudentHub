@@ -10,7 +10,7 @@ import BackgroundCells from './BackgroundCells'
 import EventRow from './EventRow'
 import EventEndingRow from './EventEndingRow'
 import * as DateSlotMetrics from './utils/DateSlotMetrics'
-import './testCSS.css'
+import './customStyles.css'
 
 const propTypes = {
   date: PropTypes.instanceOf(Date),

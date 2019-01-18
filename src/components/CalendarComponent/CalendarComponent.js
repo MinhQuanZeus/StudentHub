@@ -1,7 +1,7 @@
 import React from 'react';
 import BigCalendar from '../../modules/react-big-calendar-master/src'
 import moment from 'moment'
-import styles from '../CalendarComponent/CalendarComponent.css'
+import  '../CalendarComponent/CalendarComponent.css'
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -9,14 +9,28 @@ const localizer = BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
 
 
 let myEventsList = [
-    { 'title': 'All Day Event',
+    { 'title': 'Sample Title 2',
     'allDay': false,
     'start': new Date(2019, 0, 21, 8),
-    'end': new Date(2019, 0, 21, 9)}
+    'end': new Date(2019, 0, 21, 9),
+    'category': 'classes'},
+
+    { 'title': 'Sample Title 1',
+    'allDay': false,
+    'start': new Date(2019, 0, 14, 8),
+    'end': new Date(2019, 0, 14, 9),
+    'category': 'program-event'},
+
+    { 'title': 'Sample Title 3',
+    'allDay': false,
+    'start': new Date(2019, 0, 21, 8),
+    'end': new Date(2019, 0, 24, 9),
+    'category': 'meeting'}
 ]
 
 export const CalendarComponent = (props) => {
     return (
+      <div className='background'>
         <div className='container'>
           <div className='section-sidebar'>
           <h2>Calendar</h2>
@@ -40,11 +54,15 @@ export const CalendarComponent = (props) => {
             <div className='calendar-container'>
               <BigCalendar
                 localizer={localizer}
+                eventPropGetter={event => ({className: 'category-' + event.category})}
                 events={myEventsList}
+                views={['month']}
                 startAccessor='start'
                 endAccessor='end'
+                defaultDate={new Date()}
               />
             </div>
         </div>
+      </div>
     )
 };

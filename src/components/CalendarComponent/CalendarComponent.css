@@ -1,25 +1,42 @@
+
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f9f9f9;
+    z-index: 3;
+    height: 1200px;
+}
+
 .container {
     position: absolute;
-    margin: 0 0 0 0;
-    height: 880px;
+    right: 0;
+    left: 0;
+    min-width: 1000px;
+    
+    margin-left: 65px;
+    margin-top: 90px;
+}
+
+.section-sidebar {
+    position: absolute;
+    width: 192px;
+    left: 0;
+    
+    padding-left: 31px;
+    padding-top: 15px;
 }
 
 .calendar-container {
-    
+    margin: auto;
     display: inline;
     
-
-}
-
-
-
-.section-sidebar {
-    position: relative;
-    width: 192px;
-    display: inline;
-    float: left;
-    padding-left: 31px;
-    padding-top: 15px;
+    position: absolute;
+    width: 1108px;
+    height: 1000px;
+    left: 190px;
 }
 
 .section-sidebar h2 {
@@ -30,6 +47,7 @@
 }
 
 .create-event-btn {
+    display: none;
     width: 128px;
     height: 30px;
     background-color: #6647ff;

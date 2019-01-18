@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 import cn from 'classnames'
-import './testCSS.css'
+import './customStyles.css'
 
 import dates from './utils/dates'
 import chunk from 'lodash/chunk'

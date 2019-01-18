@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import cn from 'classnames'
 import { navigate } from './utils/constants'
-import './testCSS.css'
+import './customStyles.css'
 
 class Toolbar extends React.Component {
   static propTypes = {
