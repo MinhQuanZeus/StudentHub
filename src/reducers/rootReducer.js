@@ -8,6 +8,7 @@ import academicProgramReducer from './AcademicProgramReducer/AcademicProgramRedu
 import checkListReducer from './CheckListReducer/CheckListReducer';
 import flagsListReducer from './FlagsListReducer/flagsListReducer';
 import flagDetailsReducer from './FlagDetailsReducer/flagDetailsReducer';
+import calendarReducer from './CalendarReducer/CalendarReducer';
 
 const reducers = {
   forgotPassword: forgotPasswordReducer,
@@ -18,7 +19,8 @@ const reducers = {
   academicProgram: academicProgramReducer,
   checkList: checkListReducer,
   flagsList: flagsListReducer,
-  flagDetails: flagDetailsReducer
+  flagDetails: flagDetailsReducer,
+  calendarData: calendarReducer
 };
 
 export default combineReducers(reducers);

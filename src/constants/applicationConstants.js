@@ -15,7 +15,8 @@ export const apiConstants = {
   STUDENT_FLAGS_LIST: 'student/relative_flags',
   STUDENT_SENT_FLAGS: 'student/flag',
   STUDENT_PUBLIC_FLAGS: 'student/flag/public',
-  STUDENT_FLAG_DETAILS: 'student/flag/detail/'
+  STUDENT_FLAG_DETAILS: 'student/flag/detail/',
+  STUDENT_CALENDAR: 'student/check_list/range_time?'
 };
 
 export const applicationStatusCode = {

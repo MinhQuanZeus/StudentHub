@@ -7,27 +7,6 @@ import  '../CalendarComponent/CalendarComponent.css'
 // to the correct localizer.
 const localizer = BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
 
-
-let myEventsList = [
-    { 'title': 'Sample Title 2',
-    'allDay': false,
-    'start': new Date(2019, 0, 21, 8),
-    'end': new Date(2019, 0, 21, 9),
-    'category': 'classes'},
-
-    { 'title': 'Sample Title 1',
-    'allDay': false,
-    'start': new Date(2019, 0, 14, 8),
-    'end': new Date(2019, 0, 14, 9),
-    'category': 'program-event'},
-
-    { 'title': 'Sample Title 3',
-    'allDay': false,
-    'start': new Date(2019, 0, 21, 8),
-    'end': new Date(2019, 0, 24, 9),
-    'category': 'meeting'}
-]
-
 export const CalendarComponent = (props) => {
     return (
       <div className='background'>
@@ -55,10 +34,11 @@ export const CalendarComponent = (props) => {
               <BigCalendar
                 localizer={localizer}
                 eventPropGetter={event => ({className: 'category-' + event.category})}
-                events={myEventsList}
+                events={props.calendarData}
                 views={['month']}
                 startAccessor='start'
                 endAccessor='end'
+                onNavigate={props.onDateChanged}
                 defaultDate={new Date()}
               />
             </div>
