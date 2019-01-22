@@ -26,9 +26,13 @@ class CalendarContainer extends Component {
           allDay: false,
           start: null,
           end: null,
-          category: ""
+          category: "",
+          calendarCategory: "",
         }]
-      : calendarData.calendarData;
+      : calendarData.calendarData.map((data) => {
+        data['calendarCategory'] = 'checklist';
+        return data;
+      });
   }
 
   onDateChanged(newDate) {

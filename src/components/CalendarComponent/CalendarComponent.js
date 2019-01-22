@@ -33,7 +33,7 @@ export const CalendarComponent = (props) => {
             <div className='calendar-container'>
               <BigCalendar
                 localizer={localizer}
-                eventPropGetter={event => ({className: 'category-' + event.category})}
+                eventPropGetter={event => ({className: 'category-' + event.calendarCategory})}
                 events={props.calendarData}
                 views={['month']}
                 startAccessor='start'
