@@ -26,7 +26,7 @@ var param = {
           "reInitSessionAttributesOnRestart": false
         },
          "ui": {
-          "toolbarColor": "light-royal-blue",
+          "toolbarColor": "red",
           "parentOrigin": "http://54.219.128.159:3000",
           "toolbarTitle": "Cody",
           "toolbarLogo": "",
