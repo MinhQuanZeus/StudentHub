@@ -1,11 +1,43 @@
 import React from 'react';
 import BigCalendar from '../../modules/react-big-calendar-master/src'
 import moment from 'moment'
-import  '../CalendarComponent/CalendarComponent.css'
+import  '../CalendarComponents/CalendarComponent.css'
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
 const localizer = BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
+
+
+let myEventsList = [
+  { 'title': 'Sample Title 2',
+    'allDay': false,
+    'start': new Date(2018, 11, 31, 8),
+    'end': new Date(2018, 11, 31, 9),
+    'category': 'classes'},
+    { 'title': 'Sample Title 2',
+    'allDay': false,
+    'start': new Date(2019, 0, 21, 8),
+    'end': new Date(2019, 0, 21, 9),
+    'category': 'classes'},
+
+    { 'title': 'Sample Title 1',
+    'allDay': false,
+    'start': new Date(2019, 0, 14, 8),
+    'end': new Date(2019, 0, 14, 9),
+    'category': 'program-event'},
+
+    { 'title': 'Sample Title 3',
+    'allDay': false,
+    'start': new Date(2019, 0, 21, 8),
+    'end': new Date(2019, 0, 24, 9),
+    'category': 'meeting'}
+]
+
+let date= new Date();
+let TestDate = moment(date).startOf('month')
+let firstDate =TestDate._d
+
+
 
 export const CalendarComponent = (props) => {
     return (
@@ -38,7 +70,6 @@ export const CalendarComponent = (props) => {
                 views={['month']}
                 startAccessor='start'
                 endAccessor='end'
-                onNavigate={props.onDateChanged}
                 defaultDate={new Date()}
               />
             </div>

@@ -155,7 +155,7 @@
     pointer-events: none;
   }
   .rbc-event.rbc-selected {
-    background-color: #265985;
+    border: 3px solid green;
   }
   .rbc-event:focus {
     outline: 5px auto #3b99fc;

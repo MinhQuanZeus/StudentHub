@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { CalendarComponent } from "../../components/CalendarComponent/CalendarComponent";
+import { CalendarComponent } from "../../components/CalendarComponents/CalendarComponent";
 import { onFetchCalendarData } from "../../actions/CalendarActions/CalendarActions";
 import connect from "react-redux/es/connect/connect";
 import sharedStyles from "../../styles/styles.module.css";
 import { AppContext } from "../AppContext";
+import CalendarPopup from '../../components/CalendarComponents/CalendarPopup'
 
 class CalendarContainer extends Component {
   componentWillMount() {
@@ -20,7 +21,7 @@ class CalendarContainer extends Component {
   }
 
   getCalendarData(calendarData) {
-    return calendarData.calendarData.length == 0
+    return calendarData.calendarData.length === 0
       ? [{
           title: "",
           allDay: false,
@@ -50,6 +51,7 @@ class CalendarContainer extends Component {
       <div className={sharedStyles[""]}>
         <CalendarComponent calendarData={calendarData} 
         onDateChanged={(newDate) => this.onDateChanged(newDate)}/>
+        <CalendarPopup/>
       </div>
     );
   }
