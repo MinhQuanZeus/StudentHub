@@ -27,11 +27,6 @@ var param = {
         },
          "ui": {
           "toolbarColor": "purple",
-          "contentColor" : "purple",
-          "rowColor" : "purple",
-          "layoutColor" : "purple",
-          "messageColor" : "purple",
-          "flexColor" : "purple",
           "parentOrigin": "http://54.219.128.159:3000",
           "toolbarTitle": "Cody",
           "toolbarLogo": "",
