@@ -6,7 +6,7 @@ import { applicationMessages } from '../../constants/applicationConstants';
 import css from './Step1.module.scss';
 import { SuccessHub, H1, H2 } from './';
 
-export const ForgotPasswordStep2Component = props => {
+export const ForgotPasswordStep2Component = (props) => {
   let forgotPasswordStatus = props.forgotPasswordStatus;
 
   let message;
@@ -26,11 +26,7 @@ export const ForgotPasswordStep2Component = props => {
   return (
     <div className={css.Step1}>
       <SuccessHub />
-      <img
-        src="images/forgot-password-illustration.svg"
-        className={css.Illustration}
-        alt="Illustration"
-      />
+      <img src="images/forgot-password-illustration.svg" className={css.Illustration} alt="Illustration" />
       <H1>Verify your email</H1>
       <H2>Help is on the way!</H2>
       <form noValidate="novalidate">
@@ -39,13 +35,7 @@ export const ForgotPasswordStep2Component = props => {
         </label>
         <div className={css.Email}>
           <img src="/images/username.svg" alt="mask" />
-          <input
-            type="code"
-            id="code"
-            name="code"
-            className="form-control"
-            onChange={props.changeVerifyCode}
-          />
+          <input type="code" id="code" name="code" className="form-control" onChange={props.changeVerifyCode} />
         </div>
         <button type="submit" onClick={props.submit}>
           Next

@@ -48,6 +48,7 @@ export const ForgotPasswordStep1Component = props => {
             onChange={props.changeEmail}
           />
         </div>
+        {message}
         <button type="submit" onClick={props.submit}>
           Next
         </button>

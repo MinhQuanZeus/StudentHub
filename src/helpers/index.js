@@ -8,10 +8,16 @@ export function getAccessToken() {
 
 export function getUser() {
   const accessToken = getAccessToken();
-  const json = accessToken && jwt(accessToken);
-  if (json && json.exp < new Date().getTime() / 1000) {
+
+  try {
+    const json = accessToken && jwt(accessToken);
+    if (json && json.exp < new Date().getTime() / 1000) {
+      localStorage.removeItem(ACCESS_TOKEN);
+      return null;
+    }
+    return json;
+  } catch (e) {
     localStorage.removeItem(ACCESS_TOKEN);
     return null;
   }
-  return json;
 }

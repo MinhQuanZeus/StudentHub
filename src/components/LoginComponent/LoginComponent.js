@@ -38,7 +38,7 @@ class LoginComponent extends Component {
   onSubmit($event) {
     $event.preventDefault();
     this.props.emit(SHOW_LOADING);
-    fetch(apiConstants.BACKEND_URL + apiConstants.STUDENT_LOGIN_PATH, {
+    fetch(`${apiConstants.BACKEND_URL}${apiConstants.STUDENT_LOGIN_PATH}`, {
       method: HTTP_POST,
       body: JSON.stringify(this.props.values),
       headers: {
@@ -124,7 +124,7 @@ class LoginComponent extends Component {
         </form>
 
         <div className={css.ForgotPassword}>
-          <Link to="/forgot-password?step=1">Forgot Password?</Link>
+          <Link to="/forgot-password">Forgot Password?</Link>
         </div>
       </div>
     );

@@ -1,77 +1,112 @@
-import React from 'react';
-
-import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
-import { applicationMessages } from '../../constants/applicationConstants';
-import css from './Step1.module.scss';
+/* eslint-disable react/prop-types */
+/* global fetch */
+import React, { Component } from 'react';
 import { SuccessHub, H1, H2 } from './';
-export const ForgotPasswordStep3Component = props => {
-  let changePasswordStatus = props.changePasswordStatus;
+import { withFormik } from 'formik';
+import { withEmit } from 'react-emit';
 
-  let message;
-  if (changePasswordStatus !== undefined && changePasswordStatus !== null) {
-    switch (changePasswordStatus) {
-      case forgotPasswordConstants.CHANGE_PASSWORD_SUCCESS:
-        message = <div>{applicationMessages.SUCCESS}</div>;
-        break;
-      case forgotPasswordConstants.CHANGE_PASSWORD_PENDING:
-        message = <div>{applicationMessages.PENDING}</div>;
-        break;
-      default:
-        message = <div>{changePasswordStatus.message}</div>;
-    }
+import { apiConstants } from '../../constants/applicationConstants';
+import { SHOW_LOADING, HIDE_LOADING } from '../../constants';
+import css from './Step1.module.scss';
+import { navigate } from '@reach/router';
+
+class ForgotPasswordStep3Component extends Component {
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  return (
-    <div className={css.Step1}>
-      <SuccessHub />
-      <img
-        src="images/forgot-password-illustration.svg"
-        className={css.Illustration}
-        alt="Illustration"
-      />
-      <H1>Enter your New Password</H1>
-      <H2>Type new password for your account</H2>
-      <form noValidate="novalidate">
-        <label htmlFor="npwd" style={{ marginTop: 24 }}>
-          PASSWORD
-        </label>
-        <div className={css.Password}>
-          <img src="/images/password.svg" alt="password" />
-          <input
-            type={props.newPasswordType}
-            id="npwd"
-            name="npwd"
-            className="form-control"
-            onChange={props.changeNewPassword}
-          />
-          <img
-            src="/images/visibility.svg"
-            alt="visibility"
-            onClick={props.toggleNewPasswordVisibility}
-          />
-        </div>
-        <label htmlFor="cpwd" style={{ marginTop: 24 }}>
-          CONFIRM PASSWORD
-        </label>
-        <div className={css.Password}>
-          <img src="/images/password.svg" alt="password" />
-          <input
-            type={props.conPasswordType}
-            id="cpwd"
-            name="cpwd"
-            className="form-control"
-            onChange={props.changeConPassowrd}
-          />
-          <img
-            src="/images/visibility.svg"
-            alt="visibility"
-            onClick={props.toggleConPasswordVisibility}
-          />
-        </div>
-        <button type="submit" onClick={props.submit}>
-          Next
-        </button>
-      </form>
-    </div>
-  );
-};
+  onSubmit($event) {
+    $event.preventDefault();
+    const { values, emit, token } = this.props;
+    emit(SHOW_LOADING);
+    fetch(`${apiConstants.BACKEND_URL}${apiConstants.STUDENT_CHANGE_PASSWORD_PATH}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+      },
+      body: JSON.stringify(values),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        emit(HIDE_LOADING);
+        navigate('/login');
+      })
+      .catch((error) => {
+        emit(HIDE_LOADING);
+      });
+    return false;
+  }
+
+  render() {
+    const { props } = this;
+    const { errors, handleChange } = this.props;
+
+    return (
+      <div className={css.Step1}>
+        <SuccessHub />
+        <img src="images/forgot-password-illustration.svg" className={css.Illustration} alt="Illustration" />
+        <H1>Enter your New Password</H1>
+        <H2>Type new password for your account</H2>
+        <form noValidate="novalidate" onSubmit={this.onSubmit}>
+          <label htmlFor="password" style={{ marginTop: 24 }}>
+            PASSWORD
+          </label>
+          <div className={css.Password}>
+            <img src="/images/password.svg" alt="password" />
+            <input type={props.newPasswordType} id="password" name="password" className="form-control" onChange={handleChange} />
+            <img src="/images/visibility.svg" alt="visibility" onClick={props.toggleNewPasswordVisibility} />
+            {errors && (errors.password || errors.conf_password) && (
+              <div className={css.Hint}>
+                <p>Your password must have at least:</p>
+                <ul>
+                  <li>
+                    <i className="fas fa-check" /> 8 characters
+                  </li>
+                  <li>
+                    <i className="fas fa-check" /> 1 letter
+                  </li>
+                  <li>
+                    <i className="fas fa-check" /> 1 number
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+          <label htmlFor="conf_password" style={{ marginTop: 24 }}>
+            CONFIRM PASSWORD
+          </label>
+          <div className={css.Password}>
+            <img src="/images/password.svg" alt="password" />
+            <input type={props.conPasswordType} id="conf_password" name="conf_password" className="form-control" onChange={handleChange} />
+            <img src="/images/visibility.svg" alt="visibility" onClick={props.toggleConPasswordVisibility} />
+          </div>
+          <button type="submit">Next</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default withFormik({
+  mapPropsToValues: () => ({
+    password: '',
+    conf_password: '',
+  }),
+  validate: (values) => {
+    const errors = {};
+    if (values.password.length < 8) {
+      errors.password = 'Your password must have at least:';
+    }
+    const character = new RegExp('([A-Za-z]+)', 'g');
+    const number = new RegExp('([0-9]+)', 'g');
+    if (!character.test(values.password) || !number.test(values.password)) {
+      errors.password = 'Your password must have at least:';
+    }
+    if (values.conf_password !== values.password) {
+      errors.conf_password = 'not equal';
+    }
+    return errors;
+  },
+})(withEmit(ForgotPasswordStep3Component));
