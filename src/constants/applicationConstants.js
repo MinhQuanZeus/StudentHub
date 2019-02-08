@@ -1,7 +1,7 @@
 export const apiConstants = {
   // BACKEND_URL: "https://dev.successhub.co:6060/",
   //BACKEND_URL: "http://localhost:6565/",
-  BACKEND_URL: 'http://103.35.64.69:6565/',
+  BACKEND_URL: 'http://13.56.226.194:6565/',
 
   STUDENT_LOGIN_PATH: 'student/login',
   STUDENT_FORGOT_PASSWORD_PATH: 'student/forgot_password',
