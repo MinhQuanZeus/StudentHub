@@ -302,27 +302,7 @@ class Calendar extends React.Component {
      *
      * @controllable selected
      */
-    onSelectEvent: function popup() {
-      const popupDIV = document.getElementById("popupDIV");
-
-      if (popupDIV.classList.contains("hideClass")) {
-        popupDIV.className -= "hideClass";
-      }
-      else {
-        popupDIV.className += " hideClass";
-        
-        function popupLocation(event) {
-        let mouseX = event.clientX;
-        let mouseY = event.clientY;
-        popupDIV.style.left = mouseX + 'px';
-        popupDIV.style.top = mouseY + 'px';
-
-       
-        }
-        
-
-        }
-      },
+    onSelectEvent: PropTypes.func,
 
     /**
      * Callback fired when a calendar event is clicked twice.

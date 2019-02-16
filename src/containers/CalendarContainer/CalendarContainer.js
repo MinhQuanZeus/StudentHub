@@ -6,6 +6,37 @@ import sharedStyles from "../../styles/styles.module.css";
 import { AppContext } from "../AppContext";
 import CalendarPopup from '../../components/CalendarComponents/CalendarPopup'
 
+let popup = (event, e) => {
+  const popupDIV = document.getElementById("popupDIV");
+      
+        popupDIV.className -= "hideClass"
+      
+
+        let mouseX = e.nativeEvent.clientX;
+        let mouseY = e.nativeEvent.clientY;
+        let screenX = window.innerWidth;
+        let screenY = window.innerHeight;
+        console.log(mouseX);
+        console.log(mouseY);
+        if (mouseX + 604 > screenX) {  {/* if too far right*/}
+          popupDIV.style.left = mouseX - 604 + 'px';
+        }
+        else {
+          popupDIV.style.left = mouseX + 'px';
+        }
+
+        if (mouseY + 462 > screenY) { {/* if too low*/}
+          popupDIV.style.top = mouseY - 0 + 'px';
+        }
+        if (mouseY - 462 < 0) { {/* if too high*/}
+          popupDIV.style.top = mouseY - 200 + 'px';
+        }
+
+        else {
+          popupDIV.style.top = mouseY - 240 + 'px';
+        }
+  }
+
 class CalendarContainer extends Component {
   componentWillMount() {
     this.onDateChanged(new Date());
@@ -49,8 +80,11 @@ class CalendarContainer extends Component {
     const calendarData = this.getCalendarData(this.props.calendarData);
     return (
       <div className={sharedStyles[""]}>
-        <CalendarComponent calendarData={calendarData} 
-        onDateChanged={(newDate) => this.onDateChanged(newDate)}/>
+        <CalendarComponent 
+        calendarData={calendarData} 
+        onDateChanged={(newDate) => this.onDateChanged(newDate)}
+        onSelectEvent={popup}
+        />
         <CalendarPopup/>
       </div>
     );

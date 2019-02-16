@@ -71,6 +71,7 @@ export const CalendarComponent = (props) => {
                 startAccessor='start'
                 endAccessor='end'
                 defaultDate={new Date()}
+                onSelectEvent={props.onSelectEvent}
               />
             </div>
         </div>

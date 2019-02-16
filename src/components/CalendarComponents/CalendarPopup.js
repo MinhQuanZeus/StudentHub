@@ -2,9 +2,15 @@ import React from 'react';
 import  '../CalendarComponents/CalendarPopup.css'
 
 
+let hideDIV = () => {
+    console.log("close win!")
+    const popupDIV = document.getElementById("popupDIV");
+    popupDIV.className += " hideClass";
+}
+
 export const CalendarPopup = (props) => {
     return (
-      <div className='popup_container' id="popupDIV">
+      <div className='popup_container hideClass' id="popupDIV">
         <div className='left_side'>
             <div className='show_hide_completed_items'>
                 <input type='checkbox'></input>
@@ -105,6 +111,7 @@ export const CalendarPopup = (props) => {
                 <button className='checklist_btn'>Go To My Checklist</button>
             </div>
         </div>
+        <button onClick={hideDIV} className='close-btn' id="close-btn">&#215;</button>
       </div>
     )
 };

@@ -4,8 +4,6 @@
 }
 
 #popupDIV {
-    position: relative;
-    margin: 100px 0 0 100px;
     background-color: white;
     width: 604px;
     z-index: 4;
@@ -202,4 +200,15 @@
   
 }
 
-
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: white;
+    font-size: 25px;
+    height: 25px;
+    color: #8a85a6;
+    padding: 0 5px 5px 5px;
+    line-height: 25px;
+}
