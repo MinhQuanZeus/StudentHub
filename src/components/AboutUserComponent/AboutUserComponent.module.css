@@ -64,6 +64,31 @@ p {
     background-color: #ffffff;
 }
 
+.rowHeader {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.headRight {
+    font-size: 14px;
+    font-weight: 900;
+    color: #c7c7c7;
+    fill: #c7c7c7;
+    text-align: right;
+    padding-right: 20px;
+    padding-top: 13.5px
+
+}
+
+.headRight:hover, .headRight:focus {
+    color: #6647ff;
+    cursor: pointer;
+    text-decoration: underline;
+    fill: #6647ff;
+}
+
+
 .AboutContainer h3 {
     font-size: 16px;
     font-weight: 900;

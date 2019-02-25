@@ -1,13 +1,18 @@
 .profile-wrapper {
   display: flex;
+  grid-template-columns: 25% 75%;
 }
 
 .profile-left-container {
-  display: flex;
-  flex-direction: column;
-  margin-right: 39px;
+  margin-right: 35px;
+  position: sticky;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 .profile-right-container {
-  width: 743px;
+  margin-top: 52.5px;
+  width: 800px;
+  box-sizing: inherit;
 }

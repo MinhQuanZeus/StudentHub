@@ -38,9 +38,9 @@ class MyProfileContainer extends Component {
     const { user } = this.context;
     return (
       <div className={sharedStyles['content-container']}>
-        <HeaderComponent labels={['My Profile']} />
         <div className={styles['profile-wrapper']}>
           <div className={styles['profile-left-container']}>
+            <HeaderComponent labels={['My Profile']} />
             <UserCardComponent loginInformation={user} />
             <ProfileTabsComponent scrollToRef={this.scrollToRef} />
           </div>

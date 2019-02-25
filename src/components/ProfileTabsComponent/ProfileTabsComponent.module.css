@@ -8,13 +8,17 @@
 }
 
 .AboutTab {
-    padding-left: 22px;
+    padding-left: 26px;
     height: 40px;
     line-height: 40px;
     top: 39px;
     font-weight: 900;
-    color: #413d59;
+    color: #bfbfc3;
+}
+.AboutTab:hover{
     border-left: 2px solid #6647ff;
+    color: #413d59;
+    cursor: pointer;
 }
 
 .ContactInfoTab {
@@ -27,6 +31,13 @@
 
 }
 
+.ContactInfoTab:hover{
+    border-left: 2px solid #6647ff;
+    color: #413d59;
+    cursor: pointer;
+}
+
+
 .AddressTab {
     padding-left: 28px;
     height: 40px;
@@ -35,4 +46,10 @@
     font-weight: 900;
     color: #bfbfc3;
 
+}
+
+.AddressTab:hover{
+    border-left: 2px solid #6647ff;
+    color: #413d59;
+    cursor: pointer;
 }
