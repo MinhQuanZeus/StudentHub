@@ -1,3 +1,4 @@
+/* global window, document */
 import React, { Component } from 'react';
 import { UserCardComponent } from '../../components/UserCardComponent/UserCardComponent';
 import { ProfileTabsComponent } from '../../components/ProfileTabsComponent/ProfileTabsComponent';
@@ -16,22 +17,25 @@ class MyProfileContainer extends Component {
     this.addressRef = React.createRef();
   }
 
-  scrollToRef = ref => {
-    if (ref === 'about')
+  scrollToRef = (ref) => {
+    if (ref === 'about') {
       window.scrollTo({
         top: this.aboutRef.current.offsetTop,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
-    if (ref === 'contact')
+    }
+    if (ref === 'contact') {
       window.scrollTo({
         top: this.contactRef.current.offsetTop,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
-    if (ref === 'address')
+    }
+    if (ref === 'address') {
       window.scrollTo({
         top: this.addressRef.current.offsetTop,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
+    }
   };
 
   render() {

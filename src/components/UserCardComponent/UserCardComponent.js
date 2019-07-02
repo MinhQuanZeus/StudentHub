@@ -36,7 +36,7 @@ export class UserCardComponent extends Component {
   };
 
   render() {
-    const { first_name, last_name, birth_date, mobile_phone, primary_email, current_address } = getUser();
+    const { first_name, last_name, birth_date, mobile_phone, primary_email, current_address } = this.props.loginInformation;
     const { showDetails } = this.state;
     const btnText = showDetails ? 'Show Less' : 'Show More';
 
