@@ -16,5 +16,6 @@ ReactDOM.render(
       <App />
     </Provider>
   </EmitProvider>,
+  // eslint-disable-next-line no-undef
   document.getElementById('root')
 );

@@ -1,12 +1,13 @@
-/* eslint-disable jsx-a11y/href-no-hash */
+/* eslint-disable react/prop-types */
+/* global localStorage */
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import css from './TopBarComponent.module.scss';
 import defaultAvatar from '../../images/img_avatar.png';
 import classnames from 'classnames';
 import { ACCESS_TOKEN } from '../../constants';
-import { navigate } from '@reach/router';
+import { navigate } from '../../helpers';
 
 class UserInfo extends Component {
   constructor(props) {
@@ -23,19 +24,9 @@ class UserInfo extends Component {
     const { props } = this;
     return (
       <div className={css.UserInfo} onClick={props.onShowMenu}>
-        <img
-          alt="chevron"
-          src="/images/chevron-down.svg"
-          className={css['top-bar-chevron-down']}
-        />
-        <p className={css['top-bar-username']}>
-          {props.user.first_name + ' ' + props.user.last_name}
-        </p>
-        <img
-          alt=""
-          className={css['top-bar-avatar-sm']}
-          src={props.user.photo || defaultAvatar}
-        />
+        <img alt="chevron" src="/images/chevron-down.svg" className={css['top-bar-chevron-down']} />
+        <p className={css['top-bar-username']}>{props.user.first_name + ' ' + props.user.last_name}</p>
+        <img alt="" className={css['top-bar-avatar-sm']} src={props.user.photo || defaultAvatar} />
         {props.isOpenMenu ? (
           <ul className={classnames(css.Menu)}>
             <li onClick={this.onLogout}>
@@ -52,15 +43,15 @@ export class TopBarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpenMenu: false
+      isOpenMenu: false,
     };
 
     this.onShowMenu = this.onShowMenu.bind(this);
   }
 
   onShowMenu() {
-    this.setState(state => ({
-      isOpenMenu: !state.isOpenMenu
+    this.setState((state) => ({
+      isOpenMenu: !state.isOpenMenu,
     }));
   }
 
@@ -74,26 +65,11 @@ export class TopBarComponent extends Component {
         <h5 className={css['top-bar-welcome-container']}>
           <span className={css['top-bar-welcome-text']}>Welcome</span>
           &nbsp;
-          <span className={css['top-bar-user-full-name']}>
-            {user.first_name + ' ' + user.last_name}
-          </span>
+          <span className={css['top-bar-user-full-name']}>{user.first_name + ' ' + user.last_name}</span>
         </h5>
-        <UserInfo
-          user={user}
-          isOpenMenu={this.state.isOpenMenu}
-          onShowMenu={this.onShowMenu}
-          onLogout={this.onLogout}
-        />
-        <img
-          alt="comment"
-          src="/images/comment.svg"
-          className={css['top-bar-comment']}
-        />
-        <img
-          alt="bell"
-          src="/images/bell.svg"
-          className={css['top-bar-bell']}
-        />
+        <UserInfo user={user} isOpenMenu={this.state.isOpenMenu} onShowMenu={this.onShowMenu} onLogout={this.onLogout} />
+        <img alt="comment" src="/images/comment.svg" className={css['top-bar-comment']} />
+        <img alt="bell" src="/images/bell.svg" className={css['top-bar-bell']} />
       </nav>
     );
   }

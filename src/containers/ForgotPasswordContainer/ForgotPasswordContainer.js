@@ -7,6 +7,7 @@ import { ForgotPasswordStep2Component } from '../../components/ForgotPasswordCom
 import ForgotPasswordStep3Component from '../../components/ForgotPasswordComponent/ForgotPasswordStep3Component';
 import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
 import $ from 'jquery';
+import { history } from '../../helpers';
 
 class ForgotPasswordContainer extends Component {
   constructor(props) {
@@ -21,52 +22,54 @@ class ForgotPasswordContainer extends Component {
     $('.lex-web-ui-iframe').remove();
   }
   render() {
-    let { forgotPasswordStatus, changePasswordStatus } = this.props;
+    const { forgotPasswordStatus, changePasswordStatus } = this.props;
     let forgotPasswordComponent;
     switch (this.getCurrentStep()) {
-      case 2:
-        forgotPasswordComponent = (
-          <ForgotPasswordStep2Component
-            submit={this.onSubmitStep2}
-            changeVerifyCode={this.setVerifyCodeToStateOnChange}
-            forgotPasswordStatus={forgotPasswordStatus}
-            {...this.props}
-          />
-        );
-        break;
-      case 3:
-        const { state } = this.props.location;
-        const token = state.token || '';
-        forgotPasswordComponent = (
-          <ForgotPasswordStep3Component
-            token={token}
-            submit={this.onSubmitChangePassword}
-            changeNewPassword={this.setNewPasswordToStateOnChange}
-            changeConPassowrd={this.setConfirmationPasswordToStateOnChange}
-            changePasswordStatus={changePasswordStatus}
-            conPasswordType={this.state.conPasswordType}
-            newPasswordType={this.state.newPasswordType}
-            toggleConPasswordVisibility={this.toggleConPasswordVisibility}
-            toggleNewPasswordVisibility={this.toggleNewPasswordVisibility}
-          />
-        );
-        break;
-      default:
-        forgotPasswordComponent = (
-          <ForgotPasswordStep1Component
-            submit={this.onSubmitStep1}
-            changeEmail={this.setEmailToStateOnChange}
-            forgotPasswordStatus={forgotPasswordStatus}
-            {...this.props}
-          />
-        );
+    case 2:
+      forgotPasswordComponent = (
+        <ForgotPasswordStep2Component
+          submit={this.onSubmitStep2}
+          changeVerifyCode={this.setVerifyCodeToStateOnChange}
+          forgotPasswordStatus={forgotPasswordStatus}
+          {...this.props}
+        />
+      );
+      break;
+    case 3:
+      const { state } = history.location;
+      const token = state.token || '';
+      forgotPasswordComponent = (
+        <ForgotPasswordStep3Component
+          token={token}
+          submit={this.onSubmitChangePassword}
+          changeNewPassword={this.setNewPasswordToStateOnChange}
+          changeConPassowrd={this.setConfirmationPasswordToStateOnChange}
+          changePasswordStatus={changePasswordStatus}
+          conPasswordType={this.state.conPasswordType}
+          newPasswordType={this.state.newPasswordType}
+          toggleConPasswordVisibility={this.toggleConPasswordVisibility}
+          toggleNewPasswordVisibility={this.toggleNewPasswordVisibility}
+        />
+      );
+      break;
+    default:
+      forgotPasswordComponent = (
+        <ForgotPasswordStep1Component
+          submit={this.onSubmitStep1}
+          changeEmail={this.setEmailToStateOnChange}
+          forgotPasswordStatus={forgotPasswordStatus}
+          {...this.props}
+        />
+      );
     }
     return <div>{forgotPasswordComponent}</div>;
   }
 
   getCurrentStep() {
-    const { state } = this.props.location;
-    return state.step || 1;
+    const { state } = history.location;
+    // console.log(this.props);
+    // console.log(history);
+    return (state && state.step) || 1;
   }
 
   toggleConPasswordVisibility = () => {
@@ -107,18 +110,18 @@ class ForgotPasswordContainer extends Component {
 
   onSubmitStep1 = (e) => {
     e.preventDefault();
-    let { email } = this.state;
+    const { email } = this.state;
     this.props.forgotPassword(email, forgotPasswordConstants.EMAIL_CHANNEL, null);
   };
   onSubmitStep2 = (e) => {
     e.preventDefault();
-    let { email, verifyCode } = this.state;
+    const { email, verifyCode } = this.state;
     this.props.forgotPassword(email, forgotPasswordConstants.EMAIL_CHANNEL, verifyCode);
   };
 
   onSubmitChangePassword = (e) => {
     e.preventDefault();
-    let { newPassword, conPassword } = this.state;
+    const { newPassword, conPassword } = this.state;
     const { state } = this.props.location;
     const token = state.x_access_token || '';
     this.props.changePassword(token, newPassword, conPassword);

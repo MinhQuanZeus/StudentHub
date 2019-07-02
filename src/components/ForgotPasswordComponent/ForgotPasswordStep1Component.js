@@ -1,36 +1,32 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
 import { applicationMessages } from '../../constants/applicationConstants';
 import { SuccessHub, H1, H2 } from './';
 import css from './Step1.module.scss';
 
-export const ForgotPasswordStep1Component = props => {
-  let forgotPasswordStatus = props.forgotPasswordStatus;
+export const ForgotPasswordStep1Component = (props) => {
+  const forgotPasswordStatus = props.forgotPasswordStatus;
 
   let message;
   if (forgotPasswordStatus !== undefined && forgotPasswordStatus !== null) {
     switch (forgotPasswordStatus) {
-      case forgotPasswordConstants.FORGOT_PASSWORD_SUCCESS:
-        message = <div>{applicationMessages.SUCCESS}</div>;
-        break;
-      case forgotPasswordConstants.FORGOT_PASSWORD_PENDING:
-        message = <div>{applicationMessages.PENDING}</div>;
-        break;
-      default:
-        message = <div>{forgotPasswordStatus.message}</div>;
+    case forgotPasswordConstants.FORGOT_PASSWORD_SUCCESS:
+      message = <div>{applicationMessages.SUCCESS}</div>;
+      break;
+    case forgotPasswordConstants.FORGOT_PASSWORD_PENDING:
+      message = <div>{applicationMessages.PENDING}</div>;
+      break;
+    default:
+      message = <div>{forgotPasswordStatus.message}</div>;
     }
   }
 
   return (
     <div className={css.Step1}>
       <SuccessHub />
-      <img
-        src="images/forgot-password-illustration.svg"
-        className={css.Illustration}
-        alt="Illustration"
-      />
+      <img src="images/forgot-password-illustration.svg" className={css.Illustration} alt="Illustration" />
       <H1>Forgot your password?</H1>
       <H2>Don't worry! We will help you reset your password</H2>
 
@@ -40,13 +36,7 @@ export const ForgotPasswordStep1Component = props => {
         </label>
         <div className={css.Email}>
           <img src="/images/username.svg" alt="mask" />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            className="form-control"
-            onChange={props.changeEmail}
-          />
+          <input type="email" id="email" name="email" className="form-control" onChange={props.changeEmail} />
         </div>
         {message}
         <button type="submit" onClick={props.submit}>

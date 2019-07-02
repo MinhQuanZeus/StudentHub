@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './QuickLinkComponentClassTracker.module.css';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
-export const QuickLinkComponentClassTracker = props => {
+export const QuickLinkComponentClassTracker = (props) => {
   return (
     <div className={styles['Quick-Link-Container']}>
       <ul className={styles['Quick-Link-List']}>

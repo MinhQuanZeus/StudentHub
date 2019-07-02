@@ -1,18 +1,15 @@
 import React from 'react';
 import styles from './MilestoneAvatarComponent.module.css';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
-export const MilestoneAvatarComponent = props => {
-  let { first_name, last_name } = props.loginInformation;
+export const MilestoneAvatarComponent = (props) => {
+  const { first_name, last_name } = props.loginInformation;
 
   return (
     <div className={styles['UserCardContainer']}>
       <div className={styles['UserAvatar']}>
-        <img
-          src="https://www.w3schools.com/howto/img_avatar.png"
-          alt="User Avatar"
-        >
-          {/*remove border after pic added */}
+        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User Avatar">
+          {/* remove border after pic added */}
         </img>
       </div>
       <div className={styles['UserName']}>

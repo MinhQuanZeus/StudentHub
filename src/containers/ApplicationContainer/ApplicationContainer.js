@@ -4,7 +4,8 @@ import NavBarContainer from '../NavBarContainer/NavBarContainer';
 import NotificationContainer from '../NotificationContainer/NotificationContainer';
 import { AppContext } from '../AppContext';
 import { getUser, getAccessToken } from '../../helpers';
-import { Redirect, navigate } from '@reach/router';
+import { Redirect } from 'react-router';
+import { navigate } from '../../helpers';
 
 class ApplicationContainer extends Component {
   componentWillMount() {
@@ -26,22 +27,14 @@ class ApplicationContainer extends Component {
     let notification = <NotificationContainer />;
 
     if (currentPath === '/') {
-      return (
-        <Redirect
-          from={this.props.location.pathname}
-          to="/my-profile"
-          noThrow
-        />
-      );
+      return <Redirect from={this.props.location.pathname} to="/my-profile" noThrow />;
     }
 
     if (hideNotification.includes(currentPath)) {
       notification = null;
     }
     return (
-      <AppContext.Provider
-        value={{ user: this.user, accessToken: this.accessToken }}
-      >
+      <AppContext.Provider value={{ user: this.user, accessToken: this.accessToken }}>
         <TopBarContainer />
         <NavBarContainer />
         {this.props.children}

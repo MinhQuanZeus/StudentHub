@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
 import { applicationMessages } from '../../constants/applicationConstants';
@@ -7,19 +7,19 @@ import css from './Step1.module.scss';
 import { SuccessHub, H1, H2 } from './';
 
 export const ForgotPasswordStep2Component = (props) => {
-  let forgotPasswordStatus = props.forgotPasswordStatus;
+  const forgotPasswordStatus = props.forgotPasswordStatus;
 
   let message;
   if (forgotPasswordStatus !== undefined && forgotPasswordStatus !== null) {
     switch (forgotPasswordStatus) {
-      case forgotPasswordConstants.FORGOT_PASSWORD_SUCCESS:
-        message = <div>{applicationMessages.SUCCESS}</div>;
-        break;
-      case forgotPasswordConstants.FORGOT_PASSWORD_PENDING:
-        message = <div>{applicationMessages.PENDING}</div>;
-        break;
-      default:
-        message = <div>{forgotPasswordStatus.message}</div>;
+    case forgotPasswordConstants.FORGOT_PASSWORD_SUCCESS:
+      message = <div>{applicationMessages.SUCCESS}</div>;
+      break;
+    case forgotPasswordConstants.FORGOT_PASSWORD_PENDING:
+      message = <div>{applicationMessages.PENDING}</div>;
+      break;
+    default:
+      message = <div>{forgotPasswordStatus.message}</div>;
     }
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router } from '@reach/router';
+import { Router } from 'react-router-dom';
 import ForgotPasswordContainer from './ForgotPasswordContainer/ForgotPasswordContainer';
 import ApplicationContainer from './ApplicationContainer/ApplicationContainer';
 import Loading from '../components/LoadingComponent';
@@ -16,28 +16,29 @@ import ChecklistContainer from './ChecklistContainer/ChecklistContainer';
 import FlagsListContainer from './FlagsListContainer/FlagsListContainer';
 import FlagManagerDetailsContainer from './FlagManagerDetailsContainer/FlagManagerDetailsContainer.js';
 import CalendarContainer from './CalendarContainer/CalendarContainer';
+import { history } from '../helpers';
+import { Route } from 'react-router';
 
 class App extends Component {
   render() {
     return (
       <div id="app">
         <Loading />
-        <Router>
-          <LoginComponent path="/login" exact />
-          <ForgotPasswordContainer path="/forgot-password" exact />
-          <AuthRoute path="/">
-            <ApplicationContainer path="/">
-              <SuccessTeamContainer path="/success-team" />
-              <MilestoneContainer path="/milestone" />
-              <DegreeAuditContainer path="/degree-audit" />
-              <ClassTrackerContainer path="/class-tracker" />
-              <MyProfileContainer path="/my-profile" />
-              <ChecklistContainer path="/check-list" />
-              <FlagsListContainer exact path="/flags" />
-              <FlagManagerDetailsContainer path="/flags/:id" />
-              <CalendarContainer path="/calendar" />
-            </ApplicationContainer>
-          </AuthRoute>
+        <Router history={history}>
+          <Route path="/login" exact component={LoginComponent} />
+          <Route path="/forgot-password" exact component={ForgotPasswordContainer} />
+          <Route path="/" component={AuthRoute}>
+            <Route path="/" component={ApplicationContainer} />
+            <Route path="/success-team" component={SuccessTeamContainer} />
+            <Route path="/milestone" component={MilestoneContainer} />
+            <Route component={DegreeAuditContainer} path="/degree-audit" />
+            <Route component={ClassTrackerContainer} path="/class-tracker" />
+            <Route component={MyProfileContainer} path="/my-profile" />
+            <Route component={ChecklistContainer} path="/check-list" />
+            <Route component={FlagsListContainer} exact path="/flags" />
+            <Route component={FlagManagerDetailsContainer} path="/flags/:id" />
+            <Route component={CalendarContainer} path="/calendar" />
+          </Route>
         </Router>
       </div>
     );

@@ -1,12 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { Component, Fragment } from 'react';
-import { Redirect } from '@reach/router';
+import { Redirect } from 'react-router-dom';
 import { getUser } from '../helpers';
 
 class AuthRoute extends Component {
   render() {
-    const { location } = this.props;
     if (!this.isAuthenticated()) {
-      return <Redirect from={location.pathname} to="/login" noThrow />;
+      return <Redirect to="/login" />;
     }
     return <Fragment>{this.props.children}</Fragment>;
   }

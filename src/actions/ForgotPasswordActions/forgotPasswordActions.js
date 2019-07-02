@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { apiConstants, applicationMessages, applicationStatusCode } from '../../constants/applicationConstants';
 import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
-import { navigate } from '@reach/router';
+import { navigate } from '../../helpers';
 
 export function forgotPassword(email, channel, verifyCode) {
   return (dispatch) => {

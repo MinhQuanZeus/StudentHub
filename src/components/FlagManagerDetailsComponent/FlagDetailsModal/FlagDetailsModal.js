@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import { getDayMonthYearFormat } from '../../../helpers/Utils';
 
@@ -12,12 +12,7 @@ function FlagDetailsModal({ handleCloseModal, showModal, flag }) {
   const dispatchType = flag.is_public ? 'Public' : 'Private';
 
   return (
-    <ReactModal
-      isOpen={showModal}
-      contentLabel="Flag Detail Popup"
-      className={styles['modal']}
-      overlayClassName={styles['overlay']}
-    >
+    <ReactModal isOpen={showModal} contentLabel="Flag Detail Popup" className={styles['modal']} overlayClassName={styles['overlay']}>
       <section className={styles['flag-details-container']}>
         <header>
           <span>Details</span>
@@ -33,9 +28,7 @@ function FlagDetailsModal({ handleCloseModal, showModal, flag }) {
             </div>
             <div className={styles['info-group']}>
               <span className={styles['info-label']}>Status</span>
-              <p className={`${styles['info-detail']} ${styles[statusStyle]}`}>
-                {flag.status}
-              </p>
+              <p className={`${styles['info-detail']} ${styles[statusStyle]}`}>{flag.status}</p>
             </div>
             <div className={styles['info-group']}>
               <span className={styles['info-label']}>Flag Category</span>
@@ -59,9 +52,7 @@ function FlagDetailsModal({ handleCloseModal, showModal, flag }) {
             </div>
             <div className={styles['info-group']}>
               <span className={styles['info-label']}>Date Created</span>
-              <p className={styles['info-detail']}>
-                {getDayMonthYearFormat(flag.created_at)}
-              </p>
+              <p className={styles['info-detail']}>{getDayMonthYearFormat(flag.created_at)}</p>
             </div>
             <div className={styles['info-group-full']}>
               <span className={styles['info-label']}>Description</span>

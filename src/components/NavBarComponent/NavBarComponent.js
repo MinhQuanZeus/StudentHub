@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 import styles from './NavBarComponent.module.scss';
 
-export const NavBarComponent = props => {
+export const NavBarComponent = (props) => {
   return (
     <div className={styles['nav-bar']}>
       <ul className={styles['nav-bar-list']}>

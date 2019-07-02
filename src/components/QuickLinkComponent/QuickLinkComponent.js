@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './QuickLinkComponent.module.css';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
-export const QuickLinkComponent = props => {
+export const QuickLinkComponent = (props) => {
   return (
     <div className={styles['Quick-Link-Container']}>
       <ul className={styles['Quick-Link-List']}>

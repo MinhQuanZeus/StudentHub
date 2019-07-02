@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/href-no-hash */
 import React, { Component } from 'react';
 import styles from './UserCardComponent.module.scss';
+import { getUser } from '../../helpers';
 
 function UserDetails({ bday, phone, email, address }) {
   return (
@@ -27,7 +28,7 @@ function UserDetails({ bday, phone, email, address }) {
 
 export class UserCardComponent extends Component {
   state = {
-    showDetails: false
+    showDetails: false,
   };
 
   toggleDetails = () => {
@@ -35,24 +36,14 @@ export class UserCardComponent extends Component {
   };
 
   render() {
-    const {
-      first_name,
-      last_name,
-      birth_date,
-      mobile_phone,
-      primary_email,
-      current_address
-    } = this.props.loginInformation;
+    const { first_name, last_name, birth_date, mobile_phone, primary_email, current_address } = getUser();
     const { showDetails } = this.state;
     const btnText = showDetails ? 'Show Less' : 'Show More';
 
     return (
       <div className={styles['UserCardContainer']}>
         <div className={styles['UserAvatar']}>
-          <img
-            src="https://www.w3schools.com/howto/img_avatar.png"
-            alt="User Avatar"
-          />
+          <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User Avatar" />
         </div>
         <div className={styles['UserName']}>
           <p>{first_name + ' ' + last_name}</p>
@@ -61,23 +52,12 @@ export class UserCardComponent extends Component {
           <p>Computer Science, BS</p>
         </div>
         <div>
-          <a
-            href="#"
-            className={styles['ShowMoreBtn']}
-            onClick={this.toggleDetails}
-          >
+          <a href="#" className={styles['ShowMoreBtn']} onClick={this.toggleDetails}>
             {btnText}
           </a>
         </div>
 
-        {showDetails ? (
-          <UserDetails
-            bday={birth_date}
-            phone={mobile_phone}
-            email={primary_email}
-            address={current_address}
-          />
-        ) : null}
+        {showDetails ? <UserDetails bday={birth_date} phone={mobile_phone} email={primary_email} address={current_address} /> : null}
       </div>
     );
   }

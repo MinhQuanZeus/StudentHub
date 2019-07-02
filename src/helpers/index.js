@@ -1,3 +1,6 @@
+/* global localStorage */
+import { createBrowserHistory } from 'history';
+
 import jwt from 'jwt-decode';
 
 const ACCESS_TOKEN = 'ACCESS_TOKEN';
@@ -20,4 +23,10 @@ export function getUser() {
     localStorage.removeItem(ACCESS_TOKEN);
     return null;
   }
+}
+
+export const history = createBrowserHistory();
+
+export function navigate(u, o) {
+  history.push(u, o);
 }

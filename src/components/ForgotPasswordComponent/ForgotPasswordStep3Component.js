@@ -8,7 +8,7 @@ import { withEmit } from 'react-emit';
 import { apiConstants } from '../../constants/applicationConstants';
 import { SHOW_LOADING, HIDE_LOADING } from '../../constants';
 import css from './Step1.module.scss';
-import { navigate } from '@reach/router';
+import { navigate } from '../../helpers';
 
 class ForgotPasswordStep3Component extends Component {
   constructor(props) {
