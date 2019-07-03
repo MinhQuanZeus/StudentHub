@@ -148,7 +148,7 @@ div.active-sub-checklist {
 
 .checklist-item {
   display: grid;
-  grid-template-columns: 54px 300px 1fr 1fr 1fr 1fr;
+  grid-template-columns: 50px calc(100% - 650px) 150px 150px 150px 150px;
   align-items: center;
   text-align: center;
   margin-top: 20px;
@@ -166,11 +166,18 @@ div.active-sub-checklist {
 
 .sub-checklist-container {
   box-sizing: border-box;
+  padding: 32px 74px 32px 29px;
 }
 
 .sub-checklist {
+  padding: 0 74px 0 24px;
+  border-left: 2px solid #f0eff6;
+  border-right: 2px solid #f0eff6;
+}
+
+.sub-checklist > div {
   display: grid;
-  grid-template-columns: 30px 54px 273px 1fr 1fr 1fr 1fr;
+  grid-template-columns: 50px calc(100% - 500px) 150px 150px 150px;
   align-items: center;
   text-align: center;
   color: #8a85a6;
@@ -179,7 +186,11 @@ div.active-sub-checklist {
   height: 50px;
   cursor: pointer;
 }
-
 .sub-checklist-active {
   background-color: #f0eff6;
+}
+
+.item-due-date-count {
+  font-weight: bold;
+  color: #ff4747;
 }
