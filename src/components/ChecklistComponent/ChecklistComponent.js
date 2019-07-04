@@ -1,11 +1,12 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { format, differenceInHours, distanceInWordsToNow, differenceInMilliseconds } from 'date-fns';
+import { format, distanceInWordsToNow, differenceInMilliseconds } from 'date-fns';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
 import SubChecklistSidebar from './SubChecklistSidebar/SubChecklistSidebar';
 import { replaceUnderscoreAndUppercase } from '../../helpers/Utils';
+import { Icon } from 'office-ui-fabric-react';
 
 import styles from './ChecklistComponent.module.css';
 
@@ -162,12 +163,17 @@ class ChecklistComponent extends Component {
                     className={`${styles['checklist-item']} ${styles[activeChecklist]} ${styles[activeSubChecklist]}`}
                     onClick={() => toggleChecklistDetails(idx, rowData, 'checklist')}
                   >
-                    <input
-                      type="checkbox"
-                      className={styles['checklist-checkbox']}
-                      checked={rowData.is_completed}
-                      onChange={() => console.log('clicked')}
-                    />
+                    {rowData.child.length === 0 ? (
+                      <input
+                        type="checkbox"
+                        className={styles['checklist-checkbox']}
+                        checked={rowData.is_completed}
+                        onChange={() => console.log('clicked')}
+                      />
+                    ) : (
+                      <Icon iconName={openChecklistIdx === idx ? 'ChevronDown' : 'ChevronRight'} />
+                    )}
+
                     <p className={`${styles['item-title']} ${styles['left-align']}`}>
                       {rowData.check_list_name}
                       {this.getSubChecklistLength(rowData)}

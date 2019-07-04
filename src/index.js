@@ -1,3 +1,4 @@
+/* global document */
 import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -7,7 +8,8 @@ import store from './store/store';
 import App from './containers/App';
 import { EmitProvider } from 'react-emit';
 import { init } from './actions/applicationConfiguration';
-
+import { initializeIcons } from '@uifabric/icons';
+initializeIcons();
 init();
 
 ReactDOM.render(
@@ -16,6 +18,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </EmitProvider>,
-  // eslint-disable-next-line no-undef
   document.getElementById('root')
 );

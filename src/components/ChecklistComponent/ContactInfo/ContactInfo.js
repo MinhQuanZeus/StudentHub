@@ -2,7 +2,6 @@ import React from 'react';
 
 import styles from './ContactInfo.module.css';
 
-
 function ContactInfo({ openChecklistDetails }) {
   return (
     <div className={`${styles['contact']} ${styles['detail-container']}`}>
@@ -24,7 +23,7 @@ function ContactInfo({ openChecklistDetails }) {
         <p className={styles['value']}>{openChecklistDetails.website}</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default ContactInfo;
