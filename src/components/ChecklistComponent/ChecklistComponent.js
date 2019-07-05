@@ -26,7 +26,7 @@ function SubChecklist({ items, due_date, priority, idx, openChecklistIdx, openSu
               <input
                 type="checkbox"
                 className={styles['checklist-checkbox']}
-                checked={sub.is_completed}
+                checked={sub.processing === 100}
                 onChange={() => console.log('clicked')}
               />
               <p className={`${styles['item-title']} ${styles['left-align']}`}>{sub.check_list_name}</p>
@@ -167,7 +167,7 @@ class ChecklistComponent extends Component {
                       <input
                         type="checkbox"
                         className={styles['checklist-checkbox']}
-                        checked={rowData.is_completed}
+                        checked={rowData.processing === 100}
                         onChange={() => console.log('clicked')}
                       />
                     ) : (

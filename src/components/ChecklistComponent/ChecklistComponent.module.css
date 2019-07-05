@@ -6,7 +6,6 @@
   width: 75%;
 }
 
-/* Status Btns Start */
 .priority {
   width: 59px;
   height: 21px;
@@ -14,6 +13,7 @@
   font-size: 12px;
   margin: auto;
   border-radius: 4px;
+  text-transform: uppercase;
 }
 
 .priority-low {
@@ -55,7 +55,6 @@
   background-color: #f6cbcb;
   color: #b95c5c;
 }
-/* Status Btns End */
 
 div.active {
   color: #413d59;
@@ -116,7 +115,7 @@ div.active-sub-checklist {
 
 .checklist-heading {
   display: grid;
-  grid-template-columns: 54px 300px 1fr 1fr 1fr 1fr;
+  grid-template-columns: 50px calc(100% - 650px) 150px 150px 150px 150px;
   text-align: center;
   padding-top: 18px;
 }
@@ -133,7 +132,7 @@ div.active-sub-checklist {
   display: inline;
   font-size: 12px;
   font-weight: 900;
-  letter-spacing: .9px;
+  letter-spacing: 0.9px;
   color: #8a85a6;
 }
 
@@ -143,7 +142,7 @@ div.active-sub-checklist {
 
 .checklist-box {
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .checklist-item {
@@ -156,7 +155,7 @@ div.active-sub-checklist {
   font-size: 14px;
   font-weight: 900;
   color: #8a85a6;
-  border-left: 5px solid #ffffff;
+  border-left: 5px solid #fff;
   cursor: pointer;
 }
 
@@ -186,6 +185,7 @@ div.active-sub-checklist {
   height: 50px;
   cursor: pointer;
 }
+
 .sub-checklist-active {
   background-color: #f0eff6;
 }
