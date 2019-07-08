@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* global fetch */
 import React, { Component } from 'react';
 import ChecklistComponent from '../../components/ChecklistComponent/ChecklistComponent';
@@ -6,6 +7,7 @@ import orderBy from 'lodash.orderby';
 
 import sharedStyles from '../../styles/styles.module.css';
 import { AppContext } from '../AppContext';
+import { API_END_POINT } from '../../constants/ApiUrl';
 
 const KEYS_TO_FILTERS = ['check_list_name', 'category', 'due_date', 'priority', 'complete_rate'];
 
@@ -28,11 +30,12 @@ class ChecklistContainer extends Component {
     };
 
     this.initialize = this.initialize.bind(this);
+    this.setDone = this.setDone.bind(this);
   }
 
   async initialize() {
     const { user } = this.context;
-    const response = await fetch('http://api.successhub.us/student/check_list/all', {
+    const response = await fetch(`${API_END_POINT}student/check_list/all`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': user.x_access_token,
@@ -115,6 +118,23 @@ class ChecklistContainer extends Component {
     //     },
     //   ],
     // }));
+  }
+
+  async setDone(cid, done) {
+    const { x_access_token } = this.context.user;
+
+    const response = await fetch(`${API_END_POINT}student/check_list/update/process`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': x_access_token,
+      },
+      body: JSON.stringify([{ id: cid, is_completed: done }]),
+    });
+    const body = await response.json();
+    if (body.success) {
+      this.initialize();
+    }
   }
 
   goBackToChecklist = () => {
@@ -307,6 +327,7 @@ class ChecklistContainer extends Component {
           sort={sort}
           updateSorting={this.updateSorting}
           goBackToChecklist={this.goBackToChecklist}
+          setDone={this.setDone}
         />
       </div>
     );

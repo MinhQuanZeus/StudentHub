@@ -1,6 +1,6 @@
-let apiEndPoint = 'http://api.successhub.us/';
+let apiEndPoint = 'http://api.successhub.us/api/v1/';
 if (process.env.NODE_ENV === 'production') {
-  apiEndPoint = 'http://api.successhub.us/';
+  apiEndPoint = 'http://api.successhub.us/api/v1/';
 }
 export const API_END_POINT = apiEndPoint;
 

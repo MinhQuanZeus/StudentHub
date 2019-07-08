@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
+/* global fetch */
 import React, { Component } from 'react';
 import { format, distanceInWordsToNow, differenceInMilliseconds } from 'date-fns';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
@@ -9,8 +10,9 @@ import { replaceUnderscoreAndUppercase } from '../../helpers/Utils';
 import { Icon } from 'office-ui-fabric-react';
 
 import styles from './ChecklistComponent.module.css';
+import { AppContext } from '../../containers/AppContext';
 
-function SubChecklist({ items, due_date, priority, idx, openChecklistIdx, openSubChecklistIdx, toggleChecklistDetails, priorityStatus }) {
+function SubChecklist({ items, idx, openChecklistIdx, openSubChecklistIdx, toggleChecklistDetails, priorityStatus, setDone }) {
   const activeStyles = {
     color: '#413d59',
     fontWeight: 900,
@@ -27,7 +29,7 @@ function SubChecklist({ items, due_date, priority, idx, openChecklistIdx, openSu
                 type="checkbox"
                 className={styles['checklist-checkbox']}
                 checked={sub.processing === 100}
-                onChange={() => console.log('clicked')}
+                onChange={($event) => setDone(sub.id, $event.target.checked)}
               />
               <p className={`${styles['item-title']} ${styles['left-align']}`}>{sub.check_list_name}</p>
               <p />
@@ -102,7 +104,7 @@ function Sidebar({ openChecklistIdx, openChecklistDetails, openSubChecklistIdx, 
 }
 
 class ChecklistComponent extends Component {
-  getCompleteRate = (checklist) => {
+  getCompleteRate(checklist) {
     if (checklist.child.length === 0) {
       return checklist.processing === 100 ? (
         <p className={`${styles['complete-rate']} ${styles['complete-rate-done']}`}>Done</p>
@@ -118,11 +120,11 @@ class ChecklistComponent extends Component {
     }
 
     return <p style={{ color: '#585661' }}>{checklist.processing}%</p>;
-  };
+  }
 
-  getSubChecklistLength = (checklist) => {
+  getSubChecklistLength(checklist) {
     return checklist.child.length ? <span style={{ marginLeft: '5px' }}>({checklist.child.length})</span> : null;
-  };
+  }
 
   render() {
     const {
@@ -163,18 +165,15 @@ class ChecklistComponent extends Component {
                     className={`${styles['checklist-item']} ${styles[activeChecklist]} ${styles[activeSubChecklist]}`}
                     onClick={() => toggleChecklistDetails(idx, rowData, 'checklist')}
                   >
-                    {rowData.child.length === 0 ? (
-                      <input
-                        type="checkbox"
-                        className={styles['checklist-checkbox']}
-                        checked={rowData.processing === 100}
-                        onChange={() => console.log('clicked')}
-                      />
-                    ) : (
-                      <Icon iconName={openChecklistIdx === idx ? 'ChevronDown' : 'ChevronRight'} />
-                    )}
-
+                    <input
+                      type="checkbox"
+                      className={styles['checklist-checkbox']}
+                      checked={rowData.processing === 100}
+                      onChange={($event) => this.props.setDone(rowData.id, $event.target.checked)}
+                    />
                     <p className={`${styles['item-title']} ${styles['left-align']}`}>
+                      {rowData.child.length !== 0 && <Icon iconName={openChecklistIdx === idx ? 'ChevronDown' : 'ChevronRight'} />}
+                      &nbsp;
                       {rowData.check_list_name}
                       {this.getSubChecklistLength(rowData)}
                     </p>
@@ -195,6 +194,7 @@ class ChecklistComponent extends Component {
                     openSubChecklistIdx={openSubChecklistIdx}
                     toggleChecklistDetails={toggleChecklistDetails}
                     priorityStatus={priorityStatus}
+                    setDone={this.props.setDone}
                   />
                 </div>
               );
@@ -212,5 +212,7 @@ class ChecklistComponent extends Component {
     );
   }
 }
+
+ChecklistComponent.contextType = AppContext;
 
 export default ChecklistComponent;
