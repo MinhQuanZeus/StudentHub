@@ -35,7 +35,7 @@ function SubChecklist({ items, idx, openChecklistIdx, openSubChecklistIdx, toggl
               <p />
               <p className={styles['item-due-date']}>
                 <span>{format(sub.due_date, 'YYYY-MM-DD')}&nbsp;</span>
-                <span className={styles['item-due-date-count']}>({distanceInWordsToNow(new Date(sub.due_date))})</span>
+                {/* <span className={styles['item-due-date-count']}>({distanceInWordsToNow(new Date(sub.due_date))})</span> */}
               </p>
               <p className={`${styles['priority']} ${styles[priorityStatus]}`}>{sub.priority}</p>
             </div>
@@ -158,7 +158,7 @@ class ChecklistComponent extends Component {
               const activeChecklist = openChecklistIdx === idx ? 'active' : '';
               const activeSubChecklist = openChecklistIdx === idx && openSubChecklistIdx !== null ? 'active-sub-checklist' : '';
               const priorityStatus = `priority-${rowData.priority.toLowerCase()}`;
-              const due_date_count = differenceInMilliseconds(new Date(), new Date(rowData.due_date));
+              // const due_date_count = differenceInMilliseconds(new Date(), new Date(rowData.due_date));
               return (
                 <div key={idx} className={styles['checklist-box']}>
                   <div
@@ -180,9 +180,9 @@ class ChecklistComponent extends Component {
                     <p className={styles['item-category']}>{rowData.category}</p>
                     <p className={styles['item-due-date']}>
                       <span>{format(rowData.due_date, 'YYYY-MM-DD')}&nbsp;</span>
-                      {due_date_count > 0 && (
+                      {/* {due_date_count > 0 && (
                         <span className={styles['item-due-date-count']}>({distanceInWordsToNow(rowData.due_date)})</span>
-                      )}
+                      )} */}
                     </p>
                     <p className={`${styles['priority']} ${styles[priorityStatus]}`}>{rowData.priority}</p>
                     {this.getCompleteRate(rowData)}

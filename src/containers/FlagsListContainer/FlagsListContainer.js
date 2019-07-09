@@ -3,28 +3,17 @@ import { connect } from 'react-redux';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import PendingFlags from '../../components/FlagsListComponents/PendingFlags';
 import TabsComponent from '../../components/FlagsListComponents/TabsComponent';
-import FlagsListSearchAndAdd from '../../components/FlagsListComponents/FlagsListSearchAndAdd';
 import FlagsTable from '../../components/FlagsListComponents/FlagsTable';
 import { createFilter } from 'react-search-input';
-import { PrimaryButton } from '../../components/Button';
+import { PrimaryButton } from 'office-ui-fabric-react';
 import FlagCreator from '../../components/FlagsListComponents/FlagCreator';
 import * as actions from '../../actions/FlagsListActions/FlagsListActions';
 
 import sharedStyles from '../../styles/styles.module.css';
-import styles from './FlagsListContainer.module.css';
+// import styles from './FlagsListContainer.module.css';
 import { AppContext } from '../AppContext';
 
-const KEYS_TO_FILTERS = [
-  'id',
-  'created_by',
-  'subject',
-  'category',
-  'sub_category',
-  'status',
-  'severity',
-  'created_at',
-  'priority'
-];
+const KEYS_TO_FILTERS = ['id', 'created_by', 'subject', 'category', 'sub_category', 'status', 'severity', 'created_at', 'priority'];
 
 class FlagsListContainer extends Component {
   constructor(props) {
@@ -37,8 +26,8 @@ class FlagsListContainer extends Component {
       flagDetailsModal: {},
       search: '',
       creator: {
-        isOpen: false
-      }
+        isOpen: false,
+      },
     };
     this.openCreator = this.openCreator.bind(this);
     this.closeCreator = this.closeCreator.bind(this);
@@ -48,12 +37,12 @@ class FlagsListContainer extends Component {
     const label = !this.state.showPending ? 'Hide Pending' : 'Show Pending';
     this.setState({
       showPending: !this.state.showPending,
-      pendingBtnLabel: label
+      pendingBtnLabel: label,
     });
   };
 
-  updateActiveTab = idx => {
-    this.setState(prevState => {
+  updateActiveTab = (idx) => {
+    this.setState((prevState) => {
       if (prevState.activeTab !== idx) {
         return { activeTab: idx, search: '' };
       }
@@ -61,27 +50,17 @@ class FlagsListContainer extends Component {
   };
 
   getHeaderLabelsByActiveTab = () => {
-    let headerLabels = [
-      'Flag',
-      'From',
-      'Title',
-      'Category',
-      'Sub Cat',
-      'Date Created',
-      'Status',
-      'Severity',
-      'Priority'
-    ];
+    const headerLabels = ['Flag', 'From', 'Title', 'Category', 'Sub Cat', 'Date Created', 'Status', 'Severity', 'Priority'];
 
     switch (this.state.activeTab) {
-      case 1:
-        headerLabels[1] = 'To';
-        return headerLabels;
-      case 2:
-        headerLabels.splice(1, 1);
-        return headerLabels;
-      default:
-        return headerLabels;
+    case 1:
+      headerLabels[1] = 'To';
+      return headerLabels;
+    case 2:
+      headerLabels.splice(1, 1);
+      return headerLabels;
+    default:
+      return headerLabels;
     }
   };
 
@@ -90,41 +69,39 @@ class FlagsListContainer extends Component {
     let flags;
 
     switch (this.state.activeTab) {
-      case 1:
-        flags = sentFlags;
-        break;
-      case 2:
-        flags = publicFlags;
-        break;
-      default:
-        flags = this.getFlagsList(flagsList);
+    case 1:
+      flags = sentFlags;
+      break;
+    case 2:
+      flags = publicFlags;
+      break;
+    default:
+      flags = this.getFlagsList(flagsList);
     }
 
     return flags;
   };
 
-  getFlagsList = flags => {
+  getFlagsList = (flags) => {
     const { search } = this.state;
 
     if (!search) {
       return flags;
     }
 
-    const searchFlags = flags.data.filter(
-      createFilter(this.state.search, KEYS_TO_FILTERS)
-    );
+    const searchFlags = flags.data.filter(createFilter(this.state.search, KEYS_TO_FILTERS));
 
     return {
       ...flags,
-      data: searchFlags
+      data: searchFlags,
     };
   };
 
-  viewFlagDetails = flagId => {
+  viewFlagDetails = (flagId) => {
     this.props.navigate(`/flags/${flagId}`);
   };
 
-  handleOpenModal = flag => {
+  handleOpenModal = (flag) => {
     this.setState({ showModal: true, flagDetailsModal: flag });
   };
 
@@ -132,7 +109,7 @@ class FlagsListContainer extends Component {
     this.setState({ showModal: false });
   };
 
-  updateInput = e => {
+  updateInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -144,41 +121,25 @@ class FlagsListContainer extends Component {
   }
 
   openCreator($event) {
-    this.setState(state => ({
+    this.setState((state) => ({
       creator: {
-        isOpen: true
-      }
+        isOpen: true,
+      },
     }));
   }
 
   closeCreator($event) {
-    this.setState(state => ({
+    this.setState((state) => ({
       creator: {
-        isOpen: false
-      }
+        isOpen: false,
+      },
     }));
   }
 
   render() {
-    const {
-      showPending,
-      pendingBtnLabel,
-      activeTab,
-      showModal,
-      flagDetailsModal,
-      search
-    } = this.state;
+    const { showPending, activeTab, showModal, flagDetailsModal, search } = this.state;
     const { flagsList, sentFlags, publicFlags } = this.props;
-    const pendingFlags = showPending ? (
-      <PendingFlags flags={sentFlags.data} />
-    ) : null;
-    const searchAndAdd =
-      activeTab === 0 ? (
-        <FlagsListSearchAndAdd
-          updateInput={this.updateInput}
-          searchValue={search}
-        />
-      ) : null;
+    const pendingFlags = showPending ? <PendingFlags flags={sentFlags.data} /> : null;
     const headerLabels = this.getHeaderLabelsByActiveTab();
     const flags = this.getFlagsByActiveTab();
 
@@ -187,31 +148,12 @@ class FlagsListContainer extends Component {
     }
     return (
       <section className={sharedStyles['content-container']}>
-        <FlagCreator
-          isOpen={this.state.creator.isOpen}
-          onRequestClose={this.closeCreator}
-          context={this.context}
-        />
+        <FlagCreator isOpen={this.state.creator.isOpen} onRequestClose={this.closeCreator} context={this.context} />
         <HeaderComponent labels={['Flag Manager']}>
-          <span
-            className={styles['btn-outline']}
-            onClick={this.togglePendingVisibility}
-          >
-            {pendingBtnLabel}
-          </span>
+          <PrimaryButton text="Create New Flag" onClick={this.openCreator} />
         </HeaderComponent>
         {pendingFlags}
-        <TabsComponent
-          activeTab={activeTab}
-          updateActiveTab={this.updateActiveTab}
-          tabNames={['Flags', 'Sent', 'Public Flag']}
-        >
-          <section style={{ display: 'flex' }}>
-            {searchAndAdd}
-            <PrimaryButton onClick={this.openCreator}>
-              Create New Flag
-            </PrimaryButton>
-          </section>
+        <TabsComponent activeTab={activeTab} updateActiveTab={this.updateActiveTab} tabNames={['Assigned', 'Tagged', 'Public', 'Sent']}>
           <section>
             <FlagsTable
               headerLabels={headerLabels}
@@ -235,18 +177,15 @@ function mapStateToProps(state) {
   return {
     flagsList: state.flagsList.flagsList,
     sentFlags: state.flagsList.sentFlags,
-    publicFlags: state.flagsList.publicFlags
+    publicFlags: state.flagsList.publicFlags,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getFlagsList: x_access_token =>
-      dispatch(actions.getFlagsList(x_access_token)),
-    getSentFlags: x_access_token =>
-      dispatch(actions.getSentFlags(x_access_token)),
-    getPublicFlags: x_access_token =>
-      dispatch(actions.getPublicFlags(x_access_token))
+    getFlagsList: (x_access_token) => dispatch(actions.getFlagsList(x_access_token)),
+    getSentFlags: (x_access_token) => dispatch(actions.getSentFlags(x_access_token)),
+    getPublicFlags: (x_access_token) => dispatch(actions.getPublicFlags(x_access_token)),
   };
 }
 

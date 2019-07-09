@@ -1,0 +1,46 @@
+.pending-flags-container {
+  > div {
+    &:first-child {
+      display: flex;
+      justify-content: space-between;
+
+      h3 {
+        font-size: 18px;
+        font-weight: 900;
+        color: #544c7f;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+.pending-flags {
+  display: flex;
+
+  &.hidden {
+    display: none;
+  }
+
+  p {
+    margin-bottom: 40px;
+    font-size: 12px;
+    font-weight: 900;
+    color: #544c7f;
+  }
+}
+
+.btn-outline {
+  width: 120px;
+  height: 32px;
+  line-height: 30px;
+  display: inline-block;
+  border: 1px solid #6647ff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6647ff;
+  cursor: pointer;
+}

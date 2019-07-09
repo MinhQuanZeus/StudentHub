@@ -1,28 +1,48 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+import React, { Component } from 'react';
+import { Icon } from 'office-ui-fabric-react';
+import cns from 'classnames';
 import PendingFlag from '../PendingFlag';
 
-import styles from './PendingFlags.module.css';
+import css from './PendingFlags.m.scss';
 
-function PendingFlags({ flags }) {
-  let pendingsList = flags.filter((flag) => {
-    const status = flag.status.toLowerCase();
-    return status === 'pending' && flag.is_public;
-  });
-  if (pendingsList.length > 3) {
-    pendingsList = pendingsList.slice(0, 3);
+class PendingFlags extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hidden: false,
+    };
   }
 
-  return (
-    <section className={styles['pending-flags-container']}>
-      <h3>Pending</h3>
-      <section className={styles['pending-flags']}>
-        {pendingsList.length
-          ? pendingsList.map((pending, idx) => <PendingFlag key={idx} pending={pending} />)
-          : <p>No pending flags</p>
-        }
+  render() {
+    const { flags } = this.props;
+    const { hidden } = this.state;
+
+    let pendingsList = flags.filter((flag) => {
+      const status = flag.status.toLowerCase();
+      return status === 'pending' && flag.is_public;
+    });
+    if (pendingsList.length > 3) {
+      pendingsList = pendingsList.slice(0, 3);
+    }
+
+    return (
+      <section className={css['pending-flags-container']}>
+        <div>
+          <h3>Pending</h3>
+          <span className={css['btn-outline']} onClick={() => this.setState((state) => ({ hidden: !state.hidden }))}>
+            {hidden ? 'Show Pending' : 'Hide Pending'}
+            &nbsp;
+            <Icon iconName={hidden ? 'ChevronDown' : 'ChevronUp'} />
+          </span>
+        </div>
+
+        <section className={cns(css['pending-flags'], hidden && css['hidden'])}>
+          {pendingsList.length ? pendingsList.map((pending, idx) => <PendingFlag key={idx} pending={pending} />) : <p>No pending flags</p>}
+        </section>
       </section>
-    </section>
-  )
+    );
+  }
 }
 
 export default PendingFlags;
