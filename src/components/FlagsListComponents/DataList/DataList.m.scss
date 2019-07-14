@@ -1,0 +1,77 @@
+.DataList {
+  background-color: #fff;
+  // border: 1px solid #e8e6f2;
+  // border-radius: 4px;
+  height: 100%;
+  overflow: hidden;
+
+  table {
+    display: block;
+    width: 100%;
+
+    thead {
+      display: block;
+      width: 100%;
+
+      tr {
+        display: flex;
+
+        th {
+          display: block;
+          font-family: Avenir, sans-serif;
+          font-size: 14px;
+          font-weight: 900;
+
+          &.Sort {
+            color: #6647ff;
+
+            i {
+              color: #6647ff;
+            }
+          }
+        }
+      }
+    }
+
+    tbody {
+      display: block;
+      overflow-y: auto;
+
+      tr {
+        display: flex;
+
+        td {
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+          &:last-child {
+            display: flex;
+            justify-content: space-between;
+
+            i {
+              font-size: 16px;
+              visibility: hidden;
+            }
+          }
+        }
+
+        &:hover {
+          td {
+            &:last-child {
+              i {
+                cursor: pointer;
+                visibility: visible;
+
+                &:hover {
+                  color: #6647ff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

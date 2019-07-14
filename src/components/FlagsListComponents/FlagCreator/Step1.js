@@ -7,7 +7,7 @@ class Step1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      subCategories: []
+      subCategories: [],
     };
     this.category = React.createRef();
 
@@ -17,17 +17,12 @@ class Step1 extends Component {
 
   onChangeCategory($event) {
     this.props.setFieldValue('category', this.category.current.value);
-    const category = this.props.categories.filter(
-      obj => obj.id === parseInt(this.category.current.value, 10)
-    );
+    const category = this.props.categories.filter((obj) => obj.id === parseInt(this.category.current.value, 10));
     if (category && category.length > 0) {
-      this.props.setFieldValue(
-        'sub_category',
-        category[0].subs[0].id.toString()
-      );
-      this.setState(state => ({ subCategories: category[0].subs }));
+      this.props.setFieldValue('sub_category', category[0].subs[0].id.toString());
+      this.setState((state) => ({ subCategories: category[0].subs }));
     } else {
-      this.setState(state => ({ subCategories: [] }));
+      this.setState((state) => ({ subCategories: [] }));
     }
   }
 
@@ -39,12 +34,7 @@ class Step1 extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <form
-        className={classnames(
-          css.Step1,
-          this.props.current !== 1 && css.Hidden
-        )}
-      >
+      <form className={classnames(css.Step1, this.props.current !== 1 && css.Hidden)}>
         <div className={css.FormItem}>
           <label htmlFor="subject">Topic</label>
           <input
@@ -70,7 +60,7 @@ class Step1 extends Component {
             >
               <option value="-1" />
               {this.props.categories &&
-                this.props.categories.map(category => (
+                this.props.categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
                   </option>
@@ -88,7 +78,7 @@ class Step1 extends Component {
               value={values.sub_category}
             >
               {this.state.subCategories &&
-                this.state.subCategories.map(sub => (
+                this.state.subCategories.map((sub) => (
                   <option key={sub.id} value={sub.id}>
                     {sub.name}
                   </option>
@@ -97,14 +87,8 @@ class Step1 extends Component {
           </div>
         </div>
         <div className={css.FormItem} style={{ marginTop: 20 }}>
-          <label>Severity</label>
-          <select
-            type="text"
-            name="severity"
-            placeholder="Choose Severity"
-            onChange={handleChange}
-            value={values.severity}
-          >
+          <label>Priority</label>
+          <select type="text" name="priority" placeholder="Choose Priority" onChange={handleChange} value={values.priority}>
             <option value="LOW">Low</option>
             <option value="MEDIUM">Medium</option>
             <option value="HIGH">High</option>
@@ -113,20 +97,9 @@ class Step1 extends Component {
         <div className={css.FormItem} style={{ marginTop: 20 }}>
           <label>Dispatch Type</label>
           <div className={css.Radio}>
-            <input
-              type="radio"
-              name="is_public"
-              value="0"
-              onChange={handleChange}
-            />
+            <input type="radio" name="is_public" value="0" onChange={handleChange} />
             <span>Public</span>
-            <input
-              type="radio"
-              name="is_public"
-              value="1"
-              style={{ marginLeft: 30 }}
-              onChange={handleChange}
-            />
+            <input type="radio" name="is_public" value="1" style={{ marginLeft: 30 }} onChange={handleChange} />
             <span>Private</span>
           </div>
         </div>
@@ -141,7 +114,7 @@ export default withFormik({
     subject: '',
     category: '',
     sub_category: '',
-    severity: 'LOW',
-    is_public: ''
-  })
+    priority: 'LOW',
+    is_public: '',
+  }),
 })(Step1);

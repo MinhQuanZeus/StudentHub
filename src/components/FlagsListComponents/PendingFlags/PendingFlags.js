@@ -15,10 +15,10 @@ class PendingFlags extends Component {
   }
 
   render() {
-    const { flags } = this.props;
+    const { items } = this.props;
     const { hidden } = this.state;
 
-    let pendingsList = flags.filter((flag) => {
+    let pendingsList = items.filter((flag) => {
       const status = flag.status.toLowerCase();
       return status === 'pending' && flag.is_public;
     });
