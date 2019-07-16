@@ -1,0 +1,17 @@
+.Popup {
+  :global(.ms-Modal-scrollableContent) {
+    min-width: 400px;
+    min-height: 300px;
+  }
+  .Header {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 32px 0 32px;
+    font-size: 20px;
+    line-height: 1.5;
+
+    .Title {
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,126 @@
+.AddressItem {
+  border-radius: 7px;
+  border: solid 1px #f0eff6;
+  position: relative;
+
+  .ViewMode {
+    padding: 16px 70px 16px 60px;
+    display: table;
+
+    :first-child {
+      font-size: 12px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #8a85a6;
+      white-space: pre-line;
+      display: table-cell;
+    }
+
+    .BtnEdit {
+      position: absolute;
+      right: 38px;
+      top: 15px;
+      border-radius: 18px;
+      border: solid 1px #b2b2b2;
+      font-size: 10px;
+      font-weight: 900;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 0px;
+      letter-spacing: normal;
+      text-align: center;
+      color: #a4a4a4;
+      width: 106px;
+      height: 30px;
+      cursor: pointer;
+      visibility: hidden;
+      background-color: white;
+    }
+
+    .BtnEdit:hover {
+      text-decoration: underline;
+    }
+  }
+
+  > div {
+    &:first-child {
+      position: absolute;
+      top: 16px;
+      left: 24px;
+
+      .radio {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        margin-right: 16px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 20px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        height: 36px;
+        line-height: 32px !important;
+
+        input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+
+        input:checked ~ .checkround {
+          background-color: #fff;
+        }
+
+        input:checked ~ .checkround:after {
+          display: block;
+        }
+
+        .checkround {
+          position: absolute;
+          top: 6px;
+          left: 0;
+          height: 16px;
+          width: 16px;
+          background-color: #fff;
+          border-color: #6647ff;
+          border-style: solid;
+          border-width: 2px;
+          border-radius: 50%;
+        }
+
+        .checkround:after {
+          content: '';
+          position: absolute;
+          display: none;
+        }
+
+        .checkround:after {
+          left: 2px;
+          top: 2px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #6647ff;
+        }
+      }
+    }
+  }
+
+  > form {
+    padding: 16px 70px 16px 60px !important;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+.AddressItem:hover {
+  .BtnEdit {
+    visibility: visible !important;
+  }
+}

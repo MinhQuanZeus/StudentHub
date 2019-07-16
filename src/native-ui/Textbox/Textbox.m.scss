@@ -1,0 +1,26 @@
+.Textbox {
+  width: 100%;
+
+  label {
+    img {
+      margin-right: 8px;
+    }
+  }
+
+  :global(.invalid-feedback) {
+    display: block;
+    text-align: left;
+  }
+}
+
+.hasError {
+  :global(.form-control) {
+    border-color: #dc3545;
+  }
+}
+
+.hasSuccess {
+  :global(.form-control) {
+    border-color: #28a745;
+  }
+}

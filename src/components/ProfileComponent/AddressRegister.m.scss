@@ -1,0 +1,21 @@
+.AddressRegister {
+  > div:first-child {
+    font-size: 12px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    color: #6647ff;
+    display: flex;
+    margin-bottom: 16px;
+  }
+
+  form {
+    padding: 16px 70px 16px 60px !important;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border: solid 1px #6647ff;
+    border-radius: 6px;
+  }
+}

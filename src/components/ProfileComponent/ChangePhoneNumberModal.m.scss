@@ -1,0 +1,28 @@
+.ChangePhoneNumberModal {
+  :global(.ms-Dialog-main) {
+    border-radius: 6px;
+
+    :global(.ms-Modal-scrollableContent) {
+      min-width: 400px;
+      min-height: 300px;
+    }
+  }
+
+  .Header {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: #413d59;
+    padding: 19px 0px;
+    background-color: #f0eff6;
+    position: relative;
+
+    > img {
+      position: absolute;
+      right: 24px;
+      top: 26px;
+      z-index: 10;
+      cursor: pointer;
+    }
+  }
+}

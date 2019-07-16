@@ -13,6 +13,9 @@ class UserInfo extends Component {
   constructor(props) {
     super(props);
     this.onLogout = this.onLogout.bind(this);
+    if (!props.user) {
+      navigate('/login');
+    }
   }
 
   onLogout() {
@@ -25,8 +28,8 @@ class UserInfo extends Component {
     return (
       <div className={css.UserInfo} onClick={props.onShowMenu}>
         <img alt="chevron" src="/images/chevron-down.svg" className={css['top-bar-chevron-down']} />
-        <p className={css['top-bar-username']}>{props.user.first_name + ' ' + props.user.last_name}</p>
-        <img alt="" className={css['top-bar-avatar-sm']} src={props.user.photo || defaultAvatar} />
+        <p className={css['top-bar-username']}>{props.user && props.user.first_name + ' ' + props.user.last_name}</p>
+        <img alt="" className={css['top-bar-avatar-sm']} src={props.user && (props.user.photo || defaultAvatar)} />
         {props.isOpenMenu ? (
           <ul className={classnames(css.Menu)}>
             <li onClick={this.onLogout}>
@@ -65,7 +68,7 @@ export class TopBarComponent extends Component {
         <h5 className={css['top-bar-welcome-container']}>
           <span className={css['top-bar-welcome-text']}>Welcome</span>
           &nbsp;
-          <span className={css['top-bar-user-full-name']}>{user.first_name + ' ' + user.last_name}</span>
+          <span className={css['top-bar-user-full-name']}>{user && user.first_name + ' ' + user.last_name}</span>
         </h5>
         <UserInfo user={user} isOpenMenu={this.state.isOpenMenu} onShowMenu={this.onShowMenu} onLogout={this.onLogout} />
         <img alt="comment" src="/images/comment.svg" className={css['top-bar-comment']} />
