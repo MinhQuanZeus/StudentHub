@@ -14,6 +14,7 @@ import SocialMedia from '../../components/ProfileComponent/SocialMedia';
 import EmergencyContact from '../../components/ProfileComponent/EmergencyContact';
 import Address from '../../components/ProfileComponent/Address';
 import css from './MyProfileContainer.m.scss';
+import { navigate } from '../../helpers';
 
 class MyProfileContainer extends Component {
   constructor(props) {
@@ -102,6 +103,9 @@ class MyProfileContainer extends Component {
 
   componentDidMount() {
     const { user } = this.context;
+    if (!user) {
+      return;
+    }
     const script = param.passToken(user.x_access_token, user.first_name);
     document.body.appendChild(script);
     this.initialize();
