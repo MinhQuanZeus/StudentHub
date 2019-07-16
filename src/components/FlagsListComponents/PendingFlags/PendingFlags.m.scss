@@ -18,9 +18,21 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 32px;
+  height: 112px;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  > section {
+    height: 112px;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
 
   &.hidden {
-    display: none;
+    overflow: hidden;
+    height: 0;
+
+    > section {
+      height: 0;;
+    }
   }
 }
 
