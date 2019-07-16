@@ -21,6 +21,8 @@ export const applicationStatusCode = {
   OK_V1: 200,
 };
 
+export const API_CODE_SUCCESS = 200;
+
 export const applicationMessages = {
   SUCCESS: 'Success',
   PENDING: 'Please wait',

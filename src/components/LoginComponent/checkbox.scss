@@ -6,6 +6,10 @@
     position: relative;
     cursor: pointer;
     padding: 0;
+    display: flex;
+    letter-spacing: 0px;
+    font-weight: 500;
+    color: #8b8b8b;
   }
 
   & + label:before {
@@ -47,7 +51,6 @@
     position: absolute;
     left: 8px;
     top: 5px;
-    background: white;
     width: 8px;
     height: 14px;
     border-bottom: 2px solid #6647ff;

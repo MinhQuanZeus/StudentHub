@@ -9,20 +9,20 @@ import { Redirect, Route } from 'react-router';
 import { history, navigate } from '../../helpers';
 import SuccessTeamContainer from '../SuccessTeamContainer/SuccessTeamContainer';
 import ClassTrackerContainer from '../ClassTrackerContainer/ClassTrackerContainer';
-import MyProfileContainer from '../MyProfileContainer/MyProfileContainer';
 import MilestoneContainer from '../MilestoneContainer/MilestoneContainer';
 import DegreeAuditContainer from '../DegreeAuditContainer/DegreeAuditContainer';
 import ChecklistContainer from '../ChecklistContainer/ChecklistContainer';
 import FlagsListContainer from '../FlagsListContainer/FlagsListContainer';
 import FlagManagerDetailsContainer from '../FlagManagerDetailsContainer/FlagManagerDetailsContainer.js';
 import CalendarContainer from '../CalendarContainer/CalendarContainer';
+import MyProfileContainer from '../MyProfileContainer';
 
 class ApplicationContainer extends Component {
   componentWillMount() {
     const accessToken = getAccessToken();
     const user = getUser();
 
-    if (!accessToken && !user) {
+    if (!accessToken || !user) {
       navigate('/login');
       return;
     }

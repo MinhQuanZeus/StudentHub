@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { changePassword, forgotPassword } from '../../actions/ForgotPasswordActions/forgotPasswordActions';
-import { ForgotPasswordStep1Component } from '../../components/ForgotPasswordComponent/ForgotPasswordStep1Component';
-import { ForgotPasswordStep2Component } from '../../components/ForgotPasswordComponent/ForgotPasswordStep2Component';
+import ForgotPasswordStep2Component from '../../components/ForgotPasswordComponent/ForgotPasswordStep2Component';
 import ForgotPasswordStep3Component from '../../components/ForgotPasswordComponent/ForgotPasswordStep3Component';
 import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
 import $ from 'jquery';
 import { history } from '../../helpers';
+import ForgotPasswordStep1Component from '../../components/ForgotPasswordComponent/ForgotPasswordStep1Component';
 
 class ForgotPasswordContainer extends Component {
   constructor(props) {
@@ -15,52 +15,46 @@ class ForgotPasswordContainer extends Component {
     this.state = {
       conPasswordType: 'password',
       newPasswordType: 'password',
+      step: 1,
     };
   }
+
+  onNextStep = (index, email) => {
+    this.setState({ step: index, email: email });
+  };
+
+  setToken = (token) => {
+    this.setState({ token: token });
+  };
+
   componentWillMount() {
     $('.chatBotLoading').remove();
     $('.lex-web-ui-iframe').remove();
   }
+
   render() {
-    const { forgotPasswordStatus, changePasswordStatus } = this.props;
+    const { step, email, token } = this.state;
     let forgotPasswordComponent;
-    switch (this.getCurrentStep()) {
-    case 2:
-      forgotPasswordComponent = (
-        <ForgotPasswordStep2Component
-          submit={this.onSubmitStep2}
-          changeVerifyCode={this.setVerifyCodeToStateOnChange}
-          forgotPasswordStatus={forgotPasswordStatus}
-          {...this.props}
-        />
-      );
-      break;
-    case 3:
-      const { state } = history.location;
-      const token = state.token || '';
-      forgotPasswordComponent = (
-        <ForgotPasswordStep3Component
-          token={token}
-          submit={this.onSubmitChangePassword}
-          changeNewPassword={this.setNewPasswordToStateOnChange}
-          changeConPassowrd={this.setConfirmationPasswordToStateOnChange}
-          changePasswordStatus={changePasswordStatus}
-          conPasswordType={this.state.conPasswordType}
-          newPasswordType={this.state.newPasswordType}
-          toggleConPasswordVisibility={this.toggleConPasswordVisibility}
-          toggleNewPasswordVisibility={this.toggleNewPasswordVisibility}
-        />
-      );
-      break;
-    default:
-      forgotPasswordComponent = (
-        <ForgotPasswordStep1Component
-          submit={this.onSubmitStep1}
-          changeEmail={this.setEmailToStateOnChange}
-          forgotPasswordStatus={forgotPasswordStatus}
-          {...this.props}
-        />
-      );
+    switch (step) {
+      case 2:
+        forgotPasswordComponent = (
+          <ForgotPasswordStep2Component onNextStep={this.onNextStep} setToken={this.setToken} email={email} {...this.props} />
+        );
+        break;
+      case 3:
+        forgotPasswordComponent = (
+          <ForgotPasswordStep3Component
+            token={token}
+            submit={this.onSubmitChangePassword}
+            conPasswordType={this.state.conPasswordType}
+            newPasswordType={this.state.newPasswordType}
+            toggleConPasswordVisibility={this.toggleConPasswordVisibility}
+            toggleNewPasswordVisibility={this.toggleNewPasswordVisibility}
+          />
+        );
+        break;
+      default:
+        forgotPasswordComponent = <ForgotPasswordStep1Component onNextStep={this.onNextStep} {...this.props} />;
     }
     return <div>{forgotPasswordComponent}</div>;
   }
@@ -92,8 +86,8 @@ class ForgotPasswordContainer extends Component {
     });
   };
 
-  setEmailToStateOnChange = (event) => {
-    this.setState({ email: event.target.value });
+  setEmail = (email) => {
+    this.setState({ email: email });
   };
 
   setVerifyCodeToStateOnChange = (event) => {

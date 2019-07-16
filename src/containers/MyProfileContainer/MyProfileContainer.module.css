@@ -6,13 +6,17 @@
 .profile-left-container {
   margin-right: 35px;
   position: sticky;
-    top: 0;
-    height: 100vh;
-    box-sizing: border-box;
+  top: 0;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .profile-right-container {
   margin-top: 52.5px;
-  width: 800px;
+  width: 100%;
   box-sizing: inherit;
+}
+
+.ms-Button--primary {
+  background-color: #6647ff;
 }
