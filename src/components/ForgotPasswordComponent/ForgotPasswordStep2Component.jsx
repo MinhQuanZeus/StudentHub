@@ -2,31 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
-import { apiConstants, applicationMessages, applicationStatusCode } from '../../constants/applicationConstants';
+import { apiConstants } from '../../constants/applicationConstants';
 import css from './ForgotPasswordComponent.m.scss';
 import { SuccessHub, H1, H2 } from './';
 import { withEmit } from 'react-emit';
 import { withFormik } from 'formik';
 import { HIDE_LOADING, HTTP_POST, JSON_CONTENT_TYPE, SHOW_LOADING } from '../../constants';
+import { object, string } from 'yup';
 
 class ForgotPasswordStep2Component extends Component {
   render() {
-    const { handleChange, handleSubmit, forgotPasswordStatus, values } = this.props;
-
-    let message;
-    if (forgotPasswordStatus !== undefined && forgotPasswordStatus !== null) {
-      switch (forgotPasswordStatus) {
-        case forgotPasswordConstants.FORGOT_PASSWORD_SUCCESS:
-          message = <div>{applicationMessages.SUCCESS}</div>;
-          break;
-        case forgotPasswordConstants.FORGOT_PASSWORD_PENDING:
-          message = <div>{applicationMessages.PENDING}</div>;
-          break;
-        default:
-          message = <div>{forgotPasswordStatus.message}</div>;
-      }
-    }
-
+    const { handleChange, handleSubmit, values, errors } = this.props;
     return (
       <div className={css.Step1}>
         <div className="row">
@@ -42,6 +28,7 @@ class ForgotPasswordStep2Component extends Component {
                 <img src="/images/username.svg" alt="mask" />
                 <input type="code" id="otp" name="otp" value={values.otp} className="form-control" onChange={handleChange} />
               </div>
+              {errors && errors.otp && <div className={css.error}>{errors.otp}</div>}
               <button type="submit" onClick={handleSubmit}>
                 Next
               </button>
@@ -67,6 +54,11 @@ export default withEmit(
       email: props.email,
       otp: '',
     }),
+    validationSchema: object().shape({
+      otp: string()
+        .required()
+        .label('Code'),
+    }),
     handleSubmit: async (values, bag) => {
       try {
         bag.props.emit(SHOW_LOADING);
@@ -84,8 +76,7 @@ export default withEmit(
         });
         const body = await response.json();
         bag.props.emit(HIDE_LOADING);
-        console.log(body);
-        if (body.status === applicationStatusCode.OK) {
+        if (body.success) {
           const token = body.data && body.data.x_access_token;
           bag.props.setToken(token);
           bag.props.onNextStep(3, values.email);

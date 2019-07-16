@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
-import { apiConstants, applicationMessages, applicationStatusCode } from '../../constants/applicationConstants';
+import { apiConstants, applicationMessages } from '../../constants/applicationConstants';
 import { H1, H2, SuccessHub } from './';
 import css from './ForgotPasswordComponent.m.scss';
 import { withEmit } from 'react-emit';
 import { withFormik } from 'formik';
 import { HIDE_LOADING, HTTP_POST, JSON_CONTENT_TYPE, SHOW_LOADING } from '../../constants';
+import { object, string } from 'yup';
 
 class ForgotPasswordStep1Component extends Component {
   render() {
-    const { handleChange, handleSubmit, forgotPasswordStatus, values } = this.props;
+    const { handleChange, handleSubmit, forgotPasswordStatus, values, errors } = this.props;
 
     let message;
     if (forgotPasswordStatus !== undefined && forgotPasswordStatus !== null) {
@@ -43,6 +44,7 @@ class ForgotPasswordStep1Component extends Component {
                 <img src="/images/username.svg" alt="mask" />
                 <input type="email" id="email" name="email" value={values.email} className="form-control" onChange={handleChange} />
               </div>
+              {errors && errors.email && <div className={css.error}>{errors.email}</div>}
               <button type="submit" onClick={handleSubmit}>
                 Next
               </button>
@@ -67,6 +69,11 @@ export default withEmit(
     mapPropsToValues: () => ({
       email: '',
     }),
+    validationSchema: object().shape({
+      email: string()
+        .required()
+        .label('Email'),
+    }),
     handleSubmit: async (values, bag) => {
       try {
         bag.props.emit(SHOW_LOADING);
@@ -84,7 +91,7 @@ export default withEmit(
         });
         const body = await response.json();
         bag.props.emit(HIDE_LOADING);
-        if (body.status === applicationStatusCode.OK) {
+        if (body.success) {
           bag.props.onNextStep(2, values.email);
         }
       } catch (e) {

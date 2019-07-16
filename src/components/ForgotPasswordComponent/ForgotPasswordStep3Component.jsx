@@ -144,7 +144,7 @@ export default withEmit(
         });
         const body = await response.json();
         bag.props.emit(HIDE_LOADING);
-        if (body.status === applicationStatusCode.OK) {
+        if (body.success) {
           navigate('login');
         }
       } catch (e) {
