@@ -1,17 +1,17 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
+import Priority from '../Priority';
+import css from './PendingFlag.m.scss';
 
-import styles from './PendingFlag.module.css';
-
-function PendingFlag({ pending }) {
+function PendingFlag({ id, subject, priority }) {
   return (
-    <section className={styles['pending-flag-container']}>
-      <div className={styles['pending-flag-top']}>
-        <p>{pending.id}</p>
-        <span className={styles['pending-flag-status']}>priority</span>
+    <section className={css['pending-flag-container']}>
+      <div className={css['pending-flag-top']}>
+        <p>{id}</p>
       </div>
-      <div className={styles['pending-flag-bottom']}>
-        <p>{pending.subject}</p>
-        <span className={styles['pending-flag-level']}>!!</span>
+      <div className={css['pending-flag-bottom']}>
+        <p>{subject}</p>
+        <Priority className={css.Priority} name={priority} />
       </div>
     </section>
   );

@@ -1,8 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
-/* global fetch */
 import React, { Component } from 'react';
-import { format, distanceInWordsToNow, differenceInMilliseconds } from 'date-fns';
+import { format } from 'date-fns';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
 import SubChecklistSidebar from './SubChecklistSidebar/SubChecklistSidebar';

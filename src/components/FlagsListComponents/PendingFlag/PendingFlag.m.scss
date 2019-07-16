@@ -1,13 +1,10 @@
 .pending-flag-container {
-  width: 33%;
+  width: calc((100% - 64px) / 3);
   height: 112px;
   box-sizing: border-box;
-  padding: 16px 20px;
+  padding: 20px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
-  background-color: #ffffff;
-  margin-right: 30px;
-  margin-bottom: 30px;
-  display: inline-block;
+  background-color: #fff;
   border-left: 5px solid #6647ff;
 }
 
@@ -18,11 +15,12 @@
 .pending-flag-top {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 9px;
+
 }
 
 .pending-flag-top p {
   font-size: 14px;
+  line-height: 24px;
   font-weight: 900;
   color: #8a85a6;
 }
@@ -36,25 +34,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: #b95c5c;
   background-color: #f6e7cb;
 }
 
 .pending-flag-bottom {
   display: flex;
+  margin-top: 14px;
   justify-content: space-between;
 }
 
 .pending-flag-bottom p {
-  font-size: 17px;
+  margin: 0;
+  font-size: 24px;
+  line-height: 34px;
   font-weight: 900;
   color: #413d59;
 }
 
-.pending-flag-level {
-  font-size: 14px;
-  font-weight: 900;
-  color: #ff4747;
-  margin-right: 7px;
+.Priority {
+  margin: 0;
+  padding: 9px 0;
+  line-height: 34px;
 }

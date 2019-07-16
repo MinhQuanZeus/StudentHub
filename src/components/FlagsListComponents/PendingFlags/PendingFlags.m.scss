@@ -16,16 +16,11 @@
 
 .pending-flags {
   display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
 
   &.hidden {
     display: none;
-  }
-
-  p {
-    margin-bottom: 40px;
-    font-size: 12px;
-    font-weight: 900;
-    color: #544c7f;
   }
 }
 

@@ -18,13 +18,13 @@ class PendingFlags extends Component {
     const { items } = this.props;
     const { hidden } = this.state;
 
-    let pendingsList = items.filter((flag) => {
-      const status = flag.status.toLowerCase();
-      return status === 'pending' && flag.is_public;
-    });
-    if (pendingsList.length > 3) {
-      pendingsList = pendingsList.slice(0, 3);
-    }
+    // let pendingsList = items.filter((flag) => {
+    //   const status = flag.status.toLowerCase();
+    //   return status === 'pending' && flag.is_public;
+    // });
+    // if (pendingsList.length > 3) {
+    //   pendingsList = pendingsList.slice(0, 3);
+    // }
 
     return (
       <section className={css['pending-flags-container']}>
@@ -38,7 +38,7 @@ class PendingFlags extends Component {
         </div>
 
         <section className={cns(css['pending-flags'], hidden && css['hidden'])}>
-          {pendingsList.length ? pendingsList.map((pending, idx) => <PendingFlag key={idx} pending={pending} />) : <p>No pending flags</p>}
+          {items.length ? items.map((pending) => <PendingFlag key={pending.id} {...pending} />) : <p>No pending flags</p>}
         </section>
       </section>
     );

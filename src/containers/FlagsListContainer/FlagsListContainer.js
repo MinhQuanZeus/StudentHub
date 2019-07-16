@@ -57,6 +57,7 @@ class FlagsListContainer extends Component {
       fetch(`${API_END_POINT}student/flag/assigned`, options),
       fetch(`${API_END_POINT}student/flag/tagged`, options),
       fetch(`${API_END_POINT}student/flag/public`, options),
+      fetch(`${API_END_POINT}student/flag/sent`, options),
     ]);
     const bodies = await Promise.all(responses.map((response) => response.json()));
     this.setState(() => ({
@@ -228,7 +229,13 @@ class FlagsListContainer extends Component {
         <HeaderComponent labels={['Flag Manager']}>
           <PrimaryButton text="Create New Flag" onClick={this.openCreator} />
         </HeaderComponent>
-        <PendingFlags items={[]} />
+        <PendingFlags
+          items={[
+            { id: 'F0023', subject: 'Take some books!', priority: 'high' },
+            { id: 'F0024', subject: 'Take some books!', priority: 'medium' },
+            { id: 'F0025', subject: 'Take some books!', priority: 'low' },
+          ]}
+        />
         <TabsComponent activeTab={activeTab} updateActiveTab={this.updateActiveTab} tabNames={['Assigned', 'Tagged', 'Public', 'Sent']}>
           <DataList
             className={css.FlagList}
