@@ -6,7 +6,7 @@ import PendingFlags from '../../components/FlagsListComponents/PendingFlags';
 import TabsComponent from '../../components/FlagsListComponents/TabsComponent';
 // import FlagsTable from '../../components/FlagsListComponents/FlagsTable';
 // import { createFilter } from 'react-search-input';
-import { PrimaryButton } from 'office-ui-fabric-react';
+import { PrimaryButton, ProgressIndicator } from 'office-ui-fabric-react';
 import FlagCreator from '../../components/FlagsListComponents/FlagCreator';
 // import * as actions from '../../actions/FlagsListActions/FlagsListActions';
 
@@ -24,7 +24,7 @@ class FlagsListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
+      isLoading: true,
       items: [[], [], [], []],
       sort: -1,
       showPending: true,
@@ -60,6 +60,7 @@ class FlagsListContainer extends Component {
     ]);
     const bodies = await Promise.all(responses.map((response) => response.json()));
     this.setState(() => ({
+      isLoading: false,
       items: bodies.map((b) => (b.success ? b.data : [])),
     }));
   }
@@ -110,7 +111,6 @@ class FlagsListContainer extends Component {
 
   orderBy(idx) {
     const { activeTab } = this.state;
-    // console.log(this.state);
     const items = orderBy(
       this.state.items[activeTab],
       (o) => {
@@ -146,8 +146,6 @@ class FlagsListContainer extends Component {
       idx > 0 ? 'asc' : 'desc'
     );
 
-    // console.log(idx, items);
-
     this.setState((state) => ({
       sort: idx,
       items: (state.items[activeTab] = items) && state.items,
@@ -155,7 +153,7 @@ class FlagsListContainer extends Component {
   }
 
   render() {
-    const { items, activeTab, sort } = this.state;
+    const { isLoading, items, activeTab, sort } = this.state;
 
     const headers = ['Flag', activeTab === 3 ? 'To' : 'From', 'Title', 'Category', 'Sub Cat', 'Date Created', 'Status', 'Priority'];
 
@@ -173,61 +171,44 @@ class FlagsListContainer extends Component {
           ]}
         />
         <TabsComponent activeTab={activeTab} updateActiveTab={this.updateActiveTab} tabNames={['Assigned', 'Tagged', 'Public', 'Sent']}>
-          <DataList
-            className={css.FlagList}
-            items={items[activeTab]}
-            headers={headers}
-            onRenderItem={(o) => (
-              <tr key={o.id}>
-                <td>{o.id}</td>
-                <td>{o.creator}</td>
-                <td>{o.subject}</td>
-                <td>{o.category}</td>
-                <td>{o.sub_category}</td>
-                <td>{format(o.created_at, 'DD MMM YYYY')}</td>
-                <td>
-                  <div className={cns('Status', o.status && o.status.toLowerCase())}>{o.status}</div>
-                </td>
-                <td>
-                  <div className={cns('Priority', o.priority && o.priority.toLowerCase())}>
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                    <div />
-                  </div>
-                </td>
-              </tr>
-            )}
-            sort={sort}
-            orderBy={this.orderBy}
-          />
+          {isLoading ? (
+            <ProgressIndicator />
+          ) : (
+            <DataList
+              className={css.FlagList}
+              items={items[activeTab]}
+              headers={headers}
+              onRenderItem={(o) => (
+                <tr key={o.id}>
+                  <td>{o.id}</td>
+                  <td>{o.creator}</td>
+                  <td>{o.subject}</td>
+                  <td>{o.category}</td>
+                  <td>{o.sub_category}</td>
+                  <td>{format(o.created_at, 'DD MMM YYYY')}</td>
+                  <td>
+                    <div className={cns('Status', o.status && o.status.toLowerCase())}>{o.status}</div>
+                  </td>
+                  <td>
+                    <div className={cns('Priority', o.priority && o.priority.toLowerCase())}>
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                    </div>
+                  </td>
+                </tr>
+              )}
+              sort={sort}
+              orderBy={this.orderBy}
+            />
+          )}
         </TabsComponent>
       </section>
     );
   }
 }
 FlagsListContainer.contextType = AppContext;
-
-// function mapStateToProps(state) {
-//   return {
-//     flagsList: state.flagsList.flagsList,
-//     sentFlags: state.flagsList.sentFlags,
-//     publicFlags: state.flagsList.publicFlags,
-//   };
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     getFlagsList: (x_access_token) => dispatch(actions.getFlagsList(x_access_token)),
-//     getSentFlags: (x_access_token) => dispatch(actions.getSentFlags(x_access_token)),
-//     getPublicFlags: (x_access_token) => dispatch(actions.getPublicFlags(x_access_token)),
-//   };
-// }
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(FlagsListContainer);
 
 export default FlagsListContainer;
