@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 /* global fetch */
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import PendingFlags from '../../components/FlagsListComponents/PendingFlags';
 import TabsComponent from '../../components/FlagsListComponents/TabsComponent';
@@ -65,14 +64,6 @@ class FlagsListContainer extends Component {
     }));
   }
 
-  // togglePendingVisibility() {
-  //   const label = !this.state.showPending ? 'Hide Pending' : 'Show Pending';
-  //   this.setState({
-  //     showPending: !this.state.showPending,
-  //     pendingBtnLabel: label,
-  //   });
-  // };
-
   updateActiveTab = (idx) => {
     this.setState((prevState) => {
       if (prevState.activeTab !== idx) {
@@ -80,54 +71,6 @@ class FlagsListContainer extends Component {
       }
     });
   };
-
-  // getHeaderLabelsByActiveTab = () => {
-  //   const headerLabels = ['Flag', 'From', 'Title', 'Category', 'Sub Cat', 'Date Created', 'Status', 'Severity', 'Priority'];
-
-  //   switch (this.state.activeTab) {
-  //   case 1:
-  //     headerLabels[1] = 'To';
-  //     return headerLabels;
-  //   case 2:
-  //     headerLabels.splice(1, 1);
-  //     return headerLabels;
-  //   default:
-  //     return headerLabels;
-  //   }
-  // };
-
-  // getFlagsByActiveTab = () => {
-  //   const { flagsList, sentFlags, publicFlags } = this.props;
-  //   let flags;
-
-  //   switch (this.state.activeTab) {
-  //   case 1:
-  //     flags = sentFlags;
-  //     break;
-  //   case 2:
-  //     flags = publicFlags;
-  //     break;
-  //   default:
-  //     flags = this.getFlagsList(flagsList);
-  //   }
-
-  //   return flags;
-  // };
-
-  // getFlagsList = (flags) => {
-  //   const { search } = this.state;
-
-  //   if (!search) {
-  //     return flags;
-  //   }
-
-  //   const searchFlags = flags.data.filter(createFilter(this.state.search, KEYS_TO_FILTERS));
-
-  //   return {
-  //     ...flags,
-  //     data: searchFlags,
-  //   };
-  // };
 
   // viewFlagDetails = (flagId) => {
   //   this.props.navigate(`/flags/${flagId}`);
@@ -147,10 +90,6 @@ class FlagsListContainer extends Component {
 
   componentDidMount() {
     this.intialize();
-    // const token = this.context.user.x_access_token;
-    // this.props.getFlagsList(token);
-    // this.props.getSentFlags(token);
-    // this.props.getPublicFlags(token);
   }
 
   openCreator($event) {
@@ -170,8 +109,10 @@ class FlagsListContainer extends Component {
   }
 
   orderBy(idx) {
+    const { activeTab } = this.state;
+    // console.log(this.state);
     const items = orderBy(
-      this.state.items[this.state.activeTab],
+      this.state.items[activeTab],
       (o) => {
         switch (idx) {
         case -1:
@@ -204,27 +145,22 @@ class FlagsListContainer extends Component {
       },
       idx > 0 ? 'asc' : 'desc'
     );
+
+    // console.log(idx, items);
+
     this.setState((state) => ({
       sort: idx,
-      items: (state.items[0] = items && state.items),
+      items: (state.items[activeTab] = items) && state.items,
     }));
   }
 
   render() {
     const { items, activeTab, sort } = this.state;
-    // const { flagsList, sentFlags, publicFlags } = this.props;
-    // const pendingFlags = showPending ?  : null;
-    // const headerLabels = this.getHeaderLabelsByActiveTab();
-    // const flags = this.getFlagsByActiveTab();
-
-    // if (flagsList.loading || sentFlags.loading || publicFlags.loading) {
-    //   return null;
-    // }
 
     const headers = ['Flag', activeTab === 3 ? 'To' : 'From', 'Title', 'Category', 'Sub Cat', 'Date Created', 'Status', 'Priority'];
 
     return (
-      <section className={sharedStyles['content-container']}>
+      <section className={cns(sharedStyles['content-container'], css['content-container'])}>
         <FlagCreator isOpen={this.state.creator.isOpen} onRequestClose={this.closeCreator} context={this.context} />
         <HeaderComponent labels={['Flag Manager']}>
           <PrimaryButton text="Create New Flag" onClick={this.openCreator} />

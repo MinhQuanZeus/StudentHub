@@ -1,7 +1,5 @@
 .DataList {
   background-color: #fff;
-  // border: 1px solid #e8e6f2;
-  // border-radius: 4px;
   height: 100%;
   overflow: hidden;
 
@@ -39,6 +37,7 @@
 
       tr {
         display: flex;
+        background-color: #fafafa;
 
         td {
           display: block;
@@ -58,6 +57,7 @@
         }
 
         &:hover {
+          background-color: #f0eff6;
           td {
             &:last-child {
               i {
