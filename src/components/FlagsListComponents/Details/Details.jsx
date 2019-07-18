@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Icon, PrimaryButton } from 'office-ui-fabric-react';
+import { Modal, Icon, PrimaryButton, Persona } from 'office-ui-fabric-react';
 import { format } from 'date-fns';
 import Status from '../Status';
 
@@ -68,10 +68,35 @@ class Details extends Component {
             </div>
           </div>
           <div>
-            <label>To</label>
-            <ul>
-              <li></li>
-            </ul>
+            <div>
+              <label>To</label>
+              <ul>
+                <li>
+                  <Persona text="Michael" />
+                </li>
+                <li>
+                  <Persona text="Evi" />
+                </li>
+                <li>
+                  <Persona text="Justin" />
+                </li>
+                <li>
+                  <Persona text="Kery" />
+                </li>
+                <li>
+                  <Persona text="Kery" />
+                </li>
+              </ul>
+            </div>
+            <div>
+              <label>Attachment</label>
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
           </div>
         </div>
         <div className={css.Footer}>
