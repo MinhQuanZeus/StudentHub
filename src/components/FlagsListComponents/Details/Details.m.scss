@@ -1,0 +1,83 @@
+.Details {
+  :global(.ms-Dialog-main) {
+    width: 900px;
+    height: 640px;
+    border-radius: 8px;
+
+    :global(.ms-Modal-scrollableContent) {
+      height: 100%;
+
+      .Header {
+        padding: 0 32px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #f0eff6;
+        height: 60px;
+        line-height: 60px;
+        color: #413d59;
+        font-family: Avenir, sans-serif;
+        font-weight: 900;
+        font-size: 16px;
+
+        h2 {
+          margin: 0;
+          padding: 0;
+          line-height: 60px;
+          font-size: 16px;
+        }
+      }
+
+      .Body {
+        height: calc(100% - 141px);
+        display: flex;
+        justify-content: space-between;
+
+        > div {
+          &:first-child {
+            padding: 32px;
+            width: calc(100% - 320px);
+            height: 100%;
+            border-right: 1px solid #f0eff6;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            > div {
+              width: calc(50% - 16px);
+
+              &:nth-child(5) {
+                width: 100%;
+              }
+
+              > label {
+                font-family: Avenir, sans-serif;
+                font-weight: 900;
+                font-size: 16px;
+              }
+
+              > div {
+                font-family: Avenir, sans-serif;
+                font-size: 16px;
+                font-weight: 500;
+                color: #8a85a6;
+                margin-bottom: 32px;
+              }
+            }
+          }
+        }
+      }
+
+      .Footer {
+        height: 81px;
+        border-top: 1px solid #f0eff6;
+        line-height: 80px;
+        text-align: center;
+
+        button {
+          outline: none;
+          margin-top: 24px;
+        }
+      }
+    }
+  }
+}

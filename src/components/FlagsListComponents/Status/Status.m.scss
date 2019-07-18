@@ -1,0 +1,24 @@
+.Status {
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 4px;
+  margin: 10px 0;
+
+  &:global(.pending) {
+    background-color: #f6e7cb;
+    color: #b99e5c;
+  }
+
+  &:global(.open) {
+    background-color: #cbf6d8;
+    color: #5cb977;
+  }
+
+  &:global(.resolved) {
+    background-color: #dedede;
+    color: #979797;
+  }
+}

@@ -19,19 +19,20 @@ import { format } from 'date-fns';
 // const KEYS_TO_FILTERS = ['id', 'created_by', 'subject', 'category', 'sub_category', 'status', 'severity', 'created_at', 'priority'];
 import cns from 'classnames';
 import orderBy from 'lodash.orderby';
+import Details from '../../components/FlagsListComponents/Details';
 
 class FlagsListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      items: [[], [], [], []],
+      items: [[], [], [], [], []],
       sort: -1,
       showPending: true,
       pendingBtnLabel: 'Hide Pending',
       activeTab: 0,
-      showModal: false,
-      flagDetailsModal: {},
+      isOpen: false,
+      details: {},
       search: '',
       creator: {
         isOpen: false,
@@ -59,9 +60,11 @@ class FlagsListContainer extends Component {
       fetch(`${API_END_POINT}student/flag/sent`, options),
     ]);
     const bodies = await Promise.all(responses.map((response) => response.json()));
+    const items = bodies.map((b) => (b.success ? b.data : []));
+    items.push(items[3].filter((o) => o.status && o.status.toLowerCase() === 'pending'));
     this.setState(() => ({
       isLoading: false,
-      items: bodies.map((b) => (b.success ? b.data : [])),
+      items: items,
     }));
   }
 
@@ -153,23 +156,16 @@ class FlagsListContainer extends Component {
   }
 
   render() {
-    const { isLoading, items, activeTab, sort } = this.state;
-
+    const { isLoading, items, activeTab, sort, isOpen, details } = this.state;
     const headers = ['Flag', activeTab === 3 ? 'To' : 'From', 'Title', 'Category', 'Sub Cat', 'Date Created', 'Status', 'Priority'];
 
     return (
       <section className={cns(sharedStyles['content-container'], css['content-container'])}>
-        <FlagCreator isOpen={this.state.creator.isOpen} onRequestClose={this.closeCreator} context={this.context} />
+        <FlagCreator isOpen={this.state.creator.isOpen} onDismiss={this.closeCreator} context={this.context} />
         <HeaderComponent labels={['Flag Manager']}>
           <PrimaryButton text="Create New Flag" onClick={this.openCreator} />
         </HeaderComponent>
-        <PendingFlags
-          items={[
-            { id: 'F0023', subject: 'Take some books!', priority: 'high' },
-            { id: 'F0024', subject: 'Take some books!', priority: 'medium' },
-            { id: 'F0025', subject: 'Take some books!', priority: 'low' },
-          ]}
-        />
+        <PendingFlags items={items[4]} />
         <TabsComponent activeTab={activeTab} updateActiveTab={this.updateActiveTab} tabNames={['Assigned', 'Tagged', 'Public', 'Sent']}>
           {isLoading ? (
             <ProgressIndicator />
@@ -179,12 +175,12 @@ class FlagsListContainer extends Component {
               items={items[activeTab]}
               headers={headers}
               onRenderItem={(o) => (
-                <tr key={o.id}>
+                <tr key={o.id} onClick={() => this.setState(() => ({ isOpen: true, details: o }))}>
                   <td>{o.id}</td>
-                  <td>{o.creator}</td>
+                  <td>{activeTab !== 3 ? o.creator : o.to}</td>
                   <td>{o.subject}</td>
-                  <td>{o.category}</td>
-                  <td>{o.sub_category}</td>
+                  <td>{o.category_name}</td>
+                  <td>{o.sub_category_name}</td>
                   <td>{format(o.created_at, 'DD MMM YYYY')}</td>
                   <td>
                     <div className={cns('Status', o.status && o.status.toLowerCase())}>{o.status}</div>
@@ -205,6 +201,7 @@ class FlagsListContainer extends Component {
             />
           )}
         </TabsComponent>
+        <Details isOpen={isOpen} {...details} onDismiss={() => this.setState(() => ({ isOpen: false }))} />
       </section>
     );
   }
