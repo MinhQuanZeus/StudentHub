@@ -4,19 +4,14 @@ import React, { Component } from 'react';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import PendingFlags from '../../components/FlagsListComponents/PendingFlags';
 import TabsComponent from '../../components/FlagsListComponents/TabsComponent';
-// import FlagsTable from '../../components/FlagsListComponents/FlagsTable';
-// import { createFilter } from 'react-search-input';
 import { PrimaryButton, ProgressIndicator } from 'office-ui-fabric-react';
 import FlagCreator from '../../components/FlagsListComponents/FlagCreator';
-// import * as actions from '../../actions/FlagsListActions/FlagsListActions';
-
 import sharedStyles from '../../styles/styles.module.css';
 import css from './FlagsListContainer.m.scss';
 import { AppContext } from '../AppContext';
 import DataList from '../../components/FlagsListComponents/DataList';
 import { API_END_POINT } from '../../constants/ApiUrl';
 import { format } from 'date-fns';
-// const KEYS_TO_FILTERS = ['id', 'created_by', 'subject', 'category', 'sub_category', 'status', 'severity', 'created_at', 'priority'];
 import cns from 'classnames';
 import orderBy from 'lodash.orderby';
 import Details from '../../components/FlagsListComponents/Details';
@@ -42,6 +37,7 @@ class FlagsListContainer extends Component {
     this.closeCreator = this.closeCreator.bind(this);
     this.intialize = this.intialize.bind(this);
     this.orderBy = this.orderBy.bind(this);
+    this.onGetDetails = this.onGetDetails.bind(this);
   }
 
   async intialize() {
@@ -75,22 +71,6 @@ class FlagsListContainer extends Component {
       }
     });
   };
-
-  // viewFlagDetails = (flagId) => {
-  //   this.props.navigate(`/flags/${flagId}`);
-  // };
-
-  // handleOpenModal = (flag) => {
-  //   this.setState({ showModal: true, flagDetailsModal: flag });
-  // };
-
-  // handleCloseModal = () => {
-  //   this.setState({ showModal: false });
-  // };
-
-  // updateInput = (e) => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // };
 
   componentDidMount() {
     this.intialize();
@@ -155,6 +135,23 @@ class FlagsListContainer extends Component {
     }));
   }
 
+  async onGetDetails(details) {
+    this.setState(() => ({ isOpen: true, details: details }));
+    const { x_access_token } = this.context.user;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': x_access_token,
+      },
+    };
+    const response = await fetch(`${API_END_POINT}student/flag/detail/${details.id}`, options);
+    const body = await response.json();
+    if (body.success) {
+      this.setState(() => ({ details: body.data }));
+    }
+  }
+
   render() {
     const { isLoading, items, activeTab, sort, isOpen, details } = this.state;
     const headers = ['Flag', activeTab === 3 ? 'To' : 'From', 'Title', 'Category', 'Sub Cat', 'Date Created', 'Status', 'Priority'];
@@ -175,7 +172,7 @@ class FlagsListContainer extends Component {
               items={items[activeTab]}
               headers={headers}
               onRenderItem={(o) => (
-                <tr key={o.id} onClick={() => this.setState(() => ({ isOpen: true, details: o }))}>
+                <tr key={o.id} onClick={() => this.onGetDetails(o)}>
                   <td>{o.id}</td>
                   <td>{activeTab !== 3 ? o.creator : o.to}</td>
                   <td>{o.subject}</td>

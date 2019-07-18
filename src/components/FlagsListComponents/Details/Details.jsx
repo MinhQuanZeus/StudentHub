@@ -25,6 +25,8 @@ class Details extends Component {
       is_public,
       created_at,
       description,
+      receivers,
+      documents,
     } = this.props;
     return (
       <Modal className={css.Details} isOpen={isOpen} onDismiss={onDismiss}>
@@ -71,31 +73,18 @@ class Details extends Component {
             <div>
               <label>To</label>
               <ul>
-                <li>
-                  <Persona text="Michael" />
-                </li>
-                <li>
-                  <Persona text="Evi" />
-                </li>
-                <li>
-                  <Persona text="Justin" />
-                </li>
-                <li>
-                  <Persona text="Kery" />
-                </li>
-                <li>
-                  <Persona text="Kery" />
-                </li>
+                {receivers &&
+                  receivers.length > 0 &&
+                  receivers.map((o) => (
+                    <li key={o.id}>
+                      <Persona text={o.full_name} imageUrl={o.photo_url} />
+                    </li>
+                  ))}
               </ul>
             </div>
             <div>
               <label>Attachment</label>
-              <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-              </ul>
+              <ul>{documents && documents.length > 0 && documents.map((o, idx) => <li key={idx}></li>)}</ul>
             </div>
           </div>
         </div>
@@ -122,6 +111,8 @@ Details.propTypes = {
   is_public: PropTypes.string,
   created_at: PropTypes.string,
   description: PropTypes.string,
+  receivers: PropTypes.array,
+  documents: PropTypes.array,
 };
 
 export default Details;
