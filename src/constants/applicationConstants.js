@@ -1,5 +1,5 @@
 export const apiConstants = {
-  BACKEND_URL: 'http://api.successhub.us/api/v1/',
+  BACKEND_URL: 'https://stagingapi.successhub.us/api/v1/',
   STUDENT_LOGIN_PATH: 'student/login',
   STUDENT_FORGOT_PASSWORD_PATH: 'student/forgot_password',
   STUDENT_CHANGE_PASSWORD_PATH: 'student/change_pass',
