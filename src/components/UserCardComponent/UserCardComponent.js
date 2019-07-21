@@ -36,7 +36,7 @@ export class UserCardComponent extends Component {
   };
 
   render() {
-    const { first_name, last_name, birth_date, mobile_phone, primary_email, current_address } = this.props.loginInformation;
+    const { loginInformation } = this.props;
     const { showDetails } = this.state;
     const btnText = showDetails ? 'Show Less' : 'Show More';
 
@@ -46,7 +46,7 @@ export class UserCardComponent extends Component {
           <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User Avatar" />
         </div>
         <div className={styles['UserName']}>
-          <p>{first_name + ' ' + last_name}</p>
+          <p>{loginInformation && loginInformation.first_name + ' ' + loginInformation.last_name}</p>
         </div>
         <div className={styles['UserMajor']}>
           <p>Computer Science, BS</p>
@@ -57,7 +57,7 @@ export class UserCardComponent extends Component {
           </a>
         </div>
 
-        {showDetails ? <UserDetails bday={birth_date} phone={mobile_phone} email={primary_email} address={current_address} /> : null}
+        {showDetails && loginInformation ? <UserDetails bday={loginInformation.birth_date} phone={loginInformation.mobile_phone} email={loginInformation.primary_email} address={loginInformation.current_address} /> : null}
       </div>
     );
   }

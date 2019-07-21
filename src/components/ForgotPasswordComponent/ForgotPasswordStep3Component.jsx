@@ -5,7 +5,7 @@ import { SuccessHub, H1, H2 } from './';
 import { withFormik } from 'formik';
 import { withEmit } from 'react-emit';
 
-import { apiConstants, applicationStatusCode } from '../../constants/applicationConstants';
+import { apiConstants } from '../../constants/applicationConstants';
 import { SHOW_LOADING, HIDE_LOADING, HTTP_POST, JSON_CONTENT_TYPE } from '../../constants';
 import css from './ForgotPasswordComponent.m.scss';
 import { navigate } from '../../helpers';

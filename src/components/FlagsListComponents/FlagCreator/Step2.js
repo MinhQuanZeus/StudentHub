@@ -16,9 +16,9 @@ export class ImagePreview extends Component {
     this.onLoad = this.onLoad.bind(this);
 
     this.state = {
-      src: null
+      src: null,
     };
-    var reader = new FileReader();
+    const reader = new FileReader();
 
     reader.onload = this.onLoad;
 
@@ -26,7 +26,7 @@ export class ImagePreview extends Component {
   }
 
   onLoad($event) {
-    this.setState(state => ({ src: $event.target.result }));
+    this.setState((state) => ({ src: $event.target.result }));
   }
 
   render() {
@@ -35,7 +35,7 @@ export class ImagePreview extends Component {
       state.src && (
         <li className={css.Image}>
           <img src={state.src} alt="avatar" />
-          <span onClick={$event => props.onRemove($event, props.src)}>
+          <span onClick={($event) => props.onRemove($event, props.src)}>
             <i className="fas fa-times" />
           </span>
         </li>
@@ -44,13 +44,10 @@ export class ImagePreview extends Component {
   }
 }
 
-export const Preview = props => {
+export const Preview = (props) => {
   return (
     <ul className={css.Preview}>
-      {props.files &&
-        props.files.map(src => (
-          <ImagePreview key={src.name} src={src} onRemove={props.onRemove} />
-        ))}
+      {props.files && props.files.map((src) => <ImagePreview key={src.name} src={src} onRemove={props.onRemove} />)}
     </ul>
   );
 };
@@ -60,7 +57,7 @@ class Step2 extends Component {
     super(props);
 
     this.state = {
-      acceptedFiles: []
+      acceptedFiles: [],
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -74,19 +71,19 @@ class Step2 extends Component {
     $event.preventDefault();
     const formData = new FormData();
     if (this.state.acceptedFiles) {
-      this.state.acceptedFiles.forEach(attachment => {
+      this.state.acceptedFiles.forEach((attachment) => {
         formData.append('images', attachment);
       });
       fetch(`${API_END_POINT}${UPLOAD_IMAGES}`, {
         method: HTTP_POST,
         headers: {
-          'X-Access-Token': this.context.accessToken
+          'X-Access-Token': this.context.accessToken,
         },
-        body: formData
+        body: formData,
       })
-        .then($response => $response.json())
-        .then($json => this.onResponse($json.data))
-        .catch($e => this.onResponse());
+        .then(($response) => $response.json())
+        .then(($json) => this.onResponse($json.data))
+        .catch(($e) => this.onResponse());
     } else {
       this.props.onNext(this.props.values);
     }
@@ -103,19 +100,19 @@ class Step2 extends Component {
 
   onDrop = (acceptedFiles, rejectedFiles) => {
     const nextState = this.state;
-    acceptedFiles.forEach(img => {
-      const obj = nextState.acceptedFiles.filter(f => f.name === img.name);
+    acceptedFiles.forEach((img) => {
+      const obj = nextState.acceptedFiles.filter((f) => f.name === img.name);
       if (obj.length === 0) {
         nextState.acceptedFiles.push(img);
       }
     });
 
-    this.setState(state => nextState);
+    this.setState((state) => nextState);
   };
 
   onRemove($event, $img) {
-    this.setState(state => ({
-      acceptedFiles: state.acceptedFiles.filter(img => img.name !== $img.name)
+    this.setState((state) => ({
+      acceptedFiles: state.acceptedFiles.filter((img) => img.name !== $img.name),
     }));
   }
 
@@ -123,12 +120,7 @@ class Step2 extends Component {
     const { props, state } = this;
     const { values, handleChange } = this.props;
     return (
-      <form
-        className={classnames(
-          css.Step2,
-          this.props.current !== 2 && css.Hidden
-        )}
-      >
+      <form className={classnames(css.Step2, this.props.current !== 2 && css.Hidden)}>
         <div className={css.FormItem}>
           <label htmlFor="description">Description</label>
           <textarea
@@ -147,7 +139,7 @@ class Step2 extends Component {
                 <div
                   {...getRootProps()}
                   className={classnames('dropzone', {
-                    'dropzone--isActive': isDragActive
+                    'dropzone--isActive': isDragActive,
                   })}
                 >
                   <input {...getInputProps()} />
@@ -165,11 +157,7 @@ class Step2 extends Component {
           </Dropzone>
           <Preview files={state.acceptedFiles} onRemove={this.onRemove} />
         </div>
-        <Actions
-          current={props.current}
-          onPrevious={this.onPrevious}
-          onNext={this.onNext}
-        />
+        <Actions current={props.current} onPrevious={this.onPrevious} onNext={this.onNext} />
       </form>
     );
   }
@@ -179,6 +167,6 @@ Step2.contextType = AppContext;
 
 export default withFormik({
   mapPropsToValues: () => ({
-    description: ''
-  })
+    description: '',
+  }),
 })(Step2);

@@ -17,7 +17,6 @@ class PendingFlags extends Component {
   render() {
     const { items } = this.props;
     const { hidden } = this.state;
-
     // let pendingsList = items.filter((flag) => {
     //   const status = flag.status.toLowerCase();
     //   return status === 'pending' && flag.is_public;
@@ -31,7 +30,7 @@ class PendingFlags extends Component {
         <div>
           <h3>Pending</h3>
           <span className={css['btn-outline']} onClick={() => this.setState((state) => ({ hidden: !state.hidden }))}>
-            {hidden ? 'Show Pending' : 'Hide Pending'}
+            {hidden ? `Show Pending (${items.length})` : 'Hide Pending'}
             &nbsp;
             <Icon iconName={hidden ? 'ChevronDown' : 'ChevronUp'} />
           </span>
