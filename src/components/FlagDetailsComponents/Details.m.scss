@@ -1,0 +1,20 @@
+.Details {
+  display: flex;
+  justify-content: space-between;
+
+  > div {
+    &:first-child {
+      width: calc(100% - 352px);
+    }
+
+    &:last-child {
+      width: 320px;
+
+      > div {
+        &:nth-child(n + 2) {
+          margin-top: 32px;
+        }
+      }
+    }
+  }
+}

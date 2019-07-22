@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
-import FlagDetailsComponent from '../../components/FlagDetailsComponent';
+import Details from '../../components/FlagDetailsComponents';
 import { API_END_POINT } from '../../constants/ApiUrl';
 import sharedStyles from '../../styles/styles.module.css';
 import css from './FlagDetailsContainer.m.scss';
@@ -46,11 +46,9 @@ class FlagDetailsContainer extends Component {
     return (
       <section className={sharedStyles['content-container']}>
         <HeaderComponent labels={['Flag Manager', 'Details']}>
-          <span className={css['btn-colored']} onClick={() => console.log('clicked')}>
-            Edit Flag
-          </span>
+          <span className={css['btn-colored']}>Edit Flag</span>
         </HeaderComponent>
-        <FlagDetailsComponent {...details} />
+        <Details {...details} />
       </section>
     );
   }

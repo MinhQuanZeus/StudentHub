@@ -15,20 +15,13 @@ class DegreeAuditContainer extends Component {
   constructor() {
     super();
     this.state = {
-      commonInfoVisibility: true
+      commonInfoVisibility: true,
     };
   }
 
   componentWillMount() {
-    if (
-      this.props.academic_program !== undefined &&
-      this.props.academic_program !== null &&
-      this.props.academic_program.length !== 0
-    ) {
-      this.props.onFetchDegreeAudit(
-        this.context.user.x_access_token,
-        this.props.academic_program[0].academic_program_id
-      );
+    if (this.props.academic_program !== undefined && this.props.academic_program !== null && this.props.academic_program.length !== 0) {
+      this.props.onFetchDegreeAudit(this.context.user.x_access_token, this.props.academic_program[0].academic_program_id);
     }
   }
 
@@ -41,20 +34,14 @@ class DegreeAuditContainer extends Component {
           commonInfoVisibility={this.state.commonInfoVisibility}
         />
         {this.getCommonInfo()}
-        <MilestoneTabsComponent
-          currentPath={this.props.location.pathname}
-          commonInfoVisibility={this.state.commonInfoVisibility}
-        />
-        <DegreeAuditChartsComponent
-          degreeAudit={this.props.degreeAudit}
-          commonInfoVisibility={this.state.commonInfoVisibility}
-        />
+        <MilestoneTabsComponent currentPath={this.props.location.pathname} commonInfoVisibility={this.state.commonInfoVisibility} />
+        <DegreeAuditChartsComponent degreeAudit={this.props.degreeAudit} commonInfoVisibility={this.state.commonInfoVisibility} />
       </div>
     );
   }
 
   toggleCommonInfoVisibility = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return { commonInfoVisibility: !prevState.commonInfoVisibility };
     });
   };
@@ -64,9 +51,7 @@ class DegreeAuditContainer extends Component {
       return (
         <React.Fragment>
           <MilestoneAvatarComponent loginInformation={this.context.user} />
-          <ProgramInfoComponent
-            academic_program={this.props.academic_program}
-          />
+          <ProgramInfoComponent academic_program={this.props.academic_program} />
         </React.Fragment>
       );
     }
@@ -75,17 +60,16 @@ class DegreeAuditContainer extends Component {
 
 DegreeAuditContainer.contextType = AppContext;
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     academic_program: state.academicProgram.academic_program,
-    degreeAudit: state.degreeAudit.degreeAudit
+    degreeAudit: state.degreeAudit.degreeAudit,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onFetchDegreeAudit: (x_access_token, academic_program_id) =>
-      dispatch(onFetchDegreeAudit(x_access_token, academic_program_id))
+    onFetchDegreeAudit: (x_access_token, academic_program_id) => dispatch(onFetchDegreeAudit(x_access_token, academic_program_id)),
   };
 };
 

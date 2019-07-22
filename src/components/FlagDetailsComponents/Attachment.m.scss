@@ -1,0 +1,34 @@
+.Attachment {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
+  background-color: #fff;
+  padding: 32px;
+
+  label {
+    font-family: Avenir, sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    color: #413d59;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    li {
+      width: 80px;
+      height: 80px;
+      background-color: #f9f9f9;
+      margin-left: 8px;
+
+      &:nth-child(3n + 1) {
+        margin-left: 0;
+      }
+
+      &:nth-child(n + 4) {
+        margin-top: 8px;
+      }
+    }
+  }
+}
