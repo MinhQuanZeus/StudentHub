@@ -1,0 +1,157 @@
+.right-bar {
+  width: 230px;
+  height: 100%;
+  background-color: #fff;
+}
+
+.coming-up p {
+  display: inline;
+  color: #7b7b7b;
+  padding-left: 11px;
+}
+
+.section-header {
+  width: 229px;
+  height: 30px;
+  line-height: 30px;
+  margin-top: 31px;
+  background-color: #f3f3f3;
+  font-size: 12px;
+  font-weight: 900;
+  color: #8a85a6;
+  vertical-align: middle;
+  padding-left: 18px;
+}
+
+.checkbox-list {
+  padding: 0 0 36px 14px;
+}
+
+.customcheck {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 3px;
+}
+
+.checkmark input:checked {
+  background-color: #f0eff6;
+}
+
+.notification-list {
+  padding-bottom: 36px;
+}
+
+.notification-danger {
+  padding: 6px 0 6px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  color: #ce3434;
+  background-color: #efadad;
+}
+
+.notification-danger h4 {
+  color: #ce3434;
+  padding: 0 0 0 0;
+}
+
+.notification-warning {
+  margin-top: 12px;
+  padding: 6px 0 6px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  color: #d1ab51;
+  background-color: #f4ebbe;
+}
+
+.notification-info {
+  margin-top: 12px;
+  padding: 6px 0 6px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  color: #628ad4;
+  background-color: #d8e5fa;
+}
+
+.notification-success {
+  margin-top: 12px;
+  padding: 6px 0 6px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  color: #3a9c65;
+  background-color: #caecc6;
+}
+
+.barGraph1 {
+  height: 30px;
+  width: 100%;
+  margin-top: 17px;
+}
+
+.alignLeft {
+  float: left;
+  margin: 0 0 0 20px;
+  font-size: 12px;
+}
+
+.alignRight {
+  float: right;
+  margin: 0 20px 0 0;
+  font-size: 10px;
+}
+
+.bar1Holder {
+  width: 190px;
+  height: 7px;
+  background-color: #dddce1;
+  border-radius: 3px;
+  margin: 0 20px 0 20px;
+  float: left;
+}
+
+.bar1 {
+  width: 130px;
+  height: 7px;
+  background-color: #5ce6ff;
+  border-radius: 10px;
+}
+
+.barGraph2 {
+  margin-top: 17px;
+  height: 30px;
+  width: 100%;
+}
+
+.date2 {
+  float: right;
+  margin: 15px 15px 0 0;
+}
+
+.bar2Holder {
+  width: 190px;
+  height: 7px;
+  background-color: #dddce1;
+  margin: 0 20px 0 20px;
+  border-radius: 3px;
+  float: left;
+}
+
+.bar2 {
+  width: 100px;
+  height: 7px;
+  background-color: #ffc947;
+  border-radius: 10px;
+}

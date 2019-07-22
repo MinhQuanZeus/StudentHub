@@ -15,6 +15,8 @@ import { format } from 'date-fns';
 import cns from 'classnames';
 import orderBy from 'lodash.orderby';
 import Details from '../../components/FlagsListComponents/Details';
+import Status from '../../components/Status';
+import Priority from '../../components/Priority';
 
 class FlagsListContainer extends Component {
   constructor(props) {
@@ -180,16 +182,18 @@ class FlagsListContainer extends Component {
                   <td>{o.sub_category_name}</td>
                   <td>{format(o.created_at, 'DD MMM YYYY')}</td>
                   <td>
-                    <div className={cns('Status', o.status && o.status.toLowerCase())}>{o.status}</div>
+                    {/* <div className={cns('Status', o.status && o.status.toLowerCase())}>{o.status}</div> */}
+                    <Status type={o.status} />
                   </td>
                   <td>
-                    <div className={cns('Priority', o.priority && o.priority.toLowerCase())}>
+                    <Priority className={css.Priority} name={o.priority} />
+                    {/* <div className={cns('Priority', o.priority && o.priority.toLowerCase())}>
                       <div />
                       <div />
                       <div />
                       <div />
                       <div />
-                    </div>
+                    </div> */}
                   </td>
                 </tr>
               )}

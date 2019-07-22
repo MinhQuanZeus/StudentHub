@@ -1,11 +1,13 @@
 .top-bar-container {
-  position: fixed;
-  top: 0;
+  position: relative;
+  // top: 0;
   height: 60px;
+  line-height: 60px;
   width: 100%;
   box-shadow: 0 1px 0 0 #ebebeb;
-  z-index: 100;
-  background-color: #ffffff;
+  // z-index: 100;
+  background-color: #fff;
+  overflow: hidden;
 }
 
 .top-bar-icon-link {
@@ -25,6 +27,7 @@
 }
 
 .top-bar-welcome-container {
+  margin: 0;
   font-size: 18px;
   position: fixed;
   left: 93px;
@@ -63,7 +66,7 @@
 
 .top-bar-username {
   float: right;
-  margin: 21px 17px 20px 18px;
+  margin: 0 16px;
 }
 
 .top-bar-chevron-down {
@@ -75,6 +78,7 @@
 
 .UserInfo {
   position: relative;
+
   .Menu {
     list-style: none;
     position: absolute;
@@ -82,7 +86,7 @@
     right: 0;
     width: 200px;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #f0eff6;
     display: block;
 

@@ -2,11 +2,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Icon, PrimaryButton, Persona } from 'office-ui-fabric-react';
+import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-import Status from '../Status';
+import Status from '../../Status';
 
 import css from './Details.m.scss';
-import Priority from '../Priority';
+import Priority from '../../Priority';
 
 class Details extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Details extends Component {
     const {
       isOpen,
       onDismiss,
+      id,
       subject,
       status,
       category_name,
@@ -89,7 +91,9 @@ class Details extends Component {
           </div>
         </div>
         <div className={css.Footer}>
-          <PrimaryButton text="View More Details" />
+          <Link to={`/flags/${id}`}>
+            <PrimaryButton text="View More Details" />
+          </Link>
         </div>
       </Modal>
     );
@@ -103,6 +107,7 @@ Details.defaultProps = {
 Details.propTypes = {
   isOpen: PropTypes.bool,
   onDismiss: PropTypes.func,
+  id: PropTypes.string,
   subject: PropTypes.string,
   status: PropTypes.string,
   category_name: PropTypes.string,

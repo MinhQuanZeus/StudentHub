@@ -168,7 +168,12 @@ class ChecklistComponent extends Component {
                       type="checkbox"
                       className={styles['checklist-checkbox']}
                       checked={rowData.processing === 100}
-                      onChange={($event) => this.props.setDone(rowData.id, $event.target.checked)}
+                      onChange={($event) => {
+                        $event.preventDefault();
+                        $event.stopPropagation();
+                        this.props.setDone(rowData.id, $event.target.checked);
+                        return false;
+                      }}
                     />
                     <p className={`${styles['item-title']} ${styles['left-align']}`}>
                       {rowData.child.length !== 0 && <Icon iconName={openChecklistIdx === idx ? 'ChevronDown' : 'ChevronRight'} />}
@@ -186,15 +191,17 @@ class ChecklistComponent extends Component {
                     <p className={`${styles['priority']} ${styles[priorityStatus]}`}>{rowData.priority}</p>
                     {this.getCompleteRate(rowData)}
                   </div>
-                  <SubChecklist
-                    items={rowData.child}
-                    idx={idx}
-                    openChecklistIdx={openChecklistIdx}
-                    openSubChecklistIdx={openSubChecklistIdx}
-                    toggleChecklistDetails={toggleChecklistDetails}
-                    priorityStatus={priorityStatus}
-                    setDone={this.props.setDone}
-                  />
+                  {rowData.child.length > 0 && (
+                    <SubChecklist
+                      items={rowData.child}
+                      idx={idx}
+                      openChecklistIdx={openChecklistIdx}
+                      openSubChecklistIdx={openSubChecklistIdx}
+                      toggleChecklistDetails={toggleChecklistDetails}
+                      priorityStatus={priorityStatus}
+                      setDone={this.props.setDone}
+                    />
+                  )}
                 </div>
               );
             })}

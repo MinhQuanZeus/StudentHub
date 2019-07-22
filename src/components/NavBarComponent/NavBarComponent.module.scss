@@ -1,10 +1,10 @@
 .nav-bar {
-  position: fixed;
+  // position: fixed;
   width: 64px;
   height: 100%;
-  top: 61px;
-  background-color: #ffffff;
-  z-index: 4;
+  // top: 61px;
+  background-color: #fff;
+  // z-index: 4;
   box-shadow: 1px 0 0 0 #f0eff6;
 }
 
@@ -18,6 +18,6 @@
 
 .nav-bar-list li {
   padding: 16px 0 16px 0;
-  position: relative;
-  left: -250;
+  // position: relative;
+  // left: -250;
 }

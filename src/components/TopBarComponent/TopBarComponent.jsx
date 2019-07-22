@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import css from './TopBarComponent.module.scss';
+import css from './TopBarComponent.m.scss';
 import defaultAvatar from '../../images/img_avatar.png';
 import classnames from 'classnames';
 import { ACCESS_TOKEN } from '../../constants';

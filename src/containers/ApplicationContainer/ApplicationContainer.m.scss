@@ -1,0 +1,9 @@
+.ApplicationContainer {
+  display: flex;
+  width: 100%;
+  height: calc(100% - 60px);
+
+  > section {
+    width: calc(100% - 294px);
+  }
+}

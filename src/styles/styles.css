@@ -1,108 +1,106 @@
 ﻿label.error {
-    position: absolute;
-    background: #ee0101;
-    background: rgba(238, 1, 1, 0.80);
-    padding: 2px 5px;
-    top: -15px;
-    left: 15px;
-    color: #fff;
-    font-size: 11px;
-    font-weight: normal;
-    display: inline-block;
-    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.6);
-    z-index: 5;
+  position: absolute;
+  background: #ee0101;
+  background: rgba(238, 1, 1, 0.8);
+  padding: 2px 5px;
+  top: -15px;
+  left: 15px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: normal;
+  display: inline-block;
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.6);
+  z-index: 5;
 }
 
 label.error:before {
-    content: "";
-    border: 4px solid transparent;
-    border-top: 4px solid #ee0101;
-    border-top: 4px solid rgba(238, 1, 1, 0.80);
-    position: absolute;
-    bottom: -8px;
+  content: '';
+  border: 4px solid transparent;
+  border-top: 4px solid #ee0101;
+  border-top: 4px solid rgba(238, 1, 1, 0.8);
+  position: absolute;
+  bottom: -8px;
 }
 
 .login-form-container {
-    height: 100%;
-    width: 570px;
-    display: inline;
-    float: left;
+  height: 100%;
+  width: 570px;
+  display: inline;
+  float: left;
 }
 
 .login-image-container {
-    height: 100%;
-    width: 500px;
-    display: inline;
-    float: left;
+  height: 100%;
+  width: 500px;
+  display: inline;
+  float: left;
 }
 
 .inner-form-container {
-    width: 420px;
-    height: 100%;
-    margin-left: 75px;
-    margin-right: 75px;
+  width: 420px;
+  height: 100%;
+  margin-left: 75px;
+  margin-right: 75px;
 }
 
 .success-hub-title {
-    width: 50%;
-    margin: 80px auto;
+  width: 50%;
+  margin: 80px auto;
 }
 
-.hub-brand, .success-brand {
-    font-size: 25px;
-    font-weight: bold;
+.hub-brand,
+.success-brand {
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .success-brand {
-    color: #352480;
+  color: #352480;
 }
 
 .hub-brand {
-    color: #6647ff;
+  color: #6647ff;
 }
 
 .input-group {
-    height: 60px;
-    width: 100%;
+  height: 60px;
+  width: 100%;
 }
 
 .input-group-addon {
-    width: 60px;
-    padding-left: 16px;
+  width: 60px;
+  padding-left: 16px;
 }
 
 .login-btn {
-    width: 100%;
-    height: 70px;
+  width: 100%;
+  height: 70px;
 }
 
 .forgot-password-paragraph {
-    color: gray;
-    text-align: center;
-    font-size: 12px;
+  color: gray;
+  text-align: center;
+  font-size: 12px;
 }
 
 .forgot-password-paragraph-div {
-    text-align: center;
+  text-align: center;
 }
 
 .forgot-password-paragraph-div p {
-    display: inline;
+  display: inline;
 }
 
 .forgot-password-paragraph span {
-    color: #5867dd;
+  color: #5867dd;
 }
 
 .content-container {
-    position: absolute;
-    left: 63px;
-    right: 230px;
-    background-color: #f9f9f9;
-    padding-top: 92px;
-    padding-left: 36px;
-    padding-right: 36px;
-    min-height: 100%;
+  background-color: #f9f9f9;
+  padding-top: 92px;
+  padding-left: 36px;
+  padding-right: 36px;
+  min-height: 100%;
 }
 
 .checklist-content-container {
@@ -127,30 +125,28 @@ label.error:before {
 }
 
 .content-container-NoNotification {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0;
-    background-color: #f9f9f9;
-    height: 100%;
-    padding-top: 31px;
-    z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #f9f9f9;
+  height: 100%;
+  padding-top: 31px;
+  z-index: 3;
 }
 
 .content-heading {
-    font-size: 18px;
-    font-weight: 900;
-    color: #8a85a6;
-    padding: 0 0 25px 36px;
-
-
+  font-size: 18px;
+  font-weight: 900;
+  color: #8a85a6;
+  padding: 0 0 25px 36px;
 }
 
 .container-background {
-    position: absolute;
-    background-color: #f9f9f9;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 100%;
 }
 
 .header-angle-right {
@@ -158,8 +154,6 @@ label.error:before {
   font-size: 12px;
 }
 
-
-.gray-backgound
-{
-    background-color: #fafafa;
+.gray-backgound {
+  background-color: #fafafa;
 }

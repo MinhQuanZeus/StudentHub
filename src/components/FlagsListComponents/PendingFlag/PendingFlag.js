@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Priority from '../Priority';
+import Priority from '../../Priority';
 import css from './PendingFlag.m.scss';
 
 function PendingFlag({ id, subject, priority }) {
