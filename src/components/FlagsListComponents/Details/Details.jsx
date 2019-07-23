@@ -113,7 +113,7 @@ Details.propTypes = {
   category_name: PropTypes.string,
   sub_category_name: PropTypes.string,
   priority: PropTypes.string,
-  is_public: PropTypes.string,
+  is_public: PropTypes.bool,
   created_at: PropTypes.string,
   description: PropTypes.string,
   receivers: PropTypes.array,

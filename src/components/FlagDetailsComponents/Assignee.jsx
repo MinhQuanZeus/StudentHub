@@ -9,11 +9,11 @@ class Assignee extends Component {
   }
 
   render() {
-    const { name, avatar } = this.props;
+    const { id, name, avatar } = this.props;
     return (
       <div className={css.Assignee}>
         <label>Assign To</label>
-        <Persona text={name} imageUrl={avatar} imageAlt={name} />
+        {id && <Persona text={name} imageUrl={avatar} imageAlt={name} />}
       </div>
     );
   }

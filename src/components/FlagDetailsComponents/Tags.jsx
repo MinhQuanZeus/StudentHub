@@ -15,11 +15,12 @@ class Tags extends Component {
       <div className={css.Tags}>
         <label>Tags</label>
         <ul>
-          {items.map((o) => (
-            <li key={o.id}>
-              <Persona text={o.full_name} imageUrl={o.photo_url} imageAlt={o.full_name} />
-            </li>
-          ))}
+          {items &&
+            items.map((o) => (
+              <li key={o.id}>
+                <Persona text={o.full_name} imageUrl={o.photo_url} imageAlt={o.full_name} />
+              </li>
+            ))}
         </ul>
       </div>
     );

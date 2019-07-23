@@ -156,6 +156,7 @@ class FlagsListContainer extends Component {
 
   render() {
     const { isLoading, items, activeTab, sort, isOpen, details } = this.state;
+
     const headers = ['Flag', activeTab === 3 ? 'To' : 'From', 'Title', 'Category', 'Sub Cat', 'Date Created', 'Status', 'Priority'];
 
     return (
@@ -182,18 +183,10 @@ class FlagsListContainer extends Component {
                   <td>{o.sub_category_name}</td>
                   <td>{format(o.created_at, 'DD MMM YYYY')}</td>
                   <td>
-                    {/* <div className={cns('Status', o.status && o.status.toLowerCase())}>{o.status}</div> */}
                     <Status type={o.status} />
                   </td>
                   <td>
                     <Priority className={css.Priority} name={o.priority} />
-                    {/* <div className={cns('Priority', o.priority && o.priority.toLowerCase())}>
-                      <div />
-                      <div />
-                      <div />
-                      <div />
-                      <div />
-                    </div> */}
                   </td>
                 </tr>
               )}

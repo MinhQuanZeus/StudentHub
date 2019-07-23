@@ -1,0 +1,40 @@
+.Comments {
+  .Header {
+    margin: 0;
+    padding: 24px 40px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f0eff6;
+
+    .ms-Persona {
+      .ms-Persona-details {
+        display: none;
+      }
+    }
+
+    input {
+      border: 1px solid #e1e1e1;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 12px;
+      height: 40px;
+      line-height: 16px;
+      font-weight: bold;
+      color: #8a85a6;
+      width: calc(100% - 180px);
+      margin-left: 20px;
+    }
+
+    button {
+      margin-left: 20px;
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      border: none;
+      background-color: #6647ff;
+      color: #fff;
+      border-radius: 8px;
+    }
+  }
+}
