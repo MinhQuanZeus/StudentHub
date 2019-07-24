@@ -26,9 +26,10 @@ html {
     label {
       font-family: Avenir, sans-serif;
     }
-
-    * {
-      outline: none;
-    }
   }
+}
+
+*,
+button {
+  outline: none;
 }

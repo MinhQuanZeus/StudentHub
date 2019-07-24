@@ -9,4 +9,26 @@
     font-weight: 900;
     color: #413d59;
   }
+
+  ul {
+    list-style: none;
+
+    li {
+      &:nth-child(n + 2) {
+        margin-top: 8px;
+      }
+
+      :global(.ms-Persona) {
+        height: 60px !important;
+
+        :global(.ms-Persona-details) {
+          :global(.ms-Persona-primaryText) {
+            overflow: visible;
+            text-overflow: initial;
+            white-space: normal;
+          }
+        }
+      }
+    }
+  }
 }

@@ -5,13 +5,13 @@ import { format } from 'date-fns';
 import css from './ModifyHistory.m.scss';
 import { Persona } from 'office-ui-fabric-react';
 
-function ModifyHistory({ logs }) {
+function ModifyHistory({ items }) {
   return (
     <div className={css.ModifyHistory}>
       <label>Modify History</label>
       <ul>
-        {logs &&
-          logs.map((o) => (
+        {items &&
+          items.map((o) => (
             <li key={o.id}>
               <Persona primaryText={o.log} secondaryText={format(o.created_at, 'DD MMM YYYY hh:mm A')} />
             </li>
@@ -22,7 +22,7 @@ function ModifyHistory({ logs }) {
 }
 
 ModifyHistory.propTypes = {
-  logs: PropTypes.array,
+  items: PropTypes.array,
 };
 
 export default ModifyHistory;

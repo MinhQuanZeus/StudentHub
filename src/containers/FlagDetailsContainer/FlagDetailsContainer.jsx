@@ -5,14 +5,16 @@ import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import Details from '../../components/FlagDetailsComponents';
 import { API_END_POINT } from '../../constants/ApiUrl';
 import sharedStyles from '../../styles/styles.module.css';
-import css from './FlagDetailsContainer.m.scss';
+// import css from './FlagDetailsContainer.m.scss';
 import { AppContext } from '../AppContext';
+import { PrimaryButton } from 'office-ui-fabric-react';
 
 class FlagDetailsContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      mode: 'default',
       isLoading: true,
       details: null,
     };
@@ -42,13 +44,16 @@ class FlagDetailsContainer extends Component {
   }
 
   render() {
-    const { details } = this.state;
+    const { mode, details } = this.state;
+    const { user } = this.context;
     return (
       <section className={sharedStyles['content-container']}>
         <HeaderComponent labels={['Flag Manager', 'Details']}>
-          <span className={css['btn-colored']}>Edit Flag</span>
+          {details && details.created_by.id === user.id && (
+            <PrimaryButton text="Edit" onClick={() => this.setState(() => ({ mode: 'edit' }))} />
+          )}
         </HeaderComponent>
-        <Details {...details} />
+        {details && <Details mode={mode} {...details} onCancel={() => this.setState(() => ({ mode: 'default' }))} />}
       </section>
     );
   }
