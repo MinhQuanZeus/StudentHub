@@ -6,93 +6,122 @@ import { withFormik } from 'formik';
 import Textbox from '../../native-ui/Textbox';
 import { EMERGENCY_CONTACT_RELATIONSHIP_OPTIONS } from '../../constants';
 import Select from '../../native-ui/Select';
+import { getAccessToken } from '../../helpers';
 
 class EmergencyContact extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      emergencyContacts: [],
+    };
+  }
 
   onCancel = () => {
+    const { emergencyContacts } = this.state;
     this.props.setStatus({ isEditing: false });
-    this.initStateValue(this.props);
+    this.initStateValue(emergencyContacts);
   };
 
   initStateValue = (props) => {
-    this.props.setValues({
-      photo_url: props.photo_url,
-      salutation: props.salutation,
-      first_name: props.first_name,
-      last_name: props.last_name,
-      middle_name: props.middle_name,
-      other_name: props.other_name,
-      birthdate: props.birthdate,
-      gender: props.gender,
-      ethnicity: props.ethnicity,
-      social_security_number: props.social_security_number,
-      last_4_digits_of_ssn: props.last_4_digits_of_ssn,
-      international_student: props.international_student,
-      type_indicator_image: props.type_indicator_image,
-      home_phone: props.home_phone,
-      mobile_phone: props.mobile_phone,
-      work_phone: props.work_phone,
-      primary_email: props.primary_email,
-      secondary_email: props.secondary_email,
-      preferred_contact_method: props.preferred_contact_method,
-      enrollment_status: props.enrollment_status,
-      highest_degree_earned: props.highest_degree_earned,
-      class_team_or_cohort: props.class_team_or_cohort,
-      status: props.status,
-      student_id: props.student_id,
-      record_id: props.record_id,
-      verification_token: props.verification_token,
-      age_125: props.age_125,
-      enrollment_level: props.enrollment_level,
-      student_height_127: props.student_height_127,
-      city_127: props.city_127,
-      facebook: props.facebook,
-      twitter: props.twitter,
-      instangram: props.instangram,
-      linkedin: props.linkedin,
-      snapchat: props.snapchat,
-      skype: props.skype,
-      classification: props.classification,
-      highest_level_of_education_completed: props.highest_level_of_education_completed,
-      total_credits_hoursoveral_gpa: props.total_credits_hoursoveral_gpa,
-      overal_gpa: props.overal_gpa,
-      primary_campus: props.primary_campus,
-      country_of_citizenship: props.country_of_citizenship,
-      country_of_residence: props.country_of_residence,
-      state_province_of_residency: props.state_province_of_residency,
-      total_credits_hours: props.total_credits_hours,
-      passport_number: props.passport_number,
-      passport_expiration_date: props.passport_expiration_date,
-      visa_number: props.visa_number,
-      visa_issued_date: props.visa_issued_date,
-      visa_issued_country: props.visa_issued_country,
-      visa_expiration_date: props.visa_expiration_date,
-    });
+    if (!props || props.length === 0) {
+      this.props.setValues({
+        id1: null,
+        name1: '',
+        email1: '',
+        relationship1: '',
+        phone1: '',
+        id2: null,
+        name2: '',
+        email2: '',
+        relationship2: '',
+        phone2: '',
+      });
+
+      return;
+    }
+
+    if (props.length === 1) {
+      this.props.setValues({
+        id1: props[0].id,
+        name1: props[0].contact_name,
+        email1: props[0].email,
+        relationship1: props[0].relationship,
+        phone1: props[0].phone,
+        id2: null,
+        name2: '',
+        email2: '',
+        relationship2: '',
+        phone2: '',
+      });
+    }
+
+    if (props.length === 2) {
+      this.props.setValues({
+        id1: props[0].id,
+        name1: props[0].contact_name,
+        email1: props[0].email,
+        relationship1: props[0].relationship,
+        phone1: props[0].phone,
+        id2: props[1].id,
+        name2: props[1].contact_name,
+        email2: props[1].email,
+        relationship2: props[1].relationship,
+        phone2: props[1].phone,
+      });
+    }
   };
 
+  async initialize() {
+    try {
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': getAccessToken(),
+        },
+      };
+      const response = await fetch(`${apiConstants.BACKEND_URL}student/emergency_contacts`, options);
+      const body = await response.json();
+      if (body.success) {
+        this.setState(() => ({ isLoading: false, emergencyContacts: body.data }));
+        this.initStateValue(body.data);
+      }
+    } catch (e) {
+      this.setState(() => ({ isLoading: false }));
+    }
+  }
+
+  componentDidMount() {
+    this.initialize();
+  }
+
   getViewMode = () => {
+    const { emergencyContacts } = this.state;
+    const { values} = this.props;
+
     return (
       <div>
         <table className="table">
           <tbody>
             <tr>
               <td>
-                <p>Septiandika Pratama</p>
-                <p>Brother</p>
+                <p>{values.name1}</p>
+                <p>{values.relationship1}</p>
               </td>
               <td>
-                <p>andikapratama48@gmail.com</p>
-                <p>+123 456 789</p>
+                <p>{values.email1}</p>
+                <p>{values.phone1}</p>
               </td>
             </tr>
             <tr>
               <td>
-                <p>Septiandika Pratama</p>
-                <p>Brother</p>
+                <p>{values.name2}</p>
+                <p>{values.relationship2}</p>
               </td>
               <td>
-                <p>andikapratama48@gmail.com</p>
-                <p>+123 456 789</p>
+                <p>{values.email2}</p>
+                <p>{values.phone2}</p>
               </td>
             </tr>
           </tbody>
@@ -106,32 +135,38 @@ class EmergencyContact extends Component {
     return (
       <form onSubmit={handleSubmit} noValidate>
         <div className={css.FormHeader}>Emergency Contact 1</div>
-        <hr />
-        <Textbox label="Name" value={values.record_id} onChange={handleChange} message={errors && errors.record_id} />
-        <Textbox label="Email address" value={values.preferred_name} onChange={handleChange} message={errors && errors.preferred_name} />
+        <hr/>
+        <Textbox label="Name" name="name1" value={values.name1} onChange={handleChange}
+          message={errors && errors.name1}/>
+        <Textbox label="Email address" name="email1" value={values.email1} onChange={handleChange}
+          message={errors && errors.email1}/>
         <Select
           label="Relationship"
-          name="relationship"
-          value={values.ethnicity}
+          name="relationship1"
+          value={values.relationship1}
           options={EMERGENCY_CONTACT_RELATIONSHIP_OPTIONS}
-          onItemSelected={(value, displayValue) => setFieldValue('ethnicity', value)}
+          onItemSelected={(value, displayValue) => setFieldValue('relationship1', value)}
         />
-        <Textbox label="Phone" value={values.first_name} onChange={handleChange} message={errors && errors.first_name} />
+        <Textbox label="Phone" name="phone1" value={values.phone1} onChange={handleChange}
+          message={errors && errors.phone1}/>
         <div className={css.FormHeader}>Emergency Contact 2</div>
-        <hr />
-        <Textbox label="Name" value={values.record_id} onChange={handleChange} message={errors && errors.record_id} />
-        <Textbox label="Email address" value={values.preferred_name} onChange={handleChange} message={errors && errors.preferred_name} />
+        <hr/>
+        <Textbox label="Name" name="name2" value={values.name2} onChange={handleChange}
+          message={errors && errors.name2}/>
+        <Textbox label="Email address" name="email2" value={values.email2} onChange={handleChange}
+          message={errors && errors.email2}/>
         <Select
           label="Relationship"
-          name="relationship"
-          value={values.ethnicity}
+          name="relationship2"
+          value={values.relationship2}
           options={EMERGENCY_CONTACT_RELATIONSHIP_OPTIONS}
-          onItemSelected={(value, displayValue) => setFieldValue('ethnicity', value)}
+          onItemSelected={(value, displayValue) => setFieldValue('relationship2', value)}
         />
-        <Textbox label="Phone" value={values.first_name} onChange={handleChange} message={errors && errors.first_name} />
+        <Textbox label="Phone" name="phone2" value={values.phone2} onChange={handleChange}
+          message={errors && errors.phone2}/>
         <div>
-          <DefaultButton text="Cancel" onClick={this.onCancel} />
-          <PrimaryButton text="Save" type="submit" />
+          <DefaultButton text="Cancel" onClick={this.onCancel}/>
+          <PrimaryButton text="Save" type="submit"/>
         </div>
       </form>
     );
@@ -145,7 +180,7 @@ class EmergencyContact extends Component {
         <div>EMERGENCY CONTACT</div>
         {!isEditing && (
           <div className={css.EditButton} onClick={() => setStatus({ isEditing: true })}>
-            <Icon iconName="EditSolid12" />
+            <Icon iconName="EditSolid12"/>
             {'  '}
             Edit
           </div>
@@ -163,71 +198,45 @@ export default withFormik({
   mapPropsToStatus: () => ({
     isEditing: false,
   }),
-  mapPropsToValues: (props) => ({
-    photo_url: props.photo_url,
-    salutation: '',
-    first_name: props.first_name,
-    last_name: props.last_name,
-    middle_name: props.middle_name,
-    other_name: props.other_name,
-    birthdate: props.birthdate,
-    gender: props.gender,
-    ethnicity: props.ethnicity,
-    social_security_number: props.social_security_number,
-    last_4_digits_of_ssn: props.last_4_digits_of_ssn,
-    international_student: props.international_student,
-    type_indicator_image: props.type_indicator_image,
-    home_phone: props.home_phone,
-    mobile_phone: props.mobile_phone,
-    work_phone: props.work_phone,
-    primary_email: props.primary_email,
-    secondary_email: props.secondary_email,
-    preferred_contact_method: props.preferred_contact_method,
-    enrollment_status: props.enrollment_status,
-    highest_degree_earned: props.highest_degree_earned,
-    class_team_or_cohort: props.class_team_or_cohort,
-    status: props.status,
-    student_id: props.student_id,
-    record_id: props.record_id,
-    verification_token: props.verification_token,
-    age_125: props.age_125,
-    enrollment_level: props.enrollment_level,
-    student_height_127: props.student_height_127,
-    city_127: props.city_127,
-    facebook: props.facebook,
-    twitter: props.twitter,
-    instangram: props.instangram,
-    linkedin: props.linkedin,
-    snapchat: props.snapchat,
-    skype: props.skype,
-    classification: props.classification,
-    highest_level_of_education_completed: props.highest_level_of_education_completed,
-    total_credits_hoursoveral_gpa: props.total_credits_hoursoveral_gpa,
-    overal_gpa: props.overal_gpa,
-    primary_campus: props.primary_campus,
-    country_of_citizenship: props.country_of_citizenship,
-    country_of_residence: props.country_of_residence,
-    state_province_of_residency: props.state_province_of_residency,
-    total_credits_hours: props.total_credits_hours,
-    passport_number: props.passport_number,
-    passport_expiration_date: props.passport_expiration_date,
-    visa_number: props.visa_number,
-    visa_issued_date: props.visa_issued_date,
-    visa_issued_country: props.visa_issued_country,
-    visa_expiration_date: props.visa_expiration_date,
+  mapPropsToValues: () => ({
+    id1: '',
+    name1: '',
+    email1: '',
+    relationship1: '',
+    phone1: '',
+    id2: '',
+    name2: '',
+    email2: '',
+    relationship2: '',
+    phone2: '',
   }),
   handleSubmit: async (values, bag) => {
     try {
-      const { user } = this.context;
+      const data = [
+        {
+          id: values.id1,
+          email: values.email1,
+          contact_name: values.name1,
+          relationship: values.relationship1,
+          phone: values.phone1,
+        },
+        {
+          id: values.id2,
+          email: values.email2,
+          contact_name: values.name2,
+          relationship: values.relationship2,
+          phone: values.phone2,
+        },
+      ];
       const options = {
         method: 'Post',
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': user && user.x_access_token,
+          'x-access-token': getAccessToken(),
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(data),
       };
-      const response = await fetch(`${apiConstants.BACKEND_URL}student/update_profile`, options);
+      const response = await fetch(`${apiConstants.BACKEND_URL}student/emergency_contacts`, options);
       const body = await response.json();
       if (body.success) {
         bag.setStatus({ isEditing: false });

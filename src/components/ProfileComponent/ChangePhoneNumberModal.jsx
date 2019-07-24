@@ -11,19 +11,20 @@ class ChangePhoneNumberModal extends Component {
     super(props);
     this.state = {
       currentStep: 1,
+      phone: '',
     };
   }
 
   getStep = () => {
-    const { currentStep } = this.state;
+    const { currentStep, phone } = this.state;
 
     switch (currentStep) {
-      case 2:
-        return <ChangePhoneNumberStep2 />;
-      case 3:
-        return <ChangePhoneNumberStep3 />;
-      default:
-        return <ChangePhoneNumberStep1 />;
+    case 2:
+      return <ChangePhoneNumberStep2 phone={phone} onSuccess={(phone) => this.setState({ currentStep: 3, phone: phone })}/>;
+    case 3:
+      return <ChangePhoneNumberStep3 phone={phone}/>;
+    default:
+      return <ChangePhoneNumberStep1 onSuccess={(phone) => this.setState({ currentStep: 2, phone: phone })}/>;
     }
   };
 

@@ -76,6 +76,7 @@
     top: 0;
     right: 0;
     position: absolute;
+    visibility: hidden;
   }
 
   .EditButton:hover,
@@ -185,5 +186,11 @@
         }
       }
     }
+  }
+}
+
+.Address:hover {
+  .EditButton {
+    visibility: visible!important;
   }
 }

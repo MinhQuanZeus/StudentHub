@@ -4,6 +4,8 @@ import { PrimaryButton } from 'office-ui-fabric-react';
 import { withFormik } from 'formik';
 import { apiConstants } from '../../constants/applicationConstants';
 import ReactCodeInput from 'react-code-input';
+import { getAccessToken } from '../../helpers';
+import { object, string } from 'yup';
 
 class ChangePhoneNumberStep2 extends Component {
   componentDidMount() {
@@ -16,18 +18,23 @@ class ChangePhoneNumberStep2 extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, setFieldValue, values, errors } = this.props;
     return (
       <form className={css.ChangePhoneNumberStep2} onSubmit={handleSubmit}>
         <div>Please type verification code sent</div>
-        <div>to +123 456 789</div>
-        <ReactCodeInput type="number" fields={6} />
+        <div>to <strong>{values.phone}</strong></div>
+        <ReactCodeInput type="number" fields={6}
+          value={values.otp}
+          onChange={(value) => {
+            setFieldValue('otp', value);
+          }}/>
+        {errors && errors.otp && <div className={css.error}>{errors.otp}</div>}
         <div>Don’t Receive OTP Code</div>
         <div>
           <button className="btn btn-link">Resend OTP</button>
         </div>
         <div>
-          <PrimaryButton text="Verify" type="submit" />
+          <PrimaryButton text="Verify" type="submit"/>
         </div>
       </form>
     );
@@ -37,23 +44,32 @@ class ChangePhoneNumberStep2 extends Component {
 export default withFormik({
   enableReinitialize: true,
   mapPropsToValues: (props) => ({
-    phone_number: props.phone_number,
+    phone: props.phone,
+    code: '',
+  }),
+  validationSchema: object().shape({
+    email: string()
+      .required()
+      .label('Email'),
+    otp: string()
+      .required()
+      .length(6, 'Code has 6 number')
+      .label('Code'),
   }),
   handleSubmit: async (values, bag) => {
     try {
-      const { user } = this.context;
       const options = {
         method: 'Post',
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': user && user.x_access_token,
+          'x-access-token': getAccessToken(),
         },
         body: JSON.stringify(values),
       };
-      const response = await fetch(`${apiConstants.BACKEND_URL}student/update_profile`, options);
+      const response = await fetch(`${apiConstants.BACKEND_URL}student/phone/verifyOtp`, options);
       const body = await response.json();
       if (body.success) {
-        bag.setStatus({ isEditing: false });
+        bag.props.onSuccess(values.phone);
       }
     } catch (e) {
       console.log(e);

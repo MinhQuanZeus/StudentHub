@@ -2,22 +2,26 @@
   :global(.ms-Dropdown) {
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
-    height: 36px;
-    line-height: 36px;
+    height: 40px;
+    line-height: 40px;
 
     :global(.ms-Dropdown-title) {
       border: none;
+      height: 36px;
+      line-height: 36px;
     }
   }
 
   :global(.ms-Dropdown:hover) {
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
-    height: 36px;
-    line-height: 36px;
+    height: 40px;
+    line-height: 40px;
 
     :global(.ms-Dropdown-title) {
       border: none;
+      height: 36px;
+      line-height: 36px;
     }
   }
 }

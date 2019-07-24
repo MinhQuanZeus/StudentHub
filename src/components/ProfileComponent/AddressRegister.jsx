@@ -6,6 +6,8 @@ import { DefaultButton, Icon, PrimaryButton } from 'office-ui-fabric-react';
 import css from './AddressRegister.m.scss';
 import { withFormik } from 'formik';
 import { apiConstants } from '../../constants/applicationConstants';
+import { getAccessToken } from '../../helpers';
+import { object, string, date, array } from 'yup';
 
 class AddressRegister extends Component {
   render() {
@@ -18,16 +20,18 @@ class AddressRegister extends Component {
           &ensp;&ensp;<span>Add New Address</span>
         </div>
         <form onSubmit={handleSubmit} noValidate>
-          <Textbox label="Street" value={values.street} onChange={handleChange} message={isValid && errors && errors.street} />
-          <Textbox label="City" value={values.city} onChange={handleChange} message={isValid && errors && errors.city} />
-          <Textbox label="State/Province" value={values.spr} onChange={handleChange} message={isValid && errors && errors.spr} />
+          <Textbox label="Street" name="street_address1" value={values.street_address1} onChange={handleChange} message={!isValid && errors && errors.street_address1} />
+          <Textbox label="City" name="city" value={values.city} onChange={handleChange} message={!isValid && errors && errors.city} />
+          <Textbox label="State/Province" name="spr" value={values.spr} onChange={handleChange} message={!isValid && errors && errors.spr} />
           <Textbox
+            name="post_code"
             label="Zip / Postal Code"
             value={values.post_code}
             onChange={handleChange}
-            message={isValid && errors && errors.post_code}
+            message={!isValid && errors && errors.post_code}
           />
           <Select
+            name="country"
             label="Country"
             options={ADDRESS_COUNTRY_OPTIONS}
             value={values.country}
@@ -48,27 +52,47 @@ class AddressRegister extends Component {
 export default withFormik({
   enableReinitialize: true,
   mapPropsToValues: (props) => ({
-    street: props.street,
-    city: props.city,
-    spr: props.spr,
-    post_code: props.post_code,
-    country: props.country,
+    street_address1: '',
+    city: '',
+    spr: '',
+    post_code: '',
+    country: '',
+    primary: false,
+    is_staff: false,
+    entity_id: props.student_id,
+  }),
+  validationSchema: object().shape({
+    street_address1: string()
+      .required()
+      .label('Street'),
+    city: string()
+      .required()
+      .label('City'),
+    spr: string()
+      .required()
+      .label('State/Province'),
+    post_code: string()
+      .required()
+      .label('Post code'),
+    country: string()
+      .required()
+      .label('Country'),
   }),
   handleSubmit: async (values, bag) => {
     try {
-      const { user } = this.context;
       const options = {
         method: 'Post',
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': user && user.x_access_token,
+          'x-access-token': getAccessToken(),
         },
         body: JSON.stringify(values),
       };
-      const response = await fetch(`${apiConstants.BACKEND_URL}student/update_profile`, options);
+      const response = await fetch(`${apiConstants.BACKEND_URL}student/profile/address/add`, options);
       const body = await response.json();
       if (body.success) {
-        bag.setStatus({ isEditing: false });
+        bag.props.onSuccess();
+        bag.resetForm();
       }
     } catch (e) {
       console.log(e);

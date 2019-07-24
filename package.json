@@ -56,7 +56,7 @@
     "react-dropzone": "^10.1.5",
     "react-emit": "^2.1.0",
     "react-modal": "^3.6.1",
-    "react-overlays": "^0.8.3",
+    "react-overlays": "^1.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "5.0.1",
     "react-search-input": "^0.11.3",

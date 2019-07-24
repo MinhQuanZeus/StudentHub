@@ -7,108 +7,102 @@ import Textbox from '../../native-ui/Textbox';
 import RadioButton from '../../native-ui/RadioButton';
 import { ETHNICITY_OPTIONS, GENDER_OPTIONS, INTERNATIONAL_OPTIONS, LANGUAGE_OPTIONS } from '../../constants';
 import Select from '../../native-ui/Select';
+import { getAccessToken } from '../../helpers';
 
 class BasicInformation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      avatarUrl: props.photo_url,
+    };
+  }
 
   onCancel = () => {
     this.props.setStatus({ isEditing: false });
     this.initStateValue(this.props);
   };
 
+  onInputAvatar = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const pattern = /image-|png|jpeg/;
+      const file = event.target.files[0];
+      if (!file || !file.type.match(pattern)) {
+        return;
+      }
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = (event) => {
+        const url = event.target.result;
+        // window.sessionStorage.setItem('oa_photo_url', url);
+        // const avatar = document.getElementsByClassName('native-avatar');
+        // if (avatar && avatar.length > 0) {
+        //   avatar[0].src = url;
+        // }
+        this.setState({ avatarUrl: url });
+        this.props.setFieldValue('prof_photo', file);
+      };
+    }
+  };
+
   initStateValue = (props) => {
     this.props.setValues({
+      prof_photo: '',
       photo_url: props.photo_url,
-      salutation: props.salutation,
       first_name: props.first_name,
       last_name: props.last_name,
       middle_name: props.middle_name,
-      other_name: props.other_name,
+      preferred_name: props.preferred_name,
       birthdate: props.birthdate,
       gender: props.gender,
       ethnicity: props.ethnicity,
-      social_security_number: props.social_security_number,
-      last_4_digits_of_ssn: props.last_4_digits_of_ssn,
       international_student: props.international_student,
-      type_indicator_image: props.type_indicator_image,
-      home_phone: props.home_phone,
-      mobile_phone: props.mobile_phone,
-      work_phone: props.work_phone,
-      primary_email: props.primary_email,
-      secondary_email: props.secondary_email,
-      preferred_contact_method: props.preferred_contact_method,
-      enrollment_status: props.enrollment_status,
-      highest_degree_earned: props.highest_degree_earned,
-      class_team_or_cohort: props.class_team_or_cohort,
-      status: props.status,
-      student_id: props.student_id,
-      record_id: props.record_id,
-      verification_token: props.verification_token,
-      age_125: props.age_125,
-      enrollment_level: props.enrollment_level,
-      student_height_127: props.student_height_127,
-      city_127: props.city_127,
-      facebook: props.facebook,
-      twitter: props.twitter,
-      instangram: props.instangram,
-      linkedin: props.linkedin,
-      snapchat: props.snapchat,
-      skype: props.skype,
-      classification: props.classification,
-      highest_level_of_education_completed: props.highest_level_of_education_completed,
-      total_credits_hoursoveral_gpa: props.total_credits_hoursoveral_gpa,
-      overal_gpa: props.overal_gpa,
-      primary_campus: props.primary_campus,
-      country_of_citizenship: props.country_of_citizenship,
-      country_of_residence: props.country_of_residence,
-      state_province_of_residency: props.state_province_of_residency,
-      total_credits_hours: props.total_credits_hours,
-      passport_number: props.passport_number,
-      passport_expiration_date: props.passport_expiration_date,
-      visa_number: props.visa_number,
-      visa_issued_date: props.visa_issued_date,
-      visa_issued_country: props.visa_issued_country,
-      visa_expiration_date: props.visa_expiration_date,
+      student_id: props.record_id,
+      salutation: props.salutation,
     });
+
+    this.setState({ avatarUrl: props.photo_url });
   };
 
   getViewMode = () => {
     const { values } = this.props;
+    const { avatarUrl } = this.state;
     return (
       <div>
         <table className="table">
           <tbody>
-            <tr>
-              <td>Photo Icon</td>
-              <td>Photo Icon</td>
-            </tr>
-            <tr>
-              <td>Student ID</td>
-              <td>{values.record_id}</td>
-            </tr>
-            <tr>
-              <td>Preferred Name</td>
-              <td>{values.preferred_name}</td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td>{values.first_name + ' ' + values.last_name}</td>
-            </tr>
-            <tr>
-              <td>Gender</td>
-              <td>{values.gender}</td>
-            </tr>
-            <tr>
-              <td>Ethnicity</td>
-              <td>{values.ethnicity}</td>
-            </tr>
-            <tr>
-              <td>Language</td>
-              <td>{values.language}</td>
-            </tr>
-            <tr>
-              <td>International Student</td>
-              <td>{values.international_student}</td>
-            </tr>
+          <tr>
+            <td>Photo Icon</td>
+            <td><img src={values.photo_url} alt="" className={css.Avatar}/></td>
+          </tr>
+          <tr>
+            <td>Student ID</td>
+            <td>{values.student_id}</td>
+          </tr>
+          <tr>
+            <td>Preferred Name</td>
+            <td>{values.preferred_name}</td>
+          </tr>
+          <tr>
+            <td>Name</td>
+            <td>{values.first_name + ' ' + values.last_name}</td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>{values.gender}</td>
+          </tr>
+          <tr>
+            <td>Ethnicity</td>
+            <td>{values.ethnicity}</td>
+          </tr>
+          <tr>
+            <td>Language</td>
+            <td>{values.language}</td>
+          </tr>
+          <tr>
+            <td>International Student</td>
+            <td>{values.international_student}</td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -117,34 +111,36 @@ class BasicInformation extends Component {
 
   getEditMode = () => {
     const { values, handleChange, handleSubmit, isSubmitting, errors, setFieldValue } = this.props;
-    const { avatarUrl } = this.props;
+    const { avatarUrl } = this.state;
     return (
       <form onSubmit={handleSubmit} noValidate>
         <div>
           <label>Photo Icon</label>
           <label className={css.UploadPhoto} htmlFor="fileInput">
-            <img src={avatarUrl} alt="image"/>
+            <img src={avatarUrl || values.photo_url} alt=""/>
             {!isSubmitting ? (
               <span>
                 <div className={css.HoverSelectImage}>
-                  <Icon iconName="CloudUpload" className="ms-IconExample" />
-                  <br />
+                  <Icon iconName="CloudUpload" className="ms-IconExample"/>
+                  <br/>
                   <span>Upload photo</span>
                 </div>
-                <div className={css.HoverBackground} />
-                <input id="fileInput" type="file" onChange={this.onInputAvatar} accept="image/x-png,image/jpeg" />
+                <div className={css.HoverBackground}/>
+                <input id="fileInput" type="file" onChange={this.onInputAvatar} accept="image/x-png,image/jpeg"/>
               </span>
             ) : null}
             {isSubmitting ? (
               <div className={css.Spinner}>
-                <Spinner size={SpinnerSize.medium} />
+                <Spinner size={SpinnerSize.medium}/>
               </div>
             ) : null}
           </label>
         </div>
-        <hr />
-        <Textbox label="Student ID" value={values.record_id} onChange={handleChange} readOnly={true} message={errors && errors.record_id} />
-        <Textbox label="Preferred Name" value={values.preferred_name} onChange={handleChange} message={errors && errors.preferred_name} />
+        <hr/>
+        <Textbox label="Student ID" value={values.record_id} onChange={handleChange} readOnly={true}
+                 message={errors && errors.record_id}/>
+        <Textbox label="Preferred Name" value={values.preferred_name} onChange={handleChange}
+                 message={errors && errors.preferred_name}/>
         <Textbox
           label="First Name"
           value={values.first_name}
@@ -152,7 +148,8 @@ class BasicInformation extends Component {
           onChange={handleChange}
           message={errors && errors.first_name}
         />
-        <Textbox label="Last Name" value={values.last_name} readOnly={true} onChange={handleChange} message={errors && errors.last_name} />
+        <Textbox label="Last Name" value={values.last_name} readOnly={true} onChange={handleChange}
+                 message={errors && errors.last_name}/>
         <RadioButton
           label="Gender"
           name="gender"
@@ -179,12 +176,12 @@ class BasicInformation extends Component {
           name="international_student"
           value={values.international_student}
           options={INTERNATIONAL_OPTIONS}
-          disabled={true}
+          // disabled={true}
           onItemSelected={(value, displayValue) => setFieldValue('international_student', value)}
         />
         <div>
-          <DefaultButton text="Cancel" onClick={this.onCancel} />
-          <PrimaryButton text="Save" type="submit" />
+          <DefaultButton text="Cancel" onClick={this.onCancel}/>
+          <PrimaryButton text="Save" type="submit" disabled={isSubmitting}/>
         </div>
       </form>
     );
@@ -198,7 +195,7 @@ class BasicInformation extends Component {
         <div>BASIC INFORMATION</div>
         {!isEditing && (
           <div className={css.EditButton} onClick={() => setStatus({ isEditing: true })}>
-            <Icon iconName="EditSolid12" />
+            <Icon iconName="EditSolid12"/>
             {'  '}
             Edit
           </div>
@@ -217,70 +214,40 @@ export default withFormik({
     isEditing: false,
   }),
   mapPropsToValues: (props) => ({
+    prof_photo: '',
     photo_url: props.photo_url,
-    salutation: '',
     first_name: props.first_name,
     last_name: props.last_name,
     middle_name: props.middle_name,
-    other_name: props.other_name,
+    preferred_name: props.preferred_name,
     birthdate: props.birthdate,
     gender: props.gender,
     ethnicity: props.ethnicity,
-    social_security_number: props.social_security_number,
-    last_4_digits_of_ssn: props.last_4_digits_of_ssn,
     international_student: props.international_student,
-    type_indicator_image: props.type_indicator_image,
-    home_phone: props.home_phone,
-    mobile_phone: props.mobile_phone,
-    work_phone: props.work_phone,
-    primary_email: props.primary_email,
-    secondary_email: props.secondary_email,
-    preferred_contact_method: props.preferred_contact_method,
-    enrollment_status: props.enrollment_status,
-    highest_degree_earned: props.highest_degree_earned,
-    class_team_or_cohort: props.class_team_or_cohort,
-    status: props.status,
-    student_id: props.student_id,
-    record_id: props.record_id,
-    verification_token: props.verification_token,
-    age_125: props.age_125,
-    enrollment_level: props.enrollment_level,
-    student_height_127: props.student_height_127,
-    city_127: props.city_127,
-    facebook: props.facebook,
-    twitter: props.twitter,
-    instangram: props.instangram,
-    linkedin: props.linkedin,
-    snapchat: props.snapchat,
-    skype: props.skype,
-    classification: props.classification,
-    highest_level_of_education_completed: props.highest_level_of_education_completed,
-    total_credits_hoursoveral_gpa: props.total_credits_hoursoveral_gpa,
-    overal_gpa: props.overal_gpa,
-    primary_campus: props.primary_campus,
-    country_of_citizenship: props.country_of_citizenship,
-    country_of_residence: props.country_of_residence,
-    state_province_of_residency: props.state_province_of_residency,
-    total_credits_hours: props.total_credits_hours,
-    passport_number: props.passport_number,
-    passport_expiration_date: props.passport_expiration_date,
-    visa_number: props.visa_number,
-    visa_issued_date: props.visa_issued_date,
-    visa_issued_country: props.visa_issued_country,
-    visa_expiration_date: props.visa_expiration_date,
+    student_id: props.record_id,
+    salutation: props.salutation,
   }),
   handleSubmit: async (values, bag) => {
     try {
-      const { user } = this.context;
+      const formData = new FormData();
+      formData.append('prof_photo', values['prof_photo']);
+      formData.append('salutation', values['salutation']);
+      formData.append('first_name', values['first_name']);
+      formData.append('middle_name', values['middle_name']);
+      formData.append('last_name', values['last_name']);
+      formData.append('birthdate', values['birthdate']);
+      formData.append('gender', values['gender']);
+      formData.append('student_id', values['student_id']);
+      formData.append('ethnicity', values['ethnicity']);
+      formData.append('international_student', values['international_student']);
       const options = {
-        method: 'Post',
+        method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
-          'x-access-token': user && user.x_access_token,
+          'x-access-token': getAccessToken(),
         },
-        body: JSON.stringify(values),
+        body: formData,
       };
-      const response = await fetch(`${apiConstants.BACKEND_URL}student/update_profile`, options);
+      const response = await fetch(`${apiConstants.BACKEND_URL}student/support/profile`, options);
       const body = await response.json();
       if (body.success) {
         bag.setStatus({ isEditing: false });

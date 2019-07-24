@@ -14,6 +14,7 @@
   }
 
   .EditButton {
+    visibility: hidden;
     font-size: 12px;
     font-weight: 900;
     color: #c7c7c7;
@@ -49,6 +50,12 @@
               line-height: normal;
               letter-spacing: normal;
               padding-left: 0px;
+
+              .Avatar {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+              }
             }
 
             :nth-child(odd) {
@@ -221,5 +228,11 @@
         }
       }
     }
+  }
+}
+
+.BasicInformation:hover {
+  .EditButton {
+    visibility: visible!important;
   }
 }

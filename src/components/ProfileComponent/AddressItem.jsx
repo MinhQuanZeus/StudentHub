@@ -6,6 +6,7 @@ import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
 import Textbox from '../../native-ui/Textbox';
 import { ADDRESS_COUNTRY_OPTIONS } from '../../constants';
 import Select from '../../native-ui/Select';
+import { object, string } from 'yup';
 
 class AddressItem extends Component {
 
@@ -30,12 +31,14 @@ class AddressItem extends Component {
   };
 
   getViewMode = () => {
+    const {street_address1, country, city, post_code} = this.props;
+    console.log(this.props);
     const { isEditing } = this.props.status;
     return (
       <div className={css.ViewMode}>
         <p>
-          Mustika Ratu Street No 34, Lampung <br />
-          Indonesia, 34381
+          {street_address1}, {city} <br />
+          {country}, {post_code}
         </p>
         {!isEditing && (
           <button className={css.BtnEdit} onClick={() => this.props.setStatus({ isEditing: true })}>
@@ -50,14 +53,14 @@ class AddressItem extends Component {
     const { values, handleChange, handleSubmit, errors, setFieldValue, isValid } = this.props;
     return (
       <form onSubmit={handleSubmit} noValidate>
-        <Textbox label="Street" value={values.street} onChange={handleChange} message={isValid && errors && errors.street} />
-        <Textbox label="City" value={values.city} onChange={handleChange} message={isValid && errors && errors.city} />
-        <Textbox label="State/Province" value={values.spr} onChange={handleChange} message={isValid && errors && errors.spr} />
+        <Textbox label="Street" value={values.street_address1} onChange={handleChange} message={!isValid && errors && errors.street_address1} />
+        <Textbox label="City" value={values.city} onChange={handleChange} message={!isValid && errors && errors.city} />
+        <Textbox label="State/Province" value={values.spr} onChange={handleChange} message={!isValid && errors && errors.spr} />
         <Textbox
           label="Zip / Postal Code"
           value={values.post_code}
           onChange={handleChange}
-          message={isValid && errors && errors.post_code}
+          message={!isValid && errors && errors.post_code}
         />
         <Select
           label="Country"
@@ -97,11 +100,28 @@ export default withFormik({
     isEditing: false,
   }),
   mapPropsToValues: (props) => ({
-    street: props.street,
+    street_address1: props.street_address1,
     city: props.city,
     spr: props.spr,
     post_code: props.post_code,
     country: props.country,
+  }),
+  validationSchema: object().shape({
+    street_address1: string()
+      .required()
+      .label('Street'),
+    city: string()
+      .required()
+      .label('City'),
+    spr: string()
+      .required()
+      .label('State/Province'),
+    post_code: string()
+      .required()
+      .label('Post code'),
+    country: string()
+      .required()
+      .label('Country'),
   }),
   handleSubmit: async (values, bag) => {
     try {

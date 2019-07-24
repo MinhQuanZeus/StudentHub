@@ -5,8 +5,14 @@ import { PrimaryButton } from 'office-ui-fabric-react';
 import { withFormik } from 'formik';
 import { apiConstants } from '../../constants/applicationConstants';
 import { object, string } from 'yup';
+import { getAccessToken } from '../../helpers';
 
 class ChangePhoneNumberStep1 extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   formatMobileNumber = (value) => {
     const input = value.replace(/\D/g, '').substring(0, 10);
     const zip = input.substring(0, 3);
@@ -37,13 +43,13 @@ class ChangePhoneNumberStep1 extends Component {
         <Textbox
           label="Phone Number"
           value={values.phone}
-          onChange={(event) => this.updatePhoneNumber(event.target.value)}
+          onChange={(event) => this.props.setFieldValue('phone', event.target.value)}
           message={errors && errors.phone}
         />
         <div>We will send you one time sms verification</div>
         <div>Messages & Data rates may apply</div>
         <div>
-          <PrimaryButton text="Continue" type="submit" />
+          <PrimaryButton text="Continue" type="submit"/>
         </div>
       </form>
     );
@@ -68,12 +74,14 @@ export default withFormik({
         method: 'Post',
         headers: {
           'Content-Type': 'application/json',
+          'x-access-token': getAccessToken(),
         },
         body: JSON.stringify(values),
       };
       const response = await fetch(`${apiConstants.BACKEND_URL}student/phone/sendOtp`, options);
       const body = await response.json();
       if (body.success) {
+        bag.props.onSuccess(values.phone);
       }
     } catch (e) {
       console.log(e);

@@ -7,7 +7,7 @@ class ChangePhoneNumberStep3 extends Component {
   componentDidMount() {}
 
   render() {
-    const { phone_number } = this.props;
+    const { phone } = this.props;
     return (
       <div className={css.ChangePhoneNumberStep3}>
         <div>
@@ -17,7 +17,7 @@ class ChangePhoneNumberStep3 extends Component {
         </div>
         <div className={css.Congratulations}>Congratulations</div>
         <div>
-          Your Phone Number <strong>{ phone_number }</strong>
+          Your Phone Number <strong>{ phone }</strong>
         </div>
         <div>has been changed</div>
         <div>
