@@ -31,11 +31,15 @@ class FlagDetailsContainer extends Component {
         'x-access-token': x_access_token,
       },
     };
-    const response = await fetch(`${API_END_POINT}student/flag/detail/${id}`, options);
-    const body = await response.json();
+    const responses = await Promise.all([
+      fetch(`${API_END_POINT}student/flag/detail/${id}`, options),
+      fetch(`${API_END_POINT}student/flag_category`, options),
+    ]);
+    const bodies = await Promise.all(responses.map((response) => response.json()));
     this.setState(() => ({
       isLoading: false,
-      details: body.success ? body.data : null,
+      details: bodies[0].success ? bodies[0].data : null,
+      categories: bodies[1].success ? bodies[1].data : [],
     }));
   }
 
@@ -44,7 +48,7 @@ class FlagDetailsContainer extends Component {
   }
 
   render() {
-    const { mode, details } = this.state;
+    const { mode, details, categories } = this.state;
     const { user } = this.context;
     return (
       <section className={sharedStyles['content-container']}>
@@ -53,7 +57,9 @@ class FlagDetailsContainer extends Component {
             <PrimaryButton text="Edit" onClick={() => this.setState(() => ({ mode: 'edit' }))} />
           )}
         </HeaderComponent>
-        {details && <Details mode={mode} {...details} onCancel={() => this.setState(() => ({ mode: 'default' }))} />}
+        {details && (
+          <Details mode={mode} categories={categories} {...details} onCancel={() => this.setState(() => ({ mode: 'default' }))} />
+        )}
       </section>
     );
   }

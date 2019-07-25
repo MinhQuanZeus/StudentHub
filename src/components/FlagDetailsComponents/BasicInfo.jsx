@@ -21,14 +21,15 @@ class BasicInfo extends Component {
       description,
       created_at,
       values,
-      handlechange,
+      handleChange,
+      categories,
     } = this.props;
 
     return (
       <div className={cns(css.BasicInfo, mode)}>
         <div>
           <label>Title</label>
-          <div>{mode === 'default' ? subject : <TextField value={values.subject} onChange={handlechange} />}</div>
+          <div>{mode === 'default' ? subject : <TextField name="subject" value={values.subject} onChange={handleChange} />}</div>
         </div>
         {mode === 'default' && (
           <div>
@@ -38,7 +39,17 @@ class BasicInfo extends Component {
         )}
         <div>
           <label>Category</label>
-          <div>{mode === 'default' ? category && category.name : <Dropdown defaultSelectedKey={values.category} />}</div>
+          <div>
+            {mode === 'default' ? (
+              category && category.name
+            ) : (
+              <Dropdown
+                name="category"
+                defaultSelectedKey={values.category}
+                options={categories.map((o) => ({ key: o.id, text: o.category_name }))}
+              />
+            )}
+          </div>
         </div>
         <div>
           <label>Sub Category</label>
@@ -52,6 +63,7 @@ class BasicInfo extends Component {
               <Priority name={priority} />
             ) : (
               <Dropdown
+                name="priority"
                 defaultSelectedKey={values.priority}
                 options={[{ key: 'LOW', text: 'Low' }, { key: 'MEDIUM', text: 'Medium' }, { key: 'HIGH', text: 'High' }]}
               />
@@ -69,7 +81,7 @@ class BasicInfo extends Component {
               )
             ) : (
               <ChoiceGroup
-                className="defaultChoiceGroup"
+                name="is_public"
                 defaultSelectedKey={values.is_public}
                 options={[
                   {
@@ -93,7 +105,13 @@ class BasicInfo extends Component {
         )}
         <div>
           <label>Description</label>
-          <div>{mode === 'default' ? description : <TextField value={values.description} onChange={handlechange} multiline />}</div>
+          <div>
+            {mode === 'default' ? (
+              description
+            ) : (
+              <TextField name="description" value={values.description} onChange={handleChange} multiline />
+            )}
+          </div>
         </div>
       </div>
     );
@@ -106,12 +124,14 @@ BasicInfo.propTypes = {
   sub_category: PropTypes.object,
   status: PropTypes.string,
   priority: PropTypes.string,
+  is_public: PropTypes.bool,
   category_name: PropTypes.string,
   sub_category_name: PropTypes.string,
   description: PropTypes.string,
   created_at: PropTypes.any,
   values: PropTypes.object,
-  handlechange: PropTypes.func,
+  handleChange: PropTypes.func,
+  categories: PropTypes.array,
 };
 
 export default BasicInfo;
