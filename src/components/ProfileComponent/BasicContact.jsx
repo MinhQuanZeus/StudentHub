@@ -149,7 +149,7 @@ class BasicContact extends Component {
   };
 
   render() {
-    const { setStatus } = this.props;
+    const { setStatus, onSuccess } = this.props;
     const { isEditing } = this.props.status;
     const { isOpenChangePhone, isOpenAddEmail } = this.state;
     return (
@@ -165,8 +165,15 @@ class BasicContact extends Component {
         <div className="card">
           <div className="card-body">{!isEditing ? this.getViewMode() : this.getEditMode()}</div>
         </div>
-        <ChangePhoneNumberModal isOpen={isOpenChangePhone} onCancel={this.onCancelChangePhone} />
-        <AddEmailModal isOpen={isOpenAddEmail} onCancel={this.onCancelAddEmail} />
+        <ChangePhoneNumberModal
+          isOpen={isOpenChangePhone}
+          onCancel={this.onCancelChangePhone}
+          onSuccess={() => {
+            onSuccess();
+            this.setState({ isOpenChangePhone: false });
+          }}
+        />
+        <AddEmailModal isOpen={isOpenAddEmail} onCancel={this.onCancelAddEmail} onSuccess={onSuccess} />
       </div>
     );
   }

@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import cn from 'classnames'
-import * as dates from './utils/dates'
-import './customStyles.css'
+import PropTypes from 'prop-types';
+import React from 'react';
+import cn from 'classnames';
+import * as dates from './utils/dates';
+import './customStyles.scss';
 
 class EventCell extends React.Component {
   render() {
-    let {
+    const {
       style,
       className,
       event,
@@ -24,18 +24,17 @@ class EventCell extends React.Component {
       slotStart,
       slotEnd,
       ...props
-    } = this.props
+    } = this.props;
 
-    let title = accessors.title(event)
-    let tooltip = accessors.tooltip(event)
-    let end = accessors.end(event)
-    let start = accessors.start(event)
-    let allDay = accessors.allDay(event)
+    const title = accessors.title(event);
+    const tooltip = accessors.tooltip(event);
+    const end = accessors.end(event);
+    const start = accessors.start(event);
+    const allDay = accessors.allDay(event);
 
-    let showAsAllDay =
-      isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1
+    const showAsAllDay = isAllDay || allDay || dates.diff(start, dates.ceil(end, 'day'), 'day') > 1;
 
-    let userProps = getters.eventProp(event, start, end, selected)
+    const userProps = getters.eventProp(event, start, end, selected);
 
     const content = (
       <div className="rbc-event-content" title={tooltip || undefined}>
@@ -54,7 +53,7 @@ class EventCell extends React.Component {
           title
         )}
       </div>
-    )
+    );
 
     return (
       <EventWrapper {...this.props} type="date">
@@ -67,14 +66,16 @@ class EventCell extends React.Component {
             'rbc-event-allday': showAsAllDay,
             'rbc-event-continues-prior': continuesPrior,
             'rbc-event-continues-after': continuesAfter,
+            'classes-events': event.category === 'classes',
+            'checklist-events': event.category === 'checklist',
           })}
-          onClick={e => onSelect && onSelect(event, e)}
-          onDoubleClick={e => onDoubleClick && onDoubleClick(event, e)}
+          onClick={(e) => onSelect && onSelect(event, e)}
+          onDoubleClick={(e) => onDoubleClick && onDoubleClick(event, e)}
         >
           {typeof children === 'function' ? children(content) : content}
         </div>
       </EventWrapper>
-    )
+    );
   }
 }
 
@@ -95,6 +96,6 @@ EventCell.propTypes = {
 
   onSelect: PropTypes.func,
   onDoubleClick: PropTypes.func,
-}
+};
 
-export default EventCell
+export default EventCell;

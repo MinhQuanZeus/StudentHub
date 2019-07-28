@@ -186,7 +186,6 @@
             bottom: 0;
             right: 0;
             pointer-events: none;
-            border-radius: 50%;
             z-index: 1;
             padding: 0px !important;
 
@@ -233,6 +232,6 @@
 
 .BasicInformation:hover {
   .EditButton {
-    visibility: visible!important;
+    visibility: visible !important;
   }
 }

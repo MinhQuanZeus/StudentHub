@@ -1,0 +1,65 @@
+.SelectViewMode {
+  :global(.ms-Dropdown) {
+    border-radius: 18px;
+    border: solid 1px #413d59;
+  }
+
+  :global(.ms-Dropdown) {
+    border: 1px solid #413d59;
+    border-radius: 18px;
+    height: 30px;
+    line-height: 30px;
+    width: 100px;
+
+    :global(.ms-Dropdown-title) {
+      border: none;
+      border-radius: 18px;
+      text-transform: capitalize;
+      height: 28px;
+      line-height: 27px;
+      font-weight: bold;
+      padding-left: 18px;
+    }
+
+    :global(.ms-Dropdown-caretDownWrapper) {
+      height: 28px;
+      line-height: 27px;
+
+      i {
+        content: 'E936';
+        color: #413d59;
+      }
+    }
+  }
+
+  :global(.ms-Dropdown:hover) {
+    border: 1px solid #413d59;
+    border-radius: 18px;
+    height: 30px;
+    line-height: 30px;
+    width: 100px;
+
+    :global(.ms-Dropdown-title) {
+      border: none;
+      border-radius: 18px;
+      text-transform: capitalize;
+      height: 28px;
+      line-height: 27px;
+      font-weight: bold;
+      padding-left: 18px;
+    }
+
+    :global(.ms-Dropdown-caretDownWrapper) {
+      height: 28px;
+      line-height: 27px;
+
+      i {
+        color: #413d59;
+      }
+    }
+  }
+}
+
+:global(.ms-Dropdown-optionText) {
+  text-transform: capitalize !important;
+}

@@ -22,7 +22,7 @@ class AddEmailModal extends Component {
       case 2:
         return <AddEmailStep2 email={email} onSuccess={(email) => this.setState({ currentStep: 3, email: email })} />;
       case 3:
-        return <AddEmailStep3 email={email} />;
+        return <AddEmailStep3 email={email} onSuccess={this.onCancel} />;
       default:
         return <AddEmailStep1 onSuccess={(email) => this.setState({ currentStep: 2, email: email })} />;
     }

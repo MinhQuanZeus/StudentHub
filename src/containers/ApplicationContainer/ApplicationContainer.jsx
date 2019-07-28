@@ -14,9 +14,9 @@ import DegreeAuditContainer from '../DegreeAuditContainer/DegreeAuditContainer';
 import ChecklistContainer from '../ChecklistContainer/ChecklistContainer';
 import FlagsListContainer from '../FlagsListContainer/FlagsListContainer';
 import FlagDetailsContainer from '../FlagDetailsContainer';
-import CalendarContainer from '../CalendarContainer/CalendarContainer';
 import MyProfileContainer from '../MyProfileContainer';
 import css from './ApplicationContainer.m.scss';
+import CalendarContainer from '../CalendarContainer';
 
 class ApplicationContainer extends Component {
   componentWillMount() {

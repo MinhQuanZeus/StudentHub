@@ -7,9 +7,9 @@ import Textbox from '../../native-ui/Textbox';
 import { ADDRESS_COUNTRY_OPTIONS } from '../../constants';
 import Select from '../../native-ui/Select';
 import { object, string } from 'yup';
+import { getAccessToken } from '../../helpers';
 
 class AddressItem extends Component {
-
   onCancel = () => {
     const { props } = this;
     this.props.setValues({
@@ -31,8 +31,7 @@ class AddressItem extends Component {
   };
 
   getViewMode = () => {
-    const {street_address1, country, city, post_code} = this.props;
-    console.log(this.props);
+    const { street_address1, country, city, post_code } = this.props;
     const { isEditing } = this.props.status;
     return (
       <div className={css.ViewMode}>
@@ -53,10 +52,17 @@ class AddressItem extends Component {
     const { values, handleChange, handleSubmit, errors, setFieldValue, isValid } = this.props;
     return (
       <form onSubmit={handleSubmit} noValidate>
-        <Textbox label="Street" value={values.street_address1} onChange={handleChange} message={!isValid && errors && errors.street_address1} />
-        <Textbox label="City" value={values.city} onChange={handleChange} message={!isValid && errors && errors.city} />
-        <Textbox label="State/Province" value={values.spr} onChange={handleChange} message={!isValid && errors && errors.spr} />
         <Textbox
+          label="Street"
+          name="street_address1"
+          value={values.street_address1}
+          onChange={handleChange}
+          message={!isValid && errors && errors.street_address1}
+        />
+        <Textbox label="City" name="city" value={values.city} onChange={handleChange} message={!isValid && errors && errors.city} />
+        <Textbox label="State/Province" name="spr" value={values.spr} onChange={handleChange} message={!isValid && errors && errors.spr} />
+        <Textbox
+          name="post_code"
           label="Zip / Postal Code"
           value={values.post_code}
           onChange={handleChange}
@@ -64,6 +70,7 @@ class AddressItem extends Component {
         />
         <Select
           label="Country"
+          name="country"
           options={ADDRESS_COUNTRY_OPTIONS}
           value={values.country}
           placeholder="Please select a country"
@@ -80,11 +87,12 @@ class AddressItem extends Component {
 
   render() {
     const { isEditing } = this.props.status;
+    const { currentAddress, values, onSetCurrentAddress } = this.props;
     return (
       <div className={css.AddressItem}>
         <div>
-          <label className={css.radio}>
-            <input checked={true} type="radio" onChange={() => {}} value={1} />
+          <label className={css.radio} onClick={() => onSetCurrentAddress(values)}>
+            <input checked={currentAddress.address_id === values.address_id} type="radio" onChange={() => {}} value={1} />
             <span className={css.checkround} />
           </label>
         </div>
@@ -100,11 +108,14 @@ export default withFormik({
     isEditing: false,
   }),
   mapPropsToValues: (props) => ({
+    address_id: props.address_id,
     street_address1: props.street_address1,
     city: props.city,
     spr: props.spr,
     post_code: props.post_code,
     country: props.country,
+    entity_id: props.student_id,
+    is_staff: false,
   }),
   validationSchema: object().shape({
     street_address1: string()
@@ -125,19 +136,19 @@ export default withFormik({
   }),
   handleSubmit: async (values, bag) => {
     try {
-      const { user } = this.context;
       const options = {
-        method: 'Post',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'x-access-token': user && user.x_access_token,
+          'x-access-token': getAccessToken(),
         },
         body: JSON.stringify(values),
       };
-      const response = await fetch(`${apiConstants.BACKEND_URL}student/update_profile`, options);
+      const response = await fetch(`${apiConstants.BACKEND_URL}student/profile/address/update`, options);
       const body = await response.json();
       if (body.success) {
         bag.setStatus({ isEditing: false });
+        bag.props.onSuccess();
       }
     } catch (e) {
       console.log(e);

@@ -19,13 +19,18 @@ class ChangePhoneNumberModal extends Component {
     const { currentStep, phone } = this.state;
 
     switch (currentStep) {
-    case 2:
-      return <ChangePhoneNumberStep2 phone={phone} onSuccess={(phone) => this.setState({ currentStep: 3, phone: phone })}/>;
-    case 3:
-      return <ChangePhoneNumberStep3 phone={phone}/>;
-    default:
-      return <ChangePhoneNumberStep1 onSuccess={(phone) => this.setState({ currentStep: 2, phone: phone })}/>;
+      case 2:
+        return <ChangePhoneNumberStep2 phone={phone} onSuccess={(phone) => this.setState({ currentStep: 3, phone: phone })} />;
+      case 3:
+        return <ChangePhoneNumberStep3 phone={phone} onSuccess={this.onSuccess} />;
+      default:
+        return <ChangePhoneNumberStep1 onSuccess={(phone) => this.setState({ currentStep: 2, phone: phone })} />;
     }
+  };
+
+  onSuccess = () => {
+    this.setState({ currentStep: 1 });
+    this.props.onSuccess();
   };
 
   onCancel = () => {
@@ -39,7 +44,7 @@ class ChangePhoneNumberModal extends Component {
       <Modal className={css.ChangePhoneNumberModal} isDarkOverlay={true} isOpen={isOpen} isBlocking={true}>
         <div className={css.Header}>
           <span>Change Phone Number</span>
-          <img onClick={this.onCancel} src={CancelIcon} alt="image"/>
+          <img onClick={this.onCancel} src={CancelIcon} alt="image" />
         </div>
         {this.getStep()}
       </Modal>

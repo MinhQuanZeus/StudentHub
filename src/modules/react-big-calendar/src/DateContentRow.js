@@ -1,78 +1,75 @@
-import cn from 'classnames'
-import getHeight from 'dom-helpers/query/height'
-import qsa from 'dom-helpers/query/querySelectorAll'
-import PropTypes from 'prop-types'
-import React from 'react'
-import { findDOMNode } from 'react-dom'
+import cn from 'classnames';
+import getHeight from 'dom-helpers/query/height';
+import qsa from 'dom-helpers/query/querySelectorAll';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { findDOMNode } from 'react-dom';
 
-import * as dates from './utils/dates'
-import BackgroundCells from './BackgroundCells'
-import EventRow from './EventRow'
-import EventEndingRow from './EventEndingRow'
-import * as DateSlotMetrics from './utils/DateSlotMetrics'
-import './customStyles.css'
+import * as dates from './utils/dates';
+import BackgroundCells from './BackgroundCells';
+import EventRow from './EventRow';
+import EventEndingRow from './EventEndingRow';
+import * as DateSlotMetrics from './utils/DateSlotMetrics';
+import './customStyles.scss';
 
 class DateContentRow extends React.Component {
   constructor(...args) {
-    super(...args)
+    super(...args);
 
-    this.slotMetrics = DateSlotMetrics.getSlotMetrics()
+    this.slotMetrics = DateSlotMetrics.getSlotMetrics();
   }
 
-  handleSelectSlot = slot => {
-    const { range, onSelectSlot } = this.props
+  handleSelectSlot = (slot) => {
+    const { range, onSelectSlot } = this.props;
 
-    onSelectSlot(range.slice(slot.start, slot.end + 1), slot)
-  }
+    onSelectSlot(range.slice(slot.start, slot.end + 1), slot);
+  };
 
   handleShowMore = (slot, target) => {
-    const { range, onShowMore } = this.props
-    let metrics = this.slotMetrics(this.props)
-    let row = qsa(findDOMNode(this), '.rbc-row-bg')[0]
+    const { range, onShowMore } = this.props;
+    let metrics = this.slotMetrics(this.props);
+    let row = qsa(findDOMNode(this), '.rbc-row-bg')[0];
 
-    let cell
-    if (row) cell = row.children[slot - 1]
+    let cell;
+    if (row) cell = row.children[slot - 1];
 
-    let events = metrics.getEventsForSlot(slot)
-    onShowMore(events, range[slot - 1], cell, slot, target)
-  }
+    let events = metrics.getEventsForSlot(slot);
+    onShowMore(events, range[slot - 1], cell, slot, target);
+  };
 
-  createHeadingRef = r => {
-    this.headingRow = r
-  }
+  createHeadingRef = (r) => {
+    this.headingRow = r;
+  };
 
-  createEventRef = r => {
-    this.eventRow = r
-  }
+  createEventRef = (r) => {
+    this.eventRow = r;
+  };
 
   getContainer = () => {
-    const { container } = this.props
-    return container ? container() : findDOMNode(this)
-  }
+    const { container } = this.props;
+    return container ? container() : findDOMNode(this);
+  };
 
   getRowLimit() {
-    let eventHeight = getHeight(this.eventRow)
-    let headingHeight = this.headingRow ? getHeight(this.headingRow) : 0
-    let eventSpace = getHeight(findDOMNode(this)) - headingHeight
+    let eventHeight = getHeight(this.eventRow);
+    let headingHeight = this.headingRow ? getHeight(this.headingRow) : 0;
+    let eventSpace = getHeight(findDOMNode(this)) - headingHeight;
 
-    return Math.max(Math.floor(eventSpace / eventHeight), 1)
+    return Math.max(Math.floor(eventSpace / eventHeight), 1);
   }
 
   renderHeadingCell = (date, index) => {
-    let { renderHeader, getNow } = this.props
+    let { renderHeader, getNow } = this.props;
 
     return renderHeader({
       date,
       key: `header_${index}`,
-      className: cn(
-        'rbc-date-cell',
-        dates.eq(date, getNow(), 'day') && 'rbc-now'
-      ),
-    })
-  }
+      className: cn('rbc-date-cell', dates.eq(date, getNow(), 'day') && 'rbc-now'),
+    });
+  };
 
   renderDummy = () => {
-    let { className, range, renderHeader } = this.props
+    let { className, range, renderHeader } = this.props;
     return (
       <div className={className}>
         <div className="rbc-row-content">
@@ -90,8 +87,8 @@ class DateContentRow extends React.Component {
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   render() {
     const {
@@ -117,14 +114,14 @@ class DateContentRow extends React.Component {
       resourceId,
       longPressThreshold,
       isAllDay,
-    } = this.props
+    } = this.props;
 
-    if (renderForMeasure) return this.renderDummy()
+    if (renderForMeasure) return this.renderDummy();
 
-    let metrics = this.slotMetrics(this.props)
-    let { levels, extra } = metrics
+    let metrics = this.slotMetrics(this.props);
+    let { levels, extra } = metrics;
 
-    let WeekWrapper = components.weekWrapper
+    let WeekWrapper = components.weekWrapper;
 
     const eventRowProps = {
       selected,
@@ -136,7 +133,7 @@ class DateContentRow extends React.Component {
       onDoubleClick,
       resourceId,
       slotMetrics: metrics,
-    }
+    };
 
     return (
       <div className={className}>
@@ -165,17 +162,11 @@ class DateContentRow extends React.Component {
             {levels.map((segs, idx) => (
               <EventRow key={idx} segments={segs} {...eventRowProps} />
             ))}
-            {!!extra.length && (
-              <EventEndingRow
-                segments={extra}
-                onShowMore={this.handleShowMore}
-                {...eventRowProps}
-              />
-            )}
+            {!!extra.length && <EventEndingRow segments={extra} onShowMore={this.handleShowMore} {...eventRowProps} />}
           </WeekWrapper>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -212,11 +203,11 @@ DateContentRow.propTypes = {
 
   minRows: PropTypes.number.isRequired,
   maxRows: PropTypes.number.isRequired,
-}
+};
 
 DateContentRow.defaultProps = {
   minRows: 0,
   maxRows: Infinity,
-}
+};
 
-export default DateContentRow
+export default DateContentRow;

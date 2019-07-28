@@ -41,6 +41,7 @@ class BasicInformation extends Component {
         // }
         this.setState({ avatarUrl: url });
         this.props.setFieldValue('prof_photo', file);
+        this.props.setFieldValue('avatarUrl', url);
       };
     }
   };
@@ -52,13 +53,14 @@ class BasicInformation extends Component {
       first_name: props.first_name,
       last_name: props.last_name,
       middle_name: props.middle_name,
-      preferred_name: props.preferred_name,
+      prefer_name: props.prefer_name,
       birthdate: props.birthdate,
       gender: props.gender,
       ethnicity: props.ethnicity,
       international_student: props.international_student,
       student_id: props.record_id,
       salutation: props.salutation,
+      language: props.language,
     });
 
     this.setState({ avatarUrl: props.photo_url });
@@ -71,38 +73,40 @@ class BasicInformation extends Component {
       <div>
         <table className="table">
           <tbody>
-          <tr>
-            <td>Photo Icon</td>
-            <td><img src={values.photo_url} alt="" className={css.Avatar}/></td>
-          </tr>
-          <tr>
-            <td>Student ID</td>
-            <td>{values.student_id}</td>
-          </tr>
-          <tr>
-            <td>Preferred Name</td>
-            <td>{values.preferred_name}</td>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td>{values.first_name + ' ' + values.last_name}</td>
-          </tr>
-          <tr>
-            <td>Gender</td>
-            <td>{values.gender}</td>
-          </tr>
-          <tr>
-            <td>Ethnicity</td>
-            <td>{values.ethnicity}</td>
-          </tr>
-          <tr>
-            <td>Language</td>
-            <td>{values.language}</td>
-          </tr>
-          <tr>
-            <td>International Student</td>
-            <td>{values.international_student}</td>
-          </tr>
+            <tr>
+              <td>Photo Icon</td>
+              <td>
+                <img src={values.photo_url} alt="" className={css.Avatar} />
+              </td>
+            </tr>
+            <tr>
+              <td>Student ID</td>
+              <td>{values.student_id}</td>
+            </tr>
+            <tr>
+              <td>Preferred Name</td>
+              <td>{values.prefer_name}</td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>{values.first_name + ' ' + values.last_name}</td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td>{values.gender}</td>
+            </tr>
+            <tr>
+              <td>Ethnicity</td>
+              <td>{values.ethnicity}</td>
+            </tr>
+            <tr>
+              <td>Language</td>
+              <td>{values.language}</td>
+            </tr>
+            <tr>
+              <td>International Student</td>
+              <td>{values.international_student}</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -117,30 +121,34 @@ class BasicInformation extends Component {
         <div>
           <label>Photo Icon</label>
           <label className={css.UploadPhoto} htmlFor="fileInput">
-            <img src={avatarUrl || values.photo_url} alt=""/>
+            <img src={avatarUrl || values.photo_url} alt="" />
             {!isSubmitting ? (
               <span>
                 <div className={css.HoverSelectImage}>
-                  <Icon iconName="CloudUpload" className="ms-IconExample"/>
-                  <br/>
+                  <Icon iconName="CloudUpload" className="ms-IconExample" />
+                  <br />
                   <span>Upload photo</span>
                 </div>
-                <div className={css.HoverBackground}/>
-                <input id="fileInput" type="file" onChange={this.onInputAvatar} accept="image/x-png,image/jpeg"/>
+                <div className={css.HoverBackground} />
+                <input id="fileInput" type="file" onChange={this.onInputAvatar} accept="image/x-png,image/jpeg" />
               </span>
             ) : null}
             {isSubmitting ? (
               <div className={css.Spinner}>
-                <Spinner size={SpinnerSize.medium}/>
+                <Spinner size={SpinnerSize.medium} />
               </div>
             ) : null}
           </label>
         </div>
-        <hr/>
-        <Textbox label="Student ID" value={values.record_id} onChange={handleChange} readOnly={true}
-                 message={errors && errors.record_id}/>
-        <Textbox label="Preferred Name" value={values.preferred_name} onChange={handleChange}
-                 message={errors && errors.preferred_name}/>
+        <hr />
+        <Textbox label="Student ID" value={values.record_id} onChange={handleChange} readOnly={true} message={errors && errors.record_id} />
+        <Textbox
+          label="Preferred Name"
+          name="prefer_name"
+          value={values.prefer_name}
+          onChange={handleChange}
+          message={errors && errors.prefer_name}
+        />
         <Textbox
           label="First Name"
           value={values.first_name}
@@ -148,8 +156,7 @@ class BasicInformation extends Component {
           onChange={handleChange}
           message={errors && errors.first_name}
         />
-        <Textbox label="Last Name" value={values.last_name} readOnly={true} onChange={handleChange}
-                 message={errors && errors.last_name}/>
+        <Textbox label="Last Name" value={values.last_name} readOnly={true} onChange={handleChange} message={errors && errors.last_name} />
         <RadioButton
           label="Gender"
           name="gender"
@@ -180,8 +187,8 @@ class BasicInformation extends Component {
           onItemSelected={(value, displayValue) => setFieldValue('international_student', value)}
         />
         <div>
-          <DefaultButton text="Cancel" onClick={this.onCancel}/>
-          <PrimaryButton text="Save" type="submit" disabled={isSubmitting}/>
+          <DefaultButton text="Cancel" onClick={this.onCancel} />
+          <PrimaryButton text="Save" type="submit" disabled={isSubmitting} />
         </div>
       </form>
     );
@@ -195,7 +202,7 @@ class BasicInformation extends Component {
         <div>BASIC INFORMATION</div>
         {!isEditing && (
           <div className={css.EditButton} onClick={() => setStatus({ isEditing: true })}>
-            <Icon iconName="EditSolid12"/>
+            <Icon iconName="EditSolid12" />
             {'  '}
             Edit
           </div>
@@ -219,18 +226,22 @@ export default withFormik({
     first_name: props.first_name,
     last_name: props.last_name,
     middle_name: props.middle_name,
-    preferred_name: props.preferred_name,
+    prefer_name: props.prefer_name,
     birthdate: props.birthdate,
     gender: props.gender,
     ethnicity: props.ethnicity,
     international_student: props.international_student,
     student_id: props.record_id,
     salutation: props.salutation,
+    language: props.language,
+    avatarUrl: '',
   }),
   handleSubmit: async (values, bag) => {
     try {
       const formData = new FormData();
-      formData.append('prof_photo', values['prof_photo']);
+      if (values['prof_photo']) {
+        formData.append('prof_photo', values['prof_photo']);
+      }
       formData.append('salutation', values['salutation']);
       formData.append('first_name', values['first_name']);
       formData.append('middle_name', values['middle_name']);
@@ -239,6 +250,8 @@ export default withFormik({
       formData.append('gender', values['gender']);
       formData.append('student_id', values['student_id']);
       formData.append('ethnicity', values['ethnicity']);
+      formData.append('prefer_name', values['prefer_name']);
+      formData.append('language', values['language']);
       formData.append('international_student', values['international_student']);
       const options = {
         method: 'PUT',
@@ -251,6 +264,11 @@ export default withFormik({
       const body = await response.json();
       if (body.success) {
         bag.setStatus({ isEditing: false });
+        bag.props.onSuccess();
+        const avatar = document.getElementsByClassName('top-bar-avatar-sm');
+        if (avatar && avatar.length > 0) {
+          avatar[0].src = values['avatarUrl'];
+        }
       }
     } catch (e) {
       console.log(e);

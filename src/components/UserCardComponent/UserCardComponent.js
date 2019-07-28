@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import styles from './UserCardComponent.module.scss';
 import { getUser } from '../../helpers';
 
-function UserDetails({ bday, phone, email, address }) {
+function UserDetails({ bday, phone, email, currentAddress }) {
   return (
     <div className={styles['show-details']}>
       <div className={styles['show-details-item']}>
@@ -20,7 +20,10 @@ function UserDetails({ bday, phone, email, address }) {
       </div>
       <div className={styles['show-details-item']}>
         <p className={styles['item-heading']}>Current Address</p>
-        <p className={styles['item-detail']}>{address}</p>
+        <p className={styles['item-detail']}>
+          {currentAddress.street_address1}, {currentAddress.city} <br />
+          {currentAddress.country}, {currentAddress.post_code}
+        </p>
       </div>
     </div>
   );
@@ -36,14 +39,14 @@ export class UserCardComponent extends Component {
   };
 
   render() {
-    const { loginInformation } = this.props;
+    const { loginInformation, currentAddress } = this.props;
     const { showDetails } = this.state;
     const btnText = showDetails ? 'Show Less' : 'Show More';
 
     return (
       <div className={styles['UserCardContainer']}>
         <div className={styles['UserAvatar']}>
-          <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User Avatar" />
+          <img src={loginInformation && loginInformation.photo_url} alt="User Avatar" />
         </div>
         <div className={styles['UserName']}>
           <p>{loginInformation && loginInformation.first_name + ' ' + loginInformation.last_name}</p>
@@ -57,7 +60,14 @@ export class UserCardComponent extends Component {
           </a>
         </div>
 
-        {showDetails && loginInformation ? <UserDetails bday={loginInformation.birth_date} phone={loginInformation.mobile_phone} email={loginInformation.primary_email} address={loginInformation.current_address} /> : null}
+        {showDetails && loginInformation ? (
+          <UserDetails
+            bday={loginInformation.birth_date}
+            phone={loginInformation.mobile_phone}
+            email={loginInformation.primary_email}
+            currentAddress={currentAddress}
+          />
+        ) : null}
       </div>
     );
   }

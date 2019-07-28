@@ -7,70 +7,72 @@ import '../CalendarComponents/CalendarComponent.css';
 // to the correct localizer.
 const localizer = BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 
-
-const myEventsList = [
-  { 'title': 'Sample Title 2',
-    'allDay': false,
-    'start': new Date(2018, 11, 31, 8),
-    'end': new Date(2018, 11, 31, 9),
-    'category': 'classes' },
-  { 'title': 'Sample Title 2',
-    'allDay': false,
-    'start': new Date(2019, 0, 21, 8),
-    'end': new Date(2019, 0, 21, 9),
-    'category': 'classes' },
-
-  { 'title': 'Sample Title 1',
-    'allDay': false,
-    'start': new Date(2019, 0, 14, 8),
-    'end': new Date(2019, 0, 14, 9),
-    'category': 'program-event' },
-
-  { 'title': 'Sample Title 3',
-    'allDay': false,
-    'start': new Date(2019, 0, 21, 8),
-    'end': new Date(2019, 0, 24, 9),
-    'category': 'meeting' },
-];
-
-const date= new Date();
+const date = new Date();
 const TestDate = moment(date).startOf('month');
-const firstDate =TestDate._d;
-
+const firstDate = TestDate._d;
 
 export const CalendarComponent = (props) => {
   return (
-    <div className='background'>
-      <div className='container'>
-        <div className='section-sidebar'>
+    <div className="background">
+      <div className="container">
+        <div className="section-sidebar">
           <h2>Calendar</h2>
           <div className="create-event-btn">Create Event</div>
           <div className="catagory-list">
             <h3>Category List</h3>
             <div className="catagory-list-labels">
-              <div><span className="red-dot"></span> <p className="meeting-label">Meeting</p></div>
-              <div><span className="purple-dot"></span> <p className="classes-label">Classes</p></div>
-              <div><span className="gold-dot"></span> <p className="program-event-label">Program Event</p></div>
-              <div><span className="brown-dot"></span> <p className="school-event-label">School Event</p></div>
-              <div><span className="green-dot"></span> <p className="checklist-label">Checklist</p></div>
+              <div>
+                <span className="red-dot"></span> <p className="meeting-label">Meeting</p>
+              </div>
+              <div>
+                <span className="purple-dot"></span> <p className="classes-label">Classes</p>
+              </div>
+              <div>
+                <span className="gold-dot"></span> <p className="program-event-label">Program Event</p>
+              </div>
+              <div>
+                <span className="brown-dot"></span> <p className="school-event-label">School Event</p>
+              </div>
+              <div>
+                <span className="green-dot"></span> <p className="checklist-label">Checklist</p>
+              </div>
             </div>
           </div>
           <div className="invitation-list">
             <h3>Invitation List</h3>
-            <p className="invitation"><b>Joe</b> Invited you in his event <b>"Meeting Staff Only"</b><br></br><span>2 Hours Ago</span></p>
-            <p className="invitation"><b>Risa</b> Invited you in his event <b>"Design Fest 2018"</b><br></br><span>Yesterday</span></p>
+            <p className="invitation">
+              <b>Joe</b> Invited you in his event <b>"Meeting Staff Only"</b>
+              <br></br>
+              <span>2 Hours Ago</span>
+            </p>
+            <p className="invitation">
+              <b>Risa</b> Invited you in his event <b>"Design Fest 2018"</b>
+              <br></br>
+              <span>Yesterday</span>
+            </p>
           </div>
         </div>
-        <div className='calendar-container'>
+        <div className="calendar-container">
           <BigCalendar
             localizer={localizer}
             eventPropGetter={(event) => ({ className: 'category-' + event.calendarCategory })}
             events={props.calendarData}
-            views={['month']}
-            startAccessor='start'
-            endAccessor='end'
+            views={['month', 'week', 'day']}
+            startAccessor="start"
+            endAccessor="end"
             defaultDate={new Date()}
             onSelectEvent={props.onSelectEvent}
+            onRangeChange={(date) => {
+              if (date && !Array.isArray(date) && typeof date === 'object') {
+                props.onDateChanged(date.start, date.end);
+              } else if (date && Array.isArray(date) && date.length > 0) {
+                props.onDateChanged(date[0], date[date.length - 1]);
+              } else if (date) {
+                props.onDateChanged(date);
+              } else {
+                props.onDateChanged(new Date());
+              }
+            }}
           />
         </div>
       </div>

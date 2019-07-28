@@ -7,7 +7,7 @@ import css from './TopBarComponent.m.scss';
 import defaultAvatar from '../../images/img_avatar.png';
 import classnames from 'classnames';
 import { ACCESS_TOKEN } from '../../constants';
-import { navigate } from '../../helpers';
+import { getAvatarUrl, navigate } from '../../helpers';
 
 class UserInfo extends Component {
   constructor(props) {
@@ -25,11 +25,12 @@ class UserInfo extends Component {
 
   render() {
     const { props } = this;
+    const avatar = getAvatarUrl();
     return (
       <div className={css.UserInfo} onClick={props.onShowMenu}>
         <img alt="chevron" src="/images/chevron-down.svg" className={css['top-bar-chevron-down']} />
         <p className={css['top-bar-username']}>{props.user && props.user.first_name + ' ' + props.user.last_name}</p>
-        <img alt="" className={css['top-bar-avatar-sm']} src={props.user && (props.user.photo || defaultAvatar)} />
+        <img alt="" className={`${css['top-bar-avatar-sm']} top-bar-avatar-sm`} src={props.user && (avatar || defaultAvatar)} />
         {props.isOpenMenu ? (
           <ul className={classnames(css.Menu)}>
             <li onClick={this.onLogout}>

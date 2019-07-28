@@ -17,5 +17,17 @@
     flex-wrap: wrap;
     border: solid 1px #6647ff;
     border-radius: 6px;
+
+    div:last-child {
+      width: 100%;
+
+      :last-child {
+        margin-top: 0px !important;
+      }
+    }
+
+    :global(.form-group) {
+      text-align: left !important;
+    }
   }
 }

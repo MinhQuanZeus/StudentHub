@@ -9,6 +9,14 @@ export function getAccessToken() {
   return localStorage.getItem(ACCESS_TOKEN);
 }
 
+export function getAvatarUrl() {
+  return localStorage.getItem('avatar');
+}
+
+export function setAvatarUrl(url) {
+  return localStorage.setItem('avatar', url);
+}
+
 export function getUser() {
   const accessToken = getAccessToken();
 
@@ -18,6 +26,7 @@ export function getUser() {
       localStorage.removeItem(ACCESS_TOKEN);
       return null;
     }
+    console.log(json);
     return json;
   } catch (e) {
     localStorage.removeItem(ACCESS_TOKEN);

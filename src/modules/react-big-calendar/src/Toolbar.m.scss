@@ -1,0 +1,27 @@
+.Toolbar {
+  display: flex;
+
+  .SelectViewMode {
+    margin: auto 0px;
+    padding-left: 5px;
+  }
+
+  :global(.rbc-toolbar-label) {
+    margin: auto 0px;
+  }
+
+  :global(.rbc-btn-group) {
+    margin-left: auto;
+    display: flex;
+
+    button {
+      margin: auto 5px auto auto;
+    }
+
+    i {
+      font-size: 34px;
+      padding: 0px 5px;
+      cursor: pointer;
+    }
+  }
+}

@@ -7,7 +7,7 @@ import css from './AddressRegister.m.scss';
 import { withFormik } from 'formik';
 import { apiConstants } from '../../constants/applicationConstants';
 import { getAccessToken } from '../../helpers';
-import { object, string, date, array } from 'yup';
+import { object, string } from 'yup';
 
 class AddressRegister extends Component {
   render() {
@@ -20,9 +20,21 @@ class AddressRegister extends Component {
           &ensp;&ensp;<span>Add New Address</span>
         </div>
         <form onSubmit={handleSubmit} noValidate>
-          <Textbox label="Street" name="street_address1" value={values.street_address1} onChange={handleChange} message={!isValid && errors && errors.street_address1} />
+          <Textbox
+            label="Street"
+            name="street_address1"
+            value={values.street_address1}
+            onChange={handleChange}
+            message={!isValid && errors && errors.street_address1}
+          />
           <Textbox label="City" name="city" value={values.city} onChange={handleChange} message={!isValid && errors && errors.city} />
-          <Textbox label="State/Province" name="spr" value={values.spr} onChange={handleChange} message={!isValid && errors && errors.spr} />
+          <Textbox
+            label="State/Province"
+            name="spr"
+            value={values.spr}
+            onChange={handleChange}
+            message={!isValid && errors && errors.spr}
+          />
           <Textbox
             name="post_code"
             label="Zip / Postal Code"

@@ -8,7 +8,6 @@ import { object, string } from 'yup';
 import { getAccessToken } from '../../helpers';
 
 class ChangePhoneNumberStep1 extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -67,8 +66,10 @@ export default withFormik({
       .label('Phone Number'),
   }),
   handleSubmit: async (values, bag) => {
-    const data = values.phone.replace(/[() ]/gi, '');
-    console.log(data);
+    let data = values.phone.replace(/[() ]/gi, '');
+    if (!(data.indexOf('+') === 0)) {
+      data = '+' + data;
+    }
     try {
       const options = {
         method: 'Post',
@@ -76,12 +77,12 @@ export default withFormik({
           'Content-Type': 'application/json',
           'x-access-token': getAccessToken(),
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ phone: data }),
       };
       const response = await fetch(`${apiConstants.BACKEND_URL}student/phone/sendOtp`, options);
       const body = await response.json();
       if (body.success) {
-        bag.props.onSuccess(values.phone);
+        bag.props.onSuccess(data);
       }
     } catch (e) {
       console.log(e);

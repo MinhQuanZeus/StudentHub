@@ -7,12 +7,12 @@ class AddEmailStep3 extends Component {
   componentDidMount() {}
 
   render() {
-    const { email } = this.props;
+    const { email, onSuccess } = this.props;
     return (
       <div className={css.AddEmailStep3}>
         <div>
           <div className={css.VerifiedImage}>
-            <img src={VerifiedImage} alt="image"/>
+            <img src={VerifiedImage} alt="image" />
           </div>
         </div>
         <div className={css.Congratulations}>Congratulations</div>
@@ -21,7 +21,7 @@ class AddEmailStep3 extends Component {
         </div>
         <div>verification and added to your account</div>
         <div>
-          <PrimaryButton text="Close" type="button" />
+          <PrimaryButton text="Close" type="button" onClick={onSuccess} />
         </div>
       </div>
     );

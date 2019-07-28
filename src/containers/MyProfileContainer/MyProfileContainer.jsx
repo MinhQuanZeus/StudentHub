@@ -14,7 +14,7 @@ import SocialMedia from '../../components/ProfileComponent/SocialMedia';
 import EmergencyContact from '../../components/ProfileComponent/EmergencyContact';
 import Address from '../../components/ProfileComponent/Address';
 import css from './MyProfileContainer.m.scss';
-import { navigate } from '../../helpers';
+import { navigate, setAvatarUrl } from '../../helpers';
 
 class MyProfileContainer extends Component {
   constructor(props) {
@@ -22,8 +22,10 @@ class MyProfileContainer extends Component {
     this.aboutRef = React.createRef();
     this.contactRef = React.createRef();
     this.addressRef = React.createRef();
+    this.initialize = this.initialize.bind(this);
     this.state = {
       details: null,
+      currentAddress: {},
     };
   }
 
@@ -40,6 +42,7 @@ class MyProfileContainer extends Component {
       const response = await fetch(`${apiConstants.BACKEND_URL}student/get_profile`, options);
       const body = await response.json();
       if (body.success) {
+        setAvatarUrl(body.data && body.data.photo_url);
         this.setState(() => ({ isLoading: false, details: body.data }));
       }
     } catch (e) {
@@ -68,33 +71,30 @@ class MyProfileContainer extends Component {
     }
   };
 
+  setCurrentAddress = (address) => {
+    this.setState({ currentAddress: address });
+  };
+
   render() {
-    const { user } = this.context;
-    const { details } = this.state;
+    const { details, currentAddress } = this.state;
     return (
       <div className={`${sharedStyles['content-container']} ${css.MyProfileContainer}`}>
         <div>
           <div className={css.profileLeftContainer}>
             <HeaderComponent labels={['My Profile']} />
-            <UserCardComponent loginInformation={user} />
+            <UserCardComponent loginInformation={details} currentAddress={currentAddress} />
             <ProfileTabsComponent scrollToRef={this.scrollToRef} />
           </div>
           <div className={css.profileRightContainer}>
             <div ref={this.aboutRef} />
             <About {...details} />
-            <BasicInformation {...details} />
+            <BasicInformation {...details} onSuccess={this.initialize} />
             <div ref={this.contactRef} />
-            <BasicContact {...details} />
+            <BasicContact {...details} onSuccess={this.initialize} />
             <SocialMedia {...details} />
             <EmergencyContact {...details} />
             <div ref={this.addressRef} />
-            <Address {...details} />
-            {/* <AboutUserComponent*/}
-            {/*  loginInformation={user}*/}
-            {/*  aboutRef={this.aboutRef}*/}
-            {/*  contactRef={this.contactRef}*/}
-            {/*  addressRef={this.addressRef}*/}
-            {/* />*/}
+            <Address {...details} setCurrentAddress={this.setCurrentAddress} />
           </div>
         </div>
       </div>

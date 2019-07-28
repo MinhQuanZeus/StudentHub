@@ -22,19 +22,24 @@ class ChangePhoneNumberStep2 extends Component {
     return (
       <form className={css.ChangePhoneNumberStep2} onSubmit={handleSubmit}>
         <div>Please type verification code sent</div>
-        <div>to <strong>{values.phone}</strong></div>
-        <ReactCodeInput type="number" fields={6}
+        <div>
+          to <strong>{values.phone}</strong>
+        </div>
+        <ReactCodeInput
+          type="number"
+          fields={6}
           value={values.otp}
           onChange={(value) => {
             setFieldValue('otp', value);
-          }}/>
+          }}
+        />
         {errors && errors.otp && <div className={css.error}>{errors.otp}</div>}
         <div>Don’t Receive OTP Code</div>
         <div>
           <button className="btn btn-link">Resend OTP</button>
         </div>
         <div>
-          <PrimaryButton text="Verify" type="submit"/>
+          <PrimaryButton text="Verify" type="submit" />
         </div>
       </form>
     );
@@ -48,9 +53,9 @@ export default withFormik({
     code: '',
   }),
   validationSchema: object().shape({
-    email: string()
+    phone: string()
       .required()
-      .label('Email'),
+      .label('Phone'),
     otp: string()
       .required()
       .length(6, 'Code has 6 number')
