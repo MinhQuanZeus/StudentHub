@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Icon } from 'office-ui-fabric-react';
-import Person from './Person';
+import { Icon, Persona } from 'office-ui-fabric-react';
+
 import css from './PersonPicker.m.scss';
 
 class PersonPicker extends Component {
@@ -68,8 +68,10 @@ class PersonPicker extends Component {
         </div>
         {isSearching && (
           <ul className={isSearching ? css.Searching : null}>
-            {items.map((o, idx) => (
-              <Person key={idx} {...o} onClick={() => this.onChange(o)} />
+            {items.map((o) => (
+              <li key={o.id}>
+                <Persona text={o.name} onClick={() => this.onChange(o)} />
+              </li>
             ))}
           </ul>
         )}

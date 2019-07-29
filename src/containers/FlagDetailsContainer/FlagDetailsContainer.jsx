@@ -17,6 +17,7 @@ class FlagDetailsContainer extends Component {
       mode: 'default',
       isLoading: true,
       details: null,
+      staffs: [],
     };
   }
 
@@ -34,12 +35,15 @@ class FlagDetailsContainer extends Component {
     const responses = await Promise.all([
       fetch(`${API_END_POINT}student/flag/detail/${id}`, options),
       fetch(`${API_END_POINT}student/flag_category`, options),
+      fetch(`${API_END_POINT}student/get_staffs`, options),
     ]);
     const bodies = await Promise.all(responses.map((response) => response.json()));
+
     this.setState(() => ({
       isLoading: false,
       details: bodies[0].success ? bodies[0].data : null,
       categories: bodies[1].success ? bodies[1].data : [],
+      staffs: bodies[2].data,
     }));
   }
 
@@ -48,7 +52,8 @@ class FlagDetailsContainer extends Component {
   }
 
   render() {
-    const { mode, details, categories } = this.state;
+    const { mode, details, categories, staffs } = this.state;
+    console.log(this.state);
     const { user } = this.context;
     return (
       <section className={sharedStyles['content-container']}>
@@ -58,7 +63,13 @@ class FlagDetailsContainer extends Component {
           )}
         </HeaderComponent>
         {details && (
-          <Details mode={mode} categories={categories} {...details} onCancel={() => this.setState(() => ({ mode: 'default' }))} />
+          <Details
+            mode={mode}
+            staffs={staffs}
+            categories={categories}
+            {...details}
+            onCancel={() => this.setState(() => ({ mode: 'default' }))}
+          />
         )}
       </section>
     );

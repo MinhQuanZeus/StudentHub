@@ -36,6 +36,7 @@ class Details extends Component {
       logs,
       onCancel,
       categories,
+      staffs,
     } = this.props;
     const { user } = this.context;
 
@@ -49,7 +50,8 @@ class Details extends Component {
           priority: priority,
           is_public: is_public ? '1' : '0',
           description: description,
-          assignee: assigner && assigner.assign_id,
+          assigned_to: assigner && assigner.assign_id,
+          tags: receivers.map((o) => o.id.toString()),
         }}
         onSubmit={(values, bag) => {
           setTimeout(async () => {
@@ -83,10 +85,11 @@ class Details extends Component {
                   id={assigner && assigner.assign_id}
                   name={assigner && assigner.assigner}
                   avatar={assigner && assigner.avatar}
+                  staffs={staffs}
                   {...props}
                 />
               )}
-              <Tags items={receivers} {...props} />
+              <Tags mode={mode} staffs={staffs} items={receivers} {...props} />
               {assigner && assigner.assign_id === user.id && <AdminDetails {...this.props} />}
               <Attachment items={documents} />
               {mode === 'default' && <ModifyHistory items={logs} />}
@@ -119,6 +122,8 @@ Details.propTypes = {
   logs: PropTypes.array,
   onCancel: PropTypes.func,
   categories: PropTypes.array,
+  assigned_to: PropTypes.string,
+  staffs: PropTypes.array,
 };
 
 Details.contextType = AppContext;

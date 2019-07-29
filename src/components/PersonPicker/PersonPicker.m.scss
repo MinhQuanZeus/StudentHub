@@ -32,5 +32,17 @@
     box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.07);
     height: 316px;
     overflow-y: scroll;
+
+    li {
+      padding: 0 16px;
+
+      &:hover {
+        background-color: #fbfbfb;
+      }
+
+      &:nth-child(n + 2) {
+        margin-top: 8px;
+      }
+    }
   }
 }

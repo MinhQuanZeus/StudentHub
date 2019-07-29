@@ -10,7 +10,8 @@
     color: #413d59;
   }
 
-  ul {
+  > ul {
+    margin-top: 8px;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
