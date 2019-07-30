@@ -91,7 +91,7 @@ class Details extends Component {
               )}
               <Tags mode={mode} staffs={staffs} items={receivers} {...props} />
               {assigner && assigner.assign_id === user.id && <AdminDetails {...this.props} />}
-              <Attachment items={documents} />
+              <Attachment mode={mode} items={documents} {...props} />
               {mode === 'default' && <ModifyHistory items={logs} />}
               {mode === 'edit' && (
                 <div className={mode}>

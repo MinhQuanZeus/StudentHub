@@ -86,7 +86,15 @@ class Details extends Component {
             </div>
             <div>
               <label>Attachment</label>
-              <ul>{documents && documents.length > 0 && documents.map((o, idx) => <li key={idx}></li>)}</ul>
+              <ul>
+                {documents &&
+                  documents.length > 0 &&
+                  documents.map((o, idx) => (
+                    <li key={idx}>
+                      <img src={o.url} />
+                    </li>
+                  ))}
+              </ul>
             </div>
           </div>
         </div>

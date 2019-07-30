@@ -12,6 +12,9 @@
 
   ul {
     list-style: none;
+    max-height: 332px;
+    overflow: auto;
+    margin-bottom: 0;
 
     li {
       &:nth-child(n + 2) {

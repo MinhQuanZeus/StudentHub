@@ -9,12 +9,25 @@ class Tags extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.onRemove = this.onRemove.bind(this);
   }
 
   onChange(o) {
     const { values } = this.props;
     const tags = values.tags;
     tags.push(o.id);
+
+    this.props.handleChange({
+      target: {
+        name: 'tags',
+        value: tags,
+      },
+    });
+  }
+
+  onRemove(o) {
+    const { values } = this.props;
+    const tags = values.tags.filter((id) => id !== o.id);
 
     this.props.handleChange({
       target: {
@@ -37,6 +50,11 @@ class Tags extends Component {
             items.map((o) => (
               <li key={o.id}>
                 <Persona text={o.name || o.full_name} imageUrl={o.photo_url} imageAlt={o.name || o.full_name} />
+                {mode === 'edit' && (
+                  <span onClick={() => this.onRemove(o)}>
+                    <i className="fas fa-times" />
+                  </span>
+                )}
               </li>
             ))}
         </ul>

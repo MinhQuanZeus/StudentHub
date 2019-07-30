@@ -127,6 +127,10 @@
                     &:nth-child(n + 4) {
                       margin-top: 8px;
                     }
+
+                    img {
+                      max-height: 80px;
+                    }
                   }
                 }
               }
