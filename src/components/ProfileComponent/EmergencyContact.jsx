@@ -97,7 +97,6 @@ class EmergencyContact extends Component {
   }
 
   getViewMode = () => {
-    const { emergencyContacts } = this.state;
     const { values} = this.props;
 
     return (

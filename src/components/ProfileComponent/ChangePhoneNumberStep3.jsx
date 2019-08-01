@@ -12,7 +12,7 @@ class ChangePhoneNumberStep3 extends Component {
       <div className={css.ChangePhoneNumberStep3}>
         <div>
           <div className={css.VerifiedImage}>
-            <img src={VerifiedImage} />
+            <img src={VerifiedImage} alt=""/>
           </div>
         </div>
         <div className={css.Congratulations}>Congratulations</div>

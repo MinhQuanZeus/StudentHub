@@ -9,8 +9,9 @@ import { AppContext } from '../AppContext';
 class SuccessTeamContainer extends Component {
   componentDidMount() {
     let { user } = this.context;
+    console.log(user);
     this.props.onFetchMentors(user.x_access_token);
-    this.props.onFetchMentors(user.first_name);
+    // this.props.onFetchMentors(user.first_name);
   }
 
   render() {

@@ -26,7 +26,6 @@ export function getUser() {
       localStorage.removeItem(ACCESS_TOKEN);
       return null;
     }
-    console.log(json);
     return json;
   } catch (e) {
     localStorage.removeItem(ACCESS_TOKEN);

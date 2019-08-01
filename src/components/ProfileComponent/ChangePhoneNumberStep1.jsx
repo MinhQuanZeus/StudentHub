@@ -8,10 +8,6 @@ import { object, string } from 'yup';
 import { getAccessToken } from '../../helpers';
 
 class ChangePhoneNumberStep1 extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   formatMobileNumber = (value) => {
     const input = value.replace(/\D/g, '').substring(0, 10);
     const zip = input.substring(0, 3);

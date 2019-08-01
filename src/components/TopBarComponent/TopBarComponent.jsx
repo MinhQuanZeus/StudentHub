@@ -54,6 +54,7 @@ export class TopBarComponent extends Component {
   }
 
   onShowMenu() {
+    console.log('onShowMenu');
     this.setState((state) => ({
       isOpenMenu: !state.isOpenMenu,
     }));

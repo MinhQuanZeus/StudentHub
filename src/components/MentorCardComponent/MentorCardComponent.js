@@ -3,41 +3,41 @@ import styles from './MentorCardComponent.module.css';
 
 
 export const MentorCardComponent = (props) => {
-    const {mentor} = props;
-    let photo_url;
-    let full_name;
-    let phone;
-    let primary_email;
+  const { mentor } = props;
+  let photo_url;
+  let full_name;
+  let phone;
+  let primary_email;
 
-    if (Object.keys(mentor).length > 0) {
-        photo_url = 'images/avatar.jpeg';
-        full_name = mentor.first_name + ' ' + mentor.last_name;
-        phone = mentor.mobile_phone;
-        primary_email = mentor.primary_email;
-    }
-    return (
-        
-            <div className={styles["contact-box"]}>
-                <div className={styles["content"]}>
-                    <div><img
-                        src={photo_url}
-                        className={styles["avatar"]} alt=""/>
-                    </div>
-                        <p className={styles["contact-name"]}>{full_name}</p>
-                        <p className={styles["contact-position"]}>Freshman Mentor</p>
-                        <br/>
-                        <button className={styles["chat-button"]}><i
-                            className="far fa-comment"></i> &nbsp;&nbsp;Let's Chat
-                        </button>
-                </div>
-                <div className={styles["footer"]}>
-                    <p className={styles["email"]}><i className="far fa-envelope"></i> &nbsp;&nbsp;{primary_email}</p>
-                    <p className={styles["phone"]}><i className="fas fa-phone"
-                    style={{transform: 'rotate(90deg)'}}></i>
+  if (Object.keys(mentor).length > 0) {
+    photo_url = 'images/avatar.jpeg';
+    full_name = mentor.first_name + ' ' + mentor.last_name;
+    phone = mentor.mobile_phone;
+    primary_email = mentor.primary_email;
+  }
+  return (
+
+    <div className={styles['contact-box']}>
+      <div className={styles['content']}>
+        <div><img
+          src={photo_url}
+          className={styles['avatar']} alt=""/>
+        </div>
+        <p className={styles['contact-name']}>{full_name}</p>
+        <p className={styles['contact-position']}>Freshman Mentor</p>
+        <br/>
+        <button className={styles['chat-button']}><i
+          className="far fa-comment"></i> &nbsp;&nbsp;Let's Chat
+        </button>
+      </div>
+      <div className={styles['footer']}>
+        <p className={styles['email']}><i className="far fa-envelope"></i> &nbsp;&nbsp;{primary_email}</p>
+        <p className={styles['phone']}><i className="fas fa-phone"
+          style={{ transform: 'rotate(90deg)' }}></i>
                     &nbsp;&nbsp;(000){phone}</p>
-                </div>
-            </div>
-    )
+      </div>
+    </div>
+  );
 };
 
 

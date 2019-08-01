@@ -7,9 +7,6 @@ import '../CalendarComponents/CalendarComponent.css';
 // to the correct localizer.
 const localizer = BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 
-const date = new Date();
-const TestDate = moment(date).startOf('month');
-const firstDate = TestDate._d;
 
 export const CalendarComponent = (props) => {
   return (

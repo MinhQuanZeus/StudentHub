@@ -12,7 +12,7 @@ class AddEmailStep3 extends Component {
       <div className={css.AddEmailStep3}>
         <div>
           <div className={css.VerifiedImage}>
-            <img src={VerifiedImage} alt="image" />
+            <img src={VerifiedImage} alt="" />
           </div>
         </div>
         <div className={css.Congratulations}>Congratulations</div>

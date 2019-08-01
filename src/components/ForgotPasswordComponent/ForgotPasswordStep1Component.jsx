@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { forgotPasswordConstants } from '../../constants/forgotPasswordConstants';
-import { apiConstants, applicationMessages } from '../../constants/applicationConstants';
+import { apiConstants } from '../../constants/applicationConstants';
 import { H1, H2, SuccessHub } from './';
 import css from './ForgotPasswordComponent.m.scss';
 import { withEmit } from 'react-emit';
@@ -12,21 +12,21 @@ import { object, string } from 'yup';
 
 class ForgotPasswordStep1Component extends Component {
   render() {
-    const { handleChange, handleSubmit, forgotPasswordStatus, values, errors } = this.props;
+    const { handleChange, handleSubmit, values, errors } = this.props;
 
-    let message;
-    if (forgotPasswordStatus !== undefined && forgotPasswordStatus !== null) {
-      switch (forgotPasswordStatus) {
-        case forgotPasswordConstants.FORGOT_PASSWORD_SUCCESS:
-          message = <div>{applicationMessages.SUCCESS}</div>;
-          break;
-        case forgotPasswordConstants.FORGOT_PASSWORD_PENDING:
-          message = <div>{applicationMessages.PENDING}</div>;
-          break;
-        default:
-          message = <div>{forgotPasswordStatus.message}</div>;
-      }
-    }
+    // let message;
+    // if (forgotPasswordStatus !== undefined && forgotPasswordStatus !== null) {
+    //   switch (forgotPasswordStatus) {
+    //     case forgotPasswordConstants.FORGOT_PASSWORD_SUCCESS:
+    //       message = <div>{applicationMessages.SUCCESS}</div>;
+    //       break;
+    //     case forgotPasswordConstants.FORGOT_PASSWORD_PENDING:
+    //       message = <div>{applicationMessages.PENDING}</div>;
+    //       break;
+    //     default:
+    //       message = <div>{forgotPasswordStatus.message}</div>;
+    //   }
+    // }
 
     return (
       <div className={css.Step1}>

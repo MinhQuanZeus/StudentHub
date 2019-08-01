@@ -11,9 +11,6 @@ import LinedinIcon from '../../images/linkedin.svg';
 import { getAccessToken } from '../../helpers';
 
 class SocialMedia extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   onCancel = () => {
     this.props.setStatus({ isEditing: false });
@@ -51,7 +48,7 @@ class SocialMedia extends Component {
             <tr>
               <td>
                 <div>
-                  <img src={FacebookIcon} width="20px" height="20px"/>
+                  <img src={FacebookIcon} width="20px" height="20px" alt=""/>
                   <div>Facebook</div>
                 </div>
               </td>
@@ -60,7 +57,7 @@ class SocialMedia extends Component {
             <tr>
               <td>
                 <div>
-                  <img src={LinedinIcon} width="20px" height="20px"/>
+                  <img src={LinedinIcon} width="20px" height="20px" alt=""/>
                   <div>Linkedin</div>
                 </div>
               </td>

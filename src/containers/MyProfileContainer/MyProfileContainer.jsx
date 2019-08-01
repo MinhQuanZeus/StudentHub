@@ -14,7 +14,7 @@ import SocialMedia from '../../components/ProfileComponent/SocialMedia';
 import EmergencyContact from '../../components/ProfileComponent/EmergencyContact';
 import Address from '../../components/ProfileComponent/Address';
 import css from './MyProfileContainer.m.scss';
-import { navigate, setAvatarUrl } from '../../helpers';
+import { setAvatarUrl } from '../../helpers';
 
 class MyProfileContainer extends Component {
   constructor(props) {
