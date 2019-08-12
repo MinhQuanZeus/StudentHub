@@ -17,6 +17,7 @@ import FlagDetailsContainer from '../FlagDetailsContainer';
 import MyProfileContainer from '../MyProfileContainer';
 import css from './ApplicationContainer.m.scss';
 import CalendarContainer from '../CalendarContainer';
+import ChatbotContainer from '../ChatbotContainer';
 
 class ApplicationContainer extends Component {
   componentWillMount() {
@@ -57,6 +58,7 @@ class ApplicationContainer extends Component {
           </Switch>
           {currentPath !== '/check-list' && <NotificationContainer />}
         </div>
+        <ChatbotContainer />
       </AppContext.Provider>
     );
   }

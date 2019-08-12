@@ -85,6 +85,7 @@ class CheckListList extends Component {
             {isExpanded && (
               <div className={css.SubItems}>
                 {details.data &&
+                  details.data.child &&
                   details.data.child.length &&
                   details.data.child.map((obj, idx) => (
                     <label
