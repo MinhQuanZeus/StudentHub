@@ -45,12 +45,15 @@ class LoginComponent extends Component {
     return (
       <div className={css.Login} onSubmit={this.props.submit}>
         <div className="row">
-          <div className="col-lg-5 col-5 col-md-5 col-sm-5">
+          <div className="col-lg-5 col-md-5 col-sm-12">
             <img className={css.SuccessHub} src="/images/success-hub-logo.svg" alt="SuccessHub" />
             <h2 className={css.WelcomeBack}>Welcome Back!</h2>
+            <div className={css.IllustrationTop}>
+              <img src={this.illustration} className={css.Illustration} alt="Illustration" />
+            </div>
             <form onSubmit={handleSubmit} noValidate="novalidate">
               <label htmlFor="email" style={{ marginTop: 38 }}>
-                email
+                username
               </label>
               <div className={css.Email}>
                 <img src="/images/username.svg" alt="mask" />
@@ -77,7 +80,7 @@ class LoginComponent extends Component {
               <Link to="/forgot-password">Forgot Password?</Link>
             </div>
           </div>
-          <div className="col-lg-7 col-7 col-md-7 col-sm-7">
+          <div className={`col-lg-7 col-md-7 col-sm-12 ${css.IllustrationRight}`}>
             <img src={this.illustration} className={css.Illustration} alt="Illustration" />
           </div>
         </div>

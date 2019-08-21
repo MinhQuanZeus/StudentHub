@@ -96,6 +96,33 @@ class EmergencyContact extends Component {
     this.initialize();
   }
 
+  formatMobileNumber = (value) => {
+    if (!value) {
+      return;
+    }
+    value = value.replace(/\+1/g, '');
+    const input = value.replace(/\D/g, '').substring(0, 10);
+    const zip = input.substring(0, 3);
+    const middle = input.substring(3, 6);
+    const last = input.substring(6, 10);
+    let phoneNumber = 0;
+
+    if (input.length > 6) {
+      phoneNumber = `(${zip}) ${middle}-${last}`;
+    } else if (input.length > 3) {
+      phoneNumber = `(${zip}) ${middle}`;
+    } else if (input.length > 0) {
+      phoneNumber = `(${zip}`;
+    } else {
+      phoneNumber = '';
+    }
+    return phoneNumber;
+  };
+
+  updatePhoneNumber = (key, value) => {
+    this.props.setFieldValue(key, this.formatMobileNumber(value));
+  };
+
   getViewMode = () => {
     const { values} = this.props;
 
@@ -110,7 +137,7 @@ class EmergencyContact extends Component {
               </td>
               <td>
                 <p>{values.email1}</p>
-                <p>{values.phone1}</p>
+                <p>{this.formatMobileNumber(values.phone1)}</p>
               </td>
             </tr>
             <tr>
@@ -120,7 +147,7 @@ class EmergencyContact extends Component {
               </td>
               <td>
                 <p>{values.email2}</p>
-                <p>{values.phone2}</p>
+                <p>{this.formatMobileNumber(values.phone2)}</p>
               </td>
             </tr>
           </tbody>
@@ -146,7 +173,7 @@ class EmergencyContact extends Component {
           options={EMERGENCY_CONTACT_RELATIONSHIP_OPTIONS}
           onItemSelected={(value, displayValue) => setFieldValue('relationship1', value)}
         />
-        <Textbox label="Phone" name="phone1" value={values.phone1} onChange={handleChange}
+        <Textbox label="Phone 1" name="phone1" value={values.phone1} onChange={(event) => this.updatePhoneNumber('phone1', event.target.value)}
           message={errors && errors.phone1}/>
         <div className={css.FormHeader}>Emergency Contact 2</div>
         <hr/>
@@ -161,7 +188,7 @@ class EmergencyContact extends Component {
           options={EMERGENCY_CONTACT_RELATIONSHIP_OPTIONS}
           onItemSelected={(value, displayValue) => setFieldValue('relationship2', value)}
         />
-        <Textbox label="Phone" name="phone2" value={values.phone2} onChange={handleChange}
+        <Textbox label="Phone 2" name="phone2" value={values.phone2} onChange={(event) => this.updatePhoneNumber('phone2', event.target.value)}
           message={errors && errors.phone2}/>
         <div>
           <DefaultButton text="Cancel" onClick={this.onCancel}/>
@@ -209,22 +236,40 @@ export default withFormik({
     relationship2: '',
     phone2: '',
   }),
+  formatMobileNumberIntl:  (mobileNumber) => {
+    if (!mobileNumber) {
+      return;
+    }
+    mobileNumber = mobileNumber.replace(/[()  -]/gi, '');
+    if (!(mobileNumber.indexOf('+') === 0)) {
+      mobileNumber = '+' + mobileNumber;
+    }
+    return mobileNumber;
+  },
   handleSubmit: async (values, bag) => {
     try {
+      let phone1 = values.phone1.replace(/[()  -]/gi, '');
+      if (!(phone1.indexOf('+1') === 0)) {
+        phone1 = '+1' + phone1;
+      }
+      let phone2 = values.phone2.replace(/[()  -]/gi, '');
+      if (!(phone2.indexOf('+') === 0)) {
+        phone2 = '+1' + phone2;
+      }
       const data = [
         {
           id: values.id1,
           email: values.email1,
           contact_name: values.name1,
           relationship: values.relationship1,
-          phone: values.phone1,
+          phone: phone1,
         },
         {
           id: values.id2,
           email: values.email2,
           contact_name: values.name2,
           relationship: values.relationship2,
-          phone: values.phone2,
+          phone: phone2,
         },
       ];
       const options = {

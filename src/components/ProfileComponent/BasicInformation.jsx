@@ -141,7 +141,7 @@ class BasicInformation extends Component {
           </label>
         </div>
         <hr />
-        <Textbox label="Student ID" value={values.record_id} onChange={handleChange} readOnly={true} message={errors && errors.record_id} />
+        <Textbox label="Student ID" value={values.student_id} onChange={handleChange} readOnly={true} message={errors && errors.student_id} />
         <Textbox
           label="Preferred Name"
           name="prefer_name"

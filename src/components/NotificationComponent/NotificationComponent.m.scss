@@ -155,3 +155,9 @@
   background-color: #ffc947;
   border-radius: 10px;
 }
+
+@media only screen and (max-width: 767px) { 
+  .right-bar {
+    display: none;
+  }
+}

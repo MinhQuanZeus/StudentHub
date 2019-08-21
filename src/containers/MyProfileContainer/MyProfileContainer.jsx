@@ -19,6 +19,7 @@ import { setAvatarUrl } from '../../helpers';
 class MyProfileContainer extends Component {
   constructor(props) {
     super(props);
+    this.profileRef = React.createRef();
     this.aboutRef = React.createRef();
     this.contactRef = React.createRef();
     this.addressRef = React.createRef();
@@ -52,20 +53,20 @@ class MyProfileContainer extends Component {
 
   scrollToRef = (ref) => {
     if (ref === 'about') {
-      window.scrollTo({
-        top: this.aboutRef.current.offsetTop,
+      this.profileRef.current.scrollTo({
+        top: this.aboutRef.current.offsetTop - 140, // 140 value for scroll to specific position
         behavior: 'smooth',
       });
     }
     if (ref === 'contact') {
-      window.scrollTo({
-        top: this.contactRef.current.offsetTop,
+      this.profileRef.current.scrollTo({
+        top: this.contactRef.current.offsetTop - 110,
         behavior: 'smooth',
       });
     }
     if (ref === 'address') {
-      window.scrollTo({
-        top: this.addressRef.current.offsetTop,
+      this.profileRef.current.scrollTo({
+        top: this.addressRef.current.offsetTop - 140,
         behavior: 'smooth',
       });
     }
@@ -78,7 +79,7 @@ class MyProfileContainer extends Component {
   render() {
     const { details, currentAddress } = this.state;
     return (
-      <div className={`${sharedStyles['content-container']} ${css.MyProfileContainer}`}>
+      <div ref={this.profileRef} className={`${sharedStyles['content-container']} ${css.MyProfileContainer}`}>
         <div>
           <div className={css.profileLeftContainer}>
             <HeaderComponent labels={['My Profile']} />
@@ -86,6 +87,9 @@ class MyProfileContainer extends Component {
             <ProfileTabsComponent scrollToRef={this.scrollToRef} />
           </div>
           <div className={css.profileRightContainer}>
+            <div className={css.MobileViewHeader}>
+              <HeaderComponent labels={['My Profile']} />
+            </div>
             <div ref={this.aboutRef} />
             <About {...details} />
             <BasicInformation {...details} onSuccess={this.initialize} />

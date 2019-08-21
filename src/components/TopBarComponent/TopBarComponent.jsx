@@ -2,6 +2,7 @@
 /* global localStorage */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import jquery from 'jquery';
 
 import css from './TopBarComponent.m.scss';
 import defaultAvatar from '../../images/img_avatar.png';
@@ -51,6 +52,37 @@ export class TopBarComponent extends Component {
     };
 
     this.onShowMenu = this.onShowMenu.bind(this);
+    this.onShowHideNavbar = this.onShowHideNavbar.bind(this)
+  }
+
+  // side navbar work in progress
+  hideNavbar = () => {
+    const applicationcontainer =  document.getElementById("applicationcontainer");
+    const event = jquery(`[data-navbar='open']`);
+    event.animate({left: '-246px'}, 1000, () => {
+      event.attr('data-navbar', 'close');
+      applicationcontainer.removeEventListener("click", () => {});
+    });
+  }
+  showNavbar = () => {
+    const applicationcontainer =  document.getElementById("applicationcontainer");
+    const event = jquery(`[data-navbar='close']`);
+    event.animate({left: '0px'}, 1000, () => {
+      event.attr('data-navbar', 'open');
+      applicationcontainer.addEventListener("click", () => {
+        this.hideNavbar();
+      });
+    });
+  }
+  onShowHideNavbar = () => {
+    const navbarClose = jquery(`[data-navbar='close']`);
+    const navbarOpen = jquery(`[data-navbar='open']`);
+    if (navbarClose && navbarClose.length) {
+      this.showNavbar();
+    }
+    if(navbarOpen && navbarOpen.length) {
+      this.hideNavbar();
+    }
   }
 
   onShowMenu() {
@@ -64,10 +96,17 @@ export class TopBarComponent extends Component {
     const { user } = this.props;
     return (
       <nav className={css['top-bar-container']}>
-        <Link className={css['top-bar-icon-link']} to="/">
-          <img src="images/shape.svg" className={css['top-bar-icon']} alt="" />
-        </Link>
-        <h5 className={css['top-bar-welcome-container']}>
+        <div className={css['desktop']}>
+          <Link className={css['top-bar-icon-link']} to="/">
+            <img src="images/shape.svg" className={css['top-bar-icon']} onClick={this.onShowHideNavbar} alt="" />
+          </Link>
+        </div>
+        <div className={css['mobile']}>
+          <span className={css['top-bar-icon-link']}>
+            <img src="images/shape.svg" className={css['top-bar-icon']} onClick={this.onShowHideNavbar} alt="" />
+          </span>
+        </div>
+        <h5 className={`${css['top-bar-welcome-container']} ${css['desktop']}`}>
           <span className={css['top-bar-welcome-text']}>Welcome</span>
           &nbsp;
           <span className={css['top-bar-user-full-name']}>{user && user.first_name + ' ' + user.last_name}</span>

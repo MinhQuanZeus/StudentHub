@@ -12,7 +12,6 @@
     }
 
     .profileRightContainer {
-      margin-top: 52.5px;
       width: 100%;
       box-sizing: inherit;
     }
@@ -40,4 +39,37 @@
       color: #c3c3c3;
     }
   }
+}
+
+@media only screen and (min-width: 1200px) {
+  .MyProfileContainer {
+    .profileRightContainer { 
+      margin-top: 52.5px;
+    }   
+    .MobileViewHeader {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) { 
+  .MyProfileContainer {
+    .profileRightContainer { 
+      margin-top: 52.5px;
+    }      
+    .MobileViewHeader {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .MyProfileContainer { 
+    .profileLeftContainer {
+      display: none
+    }
+    .MobileViewHeader {
+      display: block;
+    }
+  } 
 }

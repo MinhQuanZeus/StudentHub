@@ -14,7 +14,11 @@ export const PC_BREAK_POINT = 1200;
 
 export const TABLET_BREAK_POINT = 640;
 
-export const GENDER_OPTIONS = [{ value: 'male', displayValue: 'Male' }, { value: 'female', displayValue: 'Female' }];
+export const GENDER_OPTIONS = [
+  { value: 'male', displayValue: 'Male' }, 
+  { value: 'female', displayValue: 'Female' },
+  { value: 'other', displayValue: 'Other' },
+];
 
 export const LANGUAGE_OPTIONS = [
   { value: 'Chinese', displayValue: 'Chinese' },

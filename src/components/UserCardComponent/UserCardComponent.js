@@ -38,6 +38,29 @@ export class UserCardComponent extends Component {
     this.setState({ showDetails: !this.state.showDetails });
   };
 
+  formatMobileNumber = (value) => {
+    if (!value) {
+      return;
+    }
+    value = value.replace(/\+1/g, '');
+    const input = value.replace(/\D/g, '').substring(0, 10);
+    const zip = input.substring(0, 3);
+    const middle = input.substring(3, 6);
+    const last = input.substring(6, 10);
+    let phoneNumber = 0;
+
+    if (input.length > 6) {
+      phoneNumber = `(${zip}) ${middle}-${last}`;
+    } else if (input.length > 3) {
+      phoneNumber = `(${zip}) ${middle}`;
+    } else if (input.length > 0) {
+      phoneNumber = `(${zip}`;
+    } else {
+      phoneNumber = '';
+    }
+    return phoneNumber;
+  };
+
   render() {
     const { loginInformation, currentAddress } = this.props;
     const { showDetails } = this.state;
@@ -63,7 +86,7 @@ export class UserCardComponent extends Component {
         {showDetails && loginInformation ? (
           <UserDetails
             bday={loginInformation.birth_date}
-            phone={loginInformation.mobile_phone}
+            phone={this.formatMobileNumber(loginInformation.mobile_phone)}
             email={loginInformation.primary_email}
             currentAddress={currentAddress}
           />

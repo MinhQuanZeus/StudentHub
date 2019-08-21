@@ -9,6 +9,7 @@ import { getAccessToken } from '../../helpers';
 
 class ChangePhoneNumberStep1 extends Component {
   formatMobileNumber = (value) => {
+    value = value.replace(/\+1/g, '');
     const input = value.replace(/\D/g, '').substring(0, 10);
     const zip = input.substring(0, 3);
     const middle = input.substring(3, 6);
@@ -16,7 +17,7 @@ class ChangePhoneNumberStep1 extends Component {
     let phoneNumber = 0;
 
     if (input.length > 6) {
-      phoneNumber = `(${zip}) ${middle} ${last}`;
+      phoneNumber = `(${zip}) ${middle}-${last}`;
     } else if (input.length > 3) {
       phoneNumber = `(${zip}) ${middle}`;
     } else if (input.length > 0) {
@@ -38,7 +39,7 @@ class ChangePhoneNumberStep1 extends Component {
         <Textbox
           label="Phone Number"
           value={values.phone}
-          onChange={(event) => this.props.setFieldValue('phone', event.target.value)}
+          onChange={(event) => this.updatePhoneNumber(event.target.value)}
           message={errors && errors.phone}
         />
         <div>We will send you one time sms verification</div>
@@ -62,9 +63,9 @@ export default withFormik({
       .label('Phone Number'),
   }),
   handleSubmit: async (values, bag) => {
-    let data = values.phone.replace(/[() ]/gi, '');
-    if (!(data.indexOf('+') === 0)) {
-      data = '+' + data;
+    let data = values.phone.replace(/[()  -]/gi, '');
+    if (!(data.indexOf('+1') === 0)) {
+      data = '+1' + data;
     }
     try {
       const options = {

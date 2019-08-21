@@ -65,6 +65,11 @@
           resize: none;
         }
 
+        textarea:hover,  
+        textarea:focus {
+          border-color: #6647ff;
+        }
+
         > div {
           float: right;
           margin-top: 14px;

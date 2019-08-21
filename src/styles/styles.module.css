@@ -154,3 +154,9 @@ label.error:before {
   color: #8a85a6;
   font-size: 12px;
 }
+
+@media only screen and (max-width: 767px) { 
+  .content-container {
+    width: 100%;
+  }
+}

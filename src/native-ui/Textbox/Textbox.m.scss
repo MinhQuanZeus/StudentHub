@@ -7,6 +7,16 @@
     }
   }
 
+  input:not([readOnly]):not([disabled]):hover,
+  input:not([readOnly]):not([disabled]):focus {
+    border-color: #6647ff;
+  }
+  
+  input[readOnly], input[disabled] {
+    background-color: #fff;
+    border-color: #cccccc;
+  }
+
   :global(.invalid-feedback) {
     display: block;
     text-align: left;

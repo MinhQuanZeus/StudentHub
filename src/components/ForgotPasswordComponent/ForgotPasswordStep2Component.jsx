@@ -16,7 +16,7 @@ class ForgotPasswordStep2Component extends Component {
     return (
       <div className={css.Step1}>
         <div className="row">
-          <div className="col-lg-5 col-5 col-md-6 col-sm-6">
+          <div className="col-lg-5 col-md-6 col-sm-12">
             <SuccessHub />
             <H1>Verify your email</H1>
             <H2>Help is on the way!</H2>
@@ -39,8 +39,8 @@ class ForgotPasswordStep2Component extends Component {
               </div>
             </form>
           </div>
-          <div className="col-lg-7 col-7 col-md-6 col-sm-6">
-            <img src="images/forgot-password-illustration.svg" alt="Illustration" />
+          <div className={`col-lg-7 col-md-6 col-sm-12 ${css.IllustrationRight}`}>
+            <img src="images/forgot-password-illustration.svg" className={css.Illustration} alt="Illustration" />
           </div>
         </div>
       </div>

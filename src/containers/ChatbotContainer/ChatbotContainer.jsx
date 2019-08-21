@@ -79,7 +79,7 @@ class ChatbotContainer extends Component {
       const messageBoxPartner = document.createElement('div');
       messageBoxPartner.classList.add('message-box');
       messageBoxPartner.classList.add('message-partner-error');
-      messageBoxSender.appendChild(document.createTextNode('STU Bot'));
+      messageBoxSender.appendChild(document.createTextNode('Cody'));
       messageBoxPartner.appendChild(document.createTextNode(daText));
       errorPara.className = 'message-box-holder';
       errorPara.appendChild(messageBoxSender);
@@ -96,7 +96,7 @@ class ChatbotContainer extends Component {
       const messageBoxPartner = document.createElement('div');
       messageBoxPartner.classList.add('message-box');
       messageBoxPartner.classList.add('message-partner');
-      messageBoxSender.appendChild(document.createTextNode('STU Bot'));
+      messageBoxSender.appendChild(document.createTextNode('Cody'));
       messageBoxPartner.appendChild(document.createTextNode(lexResponse && lexResponse.message));
       responsePara.className = 'message-box-holder';
       responsePara.appendChild(messageBoxSender);
@@ -121,7 +121,7 @@ class ChatbotContainer extends Component {
             </div>
             <div className={styles['chat-partner-name']}>
               <span className="status online"/>
-              <a href="javascript:void(0);">STU Bot</a>
+              <a href="javascript:void(0);">Cody</a>
             </div>
             <div className="chatbox-icons">
               <a href="javascript:void(0);"><i className="fa fa-minus"/></a>
@@ -131,7 +131,7 @@ class ChatbotContainer extends Component {
           <div id="conversation" className={styles['chat-messages']}>
             <div className="message-box-holder">
               <div className="message-sender">
-                STU Bot
+                Cody
               </div>
               <div className="message-box message-partner">
                 You can ask me for help getting gpa. Just type "GPA"
