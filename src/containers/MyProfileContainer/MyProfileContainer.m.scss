@@ -7,8 +7,12 @@
       margin-right: 35px;
       position: sticky;
       top: 0;
-      height: 100vh;
+      height: calc(100vh + 100px);
       box-sizing: border-box;
+    }
+
+    .profileLeftContainer.showDetails {
+      height: calc(100vh + 400px);
     }
 
     .profileRightContainer {
@@ -25,7 +29,7 @@
       line-height: normal;
       letter-spacing: normal;
       text-align: center;
-      color: #ffffff;
+      color: #fff;
     }
 
     :global(.ms-Button--default) {
@@ -43,33 +47,63 @@
 
 @media only screen and (min-width: 1200px) {
   .MyProfileContainer {
-    .profileRightContainer { 
+    .profileRightContainer {
       margin-top: 52.5px;
-    }   
+    }
+
     .MobileViewHeader {
+      display: none;
+    }
+
+    .MobileViewTabs {
       display: none;
     }
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1199px) { 
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
   .MyProfileContainer {
-    .profileRightContainer { 
+    .profileRightContainer {
       margin-top: 52.5px;
-    }      
+    }
+
     .MobileViewHeader {
+      display: none;
+    }
+
+    .MobileViewTabs {
       display: none;
     }
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .MyProfileContainer { 
+  .MyProfileContainer {
     .profileLeftContainer {
-      display: none
+      display: none;
     }
+
     .MobileViewHeader {
       display: block;
     }
-  } 
+
+    .MobileViewTabs {
+      display: block;
+    }
+
+    .ButtonOutline {
+      width: 120px;
+      height: 32px;
+      line-height: 30px;
+      border: 1px solid #6647ff;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: #6647ff;
+      cursor: pointer;
+    }
+  }
 }

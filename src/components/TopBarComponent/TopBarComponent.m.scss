@@ -107,24 +107,57 @@
   }
 }
 
-@media only screen and (min-width: 1200px) { 
+@media only screen and (min-width: 1200px) {
   .mobile {
     display: none;
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1199px) { 
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
   .mobile {
     display: none;
   }
 }
 
-@media only screen and (max-width: 767px) { 
+@media only screen and (max-width: 767px) {
   .desktop {
     display: none;
   }
+
   .mobile {
     display: block;
     cursor: pointer;
+  }
+
+  .UserInfo {
+    display: none;
+  }
+
+  .top-bar-icon-link {
+    box-shadow: none;
+  }
+
+  .NavbarMenuBtn {
+    background-color: #fff;
+    margin: 18px;
+
+    div {
+      height: 4px;
+      margin-bottom: 6px;
+      background-color: #8a85a6;
+      border-radius: 4px;
+    }
+
+    .Line1 {
+      width: 27px;
+    }
+
+    .Line2 {
+      width: 14px;
+    }
+
+    .Line3 {
+      width: 20px;
+    }
   }
 }

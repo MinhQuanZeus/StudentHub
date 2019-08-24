@@ -1,6 +1,8 @@
-/* global window, document */
+/* global document, fetch */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { UserCardComponent } from '../../components/UserCardComponent/UserCardComponent';
+import { MobileViewUserCardComponent } from '../../components/MobileViewUserCardComponent/MobileViewUserCardComponent';
 import { ProfileTabsComponent } from '../../components/ProfileTabsComponent/ProfileTabsComponent';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import sharedStyles from '../../styles/styles.module.css';
@@ -24,9 +26,12 @@ class MyProfileContainer extends Component {
     this.contactRef = React.createRef();
     this.addressRef = React.createRef();
     this.initialize = this.initialize.bind(this);
+    this.onEditProfile = this.onEditProfile.bind(this);
     this.state = {
       details: null,
       currentAddress: {},
+      editProfile: false,
+      showDetails: false,
     };
   }
 
@@ -76,19 +81,36 @@ class MyProfileContainer extends Component {
     this.setState({ currentAddress: address });
   };
 
+  onEditProfile = () => {
+    const editProfile = this.state.editProfile;
+    this.setState({ editProfile: !editProfile });
+  }
+
+  toggleDetails = (value) => {
+    this.setState({ showDetails: value });
+  }
+
   render() {
-    const { details, currentAddress } = this.state;
+    const { details, currentAddress, editProfile, showDetails } = this.state;
     return (
       <div ref={this.profileRef} className={`${sharedStyles['content-container']} ${css.MyProfileContainer}`}>
         <div>
-          <div className={css.profileLeftContainer}>
+          <div className={`${css.profileLeftContainer} ${showDetails ? css.showDetails : ''}` }>
             <HeaderComponent labels={['My Profile']} />
-            <UserCardComponent loginInformation={details} currentAddress={currentAddress} />
+            <UserCardComponent loginInformation={details} currentAddress={currentAddress} toggleDetails={this.toggleDetails} />
             <ProfileTabsComponent scrollToRef={this.scrollToRef} />
           </div>
           <div className={css.profileRightContainer}>
             <div className={css.MobileViewHeader}>
-              <HeaderComponent labels={['My Profile']} />
+              <HeaderComponent labels={['My Profile']}>
+                <span className={css.ButtonOutline} onClick={() => this.onEditProfile()}>
+                  {editProfile ? `Cancel` : `Edit Profile`}
+                </span>
+              </HeaderComponent>
+              <MobileViewUserCardComponent loginInformation={details} currentAddress={currentAddress} isMobileView={true} />
+            </div>
+            <div className={css.MobileViewTabs}>
+              <ProfileTabsComponent scrollToRef={this.scrollToRef} />
             </div>
             <div ref={this.aboutRef} />
             <About {...details} />

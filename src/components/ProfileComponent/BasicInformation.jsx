@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* global FileReader, FormData, document, fetch */
 import React, { Component } from 'react';
 import css from './BasicInformation.m.scss';
 import { DefaultButton, Icon, PrimaryButton, Spinner, SpinnerSize } from 'office-ui-fabric-react';
@@ -118,7 +120,7 @@ class BasicInformation extends Component {
     const { avatarUrl } = this.state;
     return (
       <form onSubmit={handleSubmit} noValidate>
-        <div>
+        <div className={css.UploadPhotoContainer}>
           <label>Photo Icon</label>
           <label className={css.UploadPhoto} htmlFor="fileInput">
             <img src={avatarUrl || values.photo_url} alt="" />

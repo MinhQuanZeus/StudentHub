@@ -49,7 +49,7 @@
               font-stretch: normal;
               line-height: normal;
               letter-spacing: normal;
-              padding-left: 0px;
+              padding-left: 0;
             }
 
             td:nth-child(odd) {
@@ -180,7 +180,7 @@
                 line-height: normal;
                 letter-spacing: normal;
                 text-align: center;
-                color: #ffffff;
+                color: #fff;
               }
             }
 
@@ -194,7 +194,7 @@
               background-color: rgba(102, 71, 255, 0.7);
               pointer-events: none;
               z-index: 1;
-              padding: 0px !important;
+              padding: 0 !important;
             }
 
             > input {
@@ -212,7 +212,7 @@
             pointer-events: none;
             border-radius: 50%;
             z-index: 1;
-            padding: 0px !important;
+            padding: 0 !important;
 
             :global(.ms-Spinner) {
               position: absolute;
@@ -225,7 +225,7 @@
         textarea {
           width: 100%;
           border: solid 1px #e9e9e9;
-          background-color: #ffffff;
+          background-color: #fff;
           border-radius: 6px;
           color: #8a85a6;
           font-size: 14px;
@@ -267,6 +267,22 @@
 
 .EmergencyContact:hover {
   .EditButton {
-    visibility: visible!important;
+    visibility: visible !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .EmergencyContact {
+    :global(.card) {
+      :global(.card-body) {
+        padding: 16px;
+
+        label,
+        > div,
+        form {
+          padding: 0;
+        }
+      }
+    }
   }
 }

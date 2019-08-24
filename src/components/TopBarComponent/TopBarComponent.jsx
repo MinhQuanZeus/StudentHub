@@ -52,26 +52,23 @@ export class TopBarComponent extends Component {
     };
 
     this.onShowMenu = this.onShowMenu.bind(this);
-    this.onShowHideNavbar = this.onShowHideNavbar.bind(this)
+    this.onShowHideNavbar = this.onShowHideNavbar.bind(this);
   }
 
   // side navbar work in progress
   hideNavbar = () => {
-    const applicationcontainer =  document.getElementById("applicationcontainer");
+    const applicationcontainer = jquery('#applicationcontainer')[0];
     const event = jquery(`[data-navbar='open']`);
-    event.animate({left: '-246px'}, 1000, () => {
-      event.attr('data-navbar', 'close');
-      applicationcontainer.removeEventListener("click", () => {});
-    });
+    applicationcontainer.removeEventListener('click', this.hideNavbar);
+    event.attr('data-navbar', 'close');
+    event.animate({ left: '-247px' }, 500, () => {});
   }
   showNavbar = () => {
-    const applicationcontainer =  document.getElementById("applicationcontainer");
+    const applicationcontainer = jquery('#applicationcontainer')[0];
     const event = jquery(`[data-navbar='close']`);
-    event.animate({left: '0px'}, 1000, () => {
+    applicationcontainer.addEventListener('click', this.hideNavbar);
+    event.animate({ left: '0px' }, 500, () => {
       event.attr('data-navbar', 'open');
-      applicationcontainer.addEventListener("click", () => {
-        this.hideNavbar();
-      });
     });
   }
   onShowHideNavbar = () => {
@@ -80,7 +77,7 @@ export class TopBarComponent extends Component {
     if (navbarClose && navbarClose.length) {
       this.showNavbar();
     }
-    if(navbarOpen && navbarOpen.length) {
+    if (navbarOpen && navbarOpen.length) {
       this.hideNavbar();
     }
   }
@@ -98,12 +95,19 @@ export class TopBarComponent extends Component {
       <nav className={css['top-bar-container']}>
         <div className={css['desktop']}>
           <Link className={css['top-bar-icon-link']} to="/">
-            <img src="images/shape.svg" className={css['top-bar-icon']} onClick={this.onShowHideNavbar} alt="" />
+            <img src="images/shape.svg" className={css['top-bar-icon']} alt="" />
           </Link>
         </div>
         <div className={css['mobile']}>
-          <span className={css['top-bar-icon-link']}>
-            <img src="images/shape.svg" className={css['top-bar-icon']} onClick={this.onShowHideNavbar} alt="" />
+          <span className={css['top-bar-icon-link']} onClick={this.onShowHideNavbar}>
+            <div className={css['NavbarMenuBtn']} >
+              <div className={css['Line1']}>
+              </div>
+              <div className={css['Line2']}>
+              </div>
+              <div className={css['Line3']}>
+              </div>
+            </div>
           </span>
         </div>
         <h5 className={`${css['top-bar-welcome-container']} ${css['desktop']}`}>

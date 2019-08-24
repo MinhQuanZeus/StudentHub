@@ -44,7 +44,7 @@ class ApplicationContainer extends Component {
       <AppContext.Provider value={{ user: this.user, accessToken: this.accessToken }}>
         <TopBarContainer />
         <div className={css.ApplicationContainer} id="applicationcontainer">
-          <NavBarContainer />
+          <NavBarContainer currentPath={currentPath} />
           <Switch>
             <Route path="/success-team" component={SuccessTeamContainer} />
             <Route path="/milestone" component={MilestoneContainer} />

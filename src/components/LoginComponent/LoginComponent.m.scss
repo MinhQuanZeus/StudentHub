@@ -112,7 +112,12 @@
     .SuccessHub {
       margin-left: 95px;
     }
-    .IllustrationTop { 
+
+    .WelcomeBack {
+      margin: 25px 0 0 0;
+    }
+
+    .IllustrationTop {
       display: none;
     }
     //.Illustration {
@@ -123,18 +128,17 @@
       margin-top: 5%;
       margin-left: 10%;
     }
+
     form {
       width: 100%;
+
+      .Email,
+      .Password,
+      button {
+        width: 420px;
+      }
     }
-    .Email {
-      width: 420px;
-    }
-    .Password {
-      width: 420px;
-    }
-    button {
-      width: 420px;
-    }
+
     .ForgotPassword {
       width: 420px;
     }
@@ -143,41 +147,49 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
   .Login {
-    width: calc(100vw - 120px);
+    width: calc(100vw - 75px);
     margin: 0 auto;
     padding-top: 20px;
     position: relative;
-  }
-  .SuccessHub {
-    margin: 0 auto;
-  }
-  .IllustrationTop { 
-    display: none;
-  }
-  .Illustration {
-    margin-left: 10%;
-    margin-top: 10%;
-  }
-  //.Illustration {
-  //  top: 244px;
-  //  right: 0;
-  //}
-  form {
-    width: 100%;
-  }
-  .Email {
-    width: 320px;
-  }
-  .Password {
-    width: 320px;
-  }
-  button {
-    width: 320px;
-  }
-  .ForgotPassword {
-    width: 320px;
+
+    .SuccessHub {
+      margin: 0 auto;
+    }
+
+    .WelcomeBack {
+      margin: 25px 0 0 0;
+    }
+
+    .IllustrationTop {
+      display: none;
+    }
+
+    .Illustration {
+      margin-left: 15%;
+      margin-top: 10%;
+      width: 450px;
+      // margin-left: 25%;
+      // margin-top: 10%;
+      // width: 60vh;
+      // margin: 20% 0 0 20%;
+    }
+
+    form {
+      width: 100%;
+
+      .Email,
+      .Password,
+      button {
+        width: 320px;
+      }
+    }
+
+    .ForgotPassword {
+      width: 320px;
+    }
   }
 }
+
 @media only screen and (max-width: 767px) {
   .Login {
     width: 100%;
@@ -185,74 +197,85 @@
     padding-top: 20px;
     position: relative;
     padding-left: 30px;
-  }
-  .SuccessHub {
-    margin: 0 auto;
-  }
-  .IllustrationTop {
-    text-align: center;
-    margin-top: 8px;
-    margin-bottom: -30px;
-    display: block;
-  }
-  .IllustrationRight {
-    display: none;
-  }
-  .Illustration {
-   width: 121px;
-  }
-  .WelcomeBack {
-    display: none;
-  }
-  form {
-    width: 100%;
-  }
-  .Email {
-    width: 100%;
-  }
-  .Password {
-    width: 100%;
-  }
-  button {
-    width: 100%;
-  }
-  .ForgotPassword {
-    width: 100%;
-  }
-}
 
-@media only screen and (min-height: 677px) and (max-width: 767px) { 
-  .WelcomeBack {
-    margin: 70px 0 0 0;
-  }
-}
-
-@media only screen and (max-height: 676px) and (max-width: 767px) { 
-  .Login { 
-    .WelcomeBack {
-      margin: 30px 0 0 0;
+    .SuccessHub {
+      margin: 0 auto;
     }
+
+    .IllustrationTop {
+      text-align: center;
+      margin-top: 8px;
+      margin-bottom: -30px;
+      display: block;
+    }
+
+    .IllustrationRight {
+      display: none;
+    }
+
+    .Illustration {
+      width: 121px;
+    }
+
+    .WelcomeBack {
+      display: none;
+    }
+
+    form {
+      width: 100%;
+
+      .Email,
+      .Password,
+      button {
+        width: 100%;
+      }
+    }
+
+    .ForgotPassword {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-height: 677px) and (max-width: 767px) {
+  .Login {
+    .WelcomeBack {
+      margin: 25px 0 0 0;
+    }
+  }
+}
+
+@media only screen and (max-height: 676px) and (max-width: 767px) {
+  .Login {
+    .WelcomeBack {
+      margin: 25px 0 0 0;
+    }
+
     .IllustrationTop {
       margin-top: 0 !important;
-      margin-bottom: -40px !important;
+      margin-bottom: -28px !important;
     }
+
     .Illustration {
       width: 80px;
-     }
-    .Email {
-      height: 50px !important;
     }
-    .Password {
-      height: 50px !important;
+
+    form {
+      .Email,
+      .Password {
+        height: 50px !important;
+      }
     }
+
     .Remember {
       label {
         margin-top: 10px !important;
       }
     }
+
     button {
       height: 50px !important;
       margin-top: 10px !important;
     }
   }
-} 
+}

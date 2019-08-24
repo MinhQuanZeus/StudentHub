@@ -57,7 +57,7 @@
             font-stretch: normal;
             line-height: normal;
             letter-spacing: normal;
-            padding-left: 0px;
+            padding-left: 0;
 
             .TextHint {
               font-weight: 500;
@@ -117,7 +117,7 @@
         textarea {
           width: 100%;
           border: solid 1px #e9e9e9;
-          background-color: #ffffff;
+          background-color: #fff;
           border-radius: 6px;
           color: #8a85a6;
           font-size: 14px;
@@ -145,6 +145,22 @@
 
 .BasicContact:hover {
   .EditButton {
-    visibility: visible!important;
+    visibility: visible !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .BasicContact {
+    :global(.card) {
+      :global(.card-body) {
+        padding: 16px;
+
+        label,
+        > div,
+        form {
+          padding: 0;
+        }
+      }
+    }
   }
 }

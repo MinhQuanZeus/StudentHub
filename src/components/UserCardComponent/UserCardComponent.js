@@ -1,7 +1,8 @@
-/* eslint-disable jsx-a11y/href-no-hash */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import styles from './UserCardComponent.module.scss';
-import { getUser } from '../../helpers';
+import { getUser, formatPhoneNumberNtl } from '../../helpers';
+import defaultAvatar from '../../images/img_avatar.png';
 
 function UserDetails({ bday, phone, email, currentAddress }) {
   return (
@@ -36,29 +37,7 @@ export class UserCardComponent extends Component {
 
   toggleDetails = () => {
     this.setState({ showDetails: !this.state.showDetails });
-  };
-
-  formatMobileNumber = (value) => {
-    if (!value) {
-      return;
-    }
-    value = value.replace(/\+1/g, '');
-    const input = value.replace(/\D/g, '').substring(0, 10);
-    const zip = input.substring(0, 3);
-    const middle = input.substring(3, 6);
-    const last = input.substring(6, 10);
-    let phoneNumber = 0;
-
-    if (input.length > 6) {
-      phoneNumber = `(${zip}) ${middle}-${last}`;
-    } else if (input.length > 3) {
-      phoneNumber = `(${zip}) ${middle}`;
-    } else if (input.length > 0) {
-      phoneNumber = `(${zip}`;
-    } else {
-      phoneNumber = '';
-    }
-    return phoneNumber;
+    this.props.toggleDetails(!this.state.showDetails);
   };
 
   render() {
@@ -69,7 +48,7 @@ export class UserCardComponent extends Component {
     return (
       <div className={styles['UserCardContainer']}>
         <div className={styles['UserAvatar']}>
-          <img src={loginInformation && loginInformation.photo_url} alt="User Avatar" />
+          <img src={loginInformation && loginInformation.photo_url ? loginInformation.photo_url : defaultAvatar} alt="User Avatar" />
         </div>
         <div className={styles['UserName']}>
           <p>{loginInformation && loginInformation.first_name + ' ' + loginInformation.last_name}</p>
@@ -86,7 +65,7 @@ export class UserCardComponent extends Component {
         {showDetails && loginInformation ? (
           <UserDetails
             bday={loginInformation.birth_date}
-            phone={this.formatMobileNumber(loginInformation.mobile_phone)}
+            phone={formatPhoneNumberNtl(loginInformation.mobile_phone)}
             email={loginInformation.primary_email}
             currentAddress={currentAddress}
           />

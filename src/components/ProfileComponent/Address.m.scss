@@ -197,3 +197,19 @@
     visibility: visible !important;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .Address {
+    :global(.card) {
+      :global(.card-body) {
+        padding: 16px;
+
+        label,
+        > div,
+        form {
+          padding: 0;
+        }
+      }
+    }
+  }
+}

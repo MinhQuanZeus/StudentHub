@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* global fetch */
 import React, { Component } from 'react';
 import css from './ChangePhoneNumberStep1.m.scss';
 import Textbox from '../../native-ui/Textbox';
@@ -5,31 +7,11 @@ import { PrimaryButton } from 'office-ui-fabric-react';
 import { withFormik } from 'formik';
 import { apiConstants } from '../../constants/applicationConstants';
 import { object, string } from 'yup';
-import { getAccessToken } from '../../helpers';
+import { getAccessToken, formatPhoneNumberNtl, formatPhoneNumberIntl } from '../../helpers';
 
 class ChangePhoneNumberStep1 extends Component {
-  formatMobileNumber = (value) => {
-    value = value.replace(/\+1/g, '');
-    const input = value.replace(/\D/g, '').substring(0, 10);
-    const zip = input.substring(0, 3);
-    const middle = input.substring(3, 6);
-    const last = input.substring(6, 10);
-    let phoneNumber = 0;
-
-    if (input.length > 6) {
-      phoneNumber = `(${zip}) ${middle}-${last}`;
-    } else if (input.length > 3) {
-      phoneNumber = `(${zip}) ${middle}`;
-    } else if (input.length > 0) {
-      phoneNumber = `(${zip}`;
-    } else {
-      phoneNumber = '';
-    }
-    return phoneNumber;
-  };
-
   updatePhoneNumber = (value) => {
-    this.props.setFieldValue('phone', this.formatMobileNumber(value));
+    this.props.setFieldValue('phone', formatPhoneNumberNtl(value));
   };
 
   render() {
@@ -63,10 +45,7 @@ export default withFormik({
       .label('Phone Number'),
   }),
   handleSubmit: async (values, bag) => {
-    let data = values.phone.replace(/[()  -]/gi, '');
-    if (!(data.indexOf('+1') === 0)) {
-      data = '+1' + data;
-    }
+    const data = formatPhoneNumberIntl(values.phone);
     try {
       const options = {
         method: 'Post',
@@ -80,6 +59,8 @@ export default withFormik({
       const body = await response.json();
       if (body.success) {
         bag.props.onSuccess(data);
+      } else {
+        bag.setErrors({ phone: body.data });
       }
     } catch (e) {
       console.log(e);

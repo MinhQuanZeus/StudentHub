@@ -52,14 +52,14 @@ class LoginComponent extends Component {
               <img src={this.illustration} className={css.Illustration} alt="Illustration" />
             </div>
             <form onSubmit={handleSubmit} noValidate="novalidate">
-              <label htmlFor="email" style={{ marginTop: 38 }}>
+              <label htmlFor="email" style={{ marginTop: 20 }}>
                 username
               </label>
               <div className={css.Email}>
                 <img src="/images/username.svg" alt="mask" />
                 <input type="email" id="email" name="email" className="form-control" onChange={handleChange} />
               </div>
-              <label htmlFor="password" style={{ marginTop: 24 }}>
+              <label htmlFor="password" style={{ marginTop: 20 }}>
                 password
               </label>
               <div className={css.Password}>

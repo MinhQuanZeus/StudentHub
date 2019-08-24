@@ -1,3 +1,5 @@
+/* global fetch */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import css from './BasicContact.m.scss';
 import { DefaultButton, Icon, PrimaryButton } from 'office-ui-fabric-react';
@@ -5,6 +7,7 @@ import { apiConstants } from '../../constants/applicationConstants';
 import { withFormik } from 'formik';
 import ChangePhoneNumberModal from './ChangePhoneNumberModal';
 import AddEmailModal from './AddEmailModal';
+import { formatPhoneNumberNtl } from '../../helpers';
 
 class BasicContact extends Component {
   constructor(props) {
@@ -84,29 +87,6 @@ class BasicContact extends Component {
     });
   };
 
-  formatMobileNumber = (value) => {
-    if (!value) {
-      return;
-    }
-    value = value.replace(/\+1/g, '');
-    const input = value.replace(/\D/g, '').substring(0, 10);
-    const zip = input.substring(0, 3);
-    const middle = input.substring(3, 6);
-    const last = input.substring(6, 10);
-    let phoneNumber = 0;
-
-    if (input.length > 6) {
-      phoneNumber = `(${zip}) ${middle}-${last}`;
-    } else if (input.length > 3) {
-      phoneNumber = `(${zip}) ${middle}`;
-    } else if (input.length > 0) {
-      phoneNumber = `(${zip}`;
-    } else {
-      phoneNumber = '';
-    }
-    return phoneNumber;
-  };
-
   getViewMode = () => {
     const { values } = this.props;
     return (
@@ -115,7 +95,7 @@ class BasicContact extends Component {
           <tbody>
             <tr>
               <td>Phone Number</td>
-              <td>{this.formatMobileNumber(values.mobile_phone)}</td>
+              <td>{formatPhoneNumberNtl(values.mobile_phone)}</td>
             </tr>
             <tr>
               <td>Email Address</td>
@@ -140,7 +120,7 @@ class BasicContact extends Component {
                   (Change Phone Number)
                 </span>
               </td>
-              <td>{this.formatMobileNumber(values.mobile_phone)}</td>
+              <td>{formatPhoneNumberNtl(values.mobile_phone)}</td>
             </tr>
             <tr>
               <td>Email Address</td>

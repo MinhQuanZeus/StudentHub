@@ -65,7 +65,7 @@
           resize: none;
         }
 
-        textarea:hover,  
+        textarea:hover,
         textarea:focus {
           border-color: #6647ff;
         }
@@ -90,6 +90,22 @@
 
 .About:hover {
   .EditButton {
-    visibility: visible!important;
+    visibility: visible !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .About {
+    :global(.card) {
+      :global(.card-body) {
+        padding: 16px;
+
+        label,
+        > div,
+        form {
+          padding: 0;
+        }
+      }
+    }
   }
 }

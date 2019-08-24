@@ -15,9 +15,9 @@ export const PC_BREAK_POINT = 1200;
 export const TABLET_BREAK_POINT = 640;
 
 export const GENDER_OPTIONS = [
-  { value: 'male', displayValue: 'Male' }, 
-  { value: 'female', displayValue: 'Female' },
-  { value: 'other', displayValue: 'Other' },
+  { value: 'Male', displayValue: 'Male' },
+  { value: 'Female', displayValue: 'Female' },
+  { value: 'Other', displayValue: 'Other' },
 ];
 
 export const LANGUAGE_OPTIONS = [
@@ -48,11 +48,11 @@ export const INTERNATIONAL_OPTIONS = [{ value: 'Yes', displayValue: 'Yes' }, { v
 export const EMERGENCY_CONTACT_RELATIONSHIP_OPTIONS = [
   { value: 'Brother', displayValue: 'Brother' },
   { value: 'Father', displayValue: 'Father' },
-  { value: 'Moms', displayValue: 'Moms' },
+  { value: 'Mother', displayValue: 'Mother' },
   { value: 'Sister', displayValue: 'Sister' },
 ];
 
 export const ADDRESS_COUNTRY_OPTIONS = [
-  { value: 'usa', displayValue: 'United States of America' },
-  { value: 'canada', displayValue: 'Canada' },
+  { value: 'USA', displayValue: 'United States of America' },
+  { value: 'Canada', displayValue: 'Canada' },
 ];

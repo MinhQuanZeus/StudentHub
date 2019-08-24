@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styles from './AboutUserComponent.module.css';
 import { getUser } from '../../helpers';

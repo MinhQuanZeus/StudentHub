@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* global fetch */
 import React, { Component } from 'react';
 import css from './EmergencyContact.m.scss';
 import { DefaultButton, Icon, PrimaryButton } from 'office-ui-fabric-react';
@@ -6,7 +8,7 @@ import { withFormik } from 'formik';
 import Textbox from '../../native-ui/Textbox';
 import { EMERGENCY_CONTACT_RELATIONSHIP_OPTIONS } from '../../constants';
 import Select from '../../native-ui/Select';
-import { getAccessToken } from '../../helpers';
+import { getAccessToken, formatPhoneNumberIntl, formatPhoneNumberNtl } from '../../helpers';
 
 class EmergencyContact extends Component {
   constructor(props) {
@@ -47,27 +49,30 @@ class EmergencyContact extends Component {
         name1: props[0].contact_name,
         email1: props[0].email,
         relationship1: props[0].relationship,
-        phone1: props[0].phone,
+        phone1: formatPhoneNumberNtl(props[0].phone),
         id2: null,
         name2: '',
         email2: '',
         relationship2: '',
         phone2: '',
       });
+      return;
     }
+    // handle emergency contacts always display top two contacts by id
+    props = props.sort((a, b) => a.id - b.id);
 
-    if (props.length === 2) {
+    if (props.length >= 2) {
       this.props.setValues({
         id1: props[0].id,
         name1: props[0].contact_name,
         email1: props[0].email,
         relationship1: props[0].relationship,
-        phone1: props[0].phone,
+        phone1: formatPhoneNumberNtl(props[0].phone),
         id2: props[1].id,
         name2: props[1].contact_name,
         email2: props[1].email,
         relationship2: props[1].relationship,
-        phone2: props[1].phone,
+        phone2: formatPhoneNumberNtl(props[1].phone),
       });
     }
   };
@@ -96,35 +101,12 @@ class EmergencyContact extends Component {
     this.initialize();
   }
 
-  formatMobileNumber = (value) => {
-    if (!value) {
-      return;
-    }
-    value = value.replace(/\+1/g, '');
-    const input = value.replace(/\D/g, '').substring(0, 10);
-    const zip = input.substring(0, 3);
-    const middle = input.substring(3, 6);
-    const last = input.substring(6, 10);
-    let phoneNumber = 0;
-
-    if (input.length > 6) {
-      phoneNumber = `(${zip}) ${middle}-${last}`;
-    } else if (input.length > 3) {
-      phoneNumber = `(${zip}) ${middle}`;
-    } else if (input.length > 0) {
-      phoneNumber = `(${zip}`;
-    } else {
-      phoneNumber = '';
-    }
-    return phoneNumber;
-  };
-
   updatePhoneNumber = (key, value) => {
-    this.props.setFieldValue(key, this.formatMobileNumber(value));
+    this.props.setFieldValue(key, formatPhoneNumberNtl(value));
   };
 
   getViewMode = () => {
-    const { values} = this.props;
+    const { values } = this.props;
 
     return (
       <div>
@@ -137,7 +119,7 @@ class EmergencyContact extends Component {
               </td>
               <td>
                 <p>{values.email1}</p>
-                <p>{this.formatMobileNumber(values.phone1)}</p>
+                <p>{formatPhoneNumberNtl(values.phone1)}</p>
               </td>
             </tr>
             <tr>
@@ -147,7 +129,7 @@ class EmergencyContact extends Component {
               </td>
               <td>
                 <p>{values.email2}</p>
-                <p>{this.formatMobileNumber(values.phone2)}</p>
+                <p>{formatPhoneNumberNtl(values.phone2)}</p>
               </td>
             </tr>
           </tbody>
@@ -236,40 +218,22 @@ export default withFormik({
     relationship2: '',
     phone2: '',
   }),
-  formatMobileNumberIntl:  (mobileNumber) => {
-    if (!mobileNumber) {
-      return;
-    }
-    mobileNumber = mobileNumber.replace(/[()  -]/gi, '');
-    if (!(mobileNumber.indexOf('+') === 0)) {
-      mobileNumber = '+' + mobileNumber;
-    }
-    return mobileNumber;
-  },
   handleSubmit: async (values, bag) => {
     try {
-      let phone1 = values.phone1.replace(/[()  -]/gi, '');
-      if (!(phone1.indexOf('+1') === 0)) {
-        phone1 = '+1' + phone1;
-      }
-      let phone2 = values.phone2.replace(/[()  -]/gi, '');
-      if (!(phone2.indexOf('+') === 0)) {
-        phone2 = '+1' + phone2;
-      }
       const data = [
         {
           id: values.id1,
           email: values.email1,
           contact_name: values.name1,
           relationship: values.relationship1,
-          phone: phone1,
+          phone: formatPhoneNumberIntl(values.phone1),
         },
         {
           id: values.id2,
           email: values.email2,
           contact_name: values.name2,
           relationship: values.relationship2,
-          phone: phone2,
+          phone: formatPhoneNumberIntl(values.phone2),
         },
       ];
       const options = {
