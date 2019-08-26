@@ -188,24 +188,18 @@ class ChecklistContainer extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  getChecklist = (list) => {
-    const { search, sort } = this.state;
+  getChecklist = () => {
+    const { search, sort, items } = this.state;
 
     if (!search) {
-      const sortedList = orderBy(list.checkList, sort.columnName, sort.order);
-      return {
-        ...list,
-        checkList: this.addProperties(sortedList),
-      };
+      const sortedList = orderBy(items, sort.columnName, sort.order);
+      return sortedList;
     }
 
-    const filteredList = list.checkList.filter(createFilter(search, KEYS_TO_FILTERS));
+    const filteredList = items.filter(createFilter(search, KEYS_TO_FILTERS));
     const sortedList = orderBy(filteredList, sort.columnName, sort.order);
 
-    return {
-      ...list,
-      checkList: this.addProperties(sortedList),
-    };
+    return sortedList;
   };
 
   updateSorting = (property) => {
@@ -311,12 +305,11 @@ class ChecklistContainer extends Component {
 
   render() {
     const { openChecklistIdx, openChecklistDetails, openSubChecklistIdx, openSubChecklistDetails, search, sort } = this.state;
-    const { items } = this.state;
 
     return (
       <div className={sharedStyles['checklist-content-container']}>
         <ChecklistComponent
-          items={items}
+          items={this.getChecklist()}
           openChecklistIdx={openChecklistIdx}
           openChecklistDetails={openChecklistDetails}
           openSubChecklistIdx={openSubChecklistIdx}
