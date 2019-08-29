@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 /* global fetch */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
@@ -37,6 +38,8 @@ class Details extends Component {
       onCancel,
       categories,
       staffs,
+      status,
+      onSuccess,
     } = this.props;
     const { user } = this.context;
 
@@ -52,6 +55,7 @@ class Details extends Component {
           description: description,
           assigned_to: assigner && assigner.assign_id,
           tags: receivers.map((o) => o.id.toString()),
+          status: status,
         }}
         onSubmit={(values, bag) => {
           setTimeout(async () => {
@@ -66,10 +70,12 @@ class Details extends Component {
             const response = await fetch(`${API_END_POINT}student/flag/update`, options);
             const body = await response.json();
             if (body.success) {
-              console.log(body.data);
+              bag.setSubmitting(body);
+              onSuccess();
+            } else {
+              onCancel();
+              bag.setSubmitting(false);
             }
-            onCancel();
-            bag.setSubmitting(false);
           }, 1000);
         }}
         render={(props) => (
@@ -124,6 +130,8 @@ Details.propTypes = {
   categories: PropTypes.array,
   assigned_to: PropTypes.string,
   staffs: PropTypes.array,
+  status: PropTypes.string,
+  onSuccess: PropTypes.func,
 };
 
 Details.contextType = AppContext;

@@ -34,7 +34,7 @@ class BasicInfo extends Component {
         {mode === 'default' && (
           <div>
             <label>Status</label>
-            <Status type={status} />
+            <Status type={values.status} />
           </div>
         )}
         <div>

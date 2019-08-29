@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import ReactModal from 'react-modal';
 import classnames from 'classnames';

@@ -41,7 +41,7 @@ class Comments extends Component {
     return (
       <div className="Comments">
         <Comment {...this.props} />
-        <List {...this.props} />
+        <List items={this.props.comments} {...this.props} />
       </div>
     );
   }
@@ -49,6 +49,7 @@ class Comments extends Component {
 
 Comments.propTypes = {
   items: PropTypes.array,
+  comments: PropTypes.array,
 };
 
 export default Comments;

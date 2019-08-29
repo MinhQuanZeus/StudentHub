@@ -62,15 +62,15 @@ export const NavBarComponent = (props) => {
                 <span className={styles.NavbarTitle}>Checklist</span>
               </Link>
             </li>
-            <li className={activeLink === 'flags' ? styles.active : ''}>
-              <Link to="/flags">
-                <img alt="flags list" src="/images/calendar.svg" />
+            <li className={activeLink === 'calendar' ? styles.active : ''}>
+              <Link to="/calendar">
+                <img alt="/calendar" src="/images/calendar.svg" />
                 <span className={styles.NavbarTitle}>Calendar</span>
               </Link>
             </li>
-            <li className={activeLink === 'calendar' ? styles.active : ''}>
-              <Link to="/calendar">
-                <img alt="/calendar" src="/images/flag.svg" />
+            <li className={activeLink === 'flags' ? styles.active : ''}>
+              <Link to="/flags">
+                <img alt="flags list" src="/images/flag.svg" />
                 <span className={styles.NavbarTitle}>Team</span>
               </Link>
             </li>

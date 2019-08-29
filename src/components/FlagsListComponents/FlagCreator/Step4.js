@@ -1,17 +1,19 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import css from './Step4.module.scss';
 import UserSelector from './UserSelector';
 import classnames from 'classnames';
 import Actions from './Actions';
+import Error from './Error';
 
-export const SelectedUser = props => {
+export const SelectedUser = (props) => {
   return (
     <ul className={css.SelectedUser}>
       {props.tags &&
-        props.tags.map($user => (
+        props.tags.map(($user) => (
           <li key={$user.id} className={css.Avatar}>
             <img src="/images/avatar.jpeg" alt="avatar" />
-            <span onClick={$event => props.onRemove($event, $user)}>
+            <span onClick={($event) => props.onRemove($event, $user)}>
               <i className="fas fa-times" />
             </span>
           </li>
@@ -24,7 +26,7 @@ class Step4 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: []
+      tags: [],
     };
     this.onSelect = this.onSelect.bind(this);
     this.onRemove = this.onRemove.bind(this);
@@ -34,25 +36,25 @@ class Step4 extends Component {
 
   onNext($event) {
     $event.preventDefault();
-    this.props.onNext({ tags: this.state.tags.map(tag => tag.id) });
+    this.props.onNext({ tags: this.state.tags.map((tag) => tag.id) });
   }
 
   onPrevious($event) {
     $event.preventDefault();
-    this.props.onPrevious({ tags: this.state.tags.map(tag => tag.id) });
+    this.props.onPrevious({ tags: this.state.tags.map((tag) => tag.id) });
   }
 
   onSelect($event, $user) {
     const { state } = this;
-    const obj = state.tags.filter(user => user.id === $user.id);
+    const obj = state.tags.filter((user) => user.id === $user.id);
     if (obj && obj.length === 0) {
-      this.setState(state => state.tags.push($user) && state);
+      this.setState((state) => state.tags.push($user) && state);
     }
   }
 
   onRemove($event, $user) {
-    this.setState(state => ({
-      tags: state.tags.filter(user => user.id !== $user.id)
+    this.setState((state) => ({
+      tags: state.tags.filter((user) => user.id !== $user.id),
     }));
   }
 
@@ -77,6 +79,7 @@ class Step4 extends Component {
           onChange={this.onSelect}
           users={props.students}
         />
+        <Error error={props.error} />
         <Actions
           current={props.current}
           onNext={this.onNext}

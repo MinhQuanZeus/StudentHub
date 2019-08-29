@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
+/* global FileReader, FormData, fetch */
 import React, { Component } from 'react';
 import css from './Step2.module.scss';
 import classnames from 'classnames';
 import Dropzone from 'react-dropzone';
 import Actions from './Actions';
+import Error from './Error';
 import { withFormik } from 'formik';
 import { API_END_POINT, UPLOAD_IMAGES } from '../../../constants/ApiUrl';
 
@@ -157,6 +160,7 @@ class Step2 extends Component {
           </Dropzone>
           <Preview files={state.acceptedFiles} onRemove={this.onRemove} />
         </div>
+        <Error error={props.error} />
         <Actions current={props.current} onPrevious={this.onPrevious} onNext={this.onNext} />
       </form>
     );

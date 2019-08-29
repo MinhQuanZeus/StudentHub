@@ -25,6 +25,7 @@ class PendingFlags extends Component {
     //   pendingsList = pendingsList.slice(0, 3);
     // }
 
+    const itemsLength = items.length;
     return (
       <section className={css['pending-flags-container']}>
         <div>
@@ -36,7 +37,7 @@ class PendingFlags extends Component {
           </span>
         </div>
 
-        <section className={cns(css['pending-flags'], hidden && css['hidden'])}>
+        <section className={cns(css['pending-flags'], hidden && css['hidden'], itemsLength === 2 ? css['pending-two-flag'] : '')}>
           {items.length ? items.map((pending) => <PendingFlag key={pending.id} {...pending} />) : <p>No pending flags</p>}
         </section>
       </section>

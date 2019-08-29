@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { DefaultButton, PrimaryButton } from '../../Button';
 import css from './Actions.module.scss';
 
-const Actions = props => {
+const Actions = (props) => {
   return (
     <div className={css.Actions}>
       {props.current > 1 && (

@@ -51,9 +51,13 @@ class FlagDetailsContainer extends Component {
     this.initialize();
   }
 
+  onSuccess = ($event) => {
+    this.initialize();
+    this.setState(() => ({ mode: 'default' }));
+  }
+
   render() {
     const { mode, details, categories, staffs } = this.state;
-    console.log(this.state);
     const { user } = this.context;
     return (
       <section className={sharedStyles['content-container']}>
@@ -69,6 +73,7 @@ class FlagDetailsContainer extends Component {
             categories={categories}
             {...details}
             onCancel={() => this.setState(() => ({ mode: 'default' }))}
+            onSuccess={() => this.onSuccess()}
           />
         )}
       </section>

@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import css from './Step1.module.scss';
 import classnames from 'classnames';
 import { withFormik } from 'formik';
 import Actions from './Actions';
+import Error from './Error';
+
 class Step1 extends Component {
   constructor(props) {
     super(props);
@@ -103,6 +106,7 @@ class Step1 extends Component {
             <span>Private</span>
           </div>
         </div>
+        <Error error={this.props.error} />
         <Actions current={this.props.current} onNext={this.onNext} />
       </form>
     );

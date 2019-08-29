@@ -29,6 +29,8 @@ class Details extends Component {
       description,
       receivers,
       documents,
+      category,
+      sub_category,
     } = this.props;
     return (
       <Modal className={css.Details} isOpen={isOpen} onDismiss={onDismiss}>
@@ -48,11 +50,11 @@ class Details extends Component {
             </div>
             <div>
               <label>Category</label>
-              <div>{category_name}</div>
+              <div>{category && category.name ? category.name : null}</div>
             </div>
             <div>
               <label>Sub Category</label>
-              <div>{sub_category_name}</div>
+              <div>{sub_category && sub_category.name ? sub_category.name : null}</div>
             </div>
             <div>
               <label>Priority</label>
@@ -126,6 +128,8 @@ Details.propTypes = {
   description: PropTypes.string,
   receivers: PropTypes.array,
   documents: PropTypes.array,
+  category: PropTypes.object,
+  sub_category: PropTypes.object,
 };
 
 export default Details;

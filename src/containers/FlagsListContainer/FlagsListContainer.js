@@ -40,6 +40,7 @@ class FlagsListContainer extends Component {
     this.intialize = this.intialize.bind(this);
     this.orderBy = this.orderBy.bind(this);
     this.onGetDetails = this.onGetDetails.bind(this);
+    this.onSuccessCreator = this.onSuccessCreator.bind(this);
   }
 
   async intialize() {
@@ -92,6 +93,15 @@ class FlagsListContainer extends Component {
         isOpen: false,
       },
     }));
+  }
+
+  onSuccessCreator($event) {
+    this.setState((state) => ({
+      creator: {
+        isOpen: false,
+      },
+    }));
+    this.intialize();
   }
 
   orderBy(idx) {
@@ -161,7 +171,7 @@ class FlagsListContainer extends Component {
 
     return (
       <section className={cns(sharedStyles['content-container'], css['content-container'])}>
-        <FlagCreator isOpen={this.state.creator.isOpen} onDismiss={this.closeCreator} context={this.context} />
+        <FlagCreator isOpen={this.state.creator.isOpen} onDismiss={this.closeCreator} onSuccessCreator={this.onSuccessCreator} context={this.context} />
         <HeaderComponent labels={['Flag Manager']}>
           <PrimaryButton text="Create New Flag" onClick={this.openCreator} />
         </HeaderComponent>

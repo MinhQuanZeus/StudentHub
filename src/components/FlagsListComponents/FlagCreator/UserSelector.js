@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import css from './UserSelector.module.scss';
 
-export const User = props => {
+export const User = (props) => {
   return (
     <li className={css.User} onClick={props.onClick}>
       <img src="images/avatar.jpeg" alt="avatar" />
@@ -17,7 +18,7 @@ class UserSelector extends Component {
     super(props);
 
     this.state = {
-      users: null
+      users: null,
     };
 
     this.name = React.createRef();
@@ -37,12 +38,12 @@ class UserSelector extends Component {
     const { current } = this.name;
 
     if (current.value && current.value !== '') {
-      this.setState(state => ({
-        users: this.props.users.filter(u => u.name.indexOf(current.value) > -1)
+      this.setState((state) => ({
+        users: this.props.users.filter((u) => u.name.indexOf(current.value) > -1),
       }));
     } else {
-      this.setState(state => ({
-        users: this.props.users
+      this.setState((state) => ({
+        users: this.props.users,
       }));
     }
   }
@@ -67,11 +68,11 @@ class UserSelector extends Component {
         </div>
         <ul className={css.List}>
           {state.users &&
-            state.users.map($user => (
+            state.users.map(($user) => (
               <User
                 key={$user.id}
                 {...$user}
-                onClick={$event => props.onChange($event, $user)}
+                onClick={($event) => props.onChange($event, $user)}
               />
             ))}
         </ul>

@@ -31,7 +31,18 @@
     height: 0;
 
     > section {
-      height: 0;;
+      height: 0;
+    }
+  }
+}
+
+.pending-two-flag {
+  justify-content: start;
+  margin-right: 50px;
+
+  > section {
+    &:first-child {
+      margin-right: 50px;
     }
   }
 }

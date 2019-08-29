@@ -1,15 +1,17 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import css from './Step3.module.scss';
 import classnames from 'classnames';
 import UserSelector from './UserSelector';
 import Actions from './Actions';
+import Error from './Error';
 import { withFormik } from 'formik';
 
 class Step3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSearching: false
+      isSearching: false,
     };
 
     this.sid = React.createRef();
@@ -22,14 +24,14 @@ class Step3 extends Component {
   }
 
   onFocus($event) {
-    this.setState(state => ({ isSearching: true }));
+    this.setState((state) => ({ isSearching: true }));
   }
 
   onChange($event, $user) {
     this.props.setFieldValue('assign_id', $user.id || '');
     this.props.setFieldValue('assign_name', $user.name || '');
     this.setState({
-      isSearching: false
+      isSearching: false,
     });
   }
 
@@ -41,7 +43,7 @@ class Step3 extends Component {
   onPrevious($event) {
     $event.preventDefault();
     this.props.onPrevious({
-      assign_id: parseInt(this.props.values.assign_id, 10)
+      assign_id: parseInt(this.props.values.assign_id, 10),
     });
   }
 
@@ -75,6 +77,7 @@ class Step3 extends Component {
             users={props.staffs}
           />
         </div>
+        <Error error={props.error} />
         <Actions
           current={props.current}
           onNext={this.onNext}
@@ -88,6 +91,6 @@ class Step3 extends Component {
 export default withFormik({
   mapPropsToValues: () => ({
     assign_id: '',
-    assign_name: ''
-  })
+    assign_name: '',
+  }),
 })(Step3);

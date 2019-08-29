@@ -17,7 +17,8 @@ class Comment extends Component {
     $event.preventDefault();
     const { values } = this.props;
     const token = this.context.user.x_access_token;
-    const response = await fetch(`${API_END_POINT}educator/flag/comment`, {
+    // Old comment api path => educator/flag/comment
+    const response = await fetch(`${API_END_POINT}student/flag/comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -45,7 +46,7 @@ class Comment extends Component {
     const { user } = this.context;
 
     return (
-      <form className="Header" onSubmit={this.post}>
+      <form className="Header">
         <Persona text={user.first_name} imageAlt={user.first_name} imageUrl={user.photo_url} />
         <input
           type="text"
@@ -62,7 +63,7 @@ class Comment extends Component {
             )
           }
         />
-        <button type="submit">Post</button>
+        <button type="button" onClick={(event) => this.post(event)}>Post</button>
       </form>
     );
   }
