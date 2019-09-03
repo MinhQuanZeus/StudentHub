@@ -1,0 +1,46 @@
+.PhotoCardST-container {
+  width: 300px;
+  height: 63px;
+  padding: 6px 21px 7px 19px;
+  display: grid;
+  grid-template-columns: 46px 1fr 44px;
+}
+
+.PhotoCardST-container img {
+  height: 40px;
+  width: 40px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #82d7ff;
+}
+
+.PhotoCardST-text-name {
+  font-size: 12px;
+  font-weight: 900;
+  color: #413d59;
+}
+
+.PhotoCardST-text-message {
+  font-size: 10px;
+  font-weight: 900;
+  color: #413d59;
+}
+
+.PhotoCardST-text-timestamp {
+font-size: 10px;
+font-weight: 500;
+color: #8a85a6;
+}
+
+.PhotocardST-text-notificationCount {
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+  color: white;
+  background-color: #fe5e5e;
+  padding: 0 5px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 4px;
+}

@@ -1,0 +1,29 @@
+.WindowInput-container {
+
+}
+
+.WindowInput-input {
+  height: 40px;
+  width: calc(100% - 120px);
+  border: solid 1px #e1e1e1;
+  padding-left: 23px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.98px;
+  color: #8a85a6;
+}
+
+.WindowInput-send-btn {
+  display: inline-block;
+  height: 40px;
+  width: 100px;
+  text-align: center;
+  background-color: #6647ff;
+  line-height: 40px;
+  margin-left: 20px;
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}

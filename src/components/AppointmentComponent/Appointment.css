@@ -1,0 +1,41 @@
+.Appointment-container {
+ display: grid;
+ grid-template-columns: 64px 1fr;
+ margin: 15px 20px 0 21px;
+}
+
+.Appointment-left {
+  background-color: #6647ff;
+  color: white;
+}
+
+.Appointment-left-img {
+  height: 26px;
+  padding-top: 6px;
+  margin: 2px 21px;
+
+}
+
+.Appointment-left-date {
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.Appointment-right {
+ background-color: white;
+ padding: 10px;
+}
+
+.Appointment-right-title {
+  font-size: 12px;
+  font-weight: 900;
+  color: #2c2745;
+  margin-bottom: 0;
+}
+
+.Appointment-right-time {
+  font-size: 10px;
+  font-weight: 500;
+  color: #8a85a6;
+}

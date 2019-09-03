@@ -1,0 +1,66 @@
+.chat-sidebar-container {
+  width: 300px;
+  box-shadow: 1px 0 0 0 rgba(138, 133, 166, 0.16);
+  background-color: #fafafc;
+}
+
+.chat-sidebar-header {
+  margin: 18px 20px 40px 20px;
+  height: 25px;
+}
+
+.chat-sidebar-header-text {
+  color: #352480;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.chat-sidebar-header-btn {
+  float: right;
+  height: 14px;
+  width: 24px;
+}
+
+.chat-sidebar-searchbar {
+  width: 260px;
+  height: 40px;
+  background-color: #f0eff6;
+  margin: 0 20px 20px 20px;
+  border: none;
+  border-radius: 4px;
+  padding-left: 32px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a85a6;
+}
+
+.chat-sidebar-codybot {
+  width: 260px;
+  height: 82px;
+  background: white;
+  border-radius: 4px;
+  margin: 0 20px 20px 20px;
+  display: grid;
+  grid-template-columns: 70px 1fr;
+}
+
+.chat-sidebar-codybot-img {
+  height: 41px;
+  width:  42px;
+  margin: 20px 15px 20px 20px;
+}
+
+.chat-sidebar-codybot-text {
+  font-size: 16px;
+  font-weight: 900;
+  color: #2c2745;
+  margin: 21px 0 0 0;
+  line-height: 1.4;
+}
+
+.chat-sidebar-codybot-text span{
+  display: block;
+  font-size: 12px;
+  color: #8a85a6;
+  padding-top: 3px;
+}

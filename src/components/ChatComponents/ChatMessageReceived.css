@@ -1,0 +1,42 @@
+.ChatMessageReceived-container {
+  float: left;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  max-width: 480px;
+  margin: 10px 21px 10px 19px;
+}
+
+.ChatMessageReceived-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+
+.ChatMessageReceived-whiteBackground {
+  background-color: white;
+  border-radius: 4px;
+  padding: 10px 16px 12px 14px;
+}
+
+.ChatMessageReceived-name {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #6647ff;
+  margin-bottom: 4px;
+}
+
+.ChatMessageReceived-message {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: #8a85a6;
+}
+
+.ChatMessageReceived-timestamp {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #c8c5d6;
+  float: right;
+}

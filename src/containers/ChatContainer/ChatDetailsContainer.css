@@ -1,0 +1,91 @@
+.ChatDetails-container {
+  padding-top: 25px;
+  box-shadow: -1px 0 0 0 rgba(138, 133, 166, 0.16);
+  background-color: #fafafc;
+}
+
+.ChatDetails-group-container {
+  margin: 0 40px 50px 20px;
+}
+
+.ChatDetails-group-container p{
+  margin-bottom: 15px;
+  }
+
+.ChatDetails-header {
+  font-size: 14px;
+  font-weight: 900;
+  color: #352480;
+}
+
+.ChatDetails-header img {
+ padding-right: 5px;
+}
+
+.ChatDetails-group-avatar-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-row-gap: 10.3px;
+}
+
+.ChatDetails-group-btn {
+  width: 127px;
+  height: 38.7px;
+  border: 1px solid #413d59;
+  border-radius: 19px;
+  line-height: 38.7px;
+  text-align: center;
+  grid-column: span 3 / 5;
+}
+
+.ChatDetails-appointment-container {
+  margin-bottom: 41px;
+}
+
+.ChatDetails-appointment-container p{
+margin: 0 14px 10px 20px;
+}
+
+.ChateDetails-newAppointment {
+  float: right;
+}
+
+.ChatDetails-search-container p{
+  margin-left: 19px;
+  margin-bottom: 10px;
+}
+
+.ChatDetails-search-container input{
+  width: 259px;
+  height: 32px;
+  border: none;
+  box-shadow: 0 1px 0 0 rgba(116, 109, 156, 0.16);
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a85a6;
+  padding-left: 13px;
+  margin-left: 20px;
+  margin-bottom: 25px;
+}
+
+.ChatDetails-attachment-container p{
+  margin-left: 20px;
+}
+
+.ChatDetails-filter-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: solid 1px #f0eff6;
+}
+
+.ChatDetails-filter-btn-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a85a6;
+  text-align: center;
+  height: 62px;
+}
+
+.ChatDetails-filter-btn-selected {
+
+}

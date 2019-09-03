@@ -1,0 +1,16 @@
+.AvatarSmall-container {
+ width: 38.7px;
+ height: 38.7px;
+}
+
+.AvatarSmall-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #cbc2f8;
+  line-height: 38.7px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: #413d59;
+}
