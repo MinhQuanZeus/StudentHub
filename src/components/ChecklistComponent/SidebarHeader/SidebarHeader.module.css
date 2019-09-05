@@ -56,6 +56,12 @@ h4 i {
   font-size: 12px;
   border-radius: 4px;
   display: inline-block;
+  font-weight: 900;
+  text-transform: lowercase;
+}
+
+.priority::first-letter {
+  text-transform: uppercase;
 }
 
 .priority-low {

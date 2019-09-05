@@ -1,5 +1,4 @@
 import React from 'react';
-import { format } from 'date-fns';
 import styles from './SidebarHeader.module.css';
 
 function SidebarHeader({ openChecklistDetails, openSubChecklistDetails, goBackToChecklist }) {

@@ -3,6 +3,7 @@ import SidebarHeader from '../SidebarHeader';
 import ContactInfo from '../ContactInfo';
 import { format, distanceInWordsToNow } from 'date-fns';
 import styles from './SubChecklistSidebar.module.css';
+import PropTypes from 'prop-types';
 
 function SubChecklistSidebar({ openChecklistDetails, openSubChecklistDetails, goBackToChecklist }) {
   return (
@@ -15,7 +16,7 @@ function SubChecklistSidebar({ openChecklistDetails, openSubChecklistDetails, go
       <div className={styles['detail-container']}>
         <div className={styles['detail-group']}>
           <span className={styles['label']}>Status</span>
-          <p className={styles['value']}>{openSubChecklistDetails.status}</p>
+          <p className={styles['value']}>{openSubChecklistDetails.status ? 'Active': 'Inactive'}</p>
         </div>
         <div className={styles['detail-group']}>
           <span className={styles['label']}>Due Date</span>
@@ -38,7 +39,7 @@ function SubChecklistSidebar({ openChecklistDetails, openSubChecklistDetails, go
         </div>
         <div className={styles['detail-group']}>
           <span className={styles['label']}>Created By</span>
-          <p className={styles['value']}>{openSubChecklistDetails.created_by}</p>
+          <p className={styles['value']}>{openSubChecklistDetails.creator || '-'}</p>
         </div>
         <div className={styles['detail-group-full']}>
           <span className={styles['label']}>Description</span>
@@ -49,5 +50,11 @@ function SubChecklistSidebar({ openChecklistDetails, openSubChecklistDetails, go
     </section>
   );
 }
+
+SubChecklistSidebar.propTypes = {
+  openChecklistDetails: PropTypes.object,
+  openSubChecklistDetails: PropTypes.object,
+  goBackToChecklist: PropTypes.func,
+};
 
 export default SubChecklistSidebar;

@@ -120,7 +120,7 @@ class ChecklistContainer extends Component {
     // }));
   }
 
-  async setDone(cid, done) {
+  async setDone(data) {
     const { x_access_token } = this.context.user;
 
     const response = await fetch(`${API_END_POINT}student/check_list/update/process`, {
@@ -129,7 +129,7 @@ class ChecklistContainer extends Component {
         'Content-Type': 'application/json',
         'x-access-token': x_access_token,
       },
-      body: JSON.stringify([{ id: cid, is_completed: done }]),
+      body: JSON.stringify(data),
     });
     const body = await response.json();
     if (body.success) {

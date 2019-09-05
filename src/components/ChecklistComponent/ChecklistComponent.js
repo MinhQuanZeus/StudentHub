@@ -24,12 +24,15 @@ function SubChecklist({ items, idx, openChecklistIdx, openSubChecklistIdx, toggl
         items.map((sub, idx) => (
           <div key={idx} className={styles['sub-checklist']} onClick={() => toggleChecklistDetails(idx, sub, 'subChecklist')}>
             <div style={openSubChecklistIdx === idx ? activeStyles : null}>
-              <input
-                type="checkbox"
-                className={styles['checklist-checkbox']}
-                checked={sub.processing === 100}
-                onChange={($event) => setDone(sub.id, $event.target.checked)}
-              />
+              <label className={`${styles['custom-checkbox']}`}>
+                <input
+                  type="checkbox"
+                  className={styles['checklist-checkbox']}
+                  checked={sub.is_completed}
+                  onChange={($event) => setDone([{ id: sub.id, is_completed: $event.target.checked }])}
+                />
+                <span className={styles['checkmark']}></span>
+              </label>
               <p className={`${styles['item-title']} ${styles['left-align']}`}>{sub.check_list_name}</p>
               <p />
               <p className={styles['item-due-date']}>
@@ -125,6 +128,22 @@ class ChecklistComponent extends Component {
     return checklist.child.length ? <span style={{ marginLeft: '5px' }}>({checklist.child.length})</span> : null;
   }
 
+  handleToggleChecklistProcessing(checklist, isCompleted) {
+    if (checklist.child.length > 0) {
+      const data = checklist.child.map((subChecklist) => ({
+        id: subChecklist.id,
+        is_completed: isCompleted,
+      }));
+      this.props.setDone(data);
+    } else {
+      const data = [{
+        id: checklist.id,
+        is_completed: isCompleted,
+      }];
+      this.props.setDone(data);
+    }
+  }
+
   render() {
     const {
       items,
@@ -164,17 +183,20 @@ class ChecklistComponent extends Component {
                     className={`${styles['checklist-item']} ${styles[activeChecklist]} ${styles[activeSubChecklist]}`}
                     onClick={() => toggleChecklistDetails(idx, rowData, 'checklist')}
                   >
-                    <input
-                      type="checkbox"
-                      className={styles['checklist-checkbox']}
-                      checked={rowData.processing === 100}
-                      onChange={($event) => {
-                        $event.preventDefault();
-                        $event.stopPropagation();
-                        this.props.setDone(rowData.id, $event.target.checked);
-                        return false;
-                      }}
-                    />
+                    <label className={`${styles['custom-checkbox']}`}>
+                      <input
+                        type="checkbox"
+                        className={styles['checklist-checkbox']}
+                        checked={rowData.processing === 100}
+                        onChange={($event) => {
+                          $event.preventDefault();
+                          $event.stopPropagation();
+                          this.handleToggleChecklistProcessing(rowData, $event.target.checked);
+                          return false;
+                        }}
+                      />
+                      <span className={styles['checkmark']}></span>
+                    </label>
                     <p className={`${styles['item-title']} ${styles['left-align']}`}>
                       {rowData.child.length !== 0 && <Icon iconName={openChecklistIdx === idx ? 'ChevronDown' : 'ChevronRight'} />}
                       &nbsp;
