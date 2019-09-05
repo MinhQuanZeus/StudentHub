@@ -64,7 +64,7 @@ export class UserCardComponent extends Component {
 
         {showDetails && loginInformation ? (
           <UserDetails
-            bday={loginInformation.birth_date}
+            bday={loginInformation.birthdate}
             phone={formatPhoneNumberNtl(loginInformation.mobile_phone)}
             email={loginInformation.primary_email}
             currentAddress={currentAddress}
