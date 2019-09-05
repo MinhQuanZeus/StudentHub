@@ -31,6 +31,7 @@ class Details extends Component {
       documents,
       category,
       sub_category,
+      assigner,
     } = this.props;
     return (
       <Modal className={css.Details} isOpen={isOpen} onDismiss={onDismiss}>
@@ -76,15 +77,7 @@ class Details extends Component {
           <div>
             <div>
               <label>To</label>
-              <ul>
-                {receivers &&
-                  receivers.length > 0 &&
-                  receivers.map((o) => (
-                    <li key={o.id}>
-                      <Persona text={o.full_name} imageUrl={o.photo_url} />
-                    </li>
-                  ))}
-              </ul>
+              <Persona text={assigner && assigner.assigner} imageUrl={assigner && assigner.avatar} />
             </div>
             <div>
               <label>Attachment</label>
@@ -130,6 +123,7 @@ Details.propTypes = {
   documents: PropTypes.array,
   category: PropTypes.object,
   sub_category: PropTypes.object,
+  assigner: PropTypes.object,
 };
 
 export default Details;

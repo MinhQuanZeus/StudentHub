@@ -81,7 +81,7 @@ class Details extends Component {
         render={(props) => (
           <form onSubmit={props.handleSubmit} className={css.Details}>
             <div>
-              <BasicInfo {...this.props} {...props} categories={categories} />
+              <BasicInfo {...props} {...this.props} categories={categories} />
               <Comments {...this.props} />
             </div>
             <div>

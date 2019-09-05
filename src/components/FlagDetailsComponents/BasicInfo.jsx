@@ -23,8 +23,8 @@ class BasicInfo extends Component {
       values,
       handleChange,
       categories,
+      setFieldValue,
     } = this.props;
-
     return (
       <div className={cns(css.BasicInfo, mode)}>
         <div>
@@ -34,7 +34,7 @@ class BasicInfo extends Component {
         {mode === 'default' && (
           <div>
             <label>Status</label>
-            <Status type={values.status} />
+            <Status type={status} />
           </div>
         )}
         <div>
@@ -47,6 +47,7 @@ class BasicInfo extends Component {
                 name="category"
                 defaultSelectedKey={values.category}
                 options={categories.map((o) => ({ key: o.id, text: o.category_name }))}
+                onChange={(event, item) => setFieldValue('category', item.key)}
               />
             )}
           </div>
@@ -66,6 +67,7 @@ class BasicInfo extends Component {
                 name="priority"
                 defaultSelectedKey={values.priority}
                 options={[{ key: 'LOW', text: 'Low' }, { key: 'MEDIUM', text: 'Medium' }, { key: 'HIGH', text: 'High' }]}
+                onChange={(event, item) => setFieldValue('priority', item.key)}
               />
             )}
           </div>
@@ -93,6 +95,7 @@ class BasicInfo extends Component {
                     text: 'Private',
                   },
                 ]}
+                onChange={(event, item) => setFieldValue('is_public', item.key)}
               />
             )}
           </div>
@@ -132,6 +135,7 @@ BasicInfo.propTypes = {
   values: PropTypes.object,
   handleChange: PropTypes.func,
   categories: PropTypes.array,
+  setFieldValue: PropTypes.func,
 };
 
 export default BasicInfo;
