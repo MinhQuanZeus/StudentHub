@@ -204,12 +204,32 @@
       :global(.card-body) {
         padding: 16px;
 
-        label,
-        > div,
+        > div {
+          padding: 16px 16px 0 16px;
+        }
+
         form {
           padding: 0;
+
+          :global(.form-group) {
+            width: 100%;
+          }
         }
       }
+    }
+
+    button {
+      display: none;
+    }
+
+    .AddAddress {
+      display: none;
+    }
+  }
+
+  .Address:hover {
+    .EditButton {
+      visibility: hidden !important;
     }
   }
 }

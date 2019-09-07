@@ -247,12 +247,24 @@
       :global(.card-body) {
         padding: 16px;
 
-        label,
-        > div,
-        form {
+        > div {
           padding: 0;
         }
+
+        form {
+          padding: 0;
+
+          :global(.form-group) {
+            width: 100%;
+          }
+        }
       }
+    }
+  }
+
+  .SocialMedia:hover {
+    .EditButton {
+      visibility: hidden !important;
     }
   }
 }

@@ -51,9 +51,9 @@ class FlagDetailsContainer extends Component {
     this.initialize();
   }
 
-  onSuccess = ($event) => {
-    this.initialize();
+  getAfterResponse = () =>{
     this.setState(() => ({ mode: 'default' }));
+    this.initialize();
   }
 
   render() {
@@ -72,8 +72,7 @@ class FlagDetailsContainer extends Component {
             staffs={staffs}
             categories={categories}
             {...details}
-            onCancel={() => this.setState(() => ({ mode: 'default' }))}
-            onSuccess={() => this.onSuccess()}
+            onCancel={() => this.getAfterResponse()}
           />
         )}
       </section>

@@ -47,7 +47,7 @@ class BasicInfo extends Component {
                 name="category"
                 defaultSelectedKey={values.category}
                 options={categories.map((o) => ({ key: o.id, text: o.category_name }))}
-                onChange={(event, item) => setFieldValue('category', item.key)}
+                onChange={(event, item) => setFieldValue('category', item.key, item.text)}
               />
             )}
           </div>
@@ -67,7 +67,7 @@ class BasicInfo extends Component {
                 name="priority"
                 defaultSelectedKey={values.priority}
                 options={[{ key: 'LOW', text: 'Low' }, { key: 'MEDIUM', text: 'Medium' }, { key: 'HIGH', text: 'High' }]}
-                onChange={(event, item) => setFieldValue('priority', item.key)}
+                onChange={(event, item) => setFieldValue('priority', item.key, item.text)}
               />
             )}
           </div>
@@ -95,7 +95,7 @@ class BasicInfo extends Component {
                     text: 'Private',
                   },
                 ]}
-                onChange={(event, item) => setFieldValue('is_public', item.key)}
+                onChange={(event, item) => setFieldValue('is_public', item.key, item.text)}
               />
             )}
           </div>

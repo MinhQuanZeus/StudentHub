@@ -1,3 +1,5 @@
+/* global fetch */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import css from './About.m.scss';
 import { DefaultButton, Icon, PrimaryButton } from 'office-ui-fabric-react';
@@ -40,7 +42,7 @@ class About extends Component {
   };
 
   render() {
-    const { setStatus } = this.props;
+    const { setStatus, viewMode } = this.props;
     const { isEditing } = this.props.status;
     return (
       <div className={css.About}>
@@ -55,7 +57,8 @@ class About extends Component {
         <div className="card">
           <div className="card-body">
             <label>About</label>
-            {!isEditing ? this.getViewMode() : this.getEditMode()}
+            {viewMode === 'MOBILE' && this.getViewMode()}
+            {viewMode === 'DESKTOP' && (!isEditing ? this.getViewMode() : this.getEditMode())}
           </div>
         </div>
       </div>

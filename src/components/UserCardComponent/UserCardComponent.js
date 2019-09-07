@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import styles from './UserCardComponent.module.scss';
 import { getUser, formatPhoneNumberNtl } from '../../helpers';
 import defaultAvatar from '../../images/img_avatar.png';
+import { format } from 'date-fns';
 
 function UserDetails({ bday, phone, email, currentAddress }) {
   return (
     <div className={styles['show-details']}>
       <div className={styles['show-details-item']}>
         <p className={styles['item-heading']}>Birthday</p>
-        <p className={styles['item-detail']}>{bday}</p>
+        <p className={styles['item-detail']}>{format(bday, 'MMMM DD, YYYY')}</p>
       </div>
       <div className={styles['show-details-item']}>
         <p className={styles['item-heading']}>Email</p>
@@ -51,7 +52,7 @@ export class UserCardComponent extends Component {
           <img src={loginInformation && loginInformation.photo_url ? loginInformation.photo_url : defaultAvatar} alt="User Avatar" />
         </div>
         <div className={styles['UserName']}>
-          <p>{loginInformation && loginInformation.first_name + ' ' + loginInformation.last_name}</p>
+          {loginInformation && <p>{`${loginInformation.first_name} ${loginInformation.last_name}`}</p>}
         </div>
         <div className={styles['UserMajor']}>
           <p>Computer Science, BS</p>
@@ -64,7 +65,7 @@ export class UserCardComponent extends Component {
 
         {showDetails && loginInformation ? (
           <UserDetails
-            bday={loginInformation.birthdate}
+            bday={loginInformation.birth_date || loginInformation.birthdate}
             phone={formatPhoneNumberNtl(loginInformation.mobile_phone)}
             email={loginInformation.primary_email}
             currentAddress={currentAddress}

@@ -108,4 +108,10 @@
       }
     }
   }
+
+  .About:hover {
+    .EditButton {
+      visibility: hidden !important;
+    }
+  }
 }

@@ -68,19 +68,50 @@ class BasicInformation extends Component {
     this.setState({ avatarUrl: props.photo_url });
   };
 
-  getViewMode = () => {
-    const { values } = this.props;
+  getUploadPhoto = () => {
+    const { values, isSubmitting } = this.props;
     const { avatarUrl } = this.state;
     return (
+      <div className={css.UploadPhotoContainer}>
+        <label>Photo Icon</label>
+        <label className={css.UploadPhoto} htmlFor="fileInput">
+          <img src={avatarUrl || values.photo_url} alt="" />
+          {!isSubmitting ? (
+            <span>
+              <div className={css.HoverSelectImage}>
+                <Icon iconName="CloudUpload" className="ms-IconExample" />
+                <br />
+                <span>Upload photo</span>
+              </div>
+              <div className={css.HoverBackground} />
+              <input id="fileInput" type="file" onChange={this.onInputAvatar} accept="image/x-png,image/jpeg" />
+            </span>
+          ) : null}
+          {isSubmitting ? (
+            <div className={css.Spinner}>
+              <Spinner size={SpinnerSize.medium} />
+            </div>
+          ) : null}
+        </label>
+      </div>
+    );
+  };
+
+  getViewMode = () => {
+    const { values, editProfile, viewMode } = this.props;
+    return (
       <div>
+        {editProfile && viewMode === 'MOBILE' ? <form>{this.getUploadPhoto()}</form> : null}
         <table className="table">
           <tbody>
-            <tr>
-              <td>Photo Icon</td>
-              <td>
-                <img src={values.photo_url} alt="" className={css.Avatar} />
-              </td>
-            </tr>
+            {!editProfile || viewMode === 'DESKTOP' ? (
+              <tr>
+                <td>Photo Icon</td>
+                <td>
+                  <img src={values.photo_url} alt="" className={css.Avatar} />
+                </td>
+              </tr>
+            ) : null}
             <tr>
               <td>Student ID</td>
               <td>{values.student_id}</td>
@@ -117,33 +148,17 @@ class BasicInformation extends Component {
 
   getEditMode = () => {
     const { values, handleChange, handleSubmit, isSubmitting, errors, setFieldValue } = this.props;
-    const { avatarUrl } = this.state;
     return (
       <form onSubmit={handleSubmit} noValidate>
-        <div className={css.UploadPhotoContainer}>
-          <label>Photo Icon</label>
-          <label className={css.UploadPhoto} htmlFor="fileInput">
-            <img src={avatarUrl || values.photo_url} alt="" />
-            {!isSubmitting ? (
-              <span>
-                <div className={css.HoverSelectImage}>
-                  <Icon iconName="CloudUpload" className="ms-IconExample" />
-                  <br />
-                  <span>Upload photo</span>
-                </div>
-                <div className={css.HoverBackground} />
-                <input id="fileInput" type="file" onChange={this.onInputAvatar} accept="image/x-png,image/jpeg" />
-              </span>
-            ) : null}
-            {isSubmitting ? (
-              <div className={css.Spinner}>
-                <Spinner size={SpinnerSize.medium} />
-              </div>
-            ) : null}
-          </label>
-        </div>
+        {this.getUploadPhoto()}
         <hr />
-        <Textbox label="Student ID" value={values.student_id} onChange={handleChange} readOnly={true} message={errors && errors.student_id} />
+        <Textbox
+          label="Student ID"
+          value={values.student_id}
+          onChange={handleChange}
+          readOnly={true}
+          message={errors && errors.student_id}
+        />
         <Textbox
           label="Preferred Name"
           name="prefer_name"
@@ -197,7 +212,7 @@ class BasicInformation extends Component {
   };
 
   render() {
-    const { setStatus } = this.props;
+    const { setStatus, viewMode, editProfile, bindBasicInformationSubmitForm } = this.props;
     const { isEditing } = this.props.status;
     return (
       <div className={css.BasicInformation}>
@@ -210,7 +225,11 @@ class BasicInformation extends Component {
           </div>
         )}
         <div className="card">
-          <div className="card-body">{!isEditing ? this.getViewMode() : this.getEditMode()}</div>
+          <div className="card-body">
+            {viewMode === 'MOBILE' && this.getViewMode()}
+            {(viewMode === 'MOBILE' && editProfile) && bindBasicInformationSubmitForm(this.props.submitForm)}
+            {viewMode === 'DESKTOP' && (!isEditing ? this.getViewMode() : this.getEditMode())}
+          </div>
         </div>
       </div>
     );

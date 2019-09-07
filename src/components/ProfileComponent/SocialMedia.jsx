@@ -100,7 +100,7 @@ class SocialMedia extends Component {
   };
 
   render() {
-    const { setStatus } = this.props;
+    const { setStatus, viewMode } = this.props;
     const { isEditing } = this.props.status;
     return (
       <div className={css.SocialMedia}>
@@ -113,7 +113,10 @@ class SocialMedia extends Component {
           </div>
         )}
         <div className="card">
-          <div className="card-body">{!isEditing ? this.getViewMode() : this.getEditMode()}</div>
+          <div className="card-body">
+            {viewMode === 'MOBILE' && this.getViewMode()}
+            {viewMode === 'DESKTOP' && (!isEditing ? this.getViewMode() : this.getEditMode())}
+          </div>
         </div>
       </div>
     );

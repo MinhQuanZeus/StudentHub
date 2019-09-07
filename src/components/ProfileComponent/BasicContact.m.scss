@@ -163,4 +163,10 @@
       }
     }
   }
+
+  .BasicContact:hover {
+    .EditButton {
+      visibility: hidden !important;
+    }
+  }
 }

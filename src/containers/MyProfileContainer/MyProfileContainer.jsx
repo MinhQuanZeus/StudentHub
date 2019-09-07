@@ -1,4 +1,4 @@
-/* global document, fetch */
+/* global document, fetch, window */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { UserCardComponent } from '../../components/UserCardComponent/UserCardComponent';
@@ -17,6 +17,7 @@ import EmergencyContact from '../../components/ProfileComponent/EmergencyContact
 import Address from '../../components/ProfileComponent/Address';
 import css from './MyProfileContainer.m.scss';
 import { setAvatarUrl } from '../../helpers';
+import { PrimaryButton } from 'office-ui-fabric-react';
 
 class MyProfileContainer extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class MyProfileContainer extends Component {
     this.aboutRef = React.createRef();
     this.contactRef = React.createRef();
     this.addressRef = React.createRef();
+    this.addressComponentRef = React.createRef();
     this.initialize = this.initialize.bind(this);
     this.onEditProfile = this.onEditProfile.bind(this);
     this.state = {
@@ -32,6 +34,8 @@ class MyProfileContainer extends Component {
       currentAddress: {},
       editProfile: false,
       showDetails: false,
+      viewMode: 'DESKTOP', // possible values are DESKTOP and MOBILE
+      submitBasicInformationForm: null,
     };
   }
 
@@ -84,18 +88,45 @@ class MyProfileContainer extends Component {
   onEditProfile = () => {
     const editProfile = this.state.editProfile;
     this.setState({ editProfile: !editProfile });
-  }
+  };
 
   toggleDetails = (value) => {
     this.setState({ showDetails: value });
-  }
+  };
+
+  // Check srceen size `on component load` or `on screen resize`
+  checkCurrentScreenSize = () => {
+    const width = window.innerWidth;
+    const viewMode = width < 767 ? 'MOBILE' : 'DESKTOP';
+    if (viewMode !== this.state.viewMode) {
+      this.setState({ viewMode: viewMode });
+    }
+  };
+
+  // for update in mobile version
+  updateProfile = (e) => {
+    if (this.state.submitBasicInformationForm) {
+      this.state.submitBasicInformationForm(e);
+    }
+    this.addressComponentRef.current.onSubmit();
+    this.setState({ editProfile: false });
+  };
+
+  // binding BasicInformation form for updating data
+  bindBasicInformationSubmitForm = (submitForm) => {
+    if (!this.state.submitBasicInformationForm) {
+      setTimeout(() => {
+        this.setState({ submitBasicInformationForm: submitForm });
+      }, 500);
+    }
+  };
 
   render() {
-    const { details, currentAddress, editProfile, showDetails } = this.state;
+    const { details, currentAddress, editProfile, showDetails, viewMode } = this.state;
     return (
       <div ref={this.profileRef} className={`${sharedStyles['content-container']} ${css.MyProfileContainer}`}>
         <div>
-          <div className={`${css.profileLeftContainer} ${showDetails ? css.showDetails : ''}` }>
+          <div className={`${css.profileLeftContainer} ${showDetails ? css.showDetails : ''}`}>
             <HeaderComponent labels={['My Profile']} />
             <UserCardComponent loginInformation={details} currentAddress={currentAddress} toggleDetails={this.toggleDetails} />
             <ProfileTabsComponent scrollToRef={this.scrollToRef} />
@@ -113,14 +144,29 @@ class MyProfileContainer extends Component {
               <ProfileTabsComponent scrollToRef={this.scrollToRef} />
             </div>
             <div ref={this.aboutRef} />
-            <About {...details} />
-            <BasicInformation {...details} onSuccess={this.initialize} />
+            <About {...details} viewMode={viewMode} />
+            <BasicInformation
+              {...details}
+              onSuccess={this.initialize}
+              viewMode={viewMode}
+              editProfile={editProfile}
+              bindBasicInformationSubmitForm={this.bindBasicInformationSubmitForm}
+            />
             <div ref={this.contactRef} />
-            <BasicContact {...details} onSuccess={this.initialize} />
-            <SocialMedia {...details} />
-            <EmergencyContact {...details} />
+            <BasicContact {...details} onSuccess={this.initialize} viewMode={viewMode} />
+            <SocialMedia {...details} viewMode={viewMode} />
+            <EmergencyContact {...details} viewMode={viewMode} />
             <div ref={this.addressRef} />
-            <Address {...details} setCurrentAddress={this.setCurrentAddress} />
+            <Address
+              ref={this.addressComponentRef}
+              {...details}
+              setCurrentAddress={this.setCurrentAddress}
+              viewMode={viewMode}
+              editProfile={editProfile}
+            />
+            {editProfile && viewMode === 'MOBILE' ? (
+              <PrimaryButton text="Save" className={css.MobileViewSaveBtn} onClick={this.updateProfile} />
+            ) : null}
           </div>
         </div>
       </div>
@@ -135,6 +181,12 @@ class MyProfileContainer extends Component {
     const script = param.passToken(user.x_access_token, user.first_name);
     document.body.appendChild(script);
     this.initialize();
+    window.addEventListener('resize', this.checkCurrentScreenSize);
+    this.checkCurrentScreenSize();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.checkCurrentScreenSize);
   }
 }
 

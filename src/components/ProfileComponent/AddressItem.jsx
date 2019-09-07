@@ -1,3 +1,6 @@
+/* global fetch */
+/* eslint-disable camelcase */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { withFormik } from 'formik';
 import { apiConstants } from '../../constants/applicationConstants';
@@ -87,7 +90,7 @@ class AddressItem extends Component {
 
   render() {
     const { isEditing } = this.props.status;
-    const { currentAddress, values, onSetCurrentAddress } = this.props;
+    const { currentAddress, values, onSetCurrentAddress, viewMode } = this.props;
     return (
       <div className={css.AddressItem}>
         <div>
@@ -96,7 +99,8 @@ class AddressItem extends Component {
             <span className={css.checkround} />
           </label>
         </div>
-        {!isEditing ? this.getViewMode() : this.getEditMode()}
+        {viewMode === 'MOBILE' && this.getViewMode()}
+        {(viewMode === 'DESKTOP') && (!isEditing ? this.getViewMode() : this.getEditMode())}
       </div>
     );
   }

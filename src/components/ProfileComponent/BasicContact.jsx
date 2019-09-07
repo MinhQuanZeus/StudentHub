@@ -152,7 +152,7 @@ class BasicContact extends Component {
   };
 
   render() {
-    const { setStatus, onSuccess } = this.props;
+    const { setStatus, onSuccess, viewMode } = this.props;
     const { isEditing } = this.props.status;
     const { isOpenChangePhone, isOpenAddEmail } = this.state;
     return (
@@ -166,7 +166,10 @@ class BasicContact extends Component {
           </div>
         )}
         <div className="card">
-          <div className="card-body">{!isEditing ? this.getViewMode() : this.getEditMode()}</div>
+          <div className="card-body">
+            {viewMode === 'MOBILE' && this.getViewMode()}
+            {viewMode === 'DESKTOP' && (!isEditing ? this.getViewMode() : this.getEditMode())}
+          </div>
         </div>
         <ChangePhoneNumberModal
           isOpen={isOpenChangePhone}

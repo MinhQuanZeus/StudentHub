@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types, camelcase */
+/* global fetch */
 import React, { Component } from 'react';
 import css from './Address.m.scss';
 import { Icon, PrimaryButton } from 'office-ui-fabric-react';
@@ -106,7 +108,7 @@ class Address extends Component {
   };
 
   getEditMode = () => {
-    const { record_id } = this.props;
+    const { record_id, viewMode } = this.props;
     const { isOpenAddAddress, addressList, currentAddress } = this.state;
     return (
       <div>
@@ -123,6 +125,7 @@ class Address extends Component {
               onSetCurrentAddress={(address) => this.setState({ currentAddress: address })}
               key={idx}
               {...item}
+              viewMode={viewMode}
               onSuccess={() => this.initialize()}
             />
           ))}
@@ -155,6 +158,7 @@ class Address extends Component {
 
   render() {
     const { isEditing } = this.state;
+    const { editProfile, viewMode } = this.props;
     return (
       <div className={css.Address}>
         <div>Address</div>
@@ -168,7 +172,7 @@ class Address extends Component {
         <div className="card">
           <div className="card-body">
             {this.getViewMode()}
-            {isEditing && this.getEditMode()}
+            {(viewMode === 'MOBILE' && editProfile) || (viewMode === 'DESKTOP' && isEditing) ? this.getEditMode() : null}
           </div>
         </div>
       </div>

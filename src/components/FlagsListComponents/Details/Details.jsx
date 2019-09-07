@@ -29,8 +29,6 @@ class Details extends Component {
       description,
       receivers,
       documents,
-      category,
-      sub_category,
       assigner,
     } = this.props;
     return (
@@ -121,8 +119,6 @@ Details.propTypes = {
   description: PropTypes.string,
   receivers: PropTypes.array,
   documents: PropTypes.array,
-  category: PropTypes.object,
-  sub_category: PropTypes.object,
   assigner: PropTypes.object,
 };
 

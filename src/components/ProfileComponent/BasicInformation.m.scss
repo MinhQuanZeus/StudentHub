@@ -248,10 +248,16 @@
       :global(.card-body) {
         padding: 16px;
 
-        label,
-        > div,
+        > div {
+          padding: 0;
+        }
+
         form {
           padding: 0;
+
+          :global(.form-group) {
+            width: 100%;
+          }
 
           .UploadPhotoContainer {
             width: 100%;
@@ -267,15 +273,34 @@
                 background-color: rgba(255, 255, 255, 0);
               }
             }
+
+            > img {
+              border-radius: 6px;
+              opacity: 0.2;
+            }
           }
 
           .UploadPhoto:hover {
             .HoverBackground {
-              background-color: rgba(255, 255, 255, 0);
+              border-radius: 8px;
+            }
+          }
+
+          > div {
+            &:last-child {
+              margin-top: 0;
+              text-align: start;
+              width: 100%;
             }
           }
         }
       }
+    }
+  }
+
+  .BasicInformation:hover {
+    .EditButton {
+      visibility: hidden !important;
     }
   }
 }
