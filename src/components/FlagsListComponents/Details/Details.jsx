@@ -30,6 +30,8 @@ class Details extends Component {
       receivers,
       documents,
       assigner,
+      category,
+      sub_category,
     } = this.props;
     return (
       <Modal className={css.Details} isOpen={isOpen} onDismiss={onDismiss}>
@@ -120,6 +122,8 @@ Details.propTypes = {
   receivers: PropTypes.array,
   documents: PropTypes.array,
   assigner: PropTypes.object,
+  category: PropTypes.object,
+  sub_category: PropTypes.object,
 };
 
 export default Details;
