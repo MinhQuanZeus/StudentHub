@@ -21,15 +21,12 @@ class Details extends Component {
       id,
       subject,
       status,
-      category_name,
-      sub_category_name,
       priority,
       is_public,
       created_at,
       description,
       receivers,
       documents,
-      assigner,
       category,
       sub_category,
     } = this.props;
@@ -77,7 +74,15 @@ class Details extends Component {
           <div>
             <div>
               <label>To</label>
-              <Persona text={assigner && assigner.assigner} imageUrl={assigner && assigner.avatar} />
+              <ul>
+                {receivers &&
+                  receivers.length > 0 &&
+                  receivers.map((o) => (
+                    <li key={o.id}>
+                      <Persona text={o.full_name} imageUrl={o.photo_url} />
+                    </li>
+                  ))}
+              </ul>
             </div>
             <div>
               <label>Attachment</label>
@@ -113,15 +118,12 @@ Details.propTypes = {
   id: PropTypes.string,
   subject: PropTypes.string,
   status: PropTypes.string,
-  category_name: PropTypes.string,
-  sub_category_name: PropTypes.string,
   priority: PropTypes.string,
   is_public: PropTypes.bool,
   created_at: PropTypes.string,
   description: PropTypes.string,
   receivers: PropTypes.array,
   documents: PropTypes.array,
-  assigner: PropTypes.object,
   category: PropTypes.object,
   sub_category: PropTypes.object,
 };

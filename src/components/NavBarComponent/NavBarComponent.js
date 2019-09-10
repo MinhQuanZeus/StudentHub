@@ -1,21 +1,14 @@
-/* eslint-disable react/prop-types */
-/* global localStorage */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBarComponent.module.scss';
-import { ACCESS_TOKEN } from '../../constants';
 import defaultAvatar from '../../images/img_avatar.png';
-import { getAvatarUrl, navigate } from '../../helpers';
-
-
-const onLogout = () => {
-  localStorage.removeItem(ACCESS_TOKEN);
-  navigate('/login');
-};
+import { getAvatarUrl } from '../../helpers';
+import { QuickLinkComponent } from '../../components/QuickLinkComponent/QuickLinkComponent';
+import PropTypes from 'prop-types';
 
 export const NavBarComponent = (props) => {
   const avatar = getAvatarUrl();
-  const { user, activeLink } = props;
+  const { user, activeLink, onMouseEnter, onMouseLeave, quickLinkShow, onLogout } = props;
   return (
     <div className={styles.Navbar}>
       <div className={`${styles.NavbarContainer} ${styles.HideNavbar}`} data-navbar="close">
@@ -44,7 +37,11 @@ export const NavBarComponent = (props) => {
                 <span className={styles.NavbarTitle}>Profile</span>
               </Link>
             </li>
-            <li className={activeLink === 'class-tracker' ? styles.active : ''}>
+            <li
+              className={activeLink === 'class-tracker' ? styles.active : ''}
+              onMouseEnter={() => onMouseEnter()}
+              onMouseLeave={() => onMouseLeave()}
+            >
               <Link to="/class-tracker">
                 <img alt="academic" src="/images/academic.svg" />
                 <span className={styles.NavbarTitle}>Academic</span>
@@ -83,6 +80,20 @@ export const NavBarComponent = (props) => {
           </ul>
         </div>
       </div>
+      {quickLinkShow && (
+        <div onMouseEnter={() => onMouseEnter()} onMouseLeave={() => onMouseLeave()}>
+          <QuickLinkComponent />
+        </div>
+      )}
     </div>
   );
+};
+
+NavBarComponent.propTypes = {
+  user: PropTypes.object,
+  activeLink: PropTypes.string,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  quickLinkShow: PropTypes.bool,
+  onLogout: PropTypes.func,
 };

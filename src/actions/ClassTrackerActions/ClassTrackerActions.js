@@ -1,39 +1,34 @@
 import Promise from 'es6-promise';
 import axios from 'axios';
-import {
-  apiConstants,
-  applicationStatusCode
-} from '../../constants/applicationConstants';
+import { apiConstants } from '../../constants/applicationConstants';
 import { classTrackerConstants } from '../../constants/classTrackerConstants';
 
-export function onFetchClassTracker(access_token) {
-  return dispatch => {
+export function onFetchClassTracker(accessToken) {
+  return (dispatch) => {
     dispatch(getDataProcess(classTrackerConstants.WAITING, true, null));
 
-    loadingClassTracker(access_token)
-      .then(success => {
-        dispatch(
-          getDataProcess(classTrackerConstants.SUCCESS, false, success.data)
-        );
+    loadingClassTracker(accessToken)
+      .then((success) => {
+        dispatch(getDataProcess(classTrackerConstants.SUCCESS, false, success.data));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(getDataProcess(classTrackerConstants.ERROR, false, []));
       });
   };
 }
 
-function loadingClassTracker(access_token) {
+function loadingClassTracker(accessToken) {
   return new Promise((resolve, reject) => {
     axios
-      .get(apiConstants.STUDENT_CLASS_TRACKER, buildRequestConfig(access_token))
-      .then(value => {
-        if (value.data.status === applicationStatusCode.OK) {
+      .get(apiConstants.STUDENT_CLASS_TRACKER, buildRequestConfig(accessToken))
+      .then((value) => {
+        if (value.data.success) {
           resolve(value.data);
         } else {
           reject(value.data);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         reject(error);
       });
   });
@@ -43,17 +38,17 @@ function getDataProcess(type, loading, data) {
   return {
     type: type,
     loading: loading,
-    classTracker: data
+    classTracker: data,
   };
 }
 
-function buildRequestConfig(access_token) {
+function buildRequestConfig(accessToken) {
   return {
     baseURL: apiConstants.BACKEND_URL,
     method: 'GET',
     timeout: 6000,
     headers: {
-      'X-Access-Token': access_token
-    }
+      'X-Access-Token': accessToken,
+    },
   };
 }

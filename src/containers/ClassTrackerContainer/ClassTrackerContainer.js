@@ -9,25 +9,26 @@ import { QuickLinkComponent } from '../../components/QuickLinkComponent/QuickLin
 import sharedStyles from '../../styles/styles.module.css';
 import { getUniqueYears } from '../../helpers/Utils';
 import { AppContext } from '../AppContext';
+import PropTypes from 'prop-types';
 
 class ClassTrackerContainer extends Component {
   state = {
     selectedYear: 2018,
-    selectedTerm: 'spring'
+    selectedTerm: 'spring',
   };
 
-  updateYear = e => {
+  updateYear = (e) => {
     const year = parseInt(e.target.value, 10);
 
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (prevState.selectedYear !== year) {
         return { selectedYear: year };
       }
     });
   };
 
-  updateTerm = term => {
-    this.setState(prevState => {
+  updateTerm = (term) => {
+    this.setState((prevState) => {
       if (prevState.selectedTerm !== term) {
         return { selectedTerm: term };
       }
@@ -67,21 +68,28 @@ class ClassTrackerContainer extends Component {
 }
 ClassTrackerContainer.contextType = AppContext;
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     classTracker: state.classTracker,
-    academic_program: state.academicProgram.academic_program
+    academic_program: state.academicProgram.academic_program,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onFetchClassTracker: x_access_token => {
-      dispatch(onFetchClassTracker(x_access_token));
+    onFetchClassTracker: (xAccessToken) => {
+      dispatch(onFetchClassTracker(xAccessToken));
     },
-    onFetchAcademicProgram: x_access_token =>
-      dispatch(onFetchAcademicProgram(x_access_token))
+    onFetchAcademicProgram: (xAccessToken) => {
+      dispatch(onFetchAcademicProgram(xAccessToken));
+    },
   };
+};
+
+ClassTrackerContainer.propTypes = {
+  classTracker: PropTypes.object,
+  onFetchClassTracker: PropTypes.func,
+  onFetchAcademicProgram: PropTypes.func,
 };
 
 export default connect(

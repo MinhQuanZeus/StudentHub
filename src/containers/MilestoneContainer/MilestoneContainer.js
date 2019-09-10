@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { MilestoneAvatarComponent } from '../../components/MilestoneAvatarComponent/MilestoneAvatarComponent';
 import { ProgramInfoComponent } from '../../components/ProgramInfoComponent/ProgramInfoComponent';
 import { MilestoneTableComponent } from '../../components/MilestoneTableComponent/MilestoneTableComponent';
@@ -10,12 +9,13 @@ import { QuickLinkComponent } from '../../components/QuickLinkComponent/QuickLin
 import connect from 'react-redux/es/connect/connect';
 import { onFetchMilestone } from '../../actions/MilestoneActions/MilestoneActions';
 import { AppContext } from '../AppContext';
+import PropTypes from 'prop-types';
 
 class MilestoneContainer extends Component {
   constructor() {
     super();
     this.state = {
-      commonInfoVisibility: true
+      commonInfoVisibility: true,
     };
   }
 
@@ -55,7 +55,7 @@ class MilestoneContainer extends Component {
   }
 
   toggleCommonInfoVisibility = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return { commonInfoVisibility: !prevState.commonInfoVisibility };
     });
   };
@@ -75,18 +75,27 @@ class MilestoneContainer extends Component {
 }
 MilestoneContainer.contextType = AppContext;
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     academic_program: state.academicProgram.academic_program,
-    milestone: state.mileStone.milestone
+    milestone: state.mileStone.milestone,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onFetchMilestone: (x_access_token, academic_program_id) =>
-      dispatch(onFetchMilestone(x_access_token, academic_program_id))
+    onFetchMilestone: (xAccessToken, academicProgramId) => {
+      dispatch(onFetchMilestone(xAccessToken, academicProgramId));
+    },
   };
+};
+
+MilestoneContainer.propTypes = {
+  academic_program: PropTypes.array,
+  onFetchMilestone: PropTypes.func,
+  onFetchAcademicProgram: PropTypes.func,
+  location: PropTypes.object,
+  milestone: PropTypes.array,
 };
 
 export default connect(

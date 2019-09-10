@@ -1,14 +1,12 @@
-/* eslint-disable react/prop-types */
-/* global localStorage */
+/* global localStorage, document */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import jquery from 'jquery';
-
 import css from './TopBarComponent.m.scss';
 import defaultAvatar from '../../images/img_avatar.png';
 import classnames from 'classnames';
 import { ACCESS_TOKEN } from '../../constants';
 import { getAvatarUrl, navigate } from '../../helpers';
+import PropTypes from 'prop-types';
 
 class UserInfo extends Component {
   constructor(props) {
@@ -55,35 +53,52 @@ export class TopBarComponent extends Component {
     this.onShowHideNavbar = this.onShowHideNavbar.bind(this);
   }
 
-  // side navbar work in progress
+  slideNavbar = (status) => {
+    const elem = document.querySelector(`[data-navbar]`);
+    if (!elem) {
+      return false;
+    }
+    const left = parseInt(elem.style.left) || (status === 'open' ? -247 : 0);
+    if (left <= 0 && status === 'open') {
+      elem.style.left = left + 10 + 'px';
+      setTimeout(() => {
+        this.slideNavbar(status);
+      }, 10);
+    } else if (left >= -247 && status === 'close') {
+      elem.style.left = left - 10 + 'px';
+      setTimeout(() => {
+        this.slideNavbar(status);
+      }, 10);
+    } else {
+      elem.style.left = status === 'open' ? '0px' : '-247px';
+      elem.setAttribute('data-navbar', status);
+    }
+  };
+
   hideNavbar = () => {
-    const applicationcontainer = jquery('#applicationcontainer')[0];
-    const event = jquery(`[data-navbar='open']`);
+    const applicationcontainer = document.getElementById('applicationcontainer');
     applicationcontainer.removeEventListener('click', this.hideNavbar);
-    event.attr('data-navbar', 'close');
-    event.animate({ left: '-247px' }, 500, () => {});
-  }
+    this.slideNavbar('close');
+  };
+
   showNavbar = () => {
-    const applicationcontainer = jquery('#applicationcontainer')[0];
-    const event = jquery(`[data-navbar='close']`);
+    const applicationcontainer = document.getElementById('applicationcontainer');
     applicationcontainer.addEventListener('click', this.hideNavbar);
-    event.animate({ left: '0px' }, 500, () => {
-      event.attr('data-navbar', 'open');
-    });
-  }
+    this.slideNavbar('open');
+  };
+
   onShowHideNavbar = () => {
-    const navbarClose = jquery(`[data-navbar='close']`);
-    const navbarOpen = jquery(`[data-navbar='open']`);
-    if (navbarClose && navbarClose.length) {
+    const navbarClose = document.querySelector(`[data-navbar='close']`);
+    const navbarOpen = document.querySelector(`[data-navbar='open']`);
+    if (navbarClose) {
       this.showNavbar();
     }
-    if (navbarOpen && navbarOpen.length) {
+    if (navbarOpen) {
       this.hideNavbar();
     }
-  }
+  };
 
   onShowMenu() {
-    console.log('onShowMenu');
     this.setState((state) => ({
       isOpenMenu: !state.isOpenMenu,
     }));
@@ -100,13 +115,10 @@ export class TopBarComponent extends Component {
         </div>
         <div className={css['mobile']}>
           <span className={css['top-bar-icon-link']} onClick={this.onShowHideNavbar}>
-            <div className={css['NavbarMenuBtn']} >
-              <div className={css['Line1']}>
-              </div>
-              <div className={css['Line2']}>
-              </div>
-              <div className={css['Line3']}>
-              </div>
+            <div className={css['NavbarMenuBtn']}>
+              <div className={css['Line1']}></div>
+              <div className={css['Line2']}></div>
+              <div className={css['Line3']}></div>
             </div>
           </span>
         </div>
@@ -122,3 +134,11 @@ export class TopBarComponent extends Component {
     );
   }
 }
+
+UserInfo.propTypes = {
+  user: PropTypes.object,
+};
+
+TopBarComponent.propTypes = {
+  user: PropTypes.object,
+};
