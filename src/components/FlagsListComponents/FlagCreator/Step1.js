@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import { ChoiceGroup } from 'office-ui-fabric-react';
+import PropTypes from 'prop-types';
 import css from './Step1.module.scss';
 import classnames from 'classnames';
 import { withFormik } from 'formik';
@@ -35,7 +36,7 @@ class Step1 extends Component {
   }
 
   render() {
-    const { values, handleChange } = this.props;
+    const { values, setFieldValue, handleChange } = this.props;
     return (
       <form className={classnames(css.Step1, this.props.current !== 1 && css.Hidden)}>
         <div className={css.FormItem}>
@@ -100,10 +101,21 @@ class Step1 extends Component {
         <div className={css.FormItem} style={{ marginTop: 20 }}>
           <label>Dispatch Type</label>
           <div className={css.Radio}>
-            <input type="radio" name="is_public" value="0" onChange={handleChange} />
-            <span>Public</span>
-            <input type="radio" name="is_public" value="1" style={{ marginLeft: 30 }} onChange={handleChange} />
-            <span>Private</span>
+            <ChoiceGroup
+              className={css.DispatchType}
+              defaultSelectedKey={1}
+              options={[
+                {
+                  key: 1,
+                  text: 'Public',
+                },
+                {
+                  key: 0,
+                  text: 'Private',
+                },
+              ]}
+              onChange={(event, option) => setFieldValue('is_public', option.key)}
+            />
           </div>
         </div>
         <Error error={this.props.error} />
@@ -113,12 +125,22 @@ class Step1 extends Component {
   }
 }
 
+Step1.propTypes = {
+  categories: PropTypes.array,
+  values: PropTypes.object,
+  setFieldValue: PropTypes.func,
+  handleChange: PropTypes.func,
+  onNext: PropTypes.func,
+  current: PropTypes.number,
+  error: PropTypes.string,
+};
+
 export default withFormik({
   mapPropsToValues: () => ({
     subject: '',
     category: '',
     sub_category: '',
     priority: 'LOW',
-    is_public: '',
+    is_public: 1,
   }),
 })(Step1);

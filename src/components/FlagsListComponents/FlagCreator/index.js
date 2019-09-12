@@ -86,8 +86,8 @@ class FlagCreator extends Component {
     }));
   }
 
-  previous($values) {
-    this.data = Object.assign(this.data, $values);
+  previous(values) {
+    this.data = Object.assign(this.data, values);
     this.setState((state) => ({
       current: state.current > 1 ? state.current - 1 : 1,
     }));
@@ -98,7 +98,7 @@ class FlagCreator extends Component {
     setTimeout(() => {
       this.setState({ error: null });
     }, millisecond);
-  }
+  };
 
   validateFlagData(data) {
     if (data.subject === '') {
@@ -110,17 +110,21 @@ class FlagCreator extends Component {
     } else if (data.description === '') {
       this.showError('Description is not allowed to be empty', 2, 4000);
       return false;
-    } else if (!data.assign_id || data.assign_id === '') {
-      this.showError('Assign is not allowed to be empty', 3, 4000);
-      return false;
+      // } else if (!data.assign_id || data.assign_id === '') {
+      // this.showError('Assign is not allowed to be empty', 3, 4000);
+      // return false;
     } else {
       this.setState({ error: null });
       return true;
     }
   }
 
-  next($values) {
-    this.data = Object.assign(this.data, $values);
+  next(values) {
+    this.data = Object.assign(this.data, values);
+    if (values.is_public) {
+      this.data = Object.assign(this.data, { is_public: parseInt(values.is_public) });
+    }
+
     if (this.state.current === 4) {
       if (this.validateFlagData(this.data)) {
         this.props.emit(SHOW_LOADING);
@@ -165,7 +169,6 @@ class FlagCreator extends Component {
   onSuccess($json) {
     this.props.emit(HIDE_LOADING);
     this.props.onSuccessCreator();
-    // this.props.onDismiss();
   }
 
   onError($json) {
