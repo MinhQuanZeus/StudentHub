@@ -1,0 +1,41 @@
+.CalendarContainer {
+  width: 100%;
+
+  > div:first-child {
+    display: flex;
+    grid-template-columns: 25% 75%;
+
+    .CalendarLeftContainer {
+      margin-right: 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .CalendarRightContainer {
+      width: 100%;
+      box-sizing: inherit;
+    }
+  }
+
+  .CreateEventBtn {
+    display: block;
+    width: 129px;
+    height: 36px;
+    padding: 0;
+    border-radius: 18px;
+    border: solid 1px #6647ff;
+    font-size: 14px;
+    background-color: #6647ff;
+    line-height: 34px;
+    color: #fff;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 21px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

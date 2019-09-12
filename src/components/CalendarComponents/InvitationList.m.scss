@@ -1,0 +1,43 @@
+.InvitationList {
+  margin-top: 50px;
+  width: 160px;
+
+  .ChevronIcon {
+    float: right;
+    cursor: pointer;
+    margin-top: -18px;
+  }
+
+  .Oval {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 3px 3px 0 0;
+  }
+
+  .OvalRed {
+    border: solid 2px #ff6e6e;
+  }
+
+  .OvalGold {
+    border: solid 2px #eaa328;
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 900;
+    color: #352480;
+  }
+
+  .Invitation {
+    margin-top: 14px;
+    font-size: 12px;
+    width: 130px;
+    display: flex;
+  }
+
+  .InvitationBottom {
+    font-size: 8px;
+    color: #8a85a6;
+  }
+}

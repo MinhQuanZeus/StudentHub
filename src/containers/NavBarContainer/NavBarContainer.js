@@ -1,4 +1,3 @@
-/* global localStorage */
 import React, { Component } from 'react';
 import { AppContext } from '../AppContext';
 import PropTypes from 'prop-types';

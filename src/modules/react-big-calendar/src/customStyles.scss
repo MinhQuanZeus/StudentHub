@@ -122,7 +122,8 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-toolbar {
   margin: 0 0 24px 0;
-  width: 1108px;
+  // width: 1108px;
+  width: 100%;
 }
 
 .rbc-btn-group button {
@@ -246,7 +247,8 @@ button.rbc-input::-moz-focus-inner {
   -webkit-flex: 1 0 0;
   -ms-flex: 1 0 0px;
   flex: 1 0 0;
-  width: 1108px;
+  // width: 1108px;
+  width: 100%;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;

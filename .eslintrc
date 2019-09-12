@@ -14,6 +14,12 @@
     "mocha": true,
     "es6": true
   },
+  "globals": {
+    "localStorage": "readonly",
+    "document": "readonly",
+    "window": "readonly",
+    "fetch": "readonly"
+  }, 
   "settings": {
     "react": {
       "version": "detect"

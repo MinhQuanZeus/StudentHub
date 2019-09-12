@@ -4,6 +4,10 @@ import sharedStyles from '../../styles/styles.module.css';
 import CalendarPopup from '../../components/CalendarComponents/CalendarPopup';
 import { getAccessToken } from '../../helpers';
 import { apiConstants } from '../../constants/applicationConstants';
+import css from './CalendarContainer.m.scss';
+import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
+import CategoryList from '../../components/CalendarComponents/CategoryList';
+import InvitationList from '../../components/CalendarComponents/InvitationList';
 
 const popup = (event, e) => {
   if (event.category === 'classes') {
@@ -49,6 +53,8 @@ class CalendarContainer extends Component {
     this.state = {
       calendarEvents: [],
       currentEvent: {},
+      categoryListShow: true,
+      invitationListShow: true,
     };
   }
 
@@ -69,23 +75,9 @@ class CalendarContainer extends Component {
     };
   }
 
-  getCalendarData(calendarData) {
-    return calendarData.calendarData.length === 0
-      ? [
-          {
-            title: '',
-            allDay: false,
-            start: null,
-            end: null,
-            category: '',
-            calendarCategory: '',
-          },
-        ]
-      : calendarData.calendarData.map((data) => {
-          data['calendarCategory'] = 'checklist';
-          return data;
-        });
-  }
+  onToggle = (key) => {
+    this.setState({ [key]: !this.state[key] });
+  };
 
   async onDateChanged(startDate, endDate = null) {
     const { firstDay, lastDay } = this._getEndDates(startDate, endDate);
@@ -145,19 +137,30 @@ class CalendarContainer extends Component {
   }
 
   render() {
-    // const calendarData = this.getCalendarData(this.props.calendarData);
-    const { calendarEvents, currentEvent } = this.state;
+    const { calendarEvents, currentEvent, categoryListShow, invitationListShow } = this.state;
     return (
-      <div className={sharedStyles['']}>
-        <CalendarComponent
-          calendarData={calendarEvents || []}
-          onDateChanged={(startDate, endDate) => this.onDateChanged(startDate, endDate)}
-          onSelectEvent={(event, e) => {
-            this.setState({ currentEvent: event });
-            popup(event, e);
-          }}
-        />
-        <CalendarPopup eventDetail={currentEvent} />
+      <div className={`${sharedStyles['content-container']} ${css.CalendarContainer}`}>
+        <div>
+          <div className={`${css.CalendarLeftContainer}`}>
+            <HeaderComponent labels={['Calendar']} />
+            <div className={css.CreateEventBtn}>Create Event</div>
+            <div className={css.LeftSideList}>
+              <CategoryList categoryListShow={categoryListShow} onToggle={this.onToggle} />
+              <InvitationList invitationListShow={invitationListShow} onToggle={this.onToggle} />
+            </div>
+          </div>
+          <div className={css.CalendarRightContainer}>
+            <CalendarComponent
+              calendarData={calendarEvents || []}
+              onDateChanged={(startDate, endDate) => this.onDateChanged(startDate, endDate)}
+              onSelectEvent={(event, e) => {
+                this.setState({ currentEvent: event });
+                popup(event, e);
+              }}
+            />
+            <CalendarPopup eventDetail={currentEvent} />
+          </div>
+        </div>
       </div>
     );
   }

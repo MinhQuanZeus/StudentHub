@@ -56,7 +56,7 @@ class ApplicationContainer extends Component {
             <Route component={FlagDetailsContainer} path="/flags/:id" />
             <Route component={CalendarContainer} path="/calendar" />
           </Switch>
-          {currentPath !== '/check-list' && <NotificationContainer />}
+          {!['/check-list', '/calendar'].includes(currentPath) && <NotificationContainer />}
         </div>
         <ChatbotContainer />
       </AppContext.Provider>

@@ -1,4 +1,3 @@
-/* global localStorage */
 import { createBrowserHistory } from 'history';
 
 import jwt from 'jwt-decode';
