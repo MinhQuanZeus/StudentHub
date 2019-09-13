@@ -1,8 +1,4 @@
-let apiEndPoint = 'http://api.successhub.us/api/v1/';
-if (process.env.NODE_ENV === 'production') {
-  apiEndPoint = 'http://api.successhub.us/api/v1/';
-}
-export const API_END_POINT = apiEndPoint;
+export const API_END_POINT = process.env.REACT_APP_API_END_POINT;
 
 export const GET_STAFFS = 'student/get_staffs';
 
