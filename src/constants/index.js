@@ -57,3 +57,11 @@ export const ADDRESS_COUNTRY_OPTIONS = [
   { value: 'USA', displayValue: 'United States of America' },
   { value: 'Canada', displayValue: 'Canada' },
 ];
+
+export const CALENDER_EVENTS_FILTER_BY_CATEGORY_OPTIONS = [
+  { value: 'meeting', displayValue: 'Meeting', isActive: true },
+  { value: 'classes', displayValue: 'Classes', isActive: true },
+  { value: 'programEvent', displayValue: 'Program Event', isActive: true },
+  { value: 'schoolEvent', displayValue: 'School Event', isActive: true },
+  { value: 'checklist', displayValue: 'Checklist', isActive: true },
+];

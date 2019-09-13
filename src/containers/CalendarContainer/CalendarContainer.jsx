@@ -4,6 +4,7 @@ import sharedStyles from '../../styles/styles.module.css';
 import CalendarPopup from '../../components/CalendarComponents/CalendarPopup';
 import { getAccessToken } from '../../helpers';
 import { apiConstants } from '../../constants/applicationConstants';
+import { CALENDER_EVENTS_FILTER_BY_CATEGORY_OPTIONS } from '../../constants';
 import css from './CalendarContainer.m.scss';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import CategoryList from '../../components/CalendarComponents/CategoryList';
@@ -51,16 +52,28 @@ class CalendarContainer extends Component {
     super(props);
 
     this.state = {
+      events: [],
       calendarEvents: [],
       currentEvent: {},
       categoryListShow: true,
       invitationListShow: true,
+      selectedDate: new Date(),
+      categories: CALENDER_EVENTS_FILTER_BY_CATEGORY_OPTIONS,
     };
   }
 
   componentDidMount() {
     this.onDateChanged(new Date());
   }
+
+  onChangedCategoryFilter = (category) => {
+    const categories = this.state.categories;
+    categories.map((item) => (item.isActive = item.value === category.value ? !category.isActive : item.isActive));
+    const selectedCategory = categories.filter((item) => item.isActive).map((item) => item.value);
+    const events = this.state.events || [];
+    const calendarEvents = events.filter((event) => selectedCategory.includes(event.category));
+    this.setState({ categories: categories, calendarEvents: calendarEvents });
+  };
 
   _getEndDates(startDate, endDate = null) {
     const firstDay = endDate
@@ -79,11 +92,18 @@ class CalendarContainer extends Component {
     this.setState({ [key]: !this.state[key] });
   };
 
+  onNavigate = (date) => {
+    if (date instanceof Date) {
+      this.setState({ selectedDate: new Date(date) });
+    }
+  };
+
   async onDateChanged(startDate, endDate = null) {
     const { firstDay, lastDay } = this._getEndDates(startDate, endDate);
     this.setState(() => ({
       isLoading: true,
       calendarEvents: [],
+      events: [],
     }));
     const options = {
       method: 'GET',
@@ -130,6 +150,7 @@ class CalendarContainer extends Component {
       this.setState(() => ({
         isLoading: false,
         calendarEvents: events,
+        events: events,
       }));
     } catch (e) {
       console.log(e);
@@ -137,7 +158,7 @@ class CalendarContainer extends Component {
   }
 
   render() {
-    const { calendarEvents, currentEvent, categoryListShow, invitationListShow } = this.state;
+    const { calendarEvents, currentEvent, categoryListShow, invitationListShow, selectedDate, categories } = this.state;
     return (
       <div className={`${sharedStyles['content-container']} ${css.CalendarContainer}`}>
         <div>
@@ -145,7 +166,12 @@ class CalendarContainer extends Component {
             <HeaderComponent labels={['Calendar']} />
             <div className={css.CreateEventBtn}>Create Event</div>
             <div className={css.LeftSideList}>
-              <CategoryList categoryListShow={categoryListShow} onToggle={this.onToggle} />
+              <CategoryList
+                categoryListShow={categoryListShow}
+                onToggle={this.onToggle}
+                categories={categories}
+                onChangedCategoryFilter={this.onChangedCategoryFilter}
+              />
               <InvitationList invitationListShow={invitationListShow} onToggle={this.onToggle} />
             </div>
           </div>
@@ -157,6 +183,8 @@ class CalendarContainer extends Component {
                 this.setState({ currentEvent: event });
                 popup(event, e);
               }}
+              selectedDate={selectedDate}
+              onNavigate={this.onNavigate}
             />
             <CalendarPopup eventDetail={currentEvent} />
           </div>

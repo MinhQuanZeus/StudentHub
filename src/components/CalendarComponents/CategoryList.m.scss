@@ -7,6 +7,10 @@
     margin-top: -18px;
   }
 
+  .Category:hover {
+    cursor: pointer;
+  }
+
   h3 {
     font-size: 14px;
     font-weight: 900;
@@ -28,25 +32,46 @@
     width: 10px;
     border-radius: 50%;
     margin-top: 3px;
+    border: solid 2px;
   }
 
-  .Red {
-    background-color: #ff6e6e;
+  .Meeting {
+    color: #ff6e6e;
+
+    &.Active {
+      background-color: #ff6e6e;
+    }
   }
 
-  .Purple {
-    background-color: #8a85a6;
+  .Classes {
+    color: #8a85a6;
+
+    &.Active {
+      background-color: #8a85a6;
+    }
   }
 
-  .Gold {
-    background-color: #eaa328;
+  .ProgramEvent {
+    color: #eaa328;
+
+    &.Active {
+      background-color: #eaa328;
+    }
   }
 
-  .Brown {
-    background-color: #7c5615;
+  .SchoolEvent {
+    color: #7c5615;
+
+    &.Active {
+      background-color: #7c5615;
+    }
   }
 
-  .Green {
-    background-color: #2ed891;
+  .Checklist {
+    color: #2ed891;
+
+    &.Active {
+      background-color: #2ed891;
+    }
   }
 }

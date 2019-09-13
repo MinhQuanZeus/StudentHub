@@ -20,6 +20,8 @@ export const CalendarComponent = (props) => {
         endAccessor="end"
         defaultDate={new Date()}
         onSelectEvent={props.onSelectEvent}
+        date={props.selectedDate}
+        onNavigate={(event) => props.onNavigate(event)}
         onRangeChange={(date) => {
           if (date && !Array.isArray(date) && typeof date === 'object') {
             props.onDateChanged(date.start, date.end);
@@ -40,4 +42,6 @@ CalendarComponent.propTypes = {
   onDateChanged: PropTypes.func,
   onSelectEvent: PropTypes.func,
   calendarData: PropTypes.array,
+  onNavigate: PropTypes.func,
+  selectedDate: PropTypes.object,
 };
