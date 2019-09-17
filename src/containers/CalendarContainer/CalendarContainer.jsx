@@ -115,8 +115,8 @@ class CalendarContainer extends Component {
 
     try {
       const responses = await Promise.all([
-        fetch(`${apiConstants.BACKEND_URL}student/class/range_time?from_date=${firstDay}&to_date=${lastDay}`, options),
-        fetch(`${apiConstants.BACKEND_URL}student/check_list/range_time?from_date=${firstDay}&to_date=${lastDay}`, options),
+        fetch(`${apiConstants.BACKEND_URL}${apiConstants.STUDENT_CALENDAR_CLASS}?from_date=${firstDay}&to_date=${lastDay}`, options),
+        fetch(`${apiConstants.BACKEND_URL}${apiConstants.STUDENT_CALENDAR_CHECK_LIST}?from_date=${firstDay}&to_date=${lastDay}`, options),
       ]);
       const bodies = await Promise.all(responses.map((o) => o.json()));
       let events = [];

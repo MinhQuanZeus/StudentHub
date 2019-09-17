@@ -16,7 +16,7 @@ export const InvitationList = (props) => {
       </div>
       {props.invitationListShow && (
         <div>
-          <p className={css.Invitation}>
+          <div className={css.Invitation}>
             <div>
               <p className={`${css.Oval} ${css.OvalRed}`}></p>
             </div>
@@ -25,8 +25,8 @@ export const InvitationList = (props) => {
               <br></br>
               <span className={css.InvitationBottom}>2 Hours Ago</span>
             </div>
-          </p>
-          <p className={css.Invitation}>
+          </div>
+          <div className={css.Invitation}>
             <div>
               <p className={`${css.Oval} ${css.OvalGold}`}></p>
             </div>
@@ -36,7 +36,7 @@ export const InvitationList = (props) => {
               <br></br>
               <span className={css.InvitationBottom}>Yesterday</span>
             </div>
-          </p>
+          </div>
         </div>
       )}
     </div>

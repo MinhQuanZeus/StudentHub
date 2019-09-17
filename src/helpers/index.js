@@ -1,4 +1,5 @@
 import { createBrowserHistory } from 'history';
+import moment from 'moment';
 
 import jwt from 'jwt-decode';
 
@@ -70,4 +71,44 @@ export function formatPhoneNumberNtl(phoneNumber) {
     phoneNumber = '';
   }
   return phoneNumber;
+}
+
+export function getFromNow(date) {
+  const newDate = new Date(date);
+  let fromNow = '';
+  if (newDate instanceof Date) {
+    const date = moment(newDate);
+    const days = moment().diff(date, 'days');
+    if (days === 0) {
+      const hours = moment().diff(date, 'hours');
+      const minutes = moment().diff(date, 'minutes');
+      const seconds = moment().diff(date, 'seconds');
+      if (hours) {
+        fromNow = `${hours} ${hours <= 1 ? 'Hour' : 'Hours'} Ago`;
+      } else if (minutes) {
+        fromNow = `${minutes} ${minutes <= 1 ? 'Minute' : 'Minutes'} Ago`;
+      } else if (seconds) {
+        fromNow = `${seconds <= 10 ? 'Just Now' : `${seconds} Seconds Ago`}`;
+      } else {
+        fromNow = 'Today';
+      }
+    } else if (days === 1) {
+      fromNow = 'Yesterday';
+    } else if (days >= 1 && days <= 5) {
+      fromNow = `${days} ${days <= 1 ? 'Day' : 'Day'} Ago`;
+    } else if (days >= 6 && days <= 28) {
+      const weeks = moment().diff(date, 'weeks');
+      fromNow = `${weeks} ${weeks <= 1 ? 'Week' : 'Weeks'} Ago`;
+    } else if (days >= 29 && days <= 365) {
+      const months = moment().diff(date, 'months');
+      fromNow = `${months} ${months <= 1 ? 'Month' : 'Months'} Ago`;
+    } else if (days >= 366) {
+      const years = moment().diff(date, 'years');
+      fromNow = `${years} ${years <= 1 ? 'Year' : 'Years'} Ago`;
+    } else {
+      fromNow = date.calendar().split(' ')[0];
+    }
+  }
+
+  return fromNow;
 }

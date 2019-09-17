@@ -27,6 +27,17 @@ class SelectYear extends Component {
     this.dropdownRef.current.focus(isOpenDropdown);
   };
 
+  componentDidMount() {
+    this.setYearList(this.props.date);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const prevPropsYear = new Date(prevProps.date).getFullYear();
+    if (prevPropsYear !== prevState.currentYear) {
+      this.setYearList(this.props.date);
+    }
+  }
+
   setYearList = (date) => {
     date = new Date(date);
     const year = date.getFullYear();
@@ -54,9 +65,7 @@ class SelectYear extends Component {
   };
 
   render() {
-    const { date } = this.props;
     const { currentYear, isOpenDropdown, yearOptions } = this.state;
-    this.setYearList(date);
     return (
       <div className={css.SelectYear}>
         <Dropdown

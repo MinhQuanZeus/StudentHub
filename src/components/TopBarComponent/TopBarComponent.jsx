@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import { ACCESS_TOKEN } from '../../constants';
 import { getAvatarUrl, navigate } from '../../helpers';
 import PropTypes from 'prop-types';
+import CalendarNotification from '../CalendarComponents/CalendarNotification';
 
 class UserInfo extends Component {
   constructor(props) {
@@ -46,8 +47,9 @@ export class TopBarComponent extends Component {
     super(props);
     this.state = {
       isOpenMenu: false,
+      isOpenCalendarNotification: false,
     };
-
+    this.calendarNotificationRef = React.createRef();
     this.onShowMenu = this.onShowMenu.bind(this);
     this.onShowHideNavbar = this.onShowHideNavbar.bind(this);
   }
@@ -103,8 +105,36 @@ export class TopBarComponent extends Component {
     }));
   }
 
+  onOpenCloseCalendarNotification = () => {
+    this.setState({ isOpenCalendarNotification: !this.state.isOpenCalendarNotification });
+    document.addEventListener('mousedown', this.handleClickOutside);
+    window.addEventListener('resize', this.setCalendarNotificationPosition);
+    this.setCalendarNotificationPosition();
+  };
+
+  setCalendarNotificationPosition = () => {
+    const elem = document.getElementById('notificationIcon');
+    const viewportOffset = elem.getBoundingClientRect();
+    const right = window.innerWidth - viewportOffset.left;
+    const style = this.calendarNotificationRef.current.style;
+    style.position = 'absolute';
+    style.right = `${right - 50}px`;
+    style.top = '60px';
+  };
+
+  handleClickOutside = (e) => {
+    if (!this.calendarNotificationRef.current.contains(e.target)) {
+      setTimeout(() => {
+        this.setState({ isOpenCalendarNotification: false });
+        document.removeEventListener('mousedown', this.handleClickOutside);
+        window.removeEventListener('resize', this.setCalendarNotificationPosition);
+      }, 300);
+    }
+  };
+
   render() {
     const { user } = this.props;
+    const { isOpenCalendarNotification } = this.state;
     return (
       <nav className={css['top-bar-container']}>
         <div className={css['desktop']}>
@@ -128,7 +158,16 @@ export class TopBarComponent extends Component {
         </h5>
         <UserInfo user={user} isOpenMenu={this.state.isOpenMenu} onShowMenu={this.onShowMenu} onLogout={this.onLogout} />
         <img alt="comment" src="/images/comment.svg" className={css['top-bar-comment']} />
-        <img alt="bell" src="/images/bell.svg" className={css['top-bar-bell']} />
+        <img
+          id="notificationIcon"
+          alt="bell"
+          src="/images/bell.svg"
+          className={css['top-bar-bell']}
+          onClick={this.onOpenCloseCalendarNotification}
+        />
+        <div ref={this.calendarNotificationRef}>
+          <CalendarNotification isOpen={isOpenCalendarNotification} />
+        </div>
       </nav>
     );
   }
