@@ -1,6 +1,4 @@
 /* eslint-disable camelcase */
-/* global fetch */
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
@@ -54,7 +52,7 @@ class Details extends Component {
           is_public: is_public ? '1' : '0',
           description: description,
           assigned_to: assigner && assigner.assign_id,
-          tags: receivers.map((o) => o.id.toString()),
+          tags: receivers.map((o) => o.user_id.toString()),
           status: status,
         }}
         onSubmit={(values, bag) => {
@@ -116,8 +114,8 @@ Details.propTypes = {
   mode: PropTypes.string,
   id: PropTypes.string,
   subject: PropTypes.string,
-  category: PropTypes.object,
-  sub_category: PropTypes.object,
+  category: PropTypes.any,
+  sub_category: PropTypes.any,
   priority: PropTypes.string,
   is_public: PropTypes.bool,
   description: PropTypes.string,

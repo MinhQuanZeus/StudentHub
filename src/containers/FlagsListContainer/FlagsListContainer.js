@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* global fetch */
 import React, { Component } from 'react';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import PendingFlags from '../../components/FlagsListComponents/PendingFlags';
@@ -171,7 +170,12 @@ class FlagsListContainer extends Component {
 
     return (
       <section className={cns(sharedStyles['content-container'], css['content-container'])}>
-        <FlagCreator isOpen={this.state.creator.isOpen} onDismiss={this.closeCreator} onSuccessCreator={this.onSuccessCreator} context={this.context} />
+        <FlagCreator
+          isOpen={this.state.creator.isOpen}
+          onDismiss={this.closeCreator}
+          onSuccessCreator={this.onSuccessCreator}
+          context={this.context}
+        />
         <HeaderComponent labels={['Flag Manager']}>
           <PrimaryButton text="Create New Flag" onClick={this.openCreator} />
         </HeaderComponent>

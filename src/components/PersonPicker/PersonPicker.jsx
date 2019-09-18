@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Persona } from 'office-ui-fabric-react';
-
+import PropTypes from 'prop-types';
 import css from './PersonPicker.m.scss';
 
 class PersonPicker extends Component {
@@ -79,5 +79,13 @@ class PersonPicker extends Component {
     );
   }
 }
+
+PersonPicker.propTypes = {
+  isSearching: PropTypes.bool,
+  items: PropTypes.array,
+  value: PropTypes.any,
+  values: PropTypes.array,
+  onChange: PropTypes.func,
+};
 
 export default PersonPicker;

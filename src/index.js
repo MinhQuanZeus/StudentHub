@@ -1,4 +1,3 @@
-/* global document */
 import 'core-js';
 import 'whatwg-fetch';
 import React from 'react';

@@ -123,8 +123,8 @@ class BasicInfo extends Component {
 BasicInfo.propTypes = {
   mode: PropTypes.string,
   subject: PropTypes.string,
-  category: PropTypes.object,
-  sub_category: PropTypes.object,
+  category: PropTypes.any,
+  sub_category: PropTypes.any,
   status: PropTypes.string,
   priority: PropTypes.string,
   is_public: PropTypes.bool,

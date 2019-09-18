@@ -1,4 +1,4 @@
-/* global fetch */
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
@@ -40,6 +40,7 @@ class FlagDetailsContainer extends Component {
     const bodies = await Promise.all(responses.map((response) => response.json()));
 
     this.setState(() => ({
+      mode: 'default',
       isLoading: false,
       details: bodies[0].success ? bodies[0].data : null,
       categories: bodies[1].success ? bodies[1].data : [],
@@ -51,14 +52,26 @@ class FlagDetailsContainer extends Component {
     this.initialize();
   }
 
-  getAfterResponse = () =>{
-    this.setState(() => ({ mode: 'default' }));
+  getAfterResponse = () => {
     this.initialize();
-  }
+  };
 
-  onSuccess() {
-    this.setState(() => ({ mode: 'default' }));
-    this.initialize();
+  async onSuccess() {
+    const { id } = this.props.match.params;
+    const { x_access_token } = this.context.user;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': x_access_token,
+      },
+    };
+    const response = await fetch(`${API_END_POINT}student/flag/detail/${id}`, options);
+    const body = await response.json();
+    this.setState(() => ({
+      mode: 'default',
+      details: body.success ? body.data : null,
+    }));
   }
 
   render() {

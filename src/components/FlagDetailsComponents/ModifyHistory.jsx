@@ -13,7 +13,7 @@ function ModifyHistory({ items }) {
         {items &&
           items.map((o) => (
             <li key={o.id}>
-              <Persona primaryText={o.log} secondaryText={format(o.created_at, 'DD MMM YYYY hh:mm A')} />
+              <Persona text={o.log} secondaryText={format(o.created_at, 'DD MMM YYYY hh:mm A')} />
             </li>
           ))}
       </ul>

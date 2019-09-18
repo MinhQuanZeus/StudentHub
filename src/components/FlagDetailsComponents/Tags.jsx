@@ -41,6 +41,7 @@ class Tags extends Component {
     const { mode, staffs, values } = this.props;
 
     const items = mode === 'default' ? this.props.items : staffs.filter((o) => values.tags.indexOf(o.id) >= 0);
+
     return (
       <div className={css.Tags}>
         <label>Tags</label>
@@ -48,8 +49,12 @@ class Tags extends Component {
         <ul>
           {items &&
             items.map((o) => (
-              <li key={o.id}>
-                <Persona text={o.name || o.full_name} imageUrl={o.photo_url} imageAlt={o.name || o.full_name} />
+              <li key={o.id || `${o.type}${o.user_id}`}>
+                <Persona
+                  text={o.name || `${o.first_name} ${o.last_name}`}
+                  imageUrl={o.photo_url}
+                  imageAlt={o.name || `${o.first_name} ${o.last_name}`}
+                />
                 {mode === 'edit' && (
                   <span onClick={() => this.onRemove(o)}>
                     <i className="fas fa-times" />

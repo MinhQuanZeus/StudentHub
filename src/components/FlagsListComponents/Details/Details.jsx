@@ -124,8 +124,8 @@ Details.propTypes = {
   description: PropTypes.string,
   receivers: PropTypes.array,
   documents: PropTypes.array,
-  category: PropTypes.object,
-  sub_category: PropTypes.object,
+  category: PropTypes.any,
+  sub_category: PropTypes.any,
 };
 
 export default Details;
