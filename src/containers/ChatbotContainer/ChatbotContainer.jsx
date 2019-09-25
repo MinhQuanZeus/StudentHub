@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import styles from './ChatbotContainer.m.scss';
 import { getAccessToken } from '../../helpers';
+import microphone from '../../images/microphone.svg';
 
 class ChatbotContainer extends Component {
   componentDidMount() {
@@ -116,32 +117,34 @@ class ChatbotContainer extends Component {
         <div className={`${styles['chatbox']} chatbox chatbox-min`}>
           <div className={styles['chatbox-top']} onClick={this.onClickMinus}>
             <div className={styles['chatbox-avatar']}>
-              <a href="javascript:void(0);"><img
-                src="../../images/shape.svg"/></a>
+              <a href="javascript:void(0);">
+                <img src="../../images/shape.svg" />
+              </a>
             </div>
             <div className={styles['chat-partner-name']}>
-              <span className="status online"/>
+              <span className="status online" />
               <a href="javascript:void(0);">Cody</a>
             </div>
             <div className="chatbox-icons">
-              <a href="javascript:void(0);"><i className="fa fa-minus"/></a>
+              <a href="javascript:void(0);">
+                <i className="fa fa-minus" />
+              </a>
             </div>
           </div>
 
           <div id="conversation" className={styles['chat-messages']}>
             <div className="message-box-holder">
-              <div className="message-sender">
-                Cody
-              </div>
-              <div className="message-box message-partner">
-                You can ask me for help getting gpa. Just type "GPA"
-              </div>
+              <div className="message-sender">Cody</div>
+              <div className="message-box message-partner">You can ask me for help getting gpa. Just type "GPA"</div>
             </div>
           </div>
 
           <div className={styles['chat-input-holder']}>
-            <input id="wisdom" className={styles['chat-input']} autocomplete="off" placeholder="Type your message"/>
-            <input id="send" type="submit" value="Send" className={styles['message-send']}/>
+            <a href="">
+              <img src={microphone}></img>
+            </a>
+            <input id="wisdom" className={styles['chat-input']} autocomplete="off" placeholder="Type your message" />
+            <input id="send" type="submit" value="Send" className={styles['message-send']} />
           </div>
         </div>
       </div>
