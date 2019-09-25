@@ -52,7 +52,7 @@
 }
 
 .top-bar-bell {
-  height: 16.7px;
+  height: 18.3px;
   float: right;
   margin: 21px 17px 20.7px 0;
   cursor: pointer;
@@ -108,15 +108,51 @@
   }
 }
 
+.NotificationCount {
+  background-color: red;
+  color: #fff;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  top: 10px;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.NotificationPopup {
+  position: absolute;
+  top: 55px;
+}
+
 @media only screen and (min-width: 1200px) {
   .mobile {
     display: none;
+  }
+
+  .NotificationCount {
+    right: 275px;
+  }
+
+  .NotificationPopup {
+    right: 240px;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
   .mobile {
     display: none;
+  }
+
+  .NotificationCount {
+    right: 275px;
+  }
+
+  .NotificationPopup {
+    right: 240px;
   }
 }
 
@@ -160,5 +196,13 @@
     .Line3 {
       width: 20px;
     }
+  }
+
+  .NotificationCount {
+    right: 80px;
+  }
+
+  .NotificationPopup {
+    right: 45px;
   }
 }

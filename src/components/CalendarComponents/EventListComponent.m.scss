@@ -1,0 +1,37 @@
+.EventList {
+  margin: 75px 0;
+
+  .EventCard {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    &.Checklist {
+      border-left: 5px solid #1abd79;
+    }
+
+    &.Meeting {
+      border-left: 5px solid #ff6e6e;
+    }
+
+    &.ProgramEvent {
+      border-left: 5px solid #eaa328;
+    }
+
+    &.SchoolEvent {
+      border-left: 5px solid #7c5615;
+    }
+
+    &.Classes {
+      border-left: 5px solid #8a85a6;
+    }
+
+    .Title {
+      color: #434343;
+      font-size: 17px;
+      font-weight: bold;
+    }
+  }
+}

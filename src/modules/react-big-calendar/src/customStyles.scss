@@ -849,3 +849,95 @@ button.rbc-input::-moz-focus-inner {
     text-transform: capitalize;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .checklist-events {
+    .rbc-event-content {
+      padding: 0;
+    }
+  }
+
+  .rbc-month-row + .rbc-month-row {
+    border-top: none !important;
+  }
+
+  .rbc-date-cell {
+    padding: 0 !important;
+    text-align: center !important;
+
+    a {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+
+  .rbc-date-cell:first-child > a {
+    color: #d3d3d3;
+  }
+
+  .rbc-month-view {
+    border: none;
+  }
+
+  .rbc-row-segment {
+    text-align: center;
+  }
+
+  .rbc-header span {
+    font-size: 12px;
+    font-weight: 600;
+    padding-left: 0;
+  }
+
+  .rbc-header {
+    border-bottom: none;
+    text-align: center;
+  }
+
+  .rbc-header:first-child > span {
+    color: #d3d3d3;
+  }
+
+  .rbc-header + .rbc-header {
+    border-left: none;
+  }
+
+  .rbc-rtl .rbc-header + .rbc-header {
+    border-right: none;
+  }
+
+  .rbc-day-bg + .rbc-day-bg {
+    border-left: none !important;
+  }
+
+  .rbc-rtl .rbc-day-bg + .rbc-day-bg {
+    border-right: none !important;
+  }
+
+  .rbc-calendar {
+    margin-top: 67px;
+    margin-bottom: 45px;
+    position: relative;
+  }
+
+  .toolbar-container {
+    position: absolute;
+    width: 100%;
+    top: -67px;
+  }
+
+  .rbc-event {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .rbc-row-content {
+    .rbc-row {
+      .rbc-now {
+        a {
+          padding: 4px;
+        }
+      }
+    }
+  }
+}

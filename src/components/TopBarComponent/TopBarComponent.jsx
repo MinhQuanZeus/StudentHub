@@ -108,18 +108,6 @@ export class TopBarComponent extends Component {
   onOpenCloseCalendarNotification = () => {
     this.setState({ isOpenCalendarNotification: !this.state.isOpenCalendarNotification });
     document.addEventListener('mousedown', this.handleClickOutside);
-    window.addEventListener('resize', this.setCalendarNotificationPosition);
-    this.setCalendarNotificationPosition();
-  };
-
-  setCalendarNotificationPosition = () => {
-    const elem = document.getElementById('notificationIcon');
-    const viewportOffset = elem.getBoundingClientRect();
-    const right = window.innerWidth - viewportOffset.left;
-    const style = this.calendarNotificationRef.current.style;
-    style.position = 'absolute';
-    style.right = `${right - 50}px`;
-    style.top = '60px';
   };
 
   handleClickOutside = (e) => {
@@ -127,8 +115,7 @@ export class TopBarComponent extends Component {
       setTimeout(() => {
         this.setState({ isOpenCalendarNotification: false });
         document.removeEventListener('mousedown', this.handleClickOutside);
-        window.removeEventListener('resize', this.setCalendarNotificationPosition);
-      }, 300);
+      }, 200);
     }
   };
 
@@ -165,7 +152,8 @@ export class TopBarComponent extends Component {
           className={css['top-bar-bell']}
           onClick={this.onOpenCloseCalendarNotification}
         />
-        <div ref={this.calendarNotificationRef}>
+        <div className={css.NotificationCount} onClick={this.onOpenCloseCalendarNotification}>2</div>
+        <div ref={this.calendarNotificationRef} className={css.NotificationPopup}>
           <CalendarNotification isOpen={isOpenCalendarNotification} />
         </div>
       </nav>

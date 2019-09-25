@@ -2,8 +2,8 @@
   width: 100%;
 
   > div:first-child {
-    display: flex;
-    grid-template-columns: 25% 75%;
+    display: grid;
+    grid-template-columns: 15% 85%;
 
     .CalendarLeftContainer {
       margin-right: 20px;
@@ -17,6 +17,10 @@
       width: 100%;
       box-sizing: inherit;
     }
+  }
+
+  .MobileView {
+    display: none;
   }
 
   .CreateEventBtn {
@@ -36,6 +40,59 @@
 
     &:hover {
       cursor: pointer;
+    }
+  }
+}
+
+.FilterIcon {
+  .TriangleTop {
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 16px solid #8a85a6;
+    margin: 0 0 -4px -12px;
+  }
+
+  .Rectangle {
+    height: 0;
+    width: 0;
+    border: 4px solid #8a85a6;
+  }
+
+  .TriangleBottom {
+    width: 0;
+    height: 0;
+    border-right: 8px solid #8a85a6;
+    border-bottom: 8px solid transparent;
+  }
+}
+
+.Filter {
+  display: flex;
+  width: 70px;
+  cursor: pointer;
+  height: 30px;
+
+  p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #8a85a6;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .CalendarContainer {
+    > div:first-child {
+      display: block;
+    }
+
+    .MobileView {
+      display: block;
+    }
+
+    .DesktopView {
+      display: none;
     }
   }
 }

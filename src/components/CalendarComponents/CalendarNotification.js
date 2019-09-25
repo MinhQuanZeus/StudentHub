@@ -58,6 +58,7 @@ export const CalendarNotification = (props) => {
     <div>
       {isOpen && (
         <div className={css.CalendarNotificationContainer}>
+          <div className={css.TriangleUp}></div>
           <div className={css.TopHeader}>
             <div className={css.Notification}>Notification</div>
             <div className={css.MarkAsRead}>Mark as read</div>

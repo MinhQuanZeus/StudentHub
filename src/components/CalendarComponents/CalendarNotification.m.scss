@@ -5,6 +5,17 @@
   box-shadow: 0 2px 14px 0 rgba(53, 36, 128, 0.23);
   background-color: #fff;
 
+  .TriangleUp {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 14px solid #fff;
+    position: absolute;
+    top: -13px;
+    right: 40px;
+  }
+
   .TopHeader {
     display: flex;
     padding: 10px;

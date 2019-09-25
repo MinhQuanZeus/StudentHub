@@ -1,0 +1,68 @@
+.EventCard {
+  display: grid;
+  grid-template-columns: 50px auto;
+  background-color: #fff;
+  padding: 15px 20px;
+
+  .LeftSide {
+    border-right: 1px solid #f0eff6;
+
+    p {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: normal;
+      color: #8a85a6;
+    }
+  }
+
+  .RightSide {
+    padding-left: 15px;
+
+    .EventTitle {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: normal;
+      color: #413d59;
+    }
+  }
+}
+
+.EventDetails {
+  display: block;
+  background-color: #fff;
+  padding: 15px 20px;
+
+  .Label {
+    font-size: 12px;
+    font-weight: 900;
+    line-height: normal;
+    color: #413d59;
+    margin-top: 14px;
+    margin-bottom: 4px;
+  }
+
+  .Info {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: normal;
+    color: #8a85a6;
+  }
+
+  .ContactInfo {
+    margin-top: 14px;
+
+    .GridBox {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 50px 50px;
+    }
+
+    .Header {
+      font-size: 10px;
+      font-weight: 900;
+      line-height: normal;
+      letter-spacing: 0.71px;
+      color: #c0bece;
+    }
+  }
+}

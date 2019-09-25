@@ -9,6 +9,8 @@ import css from './CalendarContainer.m.scss';
 import HeaderComponent from '../../components/HeaderComponent/HeaderComponent';
 import CategoryList from '../../components/CalendarComponents/CategoryList';
 import InvitationList from '../../components/CalendarComponents/InvitationList';
+import EventListComponent from '../../components/CalendarComponents/EventListComponent';
+import EventDetailsComponent from '../../components/CalendarComponents/EventDetailsComponent';
 
 const popup = (event, e) => {
   if (event.category === 'classes') {
@@ -50,7 +52,8 @@ const popup = (event, e) => {
 class CalendarContainer extends Component {
   constructor(props) {
     super(props);
-
+    this.calendarContainerRef = React.createRef();
+    this.eventListComponentRef = React.createRef();
     this.state = {
       events: [],
       calendarEvents: [],
@@ -59,20 +62,46 @@ class CalendarContainer extends Component {
       invitationListShow: true,
       selectedDate: new Date(),
       categories: CALENDER_EVENTS_FILTER_BY_CATEGORY_OPTIONS,
+      viewMode: 'DESKTOP',
+      showEventDetails: false,
     };
   }
 
   componentDidMount() {
     this.onDateChanged(new Date());
+    window.addEventListener('resize', this.setViewMode);
+    this.setViewMode();
   }
 
-  onChangedCategoryFilter = (category) => {
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setViewMode);
+  }
+
+  setViewMode = () => {
+    const width = window.innerWidth;
+    const viewMode = width < 767 ? 'MOBILE' : 'DESKTOP';
+    const isDesktopViewMode = viewMode === 'DESKTOP' ? true : false;
+    if (viewMode !== this.state.viewMode) {
+      this.setState({ viewMode: viewMode, categoryListShow: isDesktopViewMode, invitationListShow: isDesktopViewMode });
+    }
+  };
+
+  onCheckedCategory = (category) => {
     const categories = this.state.categories;
     categories.map((item) => (item.isActive = item.value === category.value ? !category.isActive : item.isActive));
+    this.setState({ categories: categories });
+    if (this.state.viewMode === 'DESKTOP') {
+      this.onApplyFilter();
+    }
+  };
+
+  onApplyFilter = () => {
+    const isMobileViewMode = this.state.viewMode === 'MOBILE' ? false : true;
+    const categories = this.state.categories;
     const selectedCategory = categories.filter((item) => item.isActive).map((item) => item.value);
     const events = this.state.events || [];
     const calendarEvents = events.filter((event) => selectedCategory.includes(event.category));
-    this.setState({ categories: categories, calendarEvents: calendarEvents });
+    this.setState({ calendarEvents: calendarEvents, categoryListShow: isMobileViewMode });
   };
 
   _getEndDates(startDate, endDate = null) {
@@ -157,38 +186,150 @@ class CalendarContainer extends Component {
     }
   }
 
-  render() {
-    const { calendarEvents, currentEvent, categoryListShow, invitationListShow, selectedDate, categories } = this.state;
+  getCategoryListComponent = () => {
+    const { viewMode, categoryListShow, categories } = this.state;
+    const isMobileViewMode = viewMode === 'MOBILE' ? true : false;
     return (
-      <div className={`${sharedStyles['content-container']} ${css.CalendarContainer}`}>
-        <div>
-          <div className={`${css.CalendarLeftContainer}`}>
-            <HeaderComponent labels={['Calendar']} />
-            <div className={css.CreateEventBtn}>Create Event</div>
-            <div className={css.LeftSideList}>
-              <CategoryList
-                categoryListShow={categoryListShow}
-                onToggle={this.onToggle}
-                categories={categories}
-                onChangedCategoryFilter={this.onChangedCategoryFilter}
-              />
-              <InvitationList invitationListShow={invitationListShow} onToggle={this.onToggle} />
+      <CategoryList
+        categoryListShow={categoryListShow}
+        onToggle={this.onToggle}
+        categories={categories}
+        label={isMobileViewMode ? 'Filter' : 'Category List'}
+        onCheckedCategory={this.onCheckedCategory}
+        checkbox={isMobileViewMode}
+        viewMode={viewMode}
+        onApplyFilter={this.onApplyFilter}
+      />
+    );
+  };
+
+  getInvitationListComponent = () => {
+    const { invitationListShow } = this.state;
+    return <InvitationList invitationListShow={invitationListShow} onToggle={this.onToggle} />;
+  };
+
+  getHeaderComponent = () => {
+    const { categoryListShow } = this.state;
+    return (
+      <HeaderComponent labels={['Calendar']}>
+        <div className={css.MobileView}>
+          <div className={css.Filter} onClick={() => this.onToggle('categoryListShow')}>
+            <div className={css.FilterIcon}>
+              <div className={css.TriangleTop}></div>
+              <div className={css.Rectangle}></div>
+              <div className={css.TriangleBottom}></div>
+            </div>
+            <div>
+              <p>{categoryListShow ? 'Cancel' : 'Filter'}</p>
             </div>
           </div>
-          <div className={css.CalendarRightContainer}>
-            <CalendarComponent
-              calendarData={calendarEvents || []}
-              onDateChanged={(startDate, endDate) => this.onDateChanged(startDate, endDate)}
-              onSelectEvent={(event, e) => {
-                this.setState({ currentEvent: event });
-                popup(event, e);
-              }}
-              selectedDate={selectedDate}
-              onNavigate={this.onNavigate}
-            />
-            <CalendarPopup eventDetail={currentEvent} />
+        </div>
+      </HeaderComponent>
+    );
+  };
+
+  onSelectEvent = (event, e) => {
+    this.setState({ currentEvent: event });
+    if (this.state.viewMode === 'MOBILE') {
+      this.calendarContainerRef.current.scrollTo({
+        top: this.eventListComponentRef.current.offsetTop - 110,
+        behavior: 'smooth',
+      });
+    } else {
+      popup(event, e);
+    }
+  };
+
+  getCalendarComponent = () => {
+    const { calendarEvents, currentEvent, selectedDate, viewMode } = this.state;
+    return (
+      <div>
+        <CalendarComponent
+          calendarData={calendarEvents || []}
+          onDateChanged={(startDate, endDate) => this.onDateChanged(startDate, endDate)}
+          onSelectEvent={(event, e) => this.onSelectEvent(event, e)}
+          selectedDate={selectedDate}
+          onNavigate={this.onNavigate}
+          viewMode={viewMode}
+        />
+        <CalendarPopup eventDetail={currentEvent} />
+      </div>
+    );
+  };
+
+  onShowHideEventDetails = (show, event) => {
+    this.setState({
+      showEventDetails: show,
+      currentEvent: show ? event : {},
+    });
+  };
+
+  getMobileViewContent = () => {
+    const { categoryListShow, currentEvent } = this.state;
+
+    if (this.state.showEventDetails) {
+      return (
+        <div>
+          <div onClick={() => this.onShowHideEventDetails(false)}>
+            <HeaderComponent labels={['Back to Calendar']} />
+          </div>
+          <EventDetailsComponent event={currentEvent} />
+        </div>
+      );
+    }
+
+    return (
+      <div className={css.MobileView}>
+        {this.getHeaderComponent()}
+        {categoryListShow && (
+          <div>
+            <hr></hr>
+            {this.getCategoryListComponent()}
+          </div>
+        )}
+        <hr></hr>
+        {this.getInvitationListComponent()}
+        <hr></hr>
+        {this.getCalendarComponent()}
+        <div ref={this.eventListComponentRef}>
+          <EventListComponent
+            currentEvent={currentEvent}
+            eventList={currentEvent.multiEvents || []}
+            onShowHideEventDetails={this.onShowHideEventDetails}
+          />
+        </div>
+      </div>
+    );
+  };
+
+  getDesktopViewContent = () => {
+    return (
+      <div>
+        <div className={`${css.CalendarLeftContainer}`}>
+          <HeaderComponent labels={['Calendar']} />
+          <div className={css.CreateEventBtn}>Create Event</div>
+          <div className={css.LeftSideList}>
+            {this.getCategoryListComponent()}
+            {this.getInvitationListComponent()}
           </div>
         </div>
+        <div className={css.CalendarRightContainer}>{this.getCalendarComponent()}</div>
+      </div>
+    );
+  };
+
+  getContent = () => {
+    if (this.state.viewMode === 'MOBILE') {
+      return this.getMobileViewContent();
+    } else {
+      return this.getDesktopViewContent();
+    }
+  };
+
+  render() {
+    return (
+      <div ref={this.calendarContainerRef} className={`${sharedStyles['content-container']} ${css.CalendarContainer}`}>
+        {this.getContent()}
       </div>
     );
   }
