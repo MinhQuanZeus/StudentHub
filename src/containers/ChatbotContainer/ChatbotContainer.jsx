@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import styles from './ChatbotContainer.m.scss';
 import { getAccessToken } from '../../helpers';
 import microphone from '../../images/microphone.svg';
+import chatbotAvatar from '../../images/chatbot-avatar.png';
 
 class ChatbotContainer extends Component {
   componentDidMount() {
@@ -118,7 +119,7 @@ class ChatbotContainer extends Component {
           <div className={styles['chatbox-top']} onClick={this.onClickMinus}>
             <div className={styles['chatbox-avatar']}>
               <a href="javascript:void(0);">
-                <img src="../../images/shape.svg" />
+                <img src={chatbotAvatar} />
               </a>
             </div>
             <div className={styles['chat-partner-name']}>
@@ -135,7 +136,18 @@ class ChatbotContainer extends Component {
           <div id="conversation" className={styles['chat-messages']}>
             <div className="message-box-holder">
               <div className="message-sender">Cody</div>
-              <div className="message-box message-partner">You can ask me for help getting gpa. Just type "GPA"</div>
+              <div className="message-box message-partner">
+                Hi! I am your personal assistance. You can ask me everything! For example, to get your current GPA, just type “GPA” or click
+                on the microphone and say “GPA.”
+              </div>
+            </div>
+            <div className={styles['message-options']}>
+              <div className={styles['message-options-text']}>Please specify a checklist:</div>
+              <div className={styles['message-options-btns']}>
+                <a href="javascript:void(0);">Result 1</a>
+                <a href="javascript:void(0);">Result 2</a>
+                <a href="javascript:void(0);">Another Result</a>
+              </div>
             </div>
           </div>
 

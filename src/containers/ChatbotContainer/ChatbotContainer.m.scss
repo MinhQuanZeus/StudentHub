@@ -185,6 +185,35 @@ ul {
   border-left: none;
 }
 
+.message-options {
+  display: none;
+}
+
+.message-options-text {
+  color: #6c6c6c;
+  font-size: 14px;
+}
+
+.message-hyperlink {
+  color: blue;
+  text-decoration: underline;
+}
+
+.message-options-btns a {
+  background-color: #f0eff6;
+  color: #8a85a6;
+  padding: 1px 5px;
+  margin: 0 3px 0 3px;
+  border-radius: 2px;
+  border: 2px solid white;
+  font-size: 12px;
+  overflow-wrap: break-word;
+}
+
+.message-options-btns a:hover {
+  border: 2px solid rgba(0, 0, 0, 0.05);
+}
+
 .chat-input-holder {
   display: flex;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
