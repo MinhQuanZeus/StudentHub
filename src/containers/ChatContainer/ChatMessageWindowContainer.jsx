@@ -10,6 +10,7 @@ import { Icon } from 'office-ui-fabric-react';
 import Chat from 'twilio-chat';
 import { getAccessToken, getUser } from '../../helpers';
 import { apiConstants } from '../../constants/applicationConstants';
+import VideoCall from '../../components/ChatComponents/VideoCall';
 
 class ChatMessageWindowContainer extends Component {
   constructor(props) {
@@ -20,6 +21,8 @@ class ChatMessageWindowContainer extends Component {
       groupDetails: {},
       currentUser: getUser(),
     };
+
+    this.videoCallRef = React.createRef();
   }
 
   componentDidMount() {}
@@ -122,8 +125,13 @@ class ChatMessageWindowContainer extends Component {
     this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
   };
 
+  onVideoCall = () => {
+    this.setState({ openVideoCall: true });
+    this.videoCallRef.current.joinRoom('room');
+  };
+
   render() {
-    const { messages, currentUser, groupDetails } = this.state;
+    const { messages, currentUser, groupDetails, openVideoCall, token } = this.state;
     const userId = currentUser.student && currentUser.student.id;
     return (
       <div className="ChatMessageWindow-container">
@@ -131,7 +139,7 @@ class ChatMessageWindowContainer extends Component {
           <img className="ChatMessageWindow-header-img" src={IconInvalidName} />
           <span className="ChatMessageWindow-header-title">{groupDetails.group_name}</span>
           <img className="ChatMessageWindow-header-phone" src={phone} />
-          <img className="ChatMessageWindow-header-camera" src={video} />
+          <img className="ChatMessageWindow-header-camera" src={video} onClick={this.onVideoCall}/>
         </div>
 
         <div style={{ marginBottom: '80px', marginTop: '65px' }}>
@@ -168,6 +176,7 @@ class ChatMessageWindowContainer extends Component {
         <div className="ChatMessageWindow-input-container">
           <MessageInput />
         </div>
+        <VideoCall ref={this.videoCallRef} token={token} isOpen={openVideoCall} cancel={() => this.setState({ openVideoCall: false })}/>
       </div>
     );
   }
