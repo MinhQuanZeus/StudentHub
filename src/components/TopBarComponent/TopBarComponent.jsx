@@ -126,7 +126,7 @@ export class TopBarComponent extends Component {
       <nav className={css['top-bar-container']}>
         <div className={css['desktop']}>
           <Link className={css['top-bar-icon-link']} to="/">
-            <img src="images/shape.svg" className={css['top-bar-icon']} alt="" />
+            <img src="images/menu-icons/successhub-small-white-logo.svg" className={css['top-bar-icon']} alt="" />
           </Link>
         </div>
         <div className={css['mobile']}>

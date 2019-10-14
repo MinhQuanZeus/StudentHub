@@ -1,170 +1,169 @@
-.nav-bar {
-  // position: fixed;
-  width: 64px;
-  height: 100%;
-  // top: 61px;
-  background-color: #fff;
-  // z-index: 4;
-  box-shadow: 1px 0 0 0 #f0eff6;
+.Navbar {
+  background-color: #6647ff;
   z-index: 1000;
+
+  .NavbarContainer {
+    height: 100%;
+    box-shadow: 1px 0 0 0 #f0eff6;
+
+    .NavbarList {
+      list-style-type: none;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      padding-top: 12px;
+      background-color: #6647ff;
+      border-top: 1px solid #fafafc;
+
+      li {
+        padding: 12px 24px;
+
+        .Logout {
+          cursor: pointer;
+        }
+
+        .NavbarTitle {
+          padding-left: 24px;
+          font-size: 14px;
+          font-family: 'Avenir';
+          font-weight: 500;
+          color: #cac0ff;
+        }
+
+        &.active {
+          border-left: 2px solid #f0eff6;
+          background-color: #5335e7;
+
+          img {
+            filter: brightness(100) contrast(100);
+          }
+
+          .NavbarTitle {
+            color: #f0eff6;
+          }
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .NavbarContainer {
+      width: 175px;
+
+      .NavbarTitle {
+        display: inline;
+      }
+    }
+  }
 }
 
-.Navbar {
+@media only screen and (min-width: 1200px) {
+  .Navbar {
+    .NavbarContainer {
+      width: 64px;
+
+      .NavbarTitle {
+        display: none;
+      }
+
+      .UserInfo {
+        display: none;
+      }
+
+      .MobileViewItem {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .Navbar {
+    .NavbarContainer {
+      width: 64px;
+
+      .MobileViewItem {
+        display: none;
+      }
+
+      .NavbarTitle {
+        display: none;
+      }
+
+      .UserInfo {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-height: 676px) and (max-width: 767px) {
+  .Navbar {
+    .NavbarContainer {
+      width: 246px;
+      position: fixed;
+      display: none;
+
+      .HideNavbar {
+        display: none;
+      }
+
+      .ShowNavbar {
+        display: block;
+      }
+
+      .UserInfo {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-height: 676px) and (max-width: 767px) {
   .NavbarContainer {
-    // position: fixed;
-    height: 100%;
-    // top: 61px;
-    background-color: #fff;
-    // z-index: 4;
-    box-shadow: 1px 0 0 0 #f0eff6;
-    z-index: 1000;
-  }
+    width: 246px;
+    position: fixed;
+    left: -247px;
+    top: 0;
 
-  .NavbarList {
-    list-style-type: none;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    // padding-left: 24px;
-  }
-
-  .NavbarList li {
-    padding: 16px 0 16px 24px;
-    // position: relative;
-    // left: -250;
-  }
-
-  .NavbarList li.active {
-    border-left: 2px solid #b8aafc;
-  }
-
-  .Logout {
-    cursor: pointer;
-  }
-
-  @media only screen and (min-width: 1200px) {
-    .NavbarContainer {
-      width: 64px;
-    }
-
-    .NavbarTitle {
-      display: none;
-    }
-
-    .UserInfo {
-      display: none;
-    }
-
-    .MobileViewItem {
-      display: none;
-    }
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 1199px) {
-    .MobileViewItem {
-      display: none;
-    }
-
-    .NavbarContainer {
-      width: 64px;
-    }
-
-    .NavbarTitle {
-      display: none;
-    }
-
-    .UserInfo {
-      display: none;
-    }
-  }
-
-  @media only screen and (min-height: 676px) and (max-width: 767px) {
-    .NavbarContainer {
-      width: 246px;
-      position: fixed;
-      display: none;
-    }
-
-    .HideNavbar {
-      display: none;
-    }
-
-    .ShowNavbar {
-      display: block;
-    }
-
-    .NavbarTitle {
-      color: #8a85a6;
-      margin-left: 24px;
-    }
-
-    .UserInfo {
-      display: none;
-    }
-  }
-
-  @media only screen and (max-height: 676px) and (max-width: 767px) {
-    .NavbarContainer {
-      width: 246px;
-      position: fixed;
-      left: -247px;
-      top: 0;
-      background-color: #333333c6;
-    }
-
-    .NavbarContainer[data-navbar="open"] {
+    &[data-navbar='open'] {
       width: 100vw;
     }
 
     .NavbarItem {
-      background: #fff;
-      width: 246px;
-      height: 100%;
-      box-shadow: 1px 0 0 0 #f0eff6;
-    }
-
-    .NavbarList li:first-child {
-      padding-top: 14px;
-    }
-
-    .NavbarList li {
-      padding: 0 0 14px 24px;
-    }
-
-    .NavbarTitle {
-      color: #8a85a6;
-      margin-left: 24px;
-    }
-
-    .UserInfo {
-      background-color: #6647ff;
-      height: 135px;
       width: 247px;
-      text-align: center;
+      height: 100%;
+    }
+  }
 
-      .UserAvatar img {
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-        margin-top: 20px;
-        margin-bottom: 4px;
-      }
+  .UserInfo {
+    background-color: #6647ff;
+    height: 135px;
+    width: 247px;
+    text-align: center;
 
-      .UserName {
-        font-size: 16px;
-        font-weight: 900;
-        color: #fff;
-      }
+    .UserAvatar img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      margin-top: 20px;
+      margin-bottom: 4px;
+    }
 
-      .UserName p {
+    .UserName {
+      font-size: 16px;
+      font-weight: 900;
+      color: #fff;
+
+      p {
         margin: 0;
       }
+    }
 
-      .UserMajor {
-        font-size: 12px;
-        color: #c7c1e8;
-        width: 100%;
-      }
+    .UserMajor {
+      font-size: 12px;
+      color: #c7c1e8;
+      width: 100%;
     }
   }
 }

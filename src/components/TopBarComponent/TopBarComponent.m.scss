@@ -1,13 +1,10 @@
 .top-bar-container {
   position: relative;
-  // top: 0;
   height: 60px;
   line-height: 60px;
   width: 100%;
   box-shadow: 0 1px 0 0 #ebebeb;
-  // z-index: 100;
   background-color: #fff;
-  //overflow: hidden;
   z-index: 1000;
 }
 
@@ -15,6 +12,7 @@
   position: fixed;
   height: 60px;
   width: 64px;
+  background-color: #6647ff;
   top: 0;
   left: 0;
   box-shadow: 1px 0 0 0 #f0eff6;
@@ -172,6 +170,7 @@
 
   .top-bar-icon-link {
     box-shadow: none;
+    background-color: #fff;
   }
 
   .NavbarMenuBtn {

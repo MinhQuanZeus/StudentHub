@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* global fetch */
 import React, { Component } from 'react';
 import { Popup } from '../Popup';
 import { Stepper, Step } from '../Stepper';
@@ -176,11 +175,16 @@ class FlagCreator extends Component {
     this.handleApiError($json);
   }
 
+  onPupopDismiss = ($event) => {
+    this.setState({ current: 1 });
+    this.props.onDismiss($event);
+  }
+
   render() {
     const { props, state } = this;
 
     return (
-      <Popup title="Create New Flag" isOpen={props.isOpen} className={css.FlagCreator} onDismiss={props.onDismiss}>
+      <Popup title="Create New Flag" isOpen={props.isOpen} className={css.FlagCreator} onDismiss={this.onPupopDismiss}>
         <Stepper className={css.Stepper} current={state.current}>
           <Step index={1} title="Info" className={css.Step1} current={this.state.current} />
           <Step index={2} title="Details" className={css.Step2} current={this.state.current} />

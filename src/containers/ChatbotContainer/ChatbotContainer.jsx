@@ -1,4 +1,4 @@
-/* global AWS, document */
+/* global AWS */
 import React, { Component } from 'react';
 import styles from './ChatbotContainer.m.scss';
 import { getAccessToken } from '../../helpers';
@@ -155,7 +155,7 @@ class ChatbotContainer extends Component {
             <a href="">
               <img src={microphone}></img>
             </a>
-            <input id="wisdom" className={styles['chat-input']} autocomplete="off" placeholder="Type your message" />
+            <input id="wisdom" className={styles['chat-input']} autoComplete="off" placeholder="Type your message" />
             <input id="send" type="submit" value="Send" className={styles['message-send']} />
           </div>
         </div>

@@ -52,7 +52,7 @@ class Details extends Component {
           is_public: is_public ? '1' : '0',
           description: description,
           assigned_to: assigner && assigner.assign_id,
-          tags: receivers.map((o) => o.user_id.toString()),
+          tags: receivers.map((o) => o.user_id ? o.user_id.toString() : ''),
           status: status,
         }}
         onSubmit={(values, bag) => {
