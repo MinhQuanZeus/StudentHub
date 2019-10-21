@@ -6,7 +6,6 @@ import MessageInput from '../../components/ChatComponents/ChatMessageInput';
 import IconInvalidName from '../../images/chat/invalid-name.png';
 import phone from '../../images/chat/shape-phone.png';
 import video from '../../images/chat/video-call.PNG';
-import { Icon } from 'office-ui-fabric-react';
 import Chat from 'twilio-chat';
 import { getAccessToken, getUser } from '../../helpers';
 import { apiConstants } from '../../constants/applicationConstants';
@@ -18,6 +17,7 @@ class ChatMessageWindowContainer extends Component {
     this.state = {
       messages: [],
       token: null,
+      videoCallToken: null,
       groupDetails: {},
       currentUser: getUser(),
     };
@@ -110,11 +110,13 @@ class ChatMessageWindowContainer extends Component {
     const responses = await Promise.all([
       fetch(`${apiConstants.BACKEND_URL}chat/token`, options),
       fetch(`${apiConstants.BACKEND_URL}chat/chat_group/${groupDetails.chatroom_id}/messages`, options),
+      fetch(`${apiConstants.BACKEND_URL}video/token`, options),
     ]);
     const bodies = await Promise.all(responses.map((o) => o.json()));
     this.setState({
       token: bodies[0].data && bodies[0].data.token,
       messages: bodies[1].data,
+      videoCallToken: bodies[2].data && bodies[2].data.token,
     });
     this.initChat();
 
@@ -131,7 +133,7 @@ class ChatMessageWindowContainer extends Component {
   };
 
   render() {
-    const { messages, currentUser, groupDetails, openVideoCall, token } = this.state;
+    const { messages, currentUser, groupDetails, openVideoCall, token, videoCallToken } = this.state;
     const userId = currentUser.student && currentUser.student.id;
     return (
       <div className="ChatMessageWindow-container">
@@ -176,7 +178,7 @@ class ChatMessageWindowContainer extends Component {
         <div className="ChatMessageWindow-input-container">
           <MessageInput />
         </div>
-        <VideoCall ref={this.videoCallRef} token={token} isOpen={openVideoCall} cancel={() => this.setState({ openVideoCall: false })}/>
+        <VideoCall ref={this.videoCallRef} token={videoCallToken} isOpen={openVideoCall} cancel={() => this.setState({ openVideoCall: false })}/>
       </div>
     );
   }
