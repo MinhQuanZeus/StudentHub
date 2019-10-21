@@ -7,20 +7,32 @@ import './ChatContainer.css';
 class ChatContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedGroup: null
+    }
     this.chatMessageWindowContainerRef = React.createRef();
   }
 
   onSelectGroup = (group) => {
     this.setState({ selectedGroup: group });
-    this.chatMessageWindowContainerRef.current.onSelectedGroup(group);
+    setTimeout(() => {
+      this.chatMessageWindowContainerRef.current.onSelectedGroup(group);
+    }, 300)
   };
 
   render() {
+    const { selectedGroup } = this.state;
     return (
       <div className="ChatContainer">
         <ChatSidebarContainer onSelectGroup={this.onSelectGroup} />
-        <ChatMessageWindowContainer ref={this.chatMessageWindowContainerRef} />
-        <ChatDetailsContainer />
+        {
+          selectedGroup && (
+            <>
+              <ChatMessageWindowContainer ref={this.chatMessageWindowContainerRef} />
+              <ChatDetailsContainer />
+            </>
+          )
+        }
       </div>
     );
   }

@@ -141,11 +141,16 @@ class VideoCall extends Component {
     this.setState({ hasJoinedRoom: false, localMediaAvailable: false });
   }
 
+  onCancel = () => {
+    this.props.cancel();
+    this.leaveRoom();
+  };
+
   render() {
     const { isOpen, cancel } = this.props;
     let showLocalTrack = this.state.localMediaAvailable ? (
       <div className="flex-item">
-        <div ref="localMedia"/>
+        <div id="local-media" ref="localMedia"/>
       </div>
     ) : (
       ''
