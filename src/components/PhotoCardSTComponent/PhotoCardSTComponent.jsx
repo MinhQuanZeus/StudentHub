@@ -8,8 +8,9 @@ class PhotoCardST extends Component {
   }
 
   render() {
+    const { isSelected, onSelectGroup } = this.props;
     return (
-      <div className="PhotoCardST-container">
+      <div className={`PhotoCardST-container ${isSelected && 'PhotoCardST-Selected'}`} onClick={onSelectGroup}>
         <img src={IconInvalidName} />
         <div className="PhotoCardST-text-container">
           <p className="PhotoCardST-text-name">{this.props.name}</p>

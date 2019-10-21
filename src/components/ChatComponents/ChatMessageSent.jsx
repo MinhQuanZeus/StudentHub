@@ -14,7 +14,7 @@ class ChatMessageSent extends Component {
             <p className="ChatMessageSent-message">{this.props.message}</p>
             <span className="ChatMessageSent-timestamp">{this.props.timestamp}</span>
           </div>
-          <img className="ChatMessageSent-img" />
+          {/*<img className="ChatMessageSent-img" />*/}
         </div>
       </div>
     );

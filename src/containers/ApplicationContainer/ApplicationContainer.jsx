@@ -18,6 +18,7 @@ import MyProfileContainer from '../MyProfileContainer';
 import css from './ApplicationContainer.m.scss';
 import CalendarContainer from '../CalendarContainer';
 import ChatbotContainer from '../ChatbotContainer';
+import ChatContainer from '../ChatContainer/ChatContainer';
 
 class ApplicationContainer extends Component {
   componentWillMount() {
@@ -55,6 +56,7 @@ class ApplicationContainer extends Component {
             <Route component={FlagsListContainer} exact path="/flags" />
             <Route component={FlagDetailsContainer} path="/flags/:id" />
             <Route component={CalendarContainer} path="/calendar" />
+            <Route component={ChatContainer} path="/chat" />
           </Switch>
           {!['/check-list', '/calendar'].includes(currentPath) && <NotificationContainer />}
         </div>

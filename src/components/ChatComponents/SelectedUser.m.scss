@@ -1,0 +1,28 @@
+.SelectedUser {
+  text-align: center;
+  .Icons {
+    position: relative;
+    text-align: center;
+    width: fit-content;
+    .Avatar {
+      margin: 0 auto;
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .DeleteIcon {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-color: #cccccc;
+      border: solid 1.5px #ffffff;
+      font-size: 8px;
+      top: 26px;
+      right: 0;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+}
