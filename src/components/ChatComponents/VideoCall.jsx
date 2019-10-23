@@ -150,8 +150,8 @@ class VideoCall extends Component {
   render() {
     const { isOpen, cancel, groupDetails } = this.props;
     let showLocalTrack = this.state.localMediaAvailable ? (
-      <div className={css.FlexItem}>
-        <div id="local-media" ref="localMedia" />
+      <div>
+        <div className={css.LocalMedia} id="local-media" ref="localMedia" />
       </div>
     ) : (
       ''
@@ -166,7 +166,7 @@ class VideoCall extends Component {
           <div className="card-body">
             <div className={css.FlexContainer}>
               {showLocalTrack}
-              <div className={`${css.FlexItem} ${css.RemoteMedia}`} ref="remoteMedia" id="remote-media" />
+              <div className={`${css.RemoteMedia}`} ref="remoteMedia" id="remote-media" />
             </div>
           </div>
         </div>

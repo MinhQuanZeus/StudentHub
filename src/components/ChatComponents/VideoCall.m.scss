@@ -27,10 +27,17 @@
   }
   :global(.card-body) {
     .FlexContainer {
-      display: flex;
-      justify-content: space-between;
-      padding: 5px;
-      margin-top: 10px;
+      position: relative;
+    }
+
+    .LocalMedia {
+      position: absolute;
+      right: 0;
+      top: 0;
+      video {
+        width: 100px;
+        height: 100px;
+      }
     }
 
     .FlexItem {
@@ -55,8 +62,8 @@
     }
 
     .RemoteMedia video {
-      width: inherit;
-      height: 200px;
+      width: 600px;
+      height: 600px;
     }
   }
 }
