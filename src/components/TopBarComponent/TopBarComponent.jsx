@@ -119,6 +119,10 @@ export class TopBarComponent extends Component {
     }
   };
 
+  goChat = () => {
+    navigate('/chat');
+  }
+
   render() {
     const { user } = this.props;
     const { isOpenCalendarNotification } = this.state;
@@ -144,7 +148,7 @@ export class TopBarComponent extends Component {
           <span className={css['top-bar-user-full-name']}>{user && user.first_name + ' ' + user.last_name}</span>
         </h5>
         <UserInfo user={user} isOpenMenu={this.state.isOpenMenu} onShowMenu={this.onShowMenu} onLogout={this.onLogout} />
-        <img alt="comment" src="/images/comment.svg" className={css['top-bar-comment']} />
+        <img alt="comment" src="/images/comment.svg" className={css['top-bar-comment']} onClick={this.goChat}/>
         <img
           id="notificationIcon"
           alt="bell"
