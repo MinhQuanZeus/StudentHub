@@ -13,11 +13,9 @@
 }
 
 .ChatMessageSent-Background {
-
-
 }
 
-.ChatMessageSent-Background div{
+.ChatMessageSent-Background div {
   max-width: 480px;
   float: right;
   background-color: #6666ff;

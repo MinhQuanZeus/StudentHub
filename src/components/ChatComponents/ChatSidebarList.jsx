@@ -29,7 +29,7 @@ class ChatUnreadList extends Component {
       <div>
         <div style={headerStyle}>{this.props.listHeaderText}</div>
         {groups &&
-          groups.length &&
+          groups.length > 0 &&
           groups.map((item, index) => (
             <PhotoCardST
               onSelectGroup={() => this.onSelectGroup(item)}

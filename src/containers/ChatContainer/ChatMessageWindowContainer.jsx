@@ -79,6 +79,7 @@ class ChatMessageWindowContainer extends Component {
   };
 
   messageAdded = (message) => {
+    console.log(message);
     const mess = JSON.parse(message.state.body);
     const m = {
       message: mess && mess.message,
@@ -128,8 +129,9 @@ class ChatMessageWindowContainer extends Component {
   };
 
   onVideoCall = () => {
+    const { groupDetails } = this.state;
     this.setState({ openVideoCall: true });
-    this.videoCallRef.current.joinRoom('room');
+    this.videoCallRef.current.joinRoom(groupDetails && groupDetails.sid);
   };
 
   render() {
@@ -141,14 +143,14 @@ class ChatMessageWindowContainer extends Component {
           <img className="ChatMessageWindow-header-img" src={IconInvalidName} />
           <span className="ChatMessageWindow-header-title">{groupDetails.group_name}</span>
           <img className="ChatMessageWindow-header-phone" src={phone} />
-          <img className="ChatMessageWindow-header-camera" src={video} onClick={this.onVideoCall}/>
+          <img className="ChatMessageWindow-header-camera" src={video} onClick={this.onVideoCall} />
         </div>
 
         <div style={{ marginBottom: '80px', marginTop: '65px' }}>
           {messages &&
             messages.length > 0 &&
             messages.map((item, index) =>
-              userId !== item.sender_id ? (
+              userId != item.sender_id ? (
                 <div style={{ display: 'flex' }} key={index}>
                   <ChatMessageReceived name={item.sender} message={item.message} timestamp="12:00AM" />
                 </div>
@@ -176,9 +178,15 @@ class ChatMessageWindowContainer extends Component {
         {/*  timestamp="12:00AM"*/}
         {/* />*/}
         <div className="ChatMessageWindow-input-container">
-          <MessageInput />
+          <MessageInput groupDetails={groupDetails} />
         </div>
-        <VideoCall ref={this.videoCallRef} token={videoCallToken} isOpen={openVideoCall} cancel={() => this.setState({ openVideoCall: false })}/>
+        <VideoCall
+          ref={this.videoCallRef}
+          groupDetails={groupDetails}
+          token={videoCallToken}
+          isOpen={openVideoCall}
+          cancel={() => this.setState({ openVideoCall: false })}
+        />
       </div>
     );
   }

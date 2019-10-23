@@ -46,7 +46,7 @@
 
 .chat-sidebar-codybot-img {
   height: 41px;
-  width:  42px;
+  width: 42px;
   margin: 20px 15px 20px 20px;
 }
 
@@ -58,7 +58,7 @@
   line-height: 1.4;
 }
 
-.chat-sidebar-codybot-text span{
+.chat-sidebar-codybot-text span {
   display: block;
   font-size: 12px;
   color: #8a85a6;

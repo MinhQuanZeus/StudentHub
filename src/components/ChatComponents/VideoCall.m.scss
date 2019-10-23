@@ -26,36 +26,35 @@
     }
   }
   :global(.card-body) {
-    .flex-container {
+    .FlexContainer {
       display: flex;
-      border: 1px solid green;
       justify-content: space-between;
       padding: 5px;
       margin-top: 10px;
     }
 
-    .flex-item {
+    .FlexItem {
       margin: 5px;
     }
 
-    .flex-item:first-child {
+    .FlexItem:first-child {
       /* background-color: aqua; */
       flex: 2;
     }
 
-    .flex-item:nth-child(2) {
+    .FlexItem:nth-child(2) {
       /* background-color: blueviolet; */
       flex: 1;
     }
 
-    .flex-item:last-child {
+    .FlexItem:last-child {
       background-color: beige;
       flex: 1;
       flex-direction: column;
       overflow-y: scroll;
     }
 
-    #remote-media video {
+    .RemoteMedia video {
       width: inherit;
       height: 200px;
     }

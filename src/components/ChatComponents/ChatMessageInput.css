@@ -1,12 +1,13 @@
 .WindowInput-container {
-
+  position: relative;
+  display: flex;
 }
 
 .WindowInput-input {
   height: 40px;
   width: calc(100% - 120px);
   border: solid 1px #e1e1e1;
-  padding-left: 23px;
+  padding-left: 32px;
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.98px;
@@ -26,4 +27,30 @@
   font-size: 14px;
   font-weight: 900;
   letter-spacing: 1px;
+}
+
+.image-upload {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.image-upload > input {
+  display: none;
+}
+
+.image-upload img {
+  width: 80px;
+  cursor: pointer;
+}
+
+.attach {
+  background: white;
+  padding: 8px;
+}
+
+.attach i {
+  font-size: 14px;
+  padding-left: 6px;
+  cursor: pointer;
 }
